@@ -14,26 +14,7 @@
 		A7FED23A235CEF8B00CCD069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7FED239235CEF8B00CCD069 /* Assets.xcassets */; };
 		A7FED23D235CEF8B00CCD069 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7FED23C235CEF8B00CCD069 /* Preview Assets.xcassets */; };
 		A7FED240235CEF8B00CCD069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */; };
-		A7FED24B235CEF8C00CCD069 /* BillsDividerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED24A235CEF8C00CCD069 /* BillsDividerTests.swift */; };
-		A7FED256235CEF8C00CCD069 /* BillsDividerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED255235CEF8C00CCD069 /* BillsDividerUITests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A7FED247235CEF8C00CCD069 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
-			remoteInfo = BillsDivider;
-		};
-		A7FED252235CEF8C00CCD069 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
-			remoteInfo = BillsDivider;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A7FED22D235CEF8A00CCD069 /* BillsDivider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillsDivider.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,30 +26,10 @@
 		A7FED23C235CEF8B00CCD069 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A7FED23F235CEF8B00CCD069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7FED241235CEF8B00CCD069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7FED246235CEF8C00CCD069 /* BillsDividerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7FED24A235CEF8C00CCD069 /* BillsDividerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDividerTests.swift; sourceTree = "<group>"; };
-		A7FED24C235CEF8C00CCD069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7FED251235CEF8C00CCD069 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7FED255235CEF8C00CCD069 /* BillsDividerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDividerUITests.swift; sourceTree = "<group>"; };
-		A7FED257235CEF8C00CCD069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A7FED22A235CEF8A00CCD069 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7FED243235CEF8C00CCD069 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7FED24E235CEF8C00CCD069 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -82,8 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				A7FED22F235CEF8A00CCD069 /* BillsDivider */,
-				A7FED249235CEF8C00CCD069 /* BillsDividerTests */,
-				A7FED254235CEF8C00CCD069 /* BillsDividerUITests */,
 				A7FED22E235CEF8A00CCD069 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,8 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				A7FED22D235CEF8A00CCD069 /* BillsDivider.app */,
-				A7FED246235CEF8C00CCD069 /* BillsDividerTests.xctest */,
-				A7FED251235CEF8C00CCD069 /* BillsDividerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,14 +58,14 @@
 		A7FED22F235CEF8A00CCD069 /* BillsDivider */ = {
 			isa = PBXGroup;
 			children = (
-				A7FED230235CEF8B00CCD069 /* AppDelegate.swift */,
-				A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */,
-				A7FED237235CEF8B00CCD069 /* ContentView.swift */,
-				A7FED239235CEF8B00CCD069 /* Assets.xcassets */,
-				A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */,
-				A7FED241235CEF8B00CCD069 /* Info.plist */,
-				A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */,
 				A7FED23B235CEF8B00CCD069 /* Preview Content */,
+				A7FED230235CEF8B00CCD069 /* AppDelegate.swift */,
+				A7FED239235CEF8B00CCD069 /* Assets.xcassets */,
+				A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */,
+				A7FED237235CEF8B00CCD069 /* ContentView.swift */,
+				A7FED241235CEF8B00CCD069 /* Info.plist */,
+				A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */,
+				A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */,
 			);
 			path = BillsDivider;
 			sourceTree = "<group>";
@@ -119,24 +76,6 @@
 				A7FED23C235CEF8B00CCD069 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		A7FED249235CEF8C00CCD069 /* BillsDividerTests */ = {
-			isa = PBXGroup;
-			children = (
-				A7FED24A235CEF8C00CCD069 /* BillsDividerTests.swift */,
-				A7FED24C235CEF8C00CCD069 /* Info.plist */,
-			);
-			path = BillsDividerTests;
-			sourceTree = "<group>";
-		};
-		A7FED254235CEF8C00CCD069 /* BillsDividerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A7FED255235CEF8C00CCD069 /* BillsDividerUITests.swift */,
-				A7FED257235CEF8C00CCD069 /* Info.plist */,
-			);
-			path = BillsDividerUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,42 +98,6 @@
 			productReference = A7FED22D235CEF8A00CCD069 /* BillsDivider.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A7FED245235CEF8C00CCD069 /* BillsDividerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7FED25D235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDividerTests" */;
-			buildPhases = (
-				A7FED242235CEF8C00CCD069 /* Sources */,
-				A7FED243235CEF8C00CCD069 /* Frameworks */,
-				A7FED244235CEF8C00CCD069 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A7FED248235CEF8C00CCD069 /* PBXTargetDependency */,
-			);
-			name = BillsDividerTests;
-			productName = BillsDividerTests;
-			productReference = A7FED246235CEF8C00CCD069 /* BillsDividerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		A7FED250235CEF8C00CCD069 /* BillsDividerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7FED260235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDividerUITests" */;
-			buildPhases = (
-				A7FED24D235CEF8C00CCD069 /* Sources */,
-				A7FED24E235CEF8C00CCD069 /* Frameworks */,
-				A7FED24F235CEF8C00CCD069 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A7FED253235CEF8C00CCD069 /* PBXTargetDependency */,
-			);
-			name = BillsDividerUITests;
-			productName = BillsDividerUITests;
-			productReference = A7FED251235CEF8C00CCD069 /* BillsDividerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,14 +110,6 @@
 				TargetAttributes = {
 					A7FED22C235CEF8A00CCD069 = {
 						CreatedOnToolsVersion = 11.0;
-					};
-					A7FED245235CEF8C00CCD069 = {
-						CreatedOnToolsVersion = 11.0;
-						TestTargetID = A7FED22C235CEF8A00CCD069;
-					};
-					A7FED250235CEF8C00CCD069 = {
-						CreatedOnToolsVersion = 11.0;
-						TestTargetID = A7FED22C235CEF8A00CCD069;
 					};
 				};
 			};
@@ -232,8 +127,6 @@
 			projectRoot = "";
 			targets = (
 				A7FED22C235CEF8A00CCD069 /* BillsDivider */,
-				A7FED245235CEF8C00CCD069 /* BillsDividerTests */,
-				A7FED250235CEF8C00CCD069 /* BillsDividerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -246,20 +139,6 @@
 				A7FED240235CEF8B00CCD069 /* LaunchScreen.storyboard in Resources */,
 				A7FED23D235CEF8B00CCD069 /* Preview Assets.xcassets in Resources */,
 				A7FED23A235CEF8B00CCD069 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7FED244235CEF8C00CCD069 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7FED24F235CEF8C00CCD069 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,36 +156,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7FED242235CEF8C00CCD069 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7FED24B235CEF8C00CCD069 /* BillsDividerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7FED24D235CEF8C00CCD069 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7FED256235CEF8C00CCD069 /* BillsDividerUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A7FED248235CEF8C00CCD069 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
-			targetProxy = A7FED247235CEF8C00CCD069 /* PBXContainerItemProxy */;
-		};
-		A7FED253235CEF8C00CCD069 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
-			targetProxy = A7FED252235CEF8C00CCD069 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */ = {
@@ -474,90 +324,6 @@
 			};
 			name = Release;
 		};
-		A7FED25E235CEF8C00CCD069 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q924VJ4PLT;
-				INFOPLIST_FILE = BillsDividerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BillsDivider.app/BillsDivider";
-			};
-			name = Debug;
-		};
-		A7FED25F235CEF8C00CCD069 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q924VJ4PLT;
-				INFOPLIST_FILE = BillsDividerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BillsDivider.app/BillsDivider";
-			};
-			name = Release;
-		};
-		A7FED261235CEF8C00CCD069 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q924VJ4PLT;
-				INFOPLIST_FILE = BillsDividerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BillsDivider;
-			};
-			name = Debug;
-		};
-		A7FED262235CEF8C00CCD069 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q924VJ4PLT;
-				INFOPLIST_FILE = BillsDividerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BillsDivider;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -575,24 +341,6 @@
 			buildConfigurations = (
 				A7FED25B235CEF8C00CCD069 /* Debug */,
 				A7FED25C235CEF8C00CCD069 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A7FED25D235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDividerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7FED25E235CEF8C00CCD069 /* Debug */,
-				A7FED25F235CEF8C00CCD069 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A7FED260235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDividerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7FED261235CEF8C00CCD069 /* Debug */,
-				A7FED262235CEF8C00CCD069 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
