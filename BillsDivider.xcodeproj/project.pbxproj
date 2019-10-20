@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED230235CEF8B00CCD069 /* AppDelegate.swift */; };
+		A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */; };
+		A7FED236235CEF8B00CCD069 /* BillsDivider.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */; };
+		A7FED238235CEF8B00CCD069 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED237235CEF8B00CCD069 /* ContentView.swift */; };
+		A7FED23A235CEF8B00CCD069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7FED239235CEF8B00CCD069 /* Assets.xcassets */; };
+		A7FED23D235CEF8B00CCD069 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7FED23C235CEF8B00CCD069 /* Preview Assets.xcassets */; };
+		A7FED240235CEF8B00CCD069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */; };
+		A7FED24B235CEF8C00CCD069 /* BillsDividerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED24A235CEF8C00CCD069 /* BillsDividerTests.swift */; };
+		A7FED256235CEF8C00CCD069 /* BillsDividerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED255235CEF8C00CCD069 /* BillsDividerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A7FED247235CEF8C00CCD069 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
+			remoteInfo = BillsDivider;
+		};
+		A7FED252235CEF8C00CCD069 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
+			remoteInfo = BillsDivider;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A7FED22D235CEF8A00CCD069 /* BillsDivider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillsDivider.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7FED230235CEF8B00CCD069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A7FED235235CEF8B00CCD069 /* BillsDivider.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BillsDivider.xcdatamodel; sourceTree = "<group>"; };
+		A7FED237235CEF8B00CCD069 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A7FED239235CEF8B00CCD069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A7FED23C235CEF8B00CCD069 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A7FED23F235CEF8B00CCD069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A7FED241235CEF8B00CCD069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7FED246235CEF8C00CCD069 /* BillsDividerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7FED24A235CEF8C00CCD069 /* BillsDividerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDividerTests.swift; sourceTree = "<group>"; };
+		A7FED24C235CEF8C00CCD069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7FED251235CEF8C00CCD069 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7FED255235CEF8C00CCD069 /* BillsDividerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDividerUITests.swift; sourceTree = "<group>"; };
+		A7FED257235CEF8C00CCD069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A7FED22A235CEF8A00CCD069 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FED243235CEF8C00CCD069 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FED24E235CEF8C00CCD069 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A7FED224235CEF8A00CCD069 = {
+			isa = PBXGroup;
+			children = (
+				A7FED22F235CEF8A00CCD069 /* BillsDivider */,
+				A7FED249235CEF8C00CCD069 /* BillsDividerTests */,
+				A7FED254235CEF8C00CCD069 /* BillsDividerUITests */,
+				A7FED22E235CEF8A00CCD069 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A7FED22E235CEF8A00CCD069 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A7FED22D235CEF8A00CCD069 /* BillsDivider.app */,
+				A7FED246235CEF8C00CCD069 /* BillsDividerTests.xctest */,
+				A7FED251235CEF8C00CCD069 /* BillsDividerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A7FED22F235CEF8A00CCD069 /* BillsDivider */ = {
+			isa = PBXGroup;
+			children = (
+				A7FED230235CEF8B00CCD069 /* AppDelegate.swift */,
+				A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */,
+				A7FED237235CEF8B00CCD069 /* ContentView.swift */,
+				A7FED239235CEF8B00CCD069 /* Assets.xcassets */,
+				A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */,
+				A7FED241235CEF8B00CCD069 /* Info.plist */,
+				A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */,
+				A7FED23B235CEF8B00CCD069 /* Preview Content */,
+			);
+			path = BillsDivider;
+			sourceTree = "<group>";
+		};
+		A7FED23B235CEF8B00CCD069 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A7FED23C235CEF8B00CCD069 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A7FED249235CEF8C00CCD069 /* BillsDividerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A7FED24A235CEF8C00CCD069 /* BillsDividerTests.swift */,
+				A7FED24C235CEF8C00CCD069 /* Info.plist */,
+			);
+			path = BillsDividerTests;
+			sourceTree = "<group>";
+		};
+		A7FED254235CEF8C00CCD069 /* BillsDividerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A7FED255235CEF8C00CCD069 /* BillsDividerUITests.swift */,
+				A7FED257235CEF8C00CCD069 /* Info.plist */,
+			);
+			path = BillsDividerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A7FED22C235CEF8A00CCD069 /* BillsDivider */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7FED25A235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDivider" */;
+			buildPhases = (
+				A7FED229235CEF8A00CCD069 /* Sources */,
+				A7FED22A235CEF8A00CCD069 /* Frameworks */,
+				A7FED22B235CEF8A00CCD069 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BillsDivider;
+			productName = BillsDivider;
+			productReference = A7FED22D235CEF8A00CCD069 /* BillsDivider.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A7FED245235CEF8C00CCD069 /* BillsDividerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7FED25D235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDividerTests" */;
+			buildPhases = (
+				A7FED242235CEF8C00CCD069 /* Sources */,
+				A7FED243235CEF8C00CCD069 /* Frameworks */,
+				A7FED244235CEF8C00CCD069 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7FED248235CEF8C00CCD069 /* PBXTargetDependency */,
+			);
+			name = BillsDividerTests;
+			productName = BillsDividerTests;
+			productReference = A7FED246235CEF8C00CCD069 /* BillsDividerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A7FED250235CEF8C00CCD069 /* BillsDividerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7FED260235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDividerUITests" */;
+			buildPhases = (
+				A7FED24D235CEF8C00CCD069 /* Sources */,
+				A7FED24E235CEF8C00CCD069 /* Frameworks */,
+				A7FED24F235CEF8C00CCD069 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7FED253235CEF8C00CCD069 /* PBXTargetDependency */,
+			);
+			name = BillsDividerUITests;
+			productName = BillsDividerUITests;
+			productReference = A7FED251235CEF8C00CCD069 /* BillsDividerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A7FED225235CEF8A00CCD069 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Adrian Świątek";
+				TargetAttributes = {
+					A7FED22C235CEF8A00CCD069 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					A7FED245235CEF8C00CCD069 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = A7FED22C235CEF8A00CCD069;
+					};
+					A7FED250235CEF8C00CCD069 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = A7FED22C235CEF8A00CCD069;
+					};
+				};
+			};
+			buildConfigurationList = A7FED228235CEF8A00CCD069 /* Build configuration list for PBXProject "BillsDivider" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A7FED224235CEF8A00CCD069;
+			productRefGroup = A7FED22E235CEF8A00CCD069 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A7FED22C235CEF8A00CCD069 /* BillsDivider */,
+				A7FED245235CEF8C00CCD069 /* BillsDividerTests */,
+				A7FED250235CEF8C00CCD069 /* BillsDividerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A7FED22B235CEF8A00CCD069 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FED240235CEF8B00CCD069 /* LaunchScreen.storyboard in Resources */,
+				A7FED23D235CEF8B00CCD069 /* Preview Assets.xcassets in Resources */,
+				A7FED23A235CEF8B00CCD069 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FED244235CEF8C00CCD069 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FED24F235CEF8C00CCD069 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A7FED229235CEF8A00CCD069 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FED236235CEF8B00CCD069 /* BillsDivider.xcdatamodeld in Sources */,
+				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
+				A7FED238235CEF8B00CCD069 /* ContentView.swift in Sources */,
+				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FED242235CEF8C00CCD069 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FED24B235CEF8C00CCD069 /* BillsDividerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7FED24D235CEF8C00CCD069 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7FED256235CEF8C00CCD069 /* BillsDividerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A7FED248235CEF8C00CCD069 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
+			targetProxy = A7FED247235CEF8C00CCD069 /* PBXContainerItemProxy */;
+		};
+		A7FED253235CEF8C00CCD069 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
+			targetProxy = A7FED252235CEF8C00CCD069 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A7FED23F235CEF8B00CCD069 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A7FED258235CEF8C00CCD069 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A7FED259235CEF8C00CCD069 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A7FED25B235CEF8C00CCD069 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"BillsDivider/Preview Content\"";
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = BillsDivider/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDivider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A7FED25C235CEF8C00CCD069 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"BillsDivider/Preview Content\"";
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = BillsDivider/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDivider;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A7FED25E235CEF8C00CCD069 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				INFOPLIST_FILE = BillsDividerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BillsDivider.app/BillsDivider";
+			};
+			name = Debug;
+		};
+		A7FED25F235CEF8C00CCD069 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				INFOPLIST_FILE = BillsDividerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BillsDivider.app/BillsDivider";
+			};
+			name = Release;
+		};
+		A7FED261235CEF8C00CCD069 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				INFOPLIST_FILE = BillsDividerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BillsDivider;
+			};
+			name = Debug;
+		};
+		A7FED262235CEF8C00CCD069 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				INFOPLIST_FILE = BillsDividerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BillsDivider;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A7FED228235CEF8A00CCD069 /* Build configuration list for PBXProject "BillsDivider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7FED258235CEF8C00CCD069 /* Debug */,
+				A7FED259235CEF8C00CCD069 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7FED25A235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDivider" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7FED25B235CEF8C00CCD069 /* Debug */,
+				A7FED25C235CEF8C00CCD069 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7FED25D235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDividerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7FED25E235CEF8C00CCD069 /* Debug */,
+				A7FED25F235CEF8C00CCD069 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7FED260235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDividerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7FED261235CEF8C00CCD069 /* Debug */,
+				A7FED262235CEF8C00CCD069 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A7FED235235CEF8B00CCD069 /* BillsDivider.xcdatamodel */,
+			);
+			currentVersion = A7FED235235CEF8B00CCD069 /* BillsDivider.xcdatamodel */;
+			path = BillsDivider.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A7FED225235CEF8A00CCD069 /* Project object */;
+}
