@@ -7,21 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A736A1962369DAE20096C2E1 /* ReceiptPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */; };
+		A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */; };
+		A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */; };
+		A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1A12369EB5D0096C2E1 /* TabsView.swift */; };
 		A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED230235CEF8B00CCD069 /* AppDelegate.swift */; };
 		A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */; };
 		A7FED236235CEF8B00CCD069 /* BillsDivider.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */; };
-		A7FED238235CEF8B00CCD069 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED237235CEF8B00CCD069 /* ContentView.swift */; };
+		A7FED238235CEF8B00CCD069 /* ReceiptListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED237235CEF8B00CCD069 /* ReceiptListView.swift */; };
 		A7FED23A235CEF8B00CCD069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7FED239235CEF8B00CCD069 /* Assets.xcassets */; };
 		A7FED23D235CEF8B00CCD069 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7FED23C235CEF8B00CCD069 /* Preview Assets.xcassets */; };
 		A7FED240235CEF8B00CCD069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionView.swift; sourceTree = "<group>"; };
+		A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
+		A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPosition.swift; sourceTree = "<group>"; };
+		A736A1A12369EB5D0096C2E1 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		A7FED22D235CEF8A00CCD069 /* BillsDivider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillsDivider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FED230235CEF8B00CCD069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A7FED235235CEF8B00CCD069 /* BillsDivider.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BillsDivider.xcdatamodel; sourceTree = "<group>"; };
-		A7FED237235CEF8B00CCD069 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A7FED237235CEF8B00CCD069 /* ReceiptListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListView.swift; sourceTree = "<group>"; };
 		A7FED239235CEF8B00CCD069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7FED23C235CEF8B00CCD069 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A7FED23F235CEF8B00CCD069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +47,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A736A1992369DDD70096C2E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A736A19A2369DDE90096C2E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A7FED23B235CEF8B00CCD069 /* Preview Content */,
+				A7FED239235CEF8B00CCD069 /* Assets.xcassets */,
+				A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A77936BD235CF66700EC64D0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */,
+				A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */,
+				A7FED237235CEF8B00CCD069 /* ReceiptListView.swift */,
+				A736A1A12369EB5D0096C2E1 /* TabsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A7FED224235CEF8A00CCD069 = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +95,13 @@
 		A7FED22F235CEF8A00CCD069 /* BillsDivider */ = {
 			isa = PBXGroup;
 			children = (
-				A7FED23B235CEF8B00CCD069 /* Preview Content */,
+				A736A19A2369DDE90096C2E1 /* Resources */,
+				A736A1992369DDD70096C2E1 /* Model */,
+				A77936BD235CF66700EC64D0 /* Views */,
 				A7FED230235CEF8B00CCD069 /* AppDelegate.swift */,
-				A7FED239235CEF8B00CCD069 /* Assets.xcassets */,
-				A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */,
-				A7FED237235CEF8B00CCD069 /* ContentView.swift */,
-				A7FED241235CEF8B00CCD069 /* Info.plist */,
-				A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */,
 				A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */,
+				A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */,
+				A7FED241235CEF8B00CCD069 /* Info.plist */,
 			);
 			path = BillsDivider;
 			sourceTree = "<group>";
@@ -149,9 +185,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A736A1962369DAE20096C2E1 /* ReceiptPositionView.swift in Sources */,
 				A7FED236235CEF8B00CCD069 /* BillsDivider.xcdatamodeld in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
-				A7FED238235CEF8B00CCD069 /* ContentView.swift in Sources */,
+				A7FED238235CEF8B00CCD069 /* ReceiptListView.swift in Sources */,
+				A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */,
+				A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */,
+				A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */,
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,7 +329,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"BillsDivider/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BillsDivider/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = Q924VJ4PLT;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BillsDivider/Info.plist;
@@ -309,7 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"BillsDivider/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"BillsDivider/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = Q924VJ4PLT;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BillsDivider/Info.plist;
