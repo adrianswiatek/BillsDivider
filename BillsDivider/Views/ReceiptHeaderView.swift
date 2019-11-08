@@ -21,7 +21,6 @@ struct ReceiptHeaderView: View {
                 .fontWeight(.bold)
                 .frame(width: columnWidth)
         }
-        .background(Color(white: 0.9))
     }
 }
 

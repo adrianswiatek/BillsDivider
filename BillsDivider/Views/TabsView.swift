@@ -13,6 +13,7 @@ struct TabsView: View {
                 Text("Summary")
             }
         }
+        .edgesIgnoringSafeArea(.top)
     }
 }
 

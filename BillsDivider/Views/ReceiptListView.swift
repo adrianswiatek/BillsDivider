@@ -19,6 +19,8 @@ struct ReceiptListView: View {
                         ReceiptPositionView($0, self.columnWidth)
                             .offset(x: -24, y: 0)
                     }
+                    .onDelete { print($0.first ?? "") }
+                    .onMove(perform: { print($0.first ?? "", $1) })
                 }
             }
             .navigationBarTitle(Text(""), displayMode: .inline)

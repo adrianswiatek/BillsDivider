@@ -11,14 +11,48 @@ struct ReceiptPositionView: View {
 
     var body: some View {
         HStack {
-            Text("\(position.amount, specifier: "%.2f")")
-                .frame(width: columnWidth)
+            HStack {
+                Text("\(position.amount, specifier: "%.2f")")
 
-            Text(position.buyer.formatted)
-                .frame(width: columnWidth)
+            }
+            .frame(width: columnWidth)
 
-            Text(position.owner.formatted)
-                .frame(width: columnWidth)
+            HStack {
+                Text(position.buyer.formatted)
+                    .foregroundColor(.white)
+                    .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
+                    .background(
+                        Capsule(style: .continuous)
+                            .foregroundColor(getBuyerColor())
+                    )
+            }
+            .frame(width: columnWidth)
+
+            HStack {
+                Text(position.owner.formatted)
+                    .foregroundColor(.white)
+                    .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
+                    .background(
+                        Capsule(style: .continuous)
+                            .foregroundColor(getOwnerColor())
+                    )
+            }
+            .frame(width: columnWidth)
+        }
+    }
+
+    private func getBuyerColor() -> Color {
+        switch position.buyer {
+        case .me: return .blue
+        case .notMe: return .green
+        }
+    }
+
+    private func getOwnerColor() -> Color {
+        switch position.owner {
+        case .me: return .blue
+        case .notMe: return .green
+        case .all: return .purple
         }
     }
 }
