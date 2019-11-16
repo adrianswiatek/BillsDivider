@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A73283F6237F68990012CBB8 /* AddOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73283F5237F68990012CBB8 /* AddOverlayView.swift */; };
 		A736A1962369DAE20096C2E1 /* ReceiptPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */; };
 		A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */; };
 		A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A73283F5237F68990012CBB8 /* AddOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOverlayView.swift; sourceTree = "<group>"; };
 		A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionView.swift; sourceTree = "<group>"; };
 		A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
 		A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPosition.swift; sourceTree = "<group>"; };
@@ -68,9 +70,10 @@
 		A77936BD235CF66700EC64D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A73283F5237F68990012CBB8 /* AddOverlayView.swift */,
 				A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */,
-				A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */,
 				A7FED237235CEF8B00CCD069 /* ReceiptListView.swift */,
+				A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */,
 				A736A1A12369EB5D0096C2E1 /* TabsView.swift */,
 			);
 			path = Views;
@@ -190,6 +193,7 @@
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
 				A7FED238235CEF8B00CCD069 /* ReceiptListView.swift in Sources */,
 				A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */,
+				A73283F6237F68990012CBB8 /* AddOverlayView.swift in Sources */,
 				A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */,
 				A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */,
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
