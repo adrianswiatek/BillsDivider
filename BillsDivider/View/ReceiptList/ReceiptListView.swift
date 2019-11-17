@@ -31,7 +31,7 @@ struct ReceiptListView: View {
             })
         }
         .sheet(isPresented: $presentingAddOverlay) {
-            AddOverlayView(presenting: self.$presentingAddOverlay)
+            AddOverlayView(self.$presentingAddOverlay)
         }
     }
 }
