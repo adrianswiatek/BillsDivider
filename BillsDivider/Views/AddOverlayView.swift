@@ -6,80 +6,65 @@ struct AddOverlayView: View {
     @State private var priceText: String = ""
     @State private var buyer: Buyer = .me
     @State private var owner: Owner = .all
+    @State private var addAnother: Bool = true
 
     var body: some View {
-        VStack {
-            HStack {
-                Button(action: { self.presenting = false }) {
-                    Image(systemName: "xmark")
-                        .frame(width: 24, height: 24)
-                }
-                Spacer()
-                Text("Add position")
-                Spacer()
-            }
-            .padding(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
-            .background(Color(white:0.9))
-            .cornerRadius(16)
-            .padding(.bottom)
-
-            HStack {
-                Image(systemName: "dollarsign.circle")
-                    .foregroundColor(.gray)
-                    .font(.system(size: 24))
-                TextField("0.00", text: $priceText)
-                    .multilineTextAlignment(.trailing)
-                    .font(.system(size: 42, weight: .medium, design: .rounded))
-                    .keyboardType(.decimalPad)
-                    .padding(.horizontal)
-            }
-            .padding(.init(top: 2, leading: 24, bottom: 2, trailing: 0))
-            .overlay(RoundedRectangle(cornerRadius: 16).stroke(lineWidth: 0.5))
-
+        NavigationView {
             VStack {
-                HStack {
-                    Text("Buyer")
-                        .font(.body)
-                        .foregroundColor(.gray)
-                        .frame(width: 75)
-                    Picker(selection: $buyer, label: Text("Buyer")) {
-                        Text("Me").tag(Buyer.me)
-                        Text("Not me").tag(Buyer.notMe)
+                Form {
+                    Section(header: Text("Price")) {
+                        HStack {
+                            TextField("0.00", text: $priceText)
+                                .multilineTextAlignment(.center)
+                                .font(.system(size: 42, weight: .medium, design: .rounded))
+                                .keyboardType(.decimalPad)
+                                .padding(.horizontal)
+                        }
+                        .padding(.init(top: 2, leading: 24, bottom: 2, trailing: 0))
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                }
 
-                HStack {
-                    Text("Owner")
-                        .font(.body)
-                        .foregroundColor(.gray)
-                        .frame(width: 75)
-                    Picker(selection: $owner, label: Text("Buyer")) {
-                        Text("Me").tag(Owner.me)
-                        Text("Not me").tag(Owner.notMe)
-                        Text("All").tag(Owner.all)
+                    Section(header: Text("Buyer")) {
+                        Picker(selection: $buyer, label: Text("Buyer")) {
+                            Text("Me").tag(Buyer.me)
+                            Text("Not me").tag(Buyer.notMe)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
                     }
-                    .pickerStyle(SegmentedPickerStyle())
+
+                    Section(header: Text("Owner")) {
+                        Picker(selection: $owner, label: Text("Buyer")) {
+                            Text("Me").tag(Owner.me)
+                            Text("Not me").tag(Owner.notMe)
+                            Text("All").tag(Owner.all)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                    }
+
+                    Section {
+                        Toggle("Add another", isOn: $addAnother)
+                            .foregroundColor(Color(white: 0.4))
+                            .font(.footnote)
+                    }
+
+                    Section {
+                        Button(action: { self.presenting = false }) {
+                            HStack {
+                                Spacer()
+                                Image(systemName: "checkmark.circle.fill")
+                                Text("CONFIRM")
+                                Spacer()
+                            }
+                        }
+                        .disabled(priceText.isEmpty)
+                    }
                 }
             }
-            .padding(.vertical)
-
-            Button(action: { self.presenting = false }) {
-                HStack {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.white)
-                    Text("Confirm")
-                        .foregroundColor(.white)
-                }
-                .padding(.init(top: 8, leading: 48, bottom: 8, trailing: 48))
-                .background(Color.blue)
-                .cornerRadius(16)
-            }
-            .padding(.vertical)
-
-            Spacer()
+            .navigationBarTitle(Text("Add position"), displayMode: .inline)
+            .navigationBarItems(leading: Button(action: { self.presenting = false }) {
+                Image(systemName: "xmark")
+                    .frame(width: 24, height: 24)
+            })
         }
-        .padding(.init(top: 24, leading: 16, bottom: 24, trailing: 16))
     }
 }
 
