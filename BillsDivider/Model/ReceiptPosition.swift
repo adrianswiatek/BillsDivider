@@ -19,29 +19,3 @@ extension ReceiptPosition {
         self.owner = owner
     }
 }
-
-enum Buyer {
-    case me
-    case notMe
-
-    var formatted: String {
-        switch self {
-        case .me: return "Me"
-        case .notMe: return "Not me"
-        }
-    }
-}
-
-enum Owner {
-    case me
-    case notMe
-    case all
-
-    var formatted: String {
-        switch self {
-        case .me: return "Me"
-        case .notMe: return "Not me"
-        case .all: return "All"
-        }
-    }
-}
