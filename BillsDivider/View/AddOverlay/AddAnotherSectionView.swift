@@ -1,7 +1,11 @@
 import SwiftUI
 
 struct AddAnotherSectionView: View {
-    @Binding var addAnother: Bool
+    @Binding private var addAnother: Bool
+
+    init(addAnother: Binding<Bool>) {
+        self._addAnother = addAnother
+    }
 
     var body: some View {
         Toggle("Add another", isOn: $addAnother)

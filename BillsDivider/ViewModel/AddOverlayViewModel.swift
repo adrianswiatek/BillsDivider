@@ -8,10 +8,16 @@ class AddOverlayViewModel: ObservableObject {
     @Published var buyer: Buyer
     @Published var owner: Owner
     @Published var addAnother: Bool
+    @Published var isPriceCorrect: Bool
+    @Published var canConfirm: Bool
 
-    var canConfirm: Bool {
-        !priceText.isEmpty
-    }
+    private var subscriptions: [AnyCancellable]
+
+    private let currencyFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
 
     init(_ presenting: Binding<Bool>) {
         self._presenting = presenting
@@ -20,6 +26,11 @@ class AddOverlayViewModel: ObservableObject {
         self.buyer = .me
         self.owner = .all
         self.addAnother = true
+        self.canConfirm = false
+        self.isPriceCorrect = false
+        self.subscriptions = []
+
+        self.setupSubscriptions()
     }
 
     func confirmDidTap() {
@@ -28,5 +39,26 @@ class AddOverlayViewModel: ObservableObject {
 
     func dismiss() {
         presenting = false
+    }
+
+    private func setupSubscriptions() {
+        $priceText
+            .sink {
+                self.isPriceCorrect = $0.isEmpty || self.tryParsePrice($0) != nil
+                self.canConfirm = !$0.isEmpty && self.isPriceCorrect
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func tryParsePrice(_ priceText: String) -> Double? {
+        var priceText = priceText
+        priceText = priceText.replacingOccurrences(of: ",", with: ".")
+
+        guard
+            let parsedPrice = Double(priceText),
+            let formattedPrice = currencyFormatter.string(from: NSNumber(value: parsedPrice))
+        else { return nil }
+
+        return Double(formattedPrice)
     }
 }

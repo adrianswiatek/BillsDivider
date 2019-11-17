@@ -12,7 +12,7 @@ struct AddOverlayView: View {
             VStack {
                 Form {
                     Section(header: Text("Price")) {
-                        PriceSectionView(priceText: $viewModel.priceText)
+                        PriceSectionView(priceText: $viewModel.priceText, isPriceCorrect: viewModel.isPriceCorrect)
                     }
 
                     Section(header: Text("Buyer")) {

@@ -1,22 +1,33 @@
 import SwiftUI
 
 struct PriceSectionView: View {
-    @Binding var priceText: String
+    @Binding private var priceText: String
+    private var isPriceCorrect: Bool
+
+    init(priceText: Binding<String>, isPriceCorrect: Bool) {
+        self._priceText = priceText
+        self.isPriceCorrect = isPriceCorrect
+    }
 
     var body: some View {
-        HStack {
-            TextField("0.00", text: $priceText)
-                .multilineTextAlignment(.center)
-                .font(.system(size: 42, weight: .medium, design: .rounded))
-                .keyboardType(.decimalPad)
-                .padding(.horizontal)
-        }
-        .padding(.init(top: 2, leading: 24, bottom: 2, trailing: 0))
+            HStack {
+                Text(isPriceCorrect ? "" : "Invalid price")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+
+                TextField(String(format: "%.2f", 0), text: $priceText)
+                    .multilineTextAlignment(.trailing)
+                    .font(.system(size: 42, weight: .medium, design: .rounded))
+                    .keyboardType(.decimalPad)
+                    .padding(.horizontal)
+                    .foregroundColor(isPriceCorrect ? .black : .gray)
+            }
+            .padding(.init(top: 2, leading: 24, bottom: 2, trailing: 0))
     }
 }
 
 struct PriceSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        PriceSectionView(priceText: .constant("2.99"))
+        PriceSectionView(priceText: .constant("2.99"), isPriceCorrect: true)
     }
 }
