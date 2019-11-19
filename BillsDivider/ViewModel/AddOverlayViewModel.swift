@@ -51,12 +51,23 @@ class AddOverlayViewModel: ObservableObject {
     }
 
     private func tryParsePrice(_ priceText: String) -> Double? {
+        func hasMoreThanTwoDigitsAfterDot(_ priceText: String) -> Bool {
+            if let indexOfDot = priceText.firstIndex(of: "."), priceText[indexOfDot...].count > 3 {
+                return true
+            }
+            return false
+        }
+
         var priceText = priceText
         priceText = priceText.replacingOccurrences(of: ",", with: ".")
 
+        if hasMoreThanTwoDigitsAfterDot(priceText) {
+            return nil
+        }
+
         guard
             let parsedPrice = Double(priceText),
-            let formattedPrice = currencyFormatter.string(from: NSNumber(value: parsedPrice))
+            let formattedPrice = currencyFormatter.string(for: parsedPrice)
         else { return nil }
 
         return Double(formattedPrice)
