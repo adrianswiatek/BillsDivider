@@ -14,7 +14,10 @@ struct ReceiptListView: View {
                         ReceiptPositionView($0, self.columnWidth)
                             .offset(x: -24, y: 0)
                     }
-                    .onDelete { print($0.first ?? "") }
+                    .onDelete {
+                        guard let index = $0.first else { return }
+                        self.viewModel.removePosition(at: index)
+                    }
                 }
             }
             .navigationBarTitle(Text(""), displayMode: .inline)
