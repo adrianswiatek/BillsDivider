@@ -3,8 +3,8 @@ import SwiftUI
 struct AddOverlayView: View {
     @ObservedObject private var viewModel: AddOverlayViewModel
 
-    init(_ presenting: Binding<Bool>) {
-        self.viewModel = .init(presenting)
+    init(_ viewModel: AddOverlayViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
@@ -43,6 +43,6 @@ struct AddOverlayView: View {
 
 struct AddOverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        AddOverlayView(.constant(true))
+        AddOverlayView(AddOverlayViewModel(.constant(true)))
     }
 }

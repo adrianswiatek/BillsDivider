@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct ReceiptListView: View {
-    private let columnWidth = UIScreen.main.bounds.width / 3
-
     @ObservedObject private var viewModel: ReceiptListViewModel = .init()
-    @State private var presentingAddOverlay = false
+    @State private var presentingAddOverlay: Bool = false
+
+    private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
 
     var body: some View {
         NavigationView {
@@ -24,8 +24,14 @@ struct ReceiptListView: View {
             })
         }
         .sheet(isPresented: $presentingAddOverlay) {
-            AddOverlayView(self.$presentingAddOverlay)
+            self.createAddOverlayView()
         }
+    }
+
+    private func createAddOverlayView() -> some View {
+        let addOverlayViewModel = AddOverlayViewModel($presentingAddOverlay)
+        viewModel.subscribe(to: addOverlayViewModel.positionAdded)
+        return AddOverlayView(addOverlayViewModel)
     }
 }
 
