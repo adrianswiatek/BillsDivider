@@ -3,21 +3,14 @@ import SwiftUI
 struct ReceiptListView: View {
     private let columnWidth = UIScreen.main.bounds.width / 3
 
+    @ObservedObject private var viewModel: ReceiptListViewModel = .init()
     @State private var presentingAddOverlay = false
-
-    private var positions = [
-        ReceiptPosition(amount: 2.5, buyer: .me, owner: .notMe),
-        ReceiptPosition(amount: 12.99, buyer: .me, owner: .notMe),
-        ReceiptPosition(amount: 7.49, buyer: .me, owner: .all),
-        ReceiptPosition(amount: 4, buyer: .notMe, owner: .me),
-        ReceiptPosition(amount: 0.97, buyer: .notMe, owner: .all)
-    ]
 
     var body: some View {
         NavigationView {
             List {
                 Section(header: ReceiptHeaderView(columnWidth)) {
-                    ForEach(positions) {
+                    ForEach(viewModel.positions) {
                         ReceiptPositionView($0, self.columnWidth)
                             .offset(x: -24, y: 0)
                     }
