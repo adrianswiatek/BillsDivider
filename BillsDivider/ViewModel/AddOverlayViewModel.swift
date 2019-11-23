@@ -11,6 +11,13 @@ class AddOverlayViewModel: ObservableObject {
     @Published var isPriceCorrect: Bool
     @Published var canConfirm: Bool
 
+    var pricePlaceHolderText: String {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        return formatter.string(from: 0)!
+    }
+
     var positionAdded: AnyPublisher<ReceiptPosition, Never> {
         positionAddedSubject.eraseToAnyPublisher()
     }
@@ -18,18 +25,12 @@ class AddOverlayViewModel: ObservableObject {
     private let positionAddedSubject: PassthroughSubject<ReceiptPosition, Never>
     private var subscriptions: [AnyCancellable]
 
-    private let currencyFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }()
-
-    init(_ presenting: Binding<Bool>) {
+    private init(_ presenting: Binding<Bool>, _ buyer: Buyer, _ owner: Owner) {
         self._presenting = presenting
 
         self.priceText = ""
-        self.buyer = .me
-        self.owner = .all
+        self.buyer = buyer
+        self.owner = owner
         self.addAnother = true
         self.canConfirm = false
         self.isPriceCorrect = false
@@ -39,14 +40,21 @@ class AddOverlayViewModel: ObservableObject {
         self.setupSubscriptions()
     }
 
+    static func createEmpty(
+        _ presenting: Binding<Bool>,
+        buyer: Buyer = .me,
+        owner: Owner = .all
+    ) -> AddOverlayViewModel {
+        return .init(presenting, buyer, owner)
+    }
+
     func confirmDidTap() {
         guard let receiptPosition = tryCreateReceiptPosition() else {
-            assertionFailure("Unable to create Receipt Position.")
-            return
+            preconditionFailure("Unable to create Receipt Position.")
         }
 
-        positionAddedSubject.send(receiptPosition)
         addAnother ? priceText.removeAll() : dismiss()
+        positionAddedSubject.send(receiptPosition)
     }
 
     func dismiss() {
@@ -77,12 +85,11 @@ class AddOverlayViewModel: ObservableObject {
             return nil
         }
 
-        guard
-            let parsedPrice = Double(priceText),
-            let formattedPrice = currencyFormatter.string(for: parsedPrice)
-        else { return nil }
+        guard let parsedPrice = Double(priceText) else {
+            return nil
+        }
 
-        return Double(formattedPrice)
+        return Double(parsedPrice)
     }
 
     private func tryCreateReceiptPosition() -> ReceiptPosition? {

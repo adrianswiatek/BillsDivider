@@ -4,11 +4,20 @@ struct BuyerSectionView: View {
     @Binding var buyer: Buyer
 
     var body: some View {
-        Picker(selection: $buyer, label: Text("Buyer")) {
-            Text("Me").tag(Buyer.me)
-            Text("Not me").tag(Buyer.notMe)
+        HStack {
+            Text("Buyer")
+                .foregroundColor(Color(white: 0.6))
+                .font(.footnote)
+
+            Spacer()
+
+            Picker(selection: $buyer, label: EmptyView()) {
+                Text("Me").tag(Buyer.me)
+                Text("Not me").tag(Buyer.notMe)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .frame(width: UIScreen.main.bounds.width * 0.7)
         }
-        .pickerStyle(SegmentedPickerStyle())
     }
 }
 

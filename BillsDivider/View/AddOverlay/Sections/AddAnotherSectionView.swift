@@ -8,9 +8,13 @@ struct AddAnotherSectionView: View {
     }
 
     var body: some View {
-        Toggle("Add another", isOn: $addAnother)
-            .foregroundColor(Color(white: 0.4))
-            .font(.footnote)
+        HStack {
+            Text("Add another")
+                .frame(width: 100)
+                .foregroundColor(Color(white: 0.6))
+                .font(.footnote)
+            Toggle("", isOn: $addAnother)
+        }
     }
 }
 

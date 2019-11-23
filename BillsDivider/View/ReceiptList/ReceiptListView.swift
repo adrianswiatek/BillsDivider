@@ -16,14 +16,17 @@ struct ReceiptListView: View {
                     }
                     .onDelete {
                         guard let index = $0.first else { return }
-                        self.viewModel.removePosition(at: index)
+
+                        withAnimation {
+                            self.viewModel.removePosition(at: index)
+                        }
                     }
                 }
             }
             .navigationBarTitle(Text(""), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: { self.presentingAddOverlay = true }) {
                 Image(systemName: "plus")
-                    .frame(width: 24, height: 24)
+                    .frame(width: 32, height: 32)
             })
         }
         .sheet(isPresented: $presentingAddOverlay) {
@@ -32,7 +35,12 @@ struct ReceiptListView: View {
     }
 
     private func createAddOverlayView() -> some View {
-        let addOverlayViewModel = AddOverlayViewModel($presentingAddOverlay)
+        var addOverlayViewModel: AddOverlayViewModel
+        if let position = viewModel.positions.first {
+            addOverlayViewModel = .createEmpty($presentingAddOverlay, buyer: position.buyer, owner: position.owner)
+        } else {
+            addOverlayViewModel = .createEmpty($presentingAddOverlay)
+        }
         viewModel.subscribe(to: addOverlayViewModel.positionAdded)
         return AddOverlayView(addOverlayViewModel)
     }

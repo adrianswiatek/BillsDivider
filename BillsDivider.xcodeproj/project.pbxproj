@@ -19,7 +19,6 @@
 		A77D54CD238192DF003D7E9D /* BuyerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CC238192DF003D7E9D /* BuyerSectionView.swift */; };
 		A77D54CF23819328003D7E9D /* OwnerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CE23819328003D7E9D /* OwnerSectionView.swift */; };
 		A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */; };
-		A77D54D3238193DC003D7E9D /* ConfirmSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54D2238193DC003D7E9D /* ConfirmSectionView.swift */; };
 		A77FAD202384B30E00B66C98 /* ReceiptListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */; };
 		A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED230235CEF8B00CCD069 /* AppDelegate.swift */; };
 		A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */; };
@@ -43,7 +42,6 @@
 		A77D54CC238192DF003D7E9D /* BuyerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerSectionView.swift; sourceTree = "<group>"; };
 		A77D54CE23819328003D7E9D /* OwnerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSectionView.swift; sourceTree = "<group>"; };
 		A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnotherSectionView.swift; sourceTree = "<group>"; };
-		A77D54D2238193DC003D7E9D /* ConfirmSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSectionView.swift; sourceTree = "<group>"; };
 		A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModel.swift; sourceTree = "<group>"; };
 		A7FED22D235CEF8A00CCD069 /* BillsDivider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillsDivider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FED230235CEF8B00CCD069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 			children = (
 				A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */,
 				A77D54CC238192DF003D7E9D /* BuyerSectionView.swift */,
-				A77D54D2238193DC003D7E9D /* ConfirmSectionView.swift */,
 				A77D54CE23819328003D7E9D /* OwnerSectionView.swift */,
 				A77D54CA23819255003D7E9D /* PriceSectionView.swift */,
 			);
@@ -248,7 +245,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77D54CD238192DF003D7E9D /* BuyerSectionView.swift in Sources */,
-				A77D54D3238193DC003D7E9D /* ConfirmSectionView.swift in Sources */,
 				A736A1962369DAE20096C2E1 /* ReceiptPositionView.swift in Sources */,
 				A747A736238198170065CD20 /* AddOverlayViewModel.swift in Sources */,
 				A77D54CF23819328003D7E9D /* OwnerSectionView.swift in Sources */,
