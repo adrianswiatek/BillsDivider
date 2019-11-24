@@ -19,7 +19,11 @@ class ReceiptListViewModel: ObservableObject {
     }
 
     func removePosition(at index: Int) {
-        assert(index >= 0 && index < positions.count, "Invalid index")
+        precondition(index >= 0 && index < positions.count, "Invalid index")
         positions.remove(at: index)
+    }
+
+    func removeAllPositions() {
+        positions.removeAll()
     }
 }

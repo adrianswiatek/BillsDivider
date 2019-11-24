@@ -2,7 +2,9 @@ import SwiftUI
 
 struct ReceiptListView: View {
     @ObservedObject private var viewModel: ReceiptListViewModel = .init()
+
     @State private var presentingAddOverlay: Bool = false
+    @State private var presentingOptionsMenu: Bool = false
 
     private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
 
@@ -25,7 +27,7 @@ struct ReceiptListView: View {
             }
             .navigationBarTitle(Text(""), displayMode: .inline)
             .navigationBarItems(
-                leading: Button(action: { }) {
+                leading: Button(action: { self.presentingOptionsMenu = true }) {
                     Image(systemName: "ellipsis")
                         .frame(width: 32, height: 32)
                         .rotationEffect(.degrees(90))
@@ -38,6 +40,12 @@ struct ReceiptListView: View {
         }
         .sheet(isPresented: $presentingAddOverlay) {
             self.createAddOverlayView()
+        }
+        .actionSheet(isPresented: $presentingOptionsMenu) {
+            ActionSheet(title: Text("Actions"), buttons: [
+                .destructive(Text("Remove all"), action: { self.viewModel.removeAllPositions() }),
+                .cancel()
+            ])
         }
     }
 
