@@ -1,14 +1,16 @@
 import SwiftUI
 
 struct TabsView: View {
+    private var receiptListViewModel: ReceiptListViewModel = .init()
+
     var body: some View {
         TabView {
-            ReceiptListView().tabItem {
+            ReceiptListView(receiptListViewModel).tabItem {
                 Image(systemName: "list.dash")
                 Text("Receipt")
             }
 
-            Text("Summary").tabItem {
+            SummaryView().tabItem {
                 Image(systemName: "doc.text")
                 Text("Summary")
             }

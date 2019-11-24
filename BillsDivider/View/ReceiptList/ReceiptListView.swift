@@ -1,12 +1,16 @@
 import SwiftUI
 
 struct ReceiptListView: View {
-    @ObservedObject private var viewModel: ReceiptListViewModel = .init()
+    @ObservedObject private var viewModel: ReceiptListViewModel
 
     @State private var presentingAddOverlay: Bool = false
     @State private var presentingOptionsMenu: Bool = false
 
     private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
+
+    init(_ viewModel: ReceiptListViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         NavigationView {
@@ -63,6 +67,6 @@ struct ReceiptListView: View {
 
 struct ReceiptListView_Previews: PreviewProvider {
     static var previews: some View {
-        ReceiptListView()
+        ReceiptListView(.init())
     }
 }
