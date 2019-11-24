@@ -24,10 +24,17 @@ struct ReceiptListView: View {
                 }
             }
             .navigationBarTitle(Text(""), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: { self.presentingAddOverlay = true }) {
-                Image(systemName: "plus")
-                    .frame(width: 32, height: 32)
-            })
+            .navigationBarItems(
+                leading: Button(action: { }) {
+                    Image(systemName: "ellipsis")
+                        .frame(width: 32, height: 32)
+                        .rotationEffect(.degrees(90))
+                },
+                trailing: Button(action: { self.presentingAddOverlay = true }) {
+                    Image(systemName: "plus")
+                        .frame(width: 32, height: 32)
+                }
+            )
         }
         .sheet(isPresented: $presentingAddOverlay) {
             self.createAddOverlayView()
