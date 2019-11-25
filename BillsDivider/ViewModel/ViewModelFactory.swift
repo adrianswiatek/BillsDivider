@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import SwiftUI
 
@@ -10,12 +11,12 @@ struct ViewModelFactory {
 }
 
 extension ViewModelFactory {
-    var summaryViewModel: SummaryViewModel {
-        SummaryViewModel(numberFormatter: numberFormatter)
+    var receiptListViewModel: ReceiptListViewModel {
+        ReceiptListViewModel(numberFormatter: numberFormatter)
     }
 
-    var receiptListViewModel: ReceiptListViewModel {
-        ReceiptListViewModel()
+    func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
+        SummaryViewModel(positions: positions, numberFormatter: numberFormatter)
     }
 
     func addOverlayViewModel(

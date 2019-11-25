@@ -3,17 +3,22 @@ import SwiftUI
 struct ReceiptPositionView: View {
     private let position: ReceiptPosition
     private let columnWidth: CGFloat
+    private let formatNumber: (Double) -> String
 
-    init(_ position: ReceiptPosition, _ columnWidth: CGFloat) {
+    init(
+        _ position: ReceiptPosition,
+        _ columnWidth: CGFloat,
+        _ formatNumber: @escaping (Double) -> String
+    ) {
         self.position = position
         self.columnWidth = columnWidth
+        self.formatNumber = formatNumber
     }
 
     var body: some View {
         HStack {
             HStack {
-                Text("\(position.amount, specifier: "%.2f")")
-
+                Text(formatNumber(position.amount))
             }
             .frame(width: columnWidth)
 
@@ -59,6 +64,10 @@ struct ReceiptPositionView: View {
 
 struct ReceiptPositionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReceiptPositionView(.empty, UIScreen.main.bounds.width / 3)
+        ReceiptPositionView(
+            .empty,
+            UIScreen.main.bounds.width / 3,
+            NumberFormatter.twoFracionDigitsNumberFormatter.format
+        )
     }
 }

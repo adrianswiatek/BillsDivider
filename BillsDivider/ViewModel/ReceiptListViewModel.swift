@@ -1,11 +1,14 @@
 import Combine
+import Foundation
 
 class ReceiptListViewModel: ObservableObject {
     @Published var positions: [ReceiptPosition]
 
+    private let numberFormatter: NumberFormatter
     private var subscriptions: [AnyCancellable]
 
-    init() {
+    init(numberFormatter: NumberFormatter) {
+        self.numberFormatter = numberFormatter
         self.positions = []
         self.subscriptions = []
     }
@@ -25,5 +28,9 @@ class ReceiptListViewModel: ObservableObject {
 
     func removeAllPositions() {
         positions.removeAll()
+    }
+
+    func formatNumber(value: Double) -> String {
+        numberFormatter.format(value: value)
     }
 }

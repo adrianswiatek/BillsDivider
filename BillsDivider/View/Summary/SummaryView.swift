@@ -1,3 +1,4 @@
+import Combine
 import SwiftUI
 
 struct SummaryView: View {
@@ -62,6 +63,7 @@ struct SummaryView: View {
 struct SummaryView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModelFactory = ViewModelFactory(numberFormatter: .twoFracionDigitsNumberFormatter)
-        return SummaryView(viewModelFactory.summaryViewModel)
+        let positions = viewModelFactory.receiptListViewModel.$positions.eraseToAnyPublisher()
+        return SummaryView(viewModelFactory.summaryViewModel(positions: positions))
     }
 }
