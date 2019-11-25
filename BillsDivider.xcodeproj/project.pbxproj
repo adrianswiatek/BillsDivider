@@ -20,6 +20,10 @@
 		A77D54CF23819328003D7E9D /* OwnerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CE23819328003D7E9D /* OwnerSectionView.swift */; };
 		A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */; };
 		A77FAD202384B30E00B66C98 /* ReceiptListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */; };
+		A7B7DE58238C5F1600D38BC8 /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */; };
+		A7B7DE5A238C79E800D38BC8 /* BillsDivisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */; };
+		A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */; };
+		A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */; };
 		A7F213B2238B41310084B466 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F213B1238B41310084B466 /* SummaryView.swift */; };
 		A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED230235CEF8B00CCD069 /* AppDelegate.swift */; };
 		A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */; };
@@ -30,7 +34,19 @@
 		A7FED240235CEF8B00CCD069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A7043E85238C4DC500630D35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
+			remoteInfo = BillsDivider;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7043E84238C4DC500630D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A73283F5237F68990012CBB8 /* AddOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOverlayView.swift; sourceTree = "<group>"; };
 		A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionView.swift; sourceTree = "<group>"; };
 		A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
@@ -44,6 +60,10 @@
 		A77D54CE23819328003D7E9D /* OwnerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSectionView.swift; sourceTree = "<group>"; };
 		A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnotherSectionView.swift; sourceTree = "<group>"; };
 		A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModel.swift; sourceTree = "<group>"; };
+		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
+		A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDivisionResult.swift; sourceTree = "<group>"; };
+		A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtensions.swift; sourceTree = "<group>"; };
+		A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		A7F213B1238B41310084B466 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		A7FED22D235CEF8A00CCD069 /* BillsDivider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillsDivider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FED230235CEF8B00CCD069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +77,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A7043E7D238C4DC500630D35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7FED22A235CEF8A00CCD069 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -67,9 +94,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7043E81238C4DC500630D35 /* BillsDividerTests */ = {
+			isa = PBXGroup;
+			children = (
+				A7043E84238C4DC500630D35 /* Info.plist */,
+			);
+			path = BillsDividerTests;
+			sourceTree = "<group>";
+		};
 		A736A1992369DDD70096C2E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */,
 				A77D54C223819182003D7E9D /* Buyer.swift */,
 				A77D54C423819198003D7E9D /* Owner.swift */,
 				A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */,
@@ -92,6 +128,8 @@
 			children = (
 				A747A735238198170065CD20 /* AddOverlayViewModel.swift */,
 				A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */,
+				A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */,
+				A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -137,6 +175,14 @@
 			path = Sections;
 			sourceTree = "<group>";
 		};
+		A7B7DE5E238C7E4100D38BC8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A7F213AF238B410E0084B466 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				A7FED22F235CEF8A00CCD069 /* BillsDivider */,
+				A7043E81238C4DC500630D35 /* BillsDividerTests */,
 				A7FED22E235CEF8A00CCD069 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -157,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				A7FED22D235CEF8A00CCD069 /* BillsDivider.app */,
+				A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,6 +212,7 @@
 		A7FED22F235CEF8A00CCD069 /* BillsDivider */ = {
 			isa = PBXGroup;
 			children = (
+				A7B7DE5E238C7E4100D38BC8 /* Extensions */,
 				A736A19A2369DDE90096C2E1 /* Resources */,
 				A736A1992369DDD70096C2E1 /* Model */,
 				A77936BD235CF66700EC64D0 /* View */,
@@ -187,6 +236,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A7043E7F238C4DC500630D35 /* BillsDividerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7043E87238C4DC500630D35 /* Build configuration list for PBXNativeTarget "BillsDividerTests" */;
+			buildPhases = (
+				A7043E7C238C4DC500630D35 /* Sources */,
+				A7043E7D238C4DC500630D35 /* Frameworks */,
+				A7043E7E238C4DC500630D35 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7043E86238C4DC500630D35 /* PBXTargetDependency */,
+			);
+			name = BillsDividerTests;
+			productName = BillsDividerTests;
+			productReference = A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A7FED22C235CEF8A00CCD069 /* BillsDivider */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A7FED25A235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDivider" */;
@@ -210,10 +277,14 @@
 		A7FED225235CEF8A00CCD069 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
+				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Adrian Świątek";
 				TargetAttributes = {
+					A7043E7F238C4DC500630D35 = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = A7FED22C235CEF8A00CCD069;
+					};
 					A7FED22C235CEF8A00CCD069 = {
 						CreatedOnToolsVersion = 11.0;
 					};
@@ -233,11 +304,19 @@
 			projectRoot = "";
 			targets = (
 				A7FED22C235CEF8A00CCD069 /* BillsDivider */,
+				A7043E7F238C4DC500630D35 /* BillsDividerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A7043E7E238C4DC500630D35 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7FED22B235CEF8A00CCD069 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,6 +330,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A7043E7C238C4DC500630D35 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7FED229235CEF8A00CCD069 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,10 +347,13 @@
 				A77D54CF23819328003D7E9D /* OwnerSectionView.swift in Sources */,
 				A7FED236235CEF8B00CCD069 /* BillsDivider.xcdatamodeld in Sources */,
 				A77FAD202384B30E00B66C98 /* ReceiptListViewModel.swift in Sources */,
+				A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */,
+				A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
 				A77D54C323819182003D7E9D /* Buyer.swift in Sources */,
 				A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */,
 				A7FED238235CEF8B00CCD069 /* ReceiptListView.swift in Sources */,
+				A7B7DE58238C5F1600D38BC8 /* SummaryViewModel.swift in Sources */,
 				A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */,
 				A73283F6237F68990012CBB8 /* AddOverlayView.swift in Sources */,
 				A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */,
@@ -272,11 +361,20 @@
 				A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */,
 				A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */,
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
+				A7B7DE5A238C79E800D38BC8 /* BillsDivisionResult.swift in Sources */,
 				A7F213B2238B41310084B466 /* SummaryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A7043E86238C4DC500630D35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
+			targetProxy = A7043E85238C4DC500630D35 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */ = {
@@ -290,6 +388,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A7043E88238C4DC500630D35 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				INFOPLIST_FILE = BillsDividerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BillsDivider.app/BillsDivider";
+			};
+			name = Debug;
+		};
+		A7043E89238C4DC500630D35 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				INFOPLIST_FILE = BillsDividerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BillsDivider.app/BillsDivider";
+			};
+			name = Release;
+		};
 		A7FED258235CEF8C00CCD069 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -447,6 +587,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A7043E87238C4DC500630D35 /* Build configuration list for PBXNativeTarget "BillsDividerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7043E88238C4DC500630D35 /* Debug */,
+				A7043E89238C4DC500630D35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A7FED228235CEF8A00CCD069 /* Build configuration list for PBXProject "BillsDivider" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

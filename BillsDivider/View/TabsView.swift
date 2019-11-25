@@ -1,16 +1,20 @@
 import SwiftUI
 
 struct TabsView: View {
-    private var receiptListViewModel: ReceiptListViewModel = .init()
+    private let viewModelFactory: ViewModelFactory
+
+    init(_ viewModelFactory: ViewModelFactory) {
+        self.viewModelFactory = viewModelFactory
+    }
 
     var body: some View {
         TabView {
-            ReceiptListView(receiptListViewModel).tabItem {
+            ReceiptListView(viewModelFactory).tabItem {
                 Image(systemName: "list.dash")
                 Text("Receipt")
             }
 
-            SummaryView().tabItem {
+            SummaryView(viewModelFactory.summaryViewModel).tabItem {
                 Image(systemName: "doc.text")
                 Text("Summary")
             }
@@ -21,6 +25,6 @@ struct TabsView: View {
 
 struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
-        TabsView()
+        TabsView(ViewModelFactory(numberFormatter: .twoFracionDigitsNumberFormatter))
     }
 }

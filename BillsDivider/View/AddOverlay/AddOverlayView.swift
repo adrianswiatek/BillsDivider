@@ -21,7 +21,6 @@ struct AddOverlayView: View {
                 Section {
                     BuyerSectionView(buyer: $viewModel.buyer)
                     OwnerSectionView(owner: $viewModel.owner)
-
                 }
 
                 Section {
@@ -46,6 +45,7 @@ struct AddOverlayView: View {
 
 struct AddOverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        AddOverlayView(AddOverlayViewModel.createEmpty(.constant(true)))
+        let viewModelFactory = ViewModelFactory(numberFormatter: .twoFracionDigitsNumberFormatter)
+        return AddOverlayView(viewModelFactory.addOverlayViewModel(presenting: .constant(true)))
     }
 }

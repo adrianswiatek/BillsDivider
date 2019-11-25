@@ -7,9 +7,11 @@ struct ReceiptListView: View {
     @State private var presentingOptionsMenu: Bool = false
 
     private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
+    private let viewModelFactory: ViewModelFactory
 
-    init(_ viewModel: ReceiptListViewModel) {
-        self.viewModel = viewModel
+    init(_ viewModelFactory: ViewModelFactory) {
+        self.viewModelFactory = viewModelFactory
+        self.viewModel = viewModelFactory.receiptListViewModel
     }
 
     var body: some View {
@@ -54,12 +56,10 @@ struct ReceiptListView: View {
     }
 
     private func createAddOverlayView() -> some View {
-        var addOverlayViewModel: AddOverlayViewModel
-        if let position = viewModel.positions.first {
-            addOverlayViewModel = .createEmpty($presentingAddOverlay, buyer: position.buyer, owner: position.owner)
-        } else {
-            addOverlayViewModel = .createEmpty($presentingAddOverlay)
-        }
+        let addOverlayViewModel = viewModelFactory.addOverlayViewModel(
+            presenting: $presentingAddOverlay,
+            receiptPosition: viewModel.positions.first
+        )
         viewModel.subscribe(to: addOverlayViewModel.positionAdded)
         return AddOverlayView(addOverlayViewModel)
     }
@@ -67,6 +67,7 @@ struct ReceiptListView: View {
 
 struct ReceiptListView_Previews: PreviewProvider {
     static var previews: some View {
-        ReceiptListView(.init())
+        let viewModelFactory = ViewModelFactory(numberFormatter: .twoFracionDigitsNumberFormatter)
+        return ReceiptListView(viewModelFactory)
     }
 }

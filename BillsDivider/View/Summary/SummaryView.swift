@@ -1,6 +1,12 @@
 import SwiftUI
 
 struct SummaryView: View {
+    private let viewModel: SummaryViewModel
+
+    init(_ viewModel: SummaryViewModel) {
+        self.viewModel = viewModel
+    }
+
     var screenSize: CGRect {
         UIScreen.main.bounds
     }
@@ -20,20 +26,20 @@ struct SummaryView: View {
             Spacer()
 
             HStack {
-                generatePersonView(withLabel: "Me", andColor: .blue)
+                generatePersonView(withLabel: viewModel.leftSidedBuyer.formatted, andColor: .blue)
 
                 VStack {
-                    Text("122,99")
+                    Text(viewModel.formattedDebt)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .offset(x: 0, y: 12)
 
-                    Image(systemName: "arrow.right")
+                    Image(systemName: viewModel.formattedDirection)
                         .font(.largeTitle)
                 }
                 .offset(x: 0, y: -32)
 
-                generatePersonView(withLabel: "Not me", andColor: .green)
+                generatePersonView(withLabel: viewModel.rightSidedBuyer.formatted, andColor: .green)
             }
 
             Spacer()
@@ -55,6 +61,7 @@ struct SummaryView: View {
 
 struct SummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        SummaryView()
+        let viewModelFactory = ViewModelFactory(numberFormatter: .twoFracionDigitsNumberFormatter)
+        return SummaryView(viewModelFactory.summaryViewModel)
     }
 }

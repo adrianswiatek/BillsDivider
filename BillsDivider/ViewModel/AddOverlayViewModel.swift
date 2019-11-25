@@ -12,10 +12,7 @@ class AddOverlayViewModel: ObservableObject {
     @Published var canConfirm: Bool
 
     var pricePlaceHolderText: String {
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 2
-        formatter.maximumFractionDigits = 2
-        return formatter.string(from: 0)!
+        return NumberFormatter.twoFracionDigitsNumberFormatter.string(from: 0)!
     }
 
     var positionAdded: AnyPublisher<ReceiptPosition, Never> {
@@ -25,7 +22,12 @@ class AddOverlayViewModel: ObservableObject {
     private let positionAddedSubject: PassthroughSubject<ReceiptPosition, Never>
     private var subscriptions: [AnyCancellable]
 
-    private init(_ presenting: Binding<Bool>, _ buyer: Buyer, _ owner: Owner) {
+    init(
+        presenting: Binding<Bool>,
+        buyer: Buyer,
+        owner: Owner,
+        numberFormatter: NumberFormatter
+    ) {
         self._presenting = presenting
 
         self.priceText = ""
@@ -38,14 +40,6 @@ class AddOverlayViewModel: ObservableObject {
         self.subscriptions = []
 
         self.setupSubscriptions()
-    }
-
-    static func createEmpty(
-        _ presenting: Binding<Bool>,
-        buyer: Buyer = .me,
-        owner: Owner = .all
-    ) -> AddOverlayViewModel {
-        return .init(presenting, buyer, owner)
     }
 
     func confirmDidTap() {
