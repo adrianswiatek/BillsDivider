@@ -8,4 +8,26 @@ enum Buyer {
         case .notMe: return "Not me"
         }
     }
+
+    func isEqualTo(owner: Owner) -> Bool {
+        switch (self, owner) {
+        case (.me, .me), (.notMe, .notMe):
+            return true
+        default:
+            return false
+        }
+    }
+
+    func isNotEqualTo(owner: Owner) -> Bool {
+        !isEqualTo(owner: owner)
+    }
+
+    func next() -> Buyer {
+        switch self {
+        case .me:
+            return .notMe
+        case .notMe:
+            return .me
+        }
+    }
 }

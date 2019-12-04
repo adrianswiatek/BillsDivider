@@ -26,13 +26,14 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A7FED245235CEF8C00CCD069"
+               BlueprintIdentifier = "A7043E7F238C4DC500630D35"
                BuildableName = "BillsDividerTests.xctest"
                BlueprintName = "BillsDividerTests"
                ReferencedContainer = "container:BillsDivider.xcodeproj">
