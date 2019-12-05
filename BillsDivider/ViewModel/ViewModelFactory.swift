@@ -4,9 +4,15 @@ import SwiftUI
 
 struct ViewModelFactory {
     private let numberFormatter: NumberFormatter
+    private let billsDivider: BillsDivider
 
-    init(numberFormatter: NumberFormatter) {
+    init(billsDivider: BillsDivider, numberFormatter: NumberFormatter) {
+        self.billsDivider = billsDivider
         self.numberFormatter = numberFormatter
+    }
+
+    static var `default`: ViewModelFactory {
+        .init(billsDivider: .init(), numberFormatter: .twoFracionDigitsNumberFormatter)
     }
 }
 
@@ -16,7 +22,7 @@ extension ViewModelFactory {
     }
 
     func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        SummaryViewModel(positions: positions, numberFormatter: numberFormatter)
+        SummaryViewModel(positions: positions, billsDivider: billsDivider, numberFormatter: numberFormatter)
     }
 
     func addOverlayViewModel(

@@ -116,8 +116,7 @@
 		A736A1992369DDD70096C2E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A76BBCCD23947CAC003AE654 /* BillsDivider.swift */,
-				A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */,
+				A7BDA2FB2399B93B00B5DE47 /* BillsDivider */,
 				A77D54C223819182003D7E9D /* Buyer.swift */,
 				A77D54C423819198003D7E9D /* Owner.swift */,
 				A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */,
@@ -193,6 +192,15 @@
 				A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A7BDA2FB2399B93B00B5DE47 /* BillsDivider */ = {
+			isa = PBXGroup;
+			children = (
+				A76BBCCD23947CAC003AE654 /* BillsDivider.swift */,
+				A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */,
+			);
+			path = BillsDivider;
 			sourceTree = "<group>";
 		};
 		A7F213AF238B410E0084B466 /* Summary */ = {

@@ -38,7 +38,9 @@ struct BillsDivider {
         if left.amount > right.amount {
             let totalAmount = left.amount - right.amount
             return .debt(lender: left.lender, debtor: right.lender, amount: totalAmount)
-        } else if left.amount < right.amount {
+        }
+
+        if left.amount < right.amount {
             let totalAmount = right.amount - left.amount
             return .debt(lender: right.lender, debtor: left.lender, amount: totalAmount)
         }

@@ -22,13 +22,19 @@ class SummaryViewModel: ObservableObject {
         return numberFormatter.format(value: divisionResult.debtAmount)
     }
 
+    private let billsDivider: BillsDivider
     private let numberFormatter: NumberFormatter
     private var subscriptions: [AnyCancellable]
 
-    init(positions: AnyPublisher<[ReceiptPosition], Never>, numberFormatter: NumberFormatter) {
+    init(
+        positions: AnyPublisher<[ReceiptPosition], Never>,
+        billsDivider: BillsDivider,
+        numberFormatter: NumberFormatter
+    ) {
         self.numberFormatter = numberFormatter
+        self.billsDivider = billsDivider
         self.subscriptions = []
-        self.divisionResult = .debt(lender: .notMe, debtor: .me, amount: 24.99)
+        self.divisionResult = .noDebt
         self.leftSidedBuyer = .me
         self.rightSidedBuyer = .notMe
 
@@ -37,7 +43,7 @@ class SummaryViewModel: ObservableObject {
 
     private func setupSubscriptions(_ positions: AnyPublisher<[ReceiptPosition], Never>) {
         positions
-            .sink { print($0) }
+            .sink { [weak self] in self?.divisionResult = self?.billsDivider.divide($0) ?? .noDebt }
             .store(in: &subscriptions)
     }
 }

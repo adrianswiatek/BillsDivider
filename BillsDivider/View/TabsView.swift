@@ -5,7 +5,7 @@ struct TabsView: View {
     private let receiptListViewModel: ReceiptListViewModel
     private let summaryViewModel: SummaryViewModel
 
-    init(_ viewModelFactory: ViewModelFactory) {
+    init(viewModelFactory: ViewModelFactory) {
         self.viewModelFactory = viewModelFactory
         self.receiptListViewModel = viewModelFactory.receiptListViewModel
 
@@ -31,6 +31,6 @@ struct TabsView: View {
 
 struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
-        TabsView(ViewModelFactory(numberFormatter: .twoFracionDigitsNumberFormatter))
+        TabsView(viewModelFactory: .default)
     }
 }

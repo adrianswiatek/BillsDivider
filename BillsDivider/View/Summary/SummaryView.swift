@@ -2,7 +2,7 @@ import Combine
 import SwiftUI
 
 struct SummaryView: View {
-    private let viewModel: SummaryViewModel
+    @ObservedObject private var viewModel: SummaryViewModel
 
     init(_ viewModel: SummaryViewModel) {
         self.viewModel = viewModel
@@ -62,7 +62,7 @@ struct SummaryView: View {
 
 struct SummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModelFactory = ViewModelFactory(numberFormatter: .twoFracionDigitsNumberFormatter)
+        let viewModelFactory: ViewModelFactory = .default
         let positions = viewModelFactory.receiptListViewModel.$positions.eraseToAnyPublisher()
         return SummaryView(viewModelFactory.summaryViewModel(positions: positions))
     }
