@@ -1,3 +1,5 @@
+import Foundation
+
 struct BillsDivider {
     func divide(_ positions: [ReceiptPosition]) -> BillsDivisionResult {
         positions.reduce(into: BillsDivisionResult.noDebt) { $0 = add($0, divide($1)) }
@@ -27,8 +29,8 @@ struct BillsDivider {
     }
 
     private func calculateDebt(
-        _ left: (lender: Buyer, amount: Double),
-        _ right: (lender: Buyer, amount: Double)
+        _ left: (lender: Buyer, amount: Decimal),
+        _ right: (lender: Buyer, amount: Decimal)
     ) -> BillsDivisionResult {
         if left.lender == right.lender {
             let totalAmount = left.amount + right.amount

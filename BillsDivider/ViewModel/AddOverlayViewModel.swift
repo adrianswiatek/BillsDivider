@@ -1,4 +1,5 @@
 import Combine
+import Foundation
 import SwiftUI
 
 class AddOverlayViewModel: ObservableObject {
@@ -64,7 +65,7 @@ class AddOverlayViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func tryParsePrice(_ priceText: String) -> Double? {
+    private func tryParsePrice(_ priceText: String) -> Decimal? {
         func hasMoreThanTwoDigitsAfterDot(_ priceText: String) -> Bool {
             if let indexOfDot = priceText.firstIndex(of: "."), priceText[indexOfDot...].count > 3 {
                 return true
@@ -79,11 +80,7 @@ class AddOverlayViewModel: ObservableObject {
             return nil
         }
 
-        guard let parsedPrice = Double(priceText) else {
-            return nil
-        }
-
-        return Double(parsedPrice)
+        return Decimal(string: priceText)
     }
 
     private func tryCreateReceiptPosition() -> ReceiptPosition? {

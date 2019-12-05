@@ -2,7 +2,7 @@ import Foundation
 
 struct ReceiptPosition: Identifiable {
     let id: UUID
-    let amount: Double
+    let amount: Decimal
     let buyer: Buyer
     let owner: Owner
 
@@ -12,7 +12,7 @@ struct ReceiptPosition: Identifiable {
 }
 
 extension ReceiptPosition {
-    init(amount: Double, buyer: Buyer, owner: Owner) {
+    init(amount: Decimal, buyer: Buyer, owner: Owner) {
         self.id = UUID()
         self.amount = amount
         self.buyer = buyer

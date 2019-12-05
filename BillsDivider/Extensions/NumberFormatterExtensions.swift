@@ -8,7 +8,7 @@ extension NumberFormatter {
         return formatter
     }
 
-    func format(value: Double) -> String {
+    func format(value: Decimal) -> String {
         guard let result = string(for: value) else {
             preconditionFailure("Unable to format provided value.")
         }

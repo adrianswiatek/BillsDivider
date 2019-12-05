@@ -30,7 +30,7 @@ class ReceiptListViewModel: ObservableObject {
         positions.removeAll()
     }
 
-    func formatNumber(value: Double) -> String {
+    func formatNumber(value: Decimal) -> String {
         numberFormatter.format(value: value)
     }
 }

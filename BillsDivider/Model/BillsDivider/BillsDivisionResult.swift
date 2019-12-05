@@ -1,8 +1,10 @@
+import Foundation
+
 enum BillsDivisionResult {
     case noDebt
-    case debt(lender: Buyer, debtor: Buyer, amount: Double)
+    case debt(lender: Buyer, debtor: Buyer, amount: Decimal)
 
-    var debtAmount: Double {
+    var debtAmount: Decimal {
         if case let .debt(_, _, amount) = self {
             return amount
         }

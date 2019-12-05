@@ -3,12 +3,12 @@ import SwiftUI
 struct ReceiptPositionView: View {
     private let position: ReceiptPosition
     private let columnWidth: CGFloat
-    private let formatNumber: (Double) -> String
+    private let formatNumber: (Decimal) -> String
 
     init(
         _ position: ReceiptPosition,
         _ columnWidth: CGFloat,
-        _ formatNumber: @escaping (Double) -> String
+        _ formatNumber: @escaping (Decimal) -> String
     ) {
         self.position = position
         self.columnWidth = columnWidth
