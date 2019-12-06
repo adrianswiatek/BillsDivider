@@ -13,7 +13,7 @@ class AddOverlayViewModel: ObservableObject {
     @Published var canConfirm: Bool
 
     var pricePlaceHolderText: String {
-        return NumberFormatter.twoFracionDigitsNumberFormatter.string(from: 0)!
+        numberFormatter.format(value: 0)
     }
 
     var positionAdded: AnyPublisher<ReceiptPosition, Never> {
@@ -21,6 +21,7 @@ class AddOverlayViewModel: ObservableObject {
     }
 
     private let positionAddedSubject: PassthroughSubject<ReceiptPosition, Never>
+    private let numberFormatter: NumberFormatter
     private var subscriptions: [AnyCancellable]
 
     init(
@@ -30,6 +31,7 @@ class AddOverlayViewModel: ObservableObject {
         numberFormatter: NumberFormatter
     ) {
         self._presenting = presenting
+        self.numberFormatter = numberFormatter
 
         self.priceText = ""
         self.buyer = buyer

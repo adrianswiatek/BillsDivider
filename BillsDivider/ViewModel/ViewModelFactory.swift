@@ -22,7 +22,11 @@ extension ViewModelFactory {
     }
 
     func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        SummaryViewModel(positions: positions, billsDivider: billsDivider, numberFormatter: numberFormatter)
+        SummaryViewModel(
+            positions: positions,
+            billsDivider: billsDivider,
+            numberFormatter: numberFormatter
+        )
     }
 
     func addOverlayViewModel(

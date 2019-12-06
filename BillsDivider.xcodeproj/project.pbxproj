@@ -18,6 +18,8 @@
 		A76BBCCE23947CAC003AE654 /* BillsDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCCD23947CAC003AE654 /* BillsDivider.swift */; };
 		A76BBCD023947FCC003AE654 /* BillsDividerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCCF23947FCC003AE654 /* BillsDividerTests.swift */; };
 		A76BBCD323948481003AE654 /* BillsDivisionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */; };
+		A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */; };
+		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
 		A77D54C323819182003D7E9D /* Buyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C223819182003D7E9D /* Buyer.swift */; };
 		A77D54C523819198003D7E9D /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C423819198003D7E9D /* Owner.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
@@ -63,6 +65,8 @@
 		A76BBCCD23947CAC003AE654 /* BillsDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDivider.swift; sourceTree = "<group>"; };
 		A76BBCCF23947FCC003AE654 /* BillsDividerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDividerTests.swift; sourceTree = "<group>"; };
 		A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDivisionResultTests.swift; sourceTree = "<group>"; };
+		A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModelTests.swift; sourceTree = "<group>"; };
+		A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionTests.swift; sourceTree = "<group>"; };
 		A77D54C223819182003D7E9D /* Buyer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buyer.swift; sourceTree = "<group>"; };
 		A77D54C423819198003D7E9D /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		A77D54CA23819255003D7E9D /* PriceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSectionView.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				A76BBCCF23947FCC003AE654 /* BillsDividerTests.swift */,
 				A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */,
 				A70AEB972398711D00ED0E7A /* BuyerTests.swift */,
+				A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */,
+				A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */,
 				A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */,
 				A7043E84238C4DC500630D35 /* Info.plist */,
 			);
@@ -362,6 +368,8 @@
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* BillsDividerTests.swift in Sources */,
 				A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */,
+				A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */,
+				A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
