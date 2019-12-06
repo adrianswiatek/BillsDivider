@@ -20,6 +20,7 @@
 		A76BBCD323948481003AE654 /* BillsDivisionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */; };
 		A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */; };
 		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
+		A774361D239AB696008F53B5 /* BillsDividerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* BillsDividerUITests.swift */; };
 		A77D54C323819182003D7E9D /* Buyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C223819182003D7E9D /* Buyer.swift */; };
 		A77D54C523819198003D7E9D /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C423819198003D7E9D /* Owner.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
@@ -49,6 +50,13 @@
 			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
 			remoteInfo = BillsDivider;
 		};
+		A774361F239AB696008F53B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
+			remoteInfo = BillsDivider;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +75,9 @@
 		A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDivisionResultTests.swift; sourceTree = "<group>"; };
 		A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModelTests.swift; sourceTree = "<group>"; };
 		A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionTests.swift; sourceTree = "<group>"; };
+		A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A774361C239AB696008F53B5 /* BillsDividerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDividerUITests.swift; sourceTree = "<group>"; };
+		A774361E239AB696008F53B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77D54C223819182003D7E9D /* Buyer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buyer.swift; sourceTree = "<group>"; };
 		A77D54C423819198003D7E9D /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		A77D54CA23819255003D7E9D /* PriceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSectionView.swift; sourceTree = "<group>"; };
@@ -92,6 +103,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		A7043E7D238C4DC500630D35 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7743617239AB696008F53B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -152,6 +170,15 @@
 				A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A774361B239AB696008F53B5 /* BillsDividerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A774361C239AB696008F53B5 /* BillsDividerUITests.swift */,
+				A774361E239AB696008F53B5 /* Info.plist */,
+			);
+			path = BillsDividerUITests;
 			sourceTree = "<group>";
 		};
 		A77936BD235CF66700EC64D0 /* View */ = {
@@ -225,6 +252,7 @@
 			children = (
 				A7FED22F235CEF8A00CCD069 /* BillsDivider */,
 				A7043E81238C4DC500630D35 /* BillsDividerTests */,
+				A774361B239AB696008F53B5 /* BillsDividerUITests */,
 				A7FED22E235CEF8A00CCD069 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -234,6 +262,7 @@
 			children = (
 				A7FED22D235CEF8A00CCD069 /* BillsDivider.app */,
 				A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */,
+				A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -283,6 +312,24 @@
 			productReference = A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A7743619239AB696008F53B5 /* BillsDividerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7743621239AB696008F53B5 /* Build configuration list for PBXNativeTarget "BillsDividerUITests" */;
+			buildPhases = (
+				A7743616239AB696008F53B5 /* Sources */,
+				A7743617239AB696008F53B5 /* Frameworks */,
+				A7743618239AB696008F53B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A7743620239AB696008F53B5 /* PBXTargetDependency */,
+			);
+			name = BillsDividerUITests;
+			productName = BillsDividerUITests;
+			productReference = A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		A7FED22C235CEF8A00CCD069 /* BillsDivider */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A7FED25A235CEF8C00CCD069 /* Build configuration list for PBXNativeTarget "BillsDivider" */;
@@ -315,6 +362,10 @@
 						LastSwiftMigration = 1110;
 						TestTargetID = A7FED22C235CEF8A00CCD069;
 					};
+					A7743619239AB696008F53B5 = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = A7FED22C235CEF8A00CCD069;
+					};
 					A7FED22C235CEF8A00CCD069 = {
 						CreatedOnToolsVersion = 11.0;
 					};
@@ -335,12 +386,20 @@
 			targets = (
 				A7FED22C235CEF8A00CCD069 /* BillsDivider */,
 				A7043E7F238C4DC500630D35 /* BillsDividerTests */,
+				A7743619239AB696008F53B5 /* BillsDividerUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A7043E7E238C4DC500630D35 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7743618239AB696008F53B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -370,6 +429,14 @@
 				A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */,
 				A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */,
 				A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7743616239AB696008F53B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A774361D239AB696008F53B5 /* BillsDividerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +477,11 @@
 			isa = PBXTargetDependency;
 			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
 			targetProxy = A7043E85238C4DC500630D35 /* PBXContainerItemProxy */;
+		};
+		A7743620239AB696008F53B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
+			targetProxy = A774361F239AB696008F53B5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -467,6 +539,46 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BillsDivider.app/BillsDivider";
+			};
+			name = Release;
+		};
+		A7743622239AB696008F53B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				INFOPLIST_FILE = BillsDividerUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BillsDivider;
+			};
+			name = Debug;
+		};
+		A7743623239AB696008F53B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q924VJ4PLT;
+				INFOPLIST_FILE = BillsDividerUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BillsDivider;
 			};
 			name = Release;
 		};
@@ -632,6 +744,15 @@
 			buildConfigurations = (
 				A7043E88238C4DC500630D35 /* Debug */,
 				A7043E89238C4DC500630D35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A7743621239AB696008F53B5 /* Build configuration list for PBXNativeTarget "BillsDividerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7743622239AB696008F53B5 /* Debug */,
+				A7743623239AB696008F53B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
