@@ -14,6 +14,7 @@
 		A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */; };
 		A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1A12369EB5D0096C2E1 /* TabsView.swift */; };
 		A747A736238198170065CD20 /* AddOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A735238198170065CD20 /* AddOverlayViewModel.swift */; };
+		A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */; };
 		A76BBCCE23947CAC003AE654 /* BillsDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCCD23947CAC003AE654 /* BillsDivider.swift */; };
 		A76BBCD023947FCC003AE654 /* BillsDividerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCCF23947FCC003AE654 /* BillsDividerTests.swift */; };
 		A76BBCD323948481003AE654 /* BillsDivisionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */; };
@@ -58,6 +59,7 @@
 		A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPosition.swift; sourceTree = "<group>"; };
 		A736A1A12369EB5D0096C2E1 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		A747A735238198170065CD20 /* AddOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOverlayViewModel.swift; sourceTree = "<group>"; };
+		A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModelTests.swift; sourceTree = "<group>"; };
 		A76BBCCD23947CAC003AE654 /* BillsDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDivider.swift; sourceTree = "<group>"; };
 		A76BBCCF23947FCC003AE654 /* BillsDividerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDividerTests.swift; sourceTree = "<group>"; };
 		A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDivisionResultTests.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				A76BBCCF23947FCC003AE654 /* BillsDividerTests.swift */,
 				A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */,
 				A70AEB972398711D00ED0E7A /* BuyerTests.swift */,
+				A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */,
 				A7043E84238C4DC500630D35 /* Info.plist */,
 			);
 			path = BillsDividerTests;
@@ -358,6 +361,7 @@
 				A76BBCD323948481003AE654 /* BillsDivisionResultTests.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* BillsDividerTests.swift in Sources */,
+				A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
