@@ -1,43 +1,83 @@
-//
-//  BillsDividerUITests.swift
-//  BillsDividerUITests
-//
-//  Created by Adrian Świątek on 06/12/2019.
-//  Copyright © 2019 Adrian Świątek. All rights reserved.
-//
-
 import XCTest
 
 class BillsDividerUITests: XCTestCase {
+    private var app: XCUIApplication!
 
+    // MARK: - Lifecycle methods
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        continueAfterFailure = true
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+        app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
-    func testLaunchPerformance() {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
-        }
+    // MARK: - Helpers
+    private func tapNavigationBarPlusButton() {
+        app.navigationBars.element.buttons["plus"].tap()
+    }
+
+    private func tapNavigationBarEllipsisButton() {
+        app.navigationBars.element.buttons["ellipsis"].tap()
+    }
+
+    private func tapSheetRemoveAllButton() {
+        app.sheets.element.buttons["Remove all"].tap()
+    }
+
+    private func tapSummaryTabBarButton() {
+        app.tabBars.firstMatch.buttons["Summary"].tap()
+    }
+
+    private func tapNavigationBarConfirmButton() {
+        app.navigationBars["Add position"].buttons["checkmark.circle.fill"].tap()
+    }
+
+    private func tapNavigationBarCloseButton() {
+        app.navigationBars["Add position"].buttons["xmark"].tap()
+    }
+
+    // MARK: - Tests
+    func testPlusButton_onTap_opensAddPositionView() {
+        tapNavigationBarPlusButton()
+
+        let addPositionNavigationBar = app.navigationBars["Add position"]
+        XCTAssertTrue(addPositionNavigationBar.exists)
+    }
+
+    func testSummaryButton_onTap_opensSummaryView() {
+        tapSummaryTabBarButton()
+
+        let summaryStaticText = app.staticTexts["Summary"]
+        XCTAssertTrue(summaryStaticText.exists)
+    }
+
+    func testCanRemoveAllItems() {
+        tapNavigationBarPlusButton()
+
+        let priceTextField = app.textFields.element
+        priceTextField.tap()
+        priceTextField.typeText("1")
+
+        tapNavigationBarConfirmButton()
+
+        priceTextField.tap()
+        priceTextField.typeText("2")
+
+        tapNavigationBarConfirmButton()
+
+        priceTextField.tap()
+        priceTextField.typeText("3")
+
+        tapNavigationBarConfirmButton()
+        tapNavigationBarCloseButton()
+
+        expectation(for: NSPredicate(format: "count == 3"), evaluatedWith: app.tables.element.cells)
+        waitForExpectations(timeout: 1)
+
+        tapNavigationBarEllipsisButton()
+        tapSheetRemoveAllButton()
+
+        expectation(for: NSPredicate(format: "count == 0"), evaluatedWith: app.tables.element.cells)
+        waitForExpectations(timeout: 1)
     }
 }
