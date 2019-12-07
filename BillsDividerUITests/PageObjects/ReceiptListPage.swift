@@ -7,7 +7,6 @@ class ReceiptListPage: Page {
         self.app = app
     }
 
-    // MARK: - Elements
     private var plusButton: XCUIElement {
         app.navigationBars.buttons["plus"]
     }
@@ -16,27 +15,17 @@ class ReceiptListPage: Page {
         app.navigationBars.buttons["ellipsis"]
     }
 
-    private var summaryButton: XCUIElement {
-        app.tabBars.buttons["Summary"]
-    }
-
-    private var receiptButton: XCUIElement {
-        app.tabBars.buttons["Receipt"]
-    }
-
     private var table: XCUIElement {
         app.tables.element
     }
 
-    // MARK: - Behaviors
+    var isVisible: Bool {
+        plusButton.exists && ellipsisButton.exists
+    }
+
     @discardableResult func plusButtonTap() -> AddOverlayPage {
         plusButton.tap()
         return AddOverlayPage(app)
-    }
-
-    @discardableResult func summaryButtonTap() -> SummaryPage {
-        summaryButton.tap()
-        return SummaryPage(app)
     }
 
     @discardableResult func ellipsisButtonTap() -> ReceiptListPage {

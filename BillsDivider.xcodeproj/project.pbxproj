@@ -13,6 +13,8 @@
 		A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */; };
 		A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */; };
 		A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1A12369EB5D0096C2E1 /* TabsView.swift */; };
+		A7385B5B239C696F00A41C09 /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5A239C696F00A41C09 /* TabBarPage.swift */; };
+		A7385B5D239C6A1B00A41C09 /* TabBarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5C239C6A1B00A41C09 /* TabBarUITests.swift */; };
 		A747A736238198170065CD20 /* AddOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A735238198170065CD20 /* AddOverlayViewModel.swift */; };
 		A7550E7B239BD7E60004797D /* ReceiptListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7A239BD7E60004797D /* ReceiptListPage.swift */; };
 		A7550E7D239BD8050004797D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7C239BD8050004797D /* Page.swift */; };
@@ -72,6 +74,8 @@
 		A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
 		A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPosition.swift; sourceTree = "<group>"; };
 		A736A1A12369EB5D0096C2E1 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
+		A7385B5A239C696F00A41C09 /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
+		A7385B5C239C6A1B00A41C09 /* TabBarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarUITests.swift; sourceTree = "<group>"; };
 		A747A735238198170065CD20 /* AddOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOverlayViewModel.swift; sourceTree = "<group>"; };
 		A7550E7A239BD7E60004797D /* ReceiptListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListPage.swift; sourceTree = "<group>"; };
 		A7550E7C239BD8050004797D /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				A7550E7C239BD8050004797D /* Page.swift */,
 				A7550E7A239BD7E60004797D /* ReceiptListPage.swift */,
 				A7550E7E239BDE3D0004797D /* SummaryPage.swift */,
+				A7385B5A239C696F00A41C09 /* TabBarPage.swift */,
 			);
 			path = PageObjects;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 			children = (
 				A7550E79239BD7A50004797D /* PageObjects */,
 				A774361C239AB696008F53B5 /* ReceiptListUITests.swift */,
+				A7385B5C239C6A1B00A41C09 /* TabBarUITests.swift */,
 				A774361E239AB696008F53B5 /* Info.plist */,
 			);
 			path = BillsDividerUITests;
@@ -456,8 +462,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7385B5B239C696F00A41C09 /* TabBarPage.swift in Sources */,
 				A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */,
 				A7550E7B239BD7E60004797D /* ReceiptListPage.swift in Sources */,
+				A7385B5D239C6A1B00A41C09 /* TabBarUITests.swift in Sources */,
 				A7550E7D239BD8050004797D /* Page.swift in Sources */,
 				A7550E81239BDE6D0004797D /* AddOverlayPage.swift in Sources */,
 				A7550E7F239BDE3D0004797D /* SummaryPage.swift in Sources */,

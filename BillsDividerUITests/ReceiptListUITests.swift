@@ -43,12 +43,6 @@ class ReceiptListUITests: XCTestCase {
         XCTAssertTrue(addOverlayPage.isVisible)
     }
 
-    func testSummaryButton_onTap_opensSummaryView() {
-        let receiptListPage = ReceiptListPage(app)
-        let summaryPage = receiptListPage.summaryButtonTap()
-        XCTAssertTrue(summaryPage.isVisible)
-    }
-
     func _testCanRemoveAllItems() {
         tapNavigationBarPlusButton()
 
