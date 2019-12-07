@@ -1,11 +1,11 @@
 import XCTest
 
-class BillsDividerUITests: XCTestCase {
+class ReceiptListUITests: XCTestCase {
     private var app: XCUIApplication!
 
     // MARK: - Lifecycle methods
     override func setUp() {
-        continueAfterFailure = true
+        continueAfterFailure = false
 
         app = XCUIApplication()
         app.launch()
@@ -38,20 +38,18 @@ class BillsDividerUITests: XCTestCase {
 
     // MARK: - Tests
     func testPlusButton_onTap_opensAddPositionView() {
-        tapNavigationBarPlusButton()
-
-        let addPositionNavigationBar = app.navigationBars["Add position"]
-        XCTAssertTrue(addPositionNavigationBar.exists)
+        let receiptListPage = ReceiptListPage(app)
+        let addOverlayPage = receiptListPage.plusButtonTap()
+        XCTAssertTrue(addOverlayPage.isVisible)
     }
 
     func testSummaryButton_onTap_opensSummaryView() {
-        tapSummaryTabBarButton()
-
-        let summaryStaticText = app.staticTexts["Summary"]
-        XCTAssertTrue(summaryStaticText.exists)
+        let receiptListPage = ReceiptListPage(app)
+        let summaryPage = receiptListPage.summaryButtonTap()
+        XCTAssertTrue(summaryPage.isVisible)
     }
 
-    func testCanRemoveAllItems() {
+    func _testCanRemoveAllItems() {
         tapNavigationBarPlusButton()
 
         let priceTextField = app.textFields.element
