@@ -40,10 +40,10 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A7FED250235CEF8C00CCD069"
+               BlueprintIdentifier = "A7743619239AB696008F53B5"
                BuildableName = "BillsDividerUITests.xctest"
                BlueprintName = "BillsDividerUITests"
                ReferencedContainer = "container:BillsDivider.xcodeproj">
