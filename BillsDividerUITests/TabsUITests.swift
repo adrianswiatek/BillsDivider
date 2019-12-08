@@ -1,6 +1,6 @@
 import XCTest
 
-class TabBarUITests: XCTestCase {
+class TabsUITests: XCTestCase {
     private var app: XCUIApplication!
 
     override func setUp() {
