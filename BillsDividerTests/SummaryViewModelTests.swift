@@ -11,6 +11,11 @@ class SummaryViewModelTests: XCTestCase {
         subscriptions = []
     }
 
+    override func tearDown() {
+        subscriptions = nil
+        super.tearDown()
+    }
+
     // MARK: - Helpers
     private func summaryViewModel(
         with positions: AnyPublisher<[ReceiptPosition], Never>

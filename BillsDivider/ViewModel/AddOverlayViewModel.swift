@@ -75,10 +75,17 @@ class AddOverlayViewModel: ObservableObject {
             return false
         }
 
+        func hasMoreThanFiveDigitsBeforeDot(_ priceText: String) -> Bool {
+            if let indexOfDot = priceText.firstIndex(of: ".") {
+                return priceText[..<indexOfDot].count > 5
+            }
+            return priceText.count > 5
+        }
+
         var priceText = priceText
         priceText = priceText.replacingOccurrences(of: ",", with: ".")
 
-        if hasMoreThanTwoDigitsAfterDot(priceText) {
+        if hasMoreThanTwoDigitsAfterDot(priceText) || hasMoreThanFiveDigitsBeforeDot(priceText) {
             return nil
         }
 

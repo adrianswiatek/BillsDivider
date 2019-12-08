@@ -15,6 +15,7 @@
 		A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1A12369EB5D0096C2E1 /* TabsView.swift */; };
 		A7385B5B239C696F00A41C09 /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5A239C696F00A41C09 /* TabBarPage.swift */; };
 		A7385B5D239C6A1B00A41C09 /* TabBarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5C239C6A1B00A41C09 /* TabBarUITests.swift */; };
+		A7385B5F239C80DF00A41C09 /* AddOverlayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5E239C80DF00A41C09 /* AddOverlayViewModelTests.swift */; };
 		A747A736238198170065CD20 /* AddOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A735238198170065CD20 /* AddOverlayViewModel.swift */; };
 		A7550E7B239BD7E60004797D /* ReceiptListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7A239BD7E60004797D /* ReceiptListPage.swift */; };
 		A7550E7D239BD8050004797D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7C239BD8050004797D /* Page.swift */; };
@@ -76,6 +77,7 @@
 		A736A1A12369EB5D0096C2E1 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		A7385B5A239C696F00A41C09 /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
 		A7385B5C239C6A1B00A41C09 /* TabBarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarUITests.swift; sourceTree = "<group>"; };
+		A7385B5E239C80DF00A41C09 /* AddOverlayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOverlayViewModelTests.swift; sourceTree = "<group>"; };
 		A747A735238198170065CD20 /* AddOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOverlayViewModel.swift; sourceTree = "<group>"; };
 		A7550E7A239BD7E60004797D /* ReceiptListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListPage.swift; sourceTree = "<group>"; };
 		A7550E7C239BD8050004797D /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		A7043E81238C4DC500630D35 /* BillsDividerTests */ = {
 			isa = PBXGroup;
 			children = (
+				A7385B5E239C80DF00A41C09 /* AddOverlayViewModelTests.swift */,
 				A76BBCCF23947FCC003AE654 /* BillsDividerTests.swift */,
 				A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */,
 				A70AEB972398711D00ED0E7A /* BuyerTests.swift */,
@@ -449,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7385B5F239C80DF00A41C09 /* AddOverlayViewModelTests.swift in Sources */,
 				A76BBCD323948481003AE654 /* BillsDivisionResultTests.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* BillsDividerTests.swift in Sources */,
