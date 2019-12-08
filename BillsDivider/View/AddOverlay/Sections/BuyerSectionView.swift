@@ -12,8 +12,8 @@ struct BuyerSectionView: View {
             Spacer()
 
             Picker(selection: $buyer, label: EmptyView()) {
-                Text("Me").tag(Buyer.me)
-                Text("Not me").tag(Buyer.notMe)
+                Text(Buyer.me.formatted).tag(Buyer.me)
+                Text(Buyer.notMe.formatted).tag(Buyer.notMe)
             }
             .pickerStyle(SegmentedPickerStyle())
             .frame(width: UIScreen.main.bounds.width * 0.7)

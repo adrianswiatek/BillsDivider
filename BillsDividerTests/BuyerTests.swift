@@ -7,7 +7,7 @@ class BuyerTests: XCTestCase {
     }
 
     func testFormatted_notMeCase_returnsNotMe() {
-        XCTAssertEqual(Buyer.notMe.formatted, "Not me")
+        XCTAssertEqual(Buyer.notMe.formatted, "They")
     }
 
     // MARK: - isEqualTo(owner:)

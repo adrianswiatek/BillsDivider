@@ -12,9 +12,9 @@ struct OwnerSectionView: View {
             Spacer()
 
             Picker(selection: $owner, label: EmptyView()) {
-                Text("Me").tag(Owner.me)
-                Text("Not me").tag(Owner.notMe)
-                Text("All").tag(Owner.all)
+                Text(Owner.me.formatted).tag(Owner.me)
+                Text(Owner.notMe.formatted).tag(Owner.notMe)
+                Text(Owner.all.formatted).tag(Owner.all)
             }
             .pickerStyle(SegmentedPickerStyle())
             .frame(width: UIScreen.main.bounds.width * 0.7)
