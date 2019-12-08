@@ -3,73 +3,63 @@ import XCTest
 class ReceiptListUITests: XCTestCase {
     private var app: XCUIApplication!
 
-    // MARK: - Lifecycle methods
     override func setUp() {
+        super.setUp()
         continueAfterFailure = false
 
         app = XCUIApplication()
+        app.launchArguments = ["ui-testing"]
         app.launch()
     }
 
-    // MARK: - Helpers
-    private func tapNavigationBarPlusButton() {
-        app.navigationBars.element.buttons["plus"].tap()
+    override func tearDown() {
+        app = nil
+        super.tearDown()
     }
 
-    private func tapNavigationBarEllipsisButton() {
-        app.navigationBars.element.buttons["ellipsis"].tap()
-    }
-
-    private func tapSheetRemoveAllButton() {
-        app.sheets.element.buttons["Remove all"].tap()
-    }
-
-    private func tapSummaryTabBarButton() {
-        app.tabBars.firstMatch.buttons["Summary"].tap()
-    }
-
-    private func tapNavigationBarConfirmButton() {
-        app.navigationBars["Add position"].buttons["checkmark.circle.fill"].tap()
-    }
-
-    private func tapNavigationBarCloseButton() {
-        app.navigationBars["Add position"].buttons["xmark"].tap()
-    }
-
-    // MARK: - Tests
-    func testPlusButton_onTap_opensAddPositionView() {
+    func testCanRemoveAllItems() {
         let receiptListPage = ReceiptListPage(app)
-        let addOverlayPage = receiptListPage.plusButtonTap()
-        XCTAssertTrue(addOverlayPage.isVisible)
+
+        XCTAssertEqual(receiptListPage.numberOfCells, 0)
+
+        receiptListPage
+            .tapPlusButton()
+            .tapPriceTextField()
+            .typeIntoPriceTextField("1")
+            .tapConfirmButton()
+            .typeIntoPriceTextField("2")
+            .tapConfirmButton()
+            .tapCloseButton()
+
+        XCTAssertEqual(receiptListPage.numberOfCells, 2)
+
+        receiptListPage
+            .tapEllipsisButton()
+            .tapRemoveAllButton()
+
+        XCTAssertEqual(receiptListPage.numberOfCells, 0)
     }
 
-    func _testCanRemoveAllItems() {
-        tapNavigationBarPlusButton()
+    func testCanRemoveSingleItem() {
+        let receiptListPage = ReceiptListPage(app)
 
-        let priceTextField = app.textFields.element
-        priceTextField.tap()
-        priceTextField.typeText("1")
+        XCTAssertEqual(receiptListPage.numberOfCells, 0)
 
-        tapNavigationBarConfirmButton()
+        receiptListPage
+            .tapPlusButton()
+            .tapPriceTextField()
+            .typeIntoPriceTextField("1")
+            .tapConfirmButton()
+            .typeIntoPriceTextField("2")
+            .tapConfirmButton()
+            .tapCloseButton()
 
-        priceTextField.tap()
-        priceTextField.typeText("2")
+        XCTAssertEqual(receiptListPage.numberOfCells, 2)
 
-        tapNavigationBarConfirmButton()
+        receiptListPage
+            .swipeLeftCell(atIndex: 0)
+            .tapCellsDeleteButton(atIndex: 0)
 
-        priceTextField.tap()
-        priceTextField.typeText("3")
-
-        tapNavigationBarConfirmButton()
-        tapNavigationBarCloseButton()
-
-        expectation(for: NSPredicate(format: "count == 3"), evaluatedWith: app.tables.element.cells)
-        waitForExpectations(timeout: 1)
-
-        tapNavigationBarEllipsisButton()
-        tapSheetRemoveAllButton()
-
-        expectation(for: NSPredicate(format: "count == 0"), evaluatedWith: app.tables.element.cells)
-        waitForExpectations(timeout: 1)
+        XCTAssertEqual(receiptListPage.numberOfCells, 1)
     }
 }

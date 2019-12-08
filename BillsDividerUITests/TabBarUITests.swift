@@ -19,6 +19,7 @@ class TabBarUITests: XCTestCase {
 
     func testTabBar_canNavigateBetweenTabs() {
         let tabBarPage = TabBarPage(app)
+        XCTAssertTrue(tabBarPage.isVisible)
         XCTAssertTrue(tabBarPage.isReceiptButtonSelected)
         XCTAssertTrue(ReceiptListPage(app).isVisible)
 

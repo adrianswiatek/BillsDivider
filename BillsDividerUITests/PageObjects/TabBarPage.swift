@@ -15,6 +15,10 @@ class TabBarPage: Page {
         app.tabBars.buttons["Receipt"]
     }
 
+    var isVisible: Bool {
+        summaryButton.exists && receiptButton.exists
+    }
+
     var isSummaryButtonSelected: Bool {
         summaryButton.isSelected
     }

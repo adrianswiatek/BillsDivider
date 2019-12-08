@@ -19,17 +19,44 @@ class ReceiptListPage: Page {
         app.tables.element
     }
 
+    private var sheet: XCUIElement {
+        app.sheets.element
+    }
+
+    private var removeAllButton: XCUIElement {
+        sheet.buttons["Remove all"]
+    }
+
     var isVisible: Bool {
         plusButton.exists && ellipsisButton.exists
     }
 
-    @discardableResult func plusButtonTap() -> AddOverlayPage {
+    var numberOfCells: Int {
+        table.cells.count
+    }
+
+    @discardableResult func tapPlusButton() -> AddOverlayPage {
         plusButton.tap()
         return AddOverlayPage(app)
     }
 
-    @discardableResult func ellipsisButtonTap() -> ReceiptListPage {
+    @discardableResult func tapEllipsisButton() -> ReceiptListPage {
         ellipsisButton.tap()
+        return self
+    }
+
+    @discardableResult func tapRemoveAllButton() -> ReceiptListPage {
+        removeAllButton.tap()
+        return self
+    }
+
+    @discardableResult func swipeLeftCell(atIndex index: Int) -> ReceiptListPage {
+        table.cells.element(boundBy: index).swipeLeft()
+        return self
+    }
+
+    @discardableResult func tapCellsDeleteButton(atIndex index: Int) -> ReceiptListPage {
+        table.cells.element(boundBy: index).buttons["Delete"].tap()
         return self
     }
 }

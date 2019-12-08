@@ -7,12 +7,10 @@ class SummaryPage: Page {
         self.app = app
     }
 
-    // MARK: - Elements
     private var summaryStaticText: XCUIElement {
         app.staticTexts["Summary"]
     }
 
-    // MARK: - Predicates
     var isVisible: Bool {
         summaryStaticText.exists
     }
