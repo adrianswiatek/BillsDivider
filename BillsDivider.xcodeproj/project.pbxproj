@@ -28,8 +28,8 @@
 		A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */; };
 		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
 		A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptListUITests.swift */; };
-		A7794C36239D523E0001EB73 /* ReceiptPositionRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C35239D523E0001EB73 /* ReceiptPositionRepositoryTests.swift */; };
-		A7794C39239D52E90001EB73 /* ReceiptPositionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C38239D52E90001EB73 /* ReceiptPositionRepository.swift */; };
+		A7794C36239D523E0001EB73 /* ReceiptPositionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C35239D523E0001EB73 /* ReceiptPositionServiceTests.swift */; };
+		A7794C39239D52E90001EB73 /* ReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C38239D52E90001EB73 /* ReceiptPositionService.swift */; };
 		A7794C3B239D550F0001EB73 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C3A239D550F0001EB73 /* CoreDataStack.swift */; };
 		A77D54C323819182003D7E9D /* Buyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C223819182003D7E9D /* Buyer.swift */; };
 		A77D54C523819198003D7E9D /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C423819198003D7E9D /* Owner.swift */; };
@@ -42,6 +42,7 @@
 		A7B7DE5A238C79E800D38BC8 /* BillsDivisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */; };
 		A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */; };
 		A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */; };
+		A7D2A83D239D8C85002712FE /* CoreDataStackMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D2A83C239D8C85002712FE /* CoreDataStackMock.swift */; };
 		A7F213B2238B41310084B466 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F213B1238B41310084B466 /* SummaryView.swift */; };
 		A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED230235CEF8B00CCD069 /* AppDelegate.swift */; };
 		A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */; };
@@ -95,8 +96,8 @@
 		A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A774361C239AB696008F53B5 /* ReceiptListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListUITests.swift; sourceTree = "<group>"; };
 		A774361E239AB696008F53B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7794C35239D523E0001EB73 /* ReceiptPositionRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionRepositoryTests.swift; sourceTree = "<group>"; };
-		A7794C38239D52E90001EB73 /* ReceiptPositionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionRepository.swift; sourceTree = "<group>"; };
+		A7794C35239D523E0001EB73 /* ReceiptPositionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionServiceTests.swift; sourceTree = "<group>"; };
+		A7794C38239D52E90001EB73 /* ReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionService.swift; sourceTree = "<group>"; };
 		A7794C3A239D550F0001EB73 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A77D54C223819182003D7E9D /* Buyer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buyer.swift; sourceTree = "<group>"; };
 		A77D54C423819198003D7E9D /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDivisionResult.swift; sourceTree = "<group>"; };
 		A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtensions.swift; sourceTree = "<group>"; };
 		A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		A7D2A83C239D8C85002712FE /* CoreDataStackMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackMock.swift; sourceTree = "<group>"; };
 		A7F213B1238B41310084B466 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		A7FED22D235CEF8A00CCD069 /* BillsDivider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillsDivider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FED230235CEF8B00CCD069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				A7794C3C239D5C4B0001EB73 /* Cases */,
+				A7D2A83B239D8C77002712FE /* Mocks */,
 				A7043E84238C4DC500630D35 /* Info.plist */,
 			);
 			path = BillsDividerTests;
@@ -224,7 +227,7 @@
 		A7794C37239D52B10001EB73 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A7794C3D239D5C810001EB73 /* ReceiptPositionRepository */,
+				A7794C38239D52E90001EB73 /* ReceiptPositionService.swift */,
 				A7794C3A239D550F0001EB73 /* CoreDataStack.swift */,
 			);
 			path = Services;
@@ -233,24 +236,11 @@
 		A7794C3C239D5C4B0001EB73 /* Cases */ = {
 			isa = PBXGroup;
 			children = (
-				A7385B5E239C80DF00A41C09 /* AddOverlayViewModelTests.swift */,
-				A76BBCCF23947FCC003AE654 /* BillsDividerTests.swift */,
-				A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */,
-				A70AEB972398711D00ED0E7A /* BuyerTests.swift */,
-				A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */,
-				A7794C35239D523E0001EB73 /* ReceiptPositionRepositoryTests.swift */,
-				A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */,
-				A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */,
+				A7D2A83F239DAE9D002712FE /* Model */,
+				A7D2A83E239DAE8B002712FE /* Service */,
+				A7D2A840239DAEBA002712FE /* ViewModel */,
 			);
 			path = Cases;
-			sourceTree = "<group>";
-		};
-		A7794C3D239D5C810001EB73 /* ReceiptPositionRepository */ = {
-			isa = PBXGroup;
-			children = (
-				A7794C38239D52E90001EB73 /* ReceiptPositionRepository.swift */,
-			);
-			path = ReceiptPositionRepository;
 			sourceTree = "<group>";
 		};
 		A77D54C6238191D2003D7E9D /* ReceiptList */ = {
@@ -298,6 +288,43 @@
 				A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */,
 			);
 			path = BillsDivider;
+			sourceTree = "<group>";
+		};
+		A7D2A83B239D8C77002712FE /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				A7D2A83C239D8C85002712FE /* CoreDataStackMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		A7D2A83E239DAE8B002712FE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				A7794C35239D523E0001EB73 /* ReceiptPositionServiceTests.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		A7D2A83F239DAE9D002712FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A76BBCCF23947FCC003AE654 /* BillsDividerTests.swift */,
+				A70AEB972398711D00ED0E7A /* BuyerTests.swift */,
+				A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A7D2A840239DAEBA002712FE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A7385B5E239C80DF00A41C09 /* AddOverlayViewModelTests.swift */,
+				A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */,
+				A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */,
+				A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A7F213AF238B410E0084B466 /* Summary */ = {
@@ -488,9 +515,10 @@
 				A7385B5F239C80DF00A41C09 /* AddOverlayViewModelTests.swift in Sources */,
 				A76BBCD323948481003AE654 /* BillsDivisionResultTests.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
-				A7794C36239D523E0001EB73 /* ReceiptPositionRepositoryTests.swift in Sources */,
+				A7794C36239D523E0001EB73 /* ReceiptPositionServiceTests.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* BillsDividerTests.swift in Sources */,
 				A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */,
+				A7D2A83D239D8C85002712FE /* CoreDataStackMock.swift in Sources */,
 				A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */,
 				A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */,
 			);
@@ -523,7 +551,7 @@
 				A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */,
 				A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
-				A7794C39239D52E90001EB73 /* ReceiptPositionRepository.swift in Sources */,
+				A7794C39239D52E90001EB73 /* ReceiptPositionService.swift in Sources */,
 				A77D54C323819182003D7E9D /* Buyer.swift in Sources */,
 				A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */,
 				A7FED238235CEF8B00CCD069 /* ReceiptListView.swift in Sources */,
