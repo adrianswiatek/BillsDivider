@@ -1,11 +1,11 @@
 import Foundation
 
 struct Divider {
-    func divide(_ positions: [ReceiptPosition]) -> BillsDivisionResult {
-        positions.reduce(into: BillsDivisionResult.noDebt) { $0 = add($0, divide($1)) }
+    func divide(_ positions: [ReceiptPosition]) -> DivisionResult {
+        positions.reduce(into: DivisionResult.noDebt) { $0 = add($0, divide($1)) }
     }
 
-    private func divide(_ position: ReceiptPosition) -> BillsDivisionResult {
+    private func divide(_ position: ReceiptPosition) -> DivisionResult {
         guard position.amount != 0, position.buyer.isNotEqualTo(owner: position.owner) else {
             return .noDebt
         }
@@ -15,9 +15,9 @@ struct Divider {
     }
 
     private func add(
-        _ leftResult: BillsDivisionResult,
-        _ rightResult: BillsDivisionResult
-    ) -> BillsDivisionResult {
+        _ leftResult: DivisionResult,
+        _ rightResult: DivisionResult
+    ) -> DivisionResult {
         switch (leftResult, rightResult) {
         case (.noDebt, _):
             return rightResult
@@ -31,7 +31,7 @@ struct Divider {
     private func calculateDebt(
         _ left: (lender: Buyer, amount: Decimal),
         _ right: (lender: Buyer, amount: Decimal)
-    ) -> BillsDivisionResult {
+    ) -> DivisionResult {
         if left.lender == right.lender {
             let totalAmount = left.amount + right.amount
             return .debt(lender: left.lender, debtor: left.lender.next(), amount: totalAmount)

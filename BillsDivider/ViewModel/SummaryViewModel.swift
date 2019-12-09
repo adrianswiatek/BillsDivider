@@ -2,7 +2,7 @@ import Combine
 import Foundation
 
 class SummaryViewModel: ObservableObject {
-    @Published private var divisionResult: BillsDivisionResult
+    @Published private var divisionResult: DivisionResult
 
     let leftSidedBuyer: Buyer
     let rightSidedBuyer: Buyer

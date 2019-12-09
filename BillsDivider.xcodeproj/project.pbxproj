@@ -26,7 +26,7 @@
 		A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */; };
 		A76BBCCE23947CAC003AE654 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCCD23947CAC003AE654 /* Divider.swift */; };
 		A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCCF23947FCC003AE654 /* DividerTests.swift */; };
-		A76BBCD323948481003AE654 /* BillsDivisionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */; };
+		A76BBCD323948481003AE654 /* DivisionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCD223948481003AE654 /* DivisionResultTests.swift */; };
 		A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */; };
 		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
 		A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptListUITests.swift */; };
@@ -44,7 +44,7 @@
 		A78B1B95239EB3D7006A1B91 /* ReceiptPositionServiceDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B94239EB3D7006A1B91 /* ReceiptPositionServiceDummy.swift */; };
 		A78B1B98239EB814006A1B91 /* ReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */; };
 		A7B7DE58238C5F1600D38BC8 /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */; };
-		A7B7DE5A238C79E800D38BC8 /* BillsDivisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */; };
+		A7B7DE5A238C79E800D38BC8 /* DivisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */; };
 		A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */; };
 		A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */; };
 		A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */; };
@@ -97,7 +97,7 @@
 		A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModelTests.swift; sourceTree = "<group>"; };
 		A76BBCCD23947CAC003AE654 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
 		A76BBCCF23947FCC003AE654 /* DividerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerTests.swift; sourceTree = "<group>"; };
-		A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDivisionResultTests.swift; sourceTree = "<group>"; };
+		A76BBCD223948481003AE654 /* DivisionResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionResultTests.swift; sourceTree = "<group>"; };
 		A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModelTests.swift; sourceTree = "<group>"; };
 		A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionTests.swift; sourceTree = "<group>"; };
 		A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +117,7 @@
 		A78B1B94239EB3D7006A1B91 /* ReceiptPositionServiceDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionServiceDummy.swift; sourceTree = "<group>"; };
 		A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionService.swift; sourceTree = "<group>"; };
 		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
-		A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillsDivisionResult.swift; sourceTree = "<group>"; };
+		A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionResult.swift; sourceTree = "<group>"; };
 		A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtensions.swift; sourceTree = "<group>"; };
 		A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFactory.swift; sourceTree = "<group>"; };
@@ -248,8 +248,8 @@
 		A7794C37239D52B10001EB73 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A78B1B96239EB805006A1B91 /* ReceiptPositionService */,
 				A7062BF2239EAF3E00571D7A /* CoreDataStack */,
+				A78B1B96239EB805006A1B91 /* ReceiptPositionService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -322,8 +322,8 @@
 		A7BDA2FB2399B93B00B5DE47 /* Divider */ = {
 			isa = PBXGroup;
 			children = (
+				A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */,
 				A76BBCCD23947CAC003AE654 /* Divider.swift */,
-				A7B7DE59238C79E800D38BC8 /* BillsDivisionResult.swift */,
 			);
 			path = Divider;
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 			isa = PBXGroup;
 			children = (
 				A7385B5E239C80DF00A41C09 /* AddOverlayViewModelTests.swift */,
-				A76BBCD223948481003AE654 /* BillsDivisionResultTests.swift */,
+				A76BBCD223948481003AE654 /* DivisionResultTests.swift */,
 				A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */,
 				A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */,
 			);
@@ -544,7 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7385B5F239C80DF00A41C09 /* AddOverlayViewModelTests.swift in Sources */,
-				A76BBCD323948481003AE654 /* BillsDivisionResultTests.swift in Sources */,
+				A76BBCD323948481003AE654 /* DivisionResultTests.swift in Sources */,
 				A78B1B95239EB3D7006A1B91 /* ReceiptPositionServiceDummy.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */,
@@ -600,7 +600,7 @@
 				A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */,
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
 				A78B1B90239EB14C006A1B91 /* InMemoryCoreDataStack.swift in Sources */,
-				A7B7DE5A238C79E800D38BC8 /* BillsDivisionResult.swift in Sources */,
+				A7B7DE5A238C79E800D38BC8 /* DivisionResult.swift in Sources */,
 				A7F213B2238B41310084B466 /* SummaryView.swift in Sources */,
 				A78B1B8E239EB12F006A1B91 /* SqliteCoreDataStack.swift in Sources */,
 			);

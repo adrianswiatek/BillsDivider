@@ -1,6 +1,6 @@
 import Foundation
 
-enum BillsDivisionResult {
+enum DivisionResult {
     case noDebt
     case debt(lender: Buyer, debtor: Buyer, amount: Decimal)
 
@@ -12,7 +12,7 @@ enum BillsDivisionResult {
     }
 }
 
-extension BillsDivisionResult: Equatable {
+extension DivisionResult: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
         case (.noDebt, .noDebt):
