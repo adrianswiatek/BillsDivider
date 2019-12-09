@@ -17,14 +17,8 @@ class SummaryViewModelTests: XCTestCase {
     }
 
     // MARK: - Helpers
-    private func summaryViewModel(
-        with positions: AnyPublisher<[ReceiptPosition], Never>
-    ) -> SummaryViewModel {
-        SummaryViewModel(
-            positions: positions,
-            billsDivider: .init(),
-            numberFormatter: numberFormatter
-        )
+    private func summaryViewModel(with positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
+        SummaryViewModel(positions: positions, divider: .init(), numberFormatter: numberFormatter)
     }
 
     private var numberFormatter: NumberFormatter {

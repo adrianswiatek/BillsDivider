@@ -62,8 +62,6 @@ struct SummaryView: View {
 
 struct SummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModelFactory: ViewModelFactory = .default
-        let positions = viewModelFactory.receiptListViewModel.$positions.eraseToAnyPublisher()
-        return SummaryView(viewModelFactory.summaryViewModel(positions: positions))
+        PreviewFactory().summaryView
     }
 }

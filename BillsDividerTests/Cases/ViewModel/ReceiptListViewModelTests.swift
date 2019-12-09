@@ -7,7 +7,11 @@ class ReceiptListViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = .init(numberFormatter: .twoFracionDigitsNumberFormatter)
+        
+        sut = .init(
+            receiptPositionService: ReceiptPositionServiceDummy(),
+            numberFormatter: .twoFracionDigitsNumberFormatter
+        )
     }
 
     override func tearDown() {

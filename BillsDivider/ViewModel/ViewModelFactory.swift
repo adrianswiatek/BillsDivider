@@ -2,31 +2,29 @@ import Combine
 import Foundation
 import SwiftUI
 
-struct ViewModelFactory {
+final class ViewModelFactory {
+    private let receiptPositionService: ReceiptPositionService
+    private let divider: Divider
     private let numberFormatter: NumberFormatter
-    private let billsDivider: BillsDivider
 
-    init(billsDivider: BillsDivider, numberFormatter: NumberFormatter) {
-        self.billsDivider = billsDivider
+    init(
+        receiptPositionService: ReceiptPositionService,
+        divider: Divider,
+        numberFormatter: NumberFormatter
+    ) {
+        self.receiptPositionService = receiptPositionService
+        self.divider = divider
         self.numberFormatter = numberFormatter
-    }
-
-    static var `default`: ViewModelFactory {
-        .init(billsDivider: .init(), numberFormatter: .twoFracionDigitsNumberFormatter)
     }
 }
 
 extension ViewModelFactory {
     var receiptListViewModel: ReceiptListViewModel {
-        ReceiptListViewModel(numberFormatter: numberFormatter)
+        ReceiptListViewModel(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
     }
 
     func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        SummaryViewModel(
-            positions: positions,
-            billsDivider: billsDivider,
-            numberFormatter: numberFormatter
-        )
+        SummaryViewModel(positions: positions, divider: divider, numberFormatter: numberFormatter)
     }
 
     func addOverlayViewModel(

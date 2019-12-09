@@ -1,3 +1,4 @@
+import CoreData
 import SwiftUI
 import UIKit
 
@@ -9,13 +10,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        let contentView = TabsView(viewModelFactory: .default)
+        guard let windowScene = scene as? UIWindowScene else { return }
 
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
-            self.window = window
-            window.makeKeyAndVisible()
-        }
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = UIHostingController(rootView: getTabsView())
+        self.window = window
+        window.makeKeyAndVisible()
+    }
+
+    private func getTabsView() -> some View {
+        let coreDataStack: CoreDataStack = SqliteCoreDataStack()
+        let context: NSManagedObjectContext = coreDataStack.context
+        let receiptPositionService: ReceiptPositionService = CoreDataReceiptPositionService(context)
+        let viewModelFactory = ViewModelFactory(
+            receiptPositionService: receiptPositionService,
+            divider: .init(),
+            numberFormatter: .twoFracionDigitsNumberFormatter
+        )
+        return TabsView(viewModelFactory: viewModelFactory)
     }
 }

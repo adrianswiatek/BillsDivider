@@ -1,6 +1,6 @@
 import Foundation
 
-struct BillsDivider {
+struct Divider {
     func divide(_ positions: [ReceiptPosition]) -> BillsDivisionResult {
         positions.reduce(into: BillsDivisionResult.noDebt) { $0 = add($0, divide($1)) }
     }

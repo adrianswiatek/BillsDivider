@@ -31,6 +31,6 @@ struct TabsView: View {
 
 struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
-        TabsView(viewModelFactory: .default)
+        PreviewFactory().tabsView
     }
 }

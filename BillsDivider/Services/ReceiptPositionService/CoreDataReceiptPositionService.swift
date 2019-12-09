@@ -1,6 +1,6 @@
 import CoreData
 
-class ReceiptPositionService {
+final class CoreDataReceiptPositionService: ReceiptPositionService {
     private let context: NSManagedObjectContext
 
     init(_ context: NSManagedObjectContext) {

@@ -1,12 +1,12 @@
 @testable import BillsDivider
 import XCTest
 
-class BillsDividerTests: XCTestCase {
-    private var sut: BillsDivider!
+class DividerTests: XCTestCase {
+    private var sut: Divider!
 
     override func setUp() {
         super.setUp()
-        sut = BillsDivider()
+        sut = Divider()
     }
 
     override func tearDown() {

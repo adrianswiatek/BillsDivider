@@ -3,13 +3,13 @@ import CoreData
 import XCTest
 
 class ReceiptPositionServiceTests: XCTestCase {
-    private var sut: ReceiptPositionService!
+    private var sut: CoreDataReceiptPositionService!
     private var context: NSManagedObjectContext!
 
     override func setUp() {
         super.setUp()
-        context = CoreDataStackMock().context
-        sut = ReceiptPositionService(context)
+        context = InMemoryCoreDataStack().context
+        sut = CoreDataReceiptPositionService(context)
     }
 
     override func tearDown() {
@@ -143,13 +143,11 @@ class ReceiptPositionServiceTests: XCTestCase {
             forNotification: .NSManagedObjectContextDidSave,
             object: context,
             handler: {
-                if let insertedItems = $0.userInfo?["inserted"] as? Set<ReceiptPositionEntity> {
-                    insertedUuids = insertedItems.compactMap { $0.id }
-                }
+                let insertedItems = $0.userInfo?["inserted"] as? Set<ReceiptPositionEntity>
+                insertedUuids = insertedItems?.compactMap { $0.id }
 
-                if let deletedItems = $0.userInfo?["deleted"] as? Set<ReceiptPositionEntity> {
-                    deletedUuids = deletedItems.compactMap { $0.id }
-                }
+                let deletedItems = $0.userInfo?["deleted"] as? Set<ReceiptPositionEntity>
+                deletedUuids = deletedItems?.compactMap { $0.id }
 
                 return true
             }
@@ -158,7 +156,7 @@ class ReceiptPositionServiceTests: XCTestCase {
         sut.set([])
 
         wait(for: [exp], timeout: 0.2)
-        XCTAssertNil(insertedUuids)
+        XCTAssertEqual(insertedUuids?.count, 0)
         XCTAssertEqual(deletedUuids?.count, 2)
         XCTAssertNotNil(deletedUuids?.contains(positions[0].id))
         XCTAssertNotNil(deletedUuids?.contains(positions[1].id))

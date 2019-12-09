@@ -68,7 +68,6 @@ struct ReceiptListView: View {
 
 struct ReceiptListView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModelFactory: ViewModelFactory = .default
-        return ReceiptListView(viewModelFactory.receiptListViewModel, viewModelFactory)
+        PreviewFactory().receiptListView
     }
 }

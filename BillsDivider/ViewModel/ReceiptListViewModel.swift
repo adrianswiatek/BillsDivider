@@ -4,10 +4,12 @@ import Foundation
 class ReceiptListViewModel: ObservableObject {
     @Published var positions: [ReceiptPosition]
 
+    private let receiptPositionService: ReceiptPositionService
     private let numberFormatter: NumberFormatter
     private var subscriptions: [AnyCancellable]
 
-    init(numberFormatter: NumberFormatter) {
+    init(receiptPositionService: ReceiptPositionService, numberFormatter: NumberFormatter) {
+        self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
         self.positions = []
         self.subscriptions = []

@@ -45,7 +45,6 @@ struct AddOverlayView: View {
 
 struct AddOverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModelFactory: ViewModelFactory = .default
-        return AddOverlayView(viewModelFactory.addOverlayViewModel(presenting: .constant(true)))
+        PreviewFactory().addOverlayView
     }
 }
