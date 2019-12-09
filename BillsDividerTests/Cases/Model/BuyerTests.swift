@@ -6,7 +6,7 @@ class BuyerTests: XCTestCase {
         XCTAssertEqual(Buyer.me.formatted, "Me")
     }
 
-    func testFormatted_notMeCase_returnsNotMe() {
+    func testFormatted_notMeCase_returnsThey() {
         XCTAssertEqual(Buyer.notMe.formatted, "They")
     }
 
@@ -67,5 +67,18 @@ class BuyerTests: XCTestCase {
 
     func testNext_notMeCase_returnsMe() {
         XCTAssertEqual(Buyer.notMe.next(), .me)
+    }
+
+    // MARK: - from(string:)
+    func testFromString_meString_returnsMeCase() {
+        XCTAssertEqual(Buyer.from(string: "me"), .me)
+    }
+
+    func testFromString_notMeString_returnsNotMeCase() {
+        XCTAssertEqual(Buyer.from(string: "notMe"), .notMe)
+    }
+
+    func testFromString_randomString_returnsNil() {
+        XCTAssertNil(Buyer.from(string: "random string"))
     }
 }

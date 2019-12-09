@@ -9,6 +9,17 @@ enum Buyer {
         }
     }
 
+    static func from(string: String) -> Buyer? {
+        switch string {
+        case "me":
+            return .me
+        case "notMe":
+            return .notMe
+        default:
+            return nil
+        }
+    }
+
     func isEqualTo(owner: Owner) -> Bool {
         switch (self, owner) {
         case (.me, .me), (.notMe, .notMe):

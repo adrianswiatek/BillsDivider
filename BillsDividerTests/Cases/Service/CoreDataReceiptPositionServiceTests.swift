@@ -2,7 +2,7 @@
 import CoreData
 import XCTest
 
-class ReceiptPositionServiceTests: XCTestCase {
+class CoreDataReceiptPositionServiceTests: XCTestCase {
     private var sut: CoreDataReceiptPositionService!
     private var context: NSManagedObjectContext!
 
@@ -160,5 +160,37 @@ class ReceiptPositionServiceTests: XCTestCase {
         XCTAssertEqual(deletedUuids?.count, 2)
         XCTAssertNotNil(deletedUuids?.contains(positions[0].id))
         XCTAssertNotNil(deletedUuids?.contains(positions[1].id))
+    }
+
+    func testFetchPositions_whenNoItems_returnsEmptyArray() {
+        XCTAssertEqual(sut.fetchPositions(), [])
+    }
+
+    func testFetchPositions_whenOneItemAdded_returnsOneItem() {
+        let positions: [ReceiptPosition] = [.init(amount: 1, buyer: .me, owner: .notMe)]
+        sut.set(positions)
+
+        let result = sut.fetchPositions()
+
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result[0], positions[0])
+    }
+
+    func testFetchPositions_whenFourItemAdded_returnsFourItems() {
+        let positions: [ReceiptPosition] = [
+            .init(amount: 1, buyer: .me, owner: .notMe),
+            .init(amount: 2, buyer: .notMe, owner: .me),
+            .init(amount: 3, buyer: .me, owner: .all),
+            .init(amount: 4, buyer: .notMe, owner: .all)
+        ]
+        sut.set(positions)
+
+        let result = sut.fetchPositions()
+
+        XCTAssertEqual(result.count, 4)
+        XCTAssertTrue(result.contains(positions[0]))
+        XCTAssertTrue(result.contains(positions[1]))
+        XCTAssertTrue(result.contains(positions[2]))
+        XCTAssertTrue(result.contains(positions[3]))
     }
 }

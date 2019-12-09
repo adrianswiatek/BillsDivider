@@ -17,10 +17,17 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
         save()
     }
 
-    private func removeExistingPositions() {
+    func fetchPositions() -> [ReceiptPosition] {
+        fetchEntities().map { getMapped($0) }
+    }
+
+    private func fetchEntities() -> [ReceiptPositionEntity] {
         let request: NSFetchRequest<ReceiptPositionEntity> = ReceiptPositionEntity.fetchRequest()
-        let entities = try? context.fetch(request)
-        entities?.forEach { context.delete($0) }
+        return (try? context.fetch(request)) ?? []
+    }
+
+    private func removeExistingPositions() {
+        fetchEntities().forEach { context.delete($0) }
     }
 
     private func getMapped(_ position: ReceiptPosition) -> ReceiptPositionEntity {
@@ -30,6 +37,17 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
         mappedPosition.buyer = String(describing: position.buyer)
         mappedPosition.owner = String(describing: position.owner)
         return mappedPosition
+    }
+
+    private func getMapped(_ position: ReceiptPositionEntity) -> ReceiptPosition {
+        guard
+            let id = position.id,
+            let amount = position.amount?.decimalValue,
+            let buyer = Buyer.from(string: position.buyer ?? ""),
+            let owner = Owner.from(string: position.owner ?? "")
+        else { preconditionFailure("Invalid entity in Core Data.") }
+
+        return .init(id: id, amount: amount, buyer: buyer, owner: owner)
     }
 
     private func save() {
