@@ -26,22 +26,26 @@ struct SummaryView: View {
 
             Spacer()
 
-            HStack {
-                generatePersonView(withLabel: viewModel.leftSidedBuyer.formatted, andColor: .blue)
+            VStack {
+                Text(viewModel.formattedDebt)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .offset(x: 0, y: 16)
 
-                VStack {
-                    Text(viewModel.formattedDebt)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .offset(x: 0, y: 12)
+                HStack {
+                    generatePersonView(withLabel: viewModel.leftSidedBuyer.formatted, andColor: .blue)
+
+                    Spacer()
 
                     Image(systemName: viewModel.formattedDirection)
                         .font(.largeTitle)
-                }
-                .offset(x: 0, y: -32)
 
-                generatePersonView(withLabel: viewModel.rightSidedBuyer.formatted, andColor: .green)
+                    Spacer()
+
+                    generatePersonView(withLabel: viewModel.rightSidedBuyer.formatted, andColor: .green)
+                }
             }
+            .padding(.horizontal)
 
             Spacer()
         }
