@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70AEB972398711D00ED0E7A /* BuyerTests.swift */; };
+		A7290223239F07C90012FA47 /* InMemoryReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7290222239F07C90012FA47 /* InMemoryReceiptPositionService.swift */; };
 		A73283F6237F68990012CBB8 /* AddOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73283F5237F68990012CBB8 /* AddOverlayView.swift */; };
 		A736A1962369DAE20096C2E1 /* ReceiptPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */; };
 		A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */; };
@@ -41,7 +42,6 @@
 		A77FAD202384B30E00B66C98 /* ReceiptListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */; };
 		A78B1B8E239EB12F006A1B91 /* SqliteCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */; };
 		A78B1B90239EB14C006A1B91 /* InMemoryCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */; };
-		A78B1B95239EB3D7006A1B91 /* ReceiptPositionServiceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B94239EB3D7006A1B91 /* ReceiptPositionServiceFake.swift */; };
 		A78B1B98239EB814006A1B91 /* ReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */; };
 		A7B7DE58238C5F1600D38BC8 /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */; };
 		A7B7DE5A238C79E800D38BC8 /* DivisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */; };
@@ -79,6 +79,7 @@
 		A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7043E84238C4DC500630D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A70AEB972398711D00ED0E7A /* BuyerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerTests.swift; sourceTree = "<group>"; };
+		A7290222239F07C90012FA47 /* InMemoryReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionService.swift; sourceTree = "<group>"; };
 		A73283F5237F68990012CBB8 /* AddOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOverlayView.swift; sourceTree = "<group>"; };
 		A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionView.swift; sourceTree = "<group>"; };
 		A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModel.swift; sourceTree = "<group>"; };
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataStack.swift; sourceTree = "<group>"; };
-		A78B1B94239EB3D7006A1B91 /* ReceiptPositionServiceFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionServiceFake.swift; sourceTree = "<group>"; };
 		A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionService.swift; sourceTree = "<group>"; };
 		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
 		A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionResult.swift; sourceTree = "<group>"; };
@@ -162,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				A7794C3C239D5C4B0001EB73 /* Cases */,
-				A78B1B93239EB3C3006A1B91 /* Doubles */,
 				A7043E84238C4DC500630D35 /* Info.plist */,
 			);
 			path = BillsDividerTests;
@@ -294,18 +293,11 @@
 			path = Sections;
 			sourceTree = "<group>";
 		};
-		A78B1B93239EB3C3006A1B91 /* Doubles */ = {
-			isa = PBXGroup;
-			children = (
-				A78B1B94239EB3D7006A1B91 /* ReceiptPositionServiceFake.swift */,
-			);
-			path = Doubles;
-			sourceTree = "<group>";
-		};
 		A78B1B96239EB805006A1B91 /* ReceiptPositionService */ = {
 			isa = PBXGroup;
 			children = (
 				A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */,
+				A7290222239F07C90012FA47 /* InMemoryReceiptPositionService.swift */,
 				A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */,
 			);
 			path = ReceiptPositionService;
@@ -545,7 +537,6 @@
 			files = (
 				A7385B5F239C80DF00A41C09 /* AddOverlayViewModelTests.swift in Sources */,
 				A76BBCD323948481003AE654 /* DivisionResultTests.swift in Sources */,
-				A78B1B95239EB3D7006A1B91 /* ReceiptPositionServiceFake.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */,
 				A75B79C7239EEB0000C740BB /* OwnerTests.swift in Sources */,
@@ -581,6 +572,7 @@
 				A7FED236235CEF8B00CCD069 /* BillsDivider.xcdatamodeld in Sources */,
 				A77FAD202384B30E00B66C98 /* ReceiptListViewModel.swift in Sources */,
 				A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */,
+				A7290223239F07C90012FA47 /* InMemoryReceiptPositionService.swift in Sources */,
 				A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
 				A7794C39239D52E90001EB73 /* CoreDataReceiptPositionService.swift in Sources */,

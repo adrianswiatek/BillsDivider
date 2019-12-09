@@ -1,6 +1,4 @@
-@testable import BillsDivider
-
-class ReceiptPositionServiceFake: ReceiptPositionService {
+final class InMemoryReceiptPositionService: ReceiptPositionService {
     private var positions: [ReceiptPosition] = []
 
     func set(_ positions: [ReceiptPosition]) {

@@ -8,7 +8,7 @@ class ReceiptListViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        receiptPositionService = ReceiptPositionServiceFake()
+        receiptPositionService = InMemoryReceiptPositionService()
         sut = .init(
             receiptPositionService: receiptPositionService,
             numberFormatter: .twoFracionDigitsNumberFormatter

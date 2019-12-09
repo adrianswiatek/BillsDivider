@@ -5,14 +5,8 @@ struct PreviewFactory {
     private let viewModelFactory: ViewModelFactory
 
     init() {
-        let coreDataStack: CoreDataStack =
-            InMemoryCoreDataStack()
-
-        let receiptPositionService: ReceiptPositionService =
-            CoreDataReceiptPositionService(coreDataStack.context)
-
         viewModelFactory = .init(
-            receiptPositionService: receiptPositionService,
+            receiptPositionService: InMemoryReceiptPositionService(),
             divider: .init(),
             numberFormatter: .twoFracionDigitsNumberFormatter
         )
