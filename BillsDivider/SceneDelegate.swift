@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewModelFactory = ViewModelFactory(
             receiptPositionService: receiptPositionService,
             divider: .init(),
-            numberFormatter: .twoFracionDigitsNumberFormatter
+            numberFormatter: .twoFractionDigitsNumberFormatter
         )
         return TabsView(viewModelFactory: viewModelFactory)
     }

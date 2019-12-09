@@ -1,7 +1,7 @@
 import Foundation
 
 extension NumberFormatter {
-    static var twoFracionDigitsNumberFormatter: NumberFormatter {
+    static var twoFractionDigitsNumberFormatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.minimumFractionDigits = 2
         formatter.maximumFractionDigits = 2

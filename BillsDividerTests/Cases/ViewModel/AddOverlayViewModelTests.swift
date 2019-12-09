@@ -8,7 +8,7 @@ class AddOverlayViewModelTests: XCTestCase {
     private var subscriptions: [AnyCancellable]!
 
     private var numberFormatter: NumberFormatter {
-        .twoFracionDigitsNumberFormatter
+        .twoFractionDigitsNumberFormatter
     }
 
     override func setUp() {

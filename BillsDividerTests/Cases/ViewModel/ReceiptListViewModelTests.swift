@@ -6,17 +6,19 @@ class ReceiptListViewModelTests: XCTestCase {
     private var sut: ReceiptListViewModel!
     private var receiptPositionService: ReceiptPositionService!
 
+    private var numberFormatter: NumberFormatter {
+        .twoFractionDigitsNumberFormatter
+    }
+
     override func setUp() {
         super.setUp()
         receiptPositionService = InMemoryReceiptPositionService()
-        sut = .init(
-            receiptPositionService: receiptPositionService,
-            numberFormatter: .twoFracionDigitsNumberFormatter
-        )
+        sut = .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
     }
 
     override func tearDown() {
         sut = nil
+        receiptPositionService = nil
         super.tearDown()
     }
 
@@ -31,10 +33,7 @@ class ReceiptListViewModelTests: XCTestCase {
         ]
         receiptPositionService.set(positions)
 
-        sut = .init(
-            receiptPositionService: receiptPositionService,
-            numberFormatter: .twoFracionDigitsNumberFormatter
-        )
+        sut = .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
 
         XCTAssertEqual(sut.positions.count, 2)
         XCTAssertEqual(sut.positions[0], positions[0])
@@ -83,7 +82,7 @@ class ReceiptListViewModelTests: XCTestCase {
     }
 
     func testFormatNumber_returnsFormattedValue() {
-        let numberFormatter: NumberFormatter = .twoFracionDigitsNumberFormatter
+        let numberFormatter: NumberFormatter = .twoFractionDigitsNumberFormatter
         XCTAssertEqual(sut.formatNumber(value: 1), numberFormatter.format(value: 1))
     }
 }

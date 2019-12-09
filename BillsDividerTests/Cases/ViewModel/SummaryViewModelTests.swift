@@ -22,7 +22,7 @@ class SummaryViewModelTests: XCTestCase {
     }
 
     private var numberFormatter: NumberFormatter {
-        .twoFracionDigitsNumberFormatter
+        .twoFractionDigitsNumberFormatter
     }
 
     private var emptyPositions: AnyPublisher<[ReceiptPosition], Never> {

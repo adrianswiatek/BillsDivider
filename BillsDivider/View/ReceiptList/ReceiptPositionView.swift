@@ -64,10 +64,6 @@ struct ReceiptPositionView: View {
 
 struct ReceiptPositionView_Previews: PreviewProvider {
     static var previews: some View {
-        ReceiptPositionView(
-            .empty,
-            UIScreen.main.bounds.width / 3,
-            NumberFormatter.twoFracionDigitsNumberFormatter.format
-        )
+        PreviewFactory().receiptListPositionsView
     }
 }

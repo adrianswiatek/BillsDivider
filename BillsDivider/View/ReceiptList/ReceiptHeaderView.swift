@@ -26,6 +26,6 @@ struct ReceiptHeaderView: View {
 
 struct ReceiptHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        ReceiptHeaderView(UIScreen.main.bounds.width / 3)
+        PreviewFactory().receiptHeaderView
     }
 }
