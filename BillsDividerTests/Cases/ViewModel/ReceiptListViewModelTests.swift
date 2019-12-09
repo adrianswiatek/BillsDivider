@@ -4,12 +4,13 @@ import XCTest
 
 class ReceiptListViewModelTests: XCTestCase {
     private var sut: ReceiptListViewModel!
+    private var receiptPositionService: ReceiptPositionService!
 
     override func setUp() {
         super.setUp()
-        
+        receiptPositionService = ReceiptPositionServiceFake()
         sut = .init(
-            receiptPositionService: ReceiptPositionServiceDummy(),
+            receiptPositionService: receiptPositionService,
             numberFormatter: .twoFracionDigitsNumberFormatter
         )
     }
@@ -19,8 +20,25 @@ class ReceiptListViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func testInit_positionsAreEmpty() {
+    func testInit_whenNoPositionsArePersisted_positionsAreEmpty() {
         XCTAssertTrue(sut.positions.isEmpty)
+    }
+
+    func testInit_whenPositionsArePersisted_setsThosePositions() {
+        let positions: [ReceiptPosition] = [
+            .init(amount: 1, buyer: .me, owner: .notMe),
+            .init(amount: 2, buyer: .notMe, owner: .me)
+        ]
+        receiptPositionService.set(positions)
+
+        sut = .init(
+            receiptPositionService: receiptPositionService,
+            numberFormatter: .twoFracionDigitsNumberFormatter
+        )
+
+        XCTAssertEqual(sut.positions.count, 2)
+        XCTAssertEqual(sut.positions[0], positions[0])
+        XCTAssertEqual(sut.positions[1], positions[1])
     }
 
     func testRemoveAllPositions_positionsAreEmpty() {

@@ -2,16 +2,21 @@ import Combine
 import Foundation
 
 class ReceiptListViewModel: ObservableObject {
-    @Published var positions: [ReceiptPosition]
+    @Published var positions: [ReceiptPosition] {
+        didSet {
+            receiptPositionService.set(positions)
+        }
+    }
 
     private let receiptPositionService: ReceiptPositionService
     private let numberFormatter: NumberFormatter
+
     private var subscriptions: [AnyCancellable]
 
     init(receiptPositionService: ReceiptPositionService, numberFormatter: NumberFormatter) {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
-        self.positions = []
+        self.positions = receiptPositionService.fetchPositions()
         self.subscriptions = []
     }
 
