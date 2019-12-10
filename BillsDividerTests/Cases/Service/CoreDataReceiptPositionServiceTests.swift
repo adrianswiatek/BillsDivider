@@ -8,8 +8,8 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        context = InMemoryCoreDataStack().context
-        sut = CoreDataReceiptPositionService(context)
+        context = CoreDataStackFake().context
+        sut = CoreDataReceiptPositionService(context: context, mapper: .init())
     }
 
     override func tearDown() {

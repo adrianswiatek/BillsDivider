@@ -34,7 +34,6 @@
 		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
 		A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptListUITests.swift */; };
 		A7794C39239D52E90001EB73 /* CoreDataReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */; };
-		A7794C3B239D550F0001EB73 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C3A239D550F0001EB73 /* CoreDataStack.swift */; };
 		A77D54C323819182003D7E9D /* Buyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C223819182003D7E9D /* Buyer.swift */; };
 		A77D54C523819198003D7E9D /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C423819198003D7E9D /* Owner.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
@@ -43,7 +42,7 @@
 		A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */; };
 		A77FAD202384B30E00B66C98 /* ReceiptListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */; };
 		A78B1B8E239EB12F006A1B91 /* SqliteCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */; };
-		A78B1B90239EB14C006A1B91 /* InMemoryCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */; };
+		A78B1B90239EB14C006A1B91 /* CoreDataStackFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8F239EB14C006A1B91 /* CoreDataStackFake.swift */; };
 		A78B1B98239EB814006A1B91 /* ReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */; };
 		A7B7DE58238C5F1600D38BC8 /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */; };
 		A7B7DE5A238C79E800D38BC8 /* DivisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */; };
@@ -109,7 +108,6 @@
 		A774361C239AB696008F53B5 /* ReceiptListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListUITests.swift; sourceTree = "<group>"; };
 		A774361E239AB696008F53B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataReceiptPositionService.swift; sourceTree = "<group>"; };
-		A7794C3A239D550F0001EB73 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A77D54C223819182003D7E9D /* Buyer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buyer.swift; sourceTree = "<group>"; };
 		A77D54C423819198003D7E9D /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		A77D54CA23819255003D7E9D /* PriceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSectionView.swift; sourceTree = "<group>"; };
@@ -118,7 +116,7 @@
 		A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnotherSectionView.swift; sourceTree = "<group>"; };
 		A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModel.swift; sourceTree = "<group>"; };
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
-		A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataStack.swift; sourceTree = "<group>"; };
+		A78B1B8F239EB14C006A1B91 /* CoreDataStackFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackFake.swift; sourceTree = "<group>"; };
 		A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionService.swift; sourceTree = "<group>"; };
 		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
 		A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionResult.swift; sourceTree = "<group>"; };
@@ -166,20 +164,10 @@
 			isa = PBXGroup;
 			children = (
 				A7794C3C239D5C4B0001EB73 /* Cases */,
+				A779604423A0311F00912650 /* Doubles */,
 				A7043E84238C4DC500630D35 /* Info.plist */,
 			);
 			path = BillsDividerTests;
-			sourceTree = "<group>";
-		};
-		A7062BF2239EAF3E00571D7A /* CoreDataStack */ = {
-			isa = PBXGroup;
-			children = (
-				A7794C3A239D550F0001EB73 /* CoreDataStack.swift */,
-				A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */,
-				A732E903239FC47600B1D0B7 /* ReceiptPositionMapper.swift */,
-				A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */,
-			);
-			path = CoreDataStack;
 			sourceTree = "<group>";
 		};
 		A736A1992369DDD70096C2E1 /* Model */ = {
@@ -252,8 +240,9 @@
 		A7794C37239D52B10001EB73 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A7062BF2239EAF3E00571D7A /* CoreDataStack */,
 				A78B1B96239EB805006A1B91 /* ReceiptPositionService */,
+				A732E903239FC47600B1D0B7 /* ReceiptPositionMapper.swift */,
+				A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -266,6 +255,14 @@
 				A7D2A840239DAEBA002712FE /* ViewModel */,
 			);
 			path = Cases;
+			sourceTree = "<group>";
+		};
+		A779604423A0311F00912650 /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				A78B1B8F239EB14C006A1B91 /* CoreDataStackFake.swift */,
+			);
+			path = Doubles;
 			sourceTree = "<group>";
 		};
 		A77D54C6238191D2003D7E9D /* ReceiptList */ = {
@@ -594,12 +591,11 @@
 				A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */,
 				A77D54C523819198003D7E9D /* Owner.swift in Sources */,
 				A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */,
-				A7794C3B239D550F0001EB73 /* CoreDataStack.swift in Sources */,
 				A732E904239FC47600B1D0B7 /* ReceiptPositionMapper.swift in Sources */,
 				A78B1B98239EB814006A1B91 /* ReceiptPositionService.swift in Sources */,
 				A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */,
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
-				A78B1B90239EB14C006A1B91 /* InMemoryCoreDataStack.swift in Sources */,
+				A78B1B90239EB14C006A1B91 /* CoreDataStackFake.swift in Sources */,
 				A7B7DE5A238C79E800D38BC8 /* DivisionResult.swift in Sources */,
 				A7F213B2238B41310084B466 /* SummaryView.swift in Sources */,
 				A78B1B8E239EB12F006A1B91 /* SqliteCoreDataStack.swift in Sources */,

@@ -1,7 +1,7 @@
 import CoreData
 
 struct ReceiptPositionMapper {
-    static func map(
+    func map(
         _ position: ReceiptPosition,
         _ orderNumber: Int,
         _ context: NSManagedObjectContext
@@ -15,7 +15,7 @@ struct ReceiptPositionMapper {
         return entity
     }
 
-    static func map(_ entity: ReceiptPositionEntity) -> ReceiptPosition? {
+    func map(_ entity: ReceiptPositionEntity) -> ReceiptPosition? {
         guard
             let id = entity.id,
             let amount = entity.amount?.decimalValue,

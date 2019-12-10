@@ -2,9 +2,11 @@ import CoreData
 
 final class CoreDataReceiptPositionService: ReceiptPositionService {
     private let context: NSManagedObjectContext
+    private let mapper: ReceiptPositionMapper
 
-    init(_ context: NSManagedObjectContext) {
+    init(context: NSManagedObjectContext, mapper: ReceiptPositionMapper) {
         self.context = context
+        self.mapper = mapper
     }
 
     func set(_ positions: [ReceiptPosition]) {
@@ -12,14 +14,14 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
 
         positions
             .enumerated()
-            .map { ReceiptPositionMapper.map($1, $0, self.context) }
+            .map { self.mapper.map($1, $0, self.context) }
             .forEach { context.insert($0) }
 
         save()
     }
 
     func fetchPositions() -> [ReceiptPosition] {
-        fetchEntities(sorted: true).compactMap { ReceiptPositionMapper.map($0) }
+        fetchEntities(sorted: true).compactMap { self.mapper.map($0) }
     }
 
     private func fetchEntities(sorted: Bool) -> [ReceiptPositionEntity] {

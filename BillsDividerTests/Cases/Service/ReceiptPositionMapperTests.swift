@@ -3,15 +3,18 @@ import CoreData
 import XCTest
 
 class ReceiptPositionMapperTests: XCTestCase {
+    private var sut: ReceiptPositionMapper!
     private var context: NSManagedObjectContext!
 
     override func setUp() {
         super.setUp()
-        context = InMemoryCoreDataStack().context
+        sut = ReceiptPositionMapper()
+        context = CoreDataStackFake().context
     }
 
     override func tearDown() {
         context = nil
+        sut = ReceiptPositionMapper()
         super.tearDown()
     }
 
@@ -28,7 +31,7 @@ class ReceiptPositionMapperTests: XCTestCase {
     func testMapPosition_withPosition_returnsEntity() {
         let position = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
 
-        let result: ReceiptPositionEntity = ReceiptPositionMapper.map(position, 0, context)
+        let result: ReceiptPositionEntity = sut.map(position, 0, context)
 
         XCTAssertEqual(result.id, position.id)
         XCTAssertEqual(result.amount, NSDecimalNumber(decimal: position.amount))
@@ -39,7 +42,7 @@ class ReceiptPositionMapperTests: XCTestCase {
 
     func testMapEntity_withValidEntity_returnsPosition() {
         let entity = createEntity()
-        let result = ReceiptPositionMapper.map(entity)
+        let result = sut.map(entity)
 
         XCTAssertNotNil(result)
         XCTAssertEqual(result?.id, entity.id)
@@ -52,7 +55,7 @@ class ReceiptPositionMapperTests: XCTestCase {
         let entity = createEntity()
         entity.id = nil
 
-        let result = ReceiptPositionMapper.map(entity)
+        let result = sut.map(entity)
 
         XCTAssertNil(result)
     }
@@ -61,7 +64,7 @@ class ReceiptPositionMapperTests: XCTestCase {
         let entity = createEntity()
         entity.amount = nil
 
-        let result = ReceiptPositionMapper.map(entity)
+        let result = sut.map(entity)
 
         XCTAssertNil(result)
     }
@@ -70,7 +73,7 @@ class ReceiptPositionMapperTests: XCTestCase {
         let entity = createEntity()
         entity.buyer = nil
 
-        let result = ReceiptPositionMapper.map(entity)
+        let result = sut.map(entity)
 
         XCTAssertNil(result)
     }
@@ -79,7 +82,7 @@ class ReceiptPositionMapperTests: XCTestCase {
         let entity = createEntity()
         entity.owner = nil
 
-        let result = ReceiptPositionMapper.map(entity)
+        let result = sut.map(entity)
 
         XCTAssertNil(result)
     }
