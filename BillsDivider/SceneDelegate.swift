@@ -20,11 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func getTabsView() -> some View {
         let coreDataStack: CoreDataStack = SqliteCoreDataStack()
-        let context: NSManagedObjectContext = coreDataStack.context
-        let receiptPositionService: ReceiptPositionService = CoreDataReceiptPositionService(context)
+        let receiptPositionService: ReceiptPositionService =
+            CoreDataReceiptPositionService(coreDataStack.context)
         let viewModelFactory = ViewModelFactory(
             receiptPositionService: receiptPositionService,
-            divider: .init(),
+            divider: Divider(),
             numberFormatter: .twoFractionDigitsNumberFormatter
         )
         return TabsView(viewModelFactory: viewModelFactory)

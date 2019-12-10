@@ -12,14 +12,14 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
 
         positions
             .enumerated()
-            .map { getMapped($1, $0) }
+            .map { ReceiptPositionMapper.map($1, $0, self.context) }
             .forEach { context.insert($0) }
 
         save()
     }
 
     func fetchPositions() -> [ReceiptPosition] {
-        fetchEntities(sorted: true).map { getMapped($0) }
+        fetchEntities(sorted: true).compactMap { ReceiptPositionMapper.map($0) }
     }
 
     private func fetchEntities(sorted: Bool) -> [ReceiptPositionEntity] {
@@ -34,27 +34,6 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
 
     private func removeExistingPositions() {
         fetchEntities(sorted: false).forEach { context.delete($0) }
-    }
-
-    private func getMapped(_ position: ReceiptPosition, _ orderNumber: Int) -> ReceiptPositionEntity {
-        let mappedPosition = ReceiptPositionEntity(context: context)
-        mappedPosition.id = position.id
-        mappedPosition.amount = NSDecimalNumber(decimal: position.amount)
-        mappedPosition.buyer = String(describing: position.buyer)
-        mappedPosition.owner = String(describing: position.owner)
-        mappedPosition.orderNumber = Int32(orderNumber)
-        return mappedPosition
-    }
-
-    private func getMapped(_ position: ReceiptPositionEntity) -> ReceiptPosition {
-        guard
-            let id = position.id,
-            let amount = position.amount?.decimalValue,
-            let buyer = Buyer.from(string: position.buyer ?? ""),
-            let owner = Owner.from(string: position.owner ?? "")
-        else { preconditionFailure("Invalid entity in Core Data.") }
-
-        return .init(id: id, amount: amount, buyer: buyer, owner: owner)
     }
 
     private func save() {

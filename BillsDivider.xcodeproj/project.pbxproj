@@ -10,6 +10,8 @@
 		A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70AEB972398711D00ED0E7A /* BuyerTests.swift */; };
 		A7290223239F07C90012FA47 /* InMemoryReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7290222239F07C90012FA47 /* InMemoryReceiptPositionService.swift */; };
 		A73283F6237F68990012CBB8 /* AddOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73283F5237F68990012CBB8 /* AddOverlayView.swift */; };
+		A732E904239FC47600B1D0B7 /* ReceiptPositionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732E903239FC47600B1D0B7 /* ReceiptPositionMapper.swift */; };
+		A732E906239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732E905239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift */; };
 		A736A1962369DAE20096C2E1 /* ReceiptPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */; };
 		A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */; };
 		A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */; };
@@ -81,6 +83,8 @@
 		A70AEB972398711D00ED0E7A /* BuyerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerTests.swift; sourceTree = "<group>"; };
 		A7290222239F07C90012FA47 /* InMemoryReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionService.swift; sourceTree = "<group>"; };
 		A73283F5237F68990012CBB8 /* AddOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOverlayView.swift; sourceTree = "<group>"; };
+		A732E903239FC47600B1D0B7 /* ReceiptPositionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionMapper.swift; sourceTree = "<group>"; };
+		A732E905239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionMapperTests.swift; sourceTree = "<group>"; };
 		A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionView.swift; sourceTree = "<group>"; };
 		A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
 		A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPosition.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 			children = (
 				A7794C3A239D550F0001EB73 /* CoreDataStack.swift */,
 				A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */,
+				A732E903239FC47600B1D0B7 /* ReceiptPositionMapper.swift */,
 				A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */,
 			);
 			path = CoreDataStack;
@@ -324,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */,
+				A732E905239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -537,6 +543,7 @@
 			files = (
 				A7385B5F239C80DF00A41C09 /* AddOverlayViewModelTests.swift in Sources */,
 				A76BBCD323948481003AE654 /* DivisionResultTests.swift in Sources */,
+				A732E906239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */,
 				A75B79C7239EEB0000C740BB /* OwnerTests.swift in Sources */,
@@ -588,6 +595,7 @@
 				A77D54C523819198003D7E9D /* Owner.swift in Sources */,
 				A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */,
 				A7794C3B239D550F0001EB73 /* CoreDataStack.swift in Sources */,
+				A732E904239FC47600B1D0B7 /* ReceiptPositionMapper.swift in Sources */,
 				A78B1B98239EB814006A1B91 /* ReceiptPositionService.swift in Sources */,
 				A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */,
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
