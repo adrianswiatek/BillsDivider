@@ -11,31 +11,38 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
         removeExistingPositions()
 
         positions
-            .map { getMapped($0) }
+            .enumerated()
+            .map { getMapped($1, $0) }
             .forEach { context.insert($0) }
 
         save()
     }
 
     func fetchPositions() -> [ReceiptPosition] {
-        fetchEntities().map { getMapped($0) }
+        fetchEntities(sorted: true).map { getMapped($0) }
     }
 
-    private func fetchEntities() -> [ReceiptPositionEntity] {
+    private func fetchEntities(sorted: Bool) -> [ReceiptPositionEntity] {
         let request: NSFetchRequest<ReceiptPositionEntity> = ReceiptPositionEntity.fetchRequest()
+
+        request.sortDescriptors = sorted
+            ? [NSSortDescriptor(keyPath: \ReceiptPositionEntity.orderNumber, ascending: true)]
+            : []
+
         return (try? context.fetch(request)) ?? []
     }
 
     private func removeExistingPositions() {
-        fetchEntities().forEach { context.delete($0) }
+        fetchEntities(sorted: false).forEach { context.delete($0) }
     }
 
-    private func getMapped(_ position: ReceiptPosition) -> ReceiptPositionEntity {
+    private func getMapped(_ position: ReceiptPosition, _ orderNumber: Int) -> ReceiptPositionEntity {
         let mappedPosition = ReceiptPositionEntity(context: context)
         mappedPosition.id = position.id
         mappedPosition.amount = NSDecimalNumber(decimal: position.amount)
         mappedPosition.buyer = String(describing: position.buyer)
         mappedPosition.owner = String(describing: position.owner)
+        mappedPosition.orderNumber = Int32(orderNumber)
         return mappedPosition
     }
 

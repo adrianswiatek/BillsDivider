@@ -176,7 +176,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
         XCTAssertEqual(result[0], positions[0])
     }
 
-    func testFetchPositions_whenFourItemAdded_returnsFourItems() {
+    func testFetchPositions_whenFourItemAdded_returnsFourItemsInGivenOrder() {
         let positions: [ReceiptPosition] = [
             .init(amount: 1, buyer: .me, owner: .notMe),
             .init(amount: 2, buyer: .notMe, owner: .me),
@@ -188,9 +188,9 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
         let result = sut.fetchPositions()
 
         XCTAssertEqual(result.count, 4)
-        XCTAssertTrue(result.contains(positions[0]))
-        XCTAssertTrue(result.contains(positions[1]))
-        XCTAssertTrue(result.contains(positions[2]))
-        XCTAssertTrue(result.contains(positions[3]))
+        XCTAssertEqual(result[0], positions[0])
+        XCTAssertEqual(result[1], positions[1])
+        XCTAssertEqual(result[2], positions[2])
+        XCTAssertEqual(result[3], positions[3])
     }
 }
