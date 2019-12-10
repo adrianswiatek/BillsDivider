@@ -8,7 +8,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        context = CoreDataStackFake().context
+        context = InMemoryCoreDataStack().context
         sut = CoreDataReceiptPositionService(context: context, mapper: .init())
     }
 

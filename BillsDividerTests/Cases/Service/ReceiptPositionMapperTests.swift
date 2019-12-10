@@ -9,7 +9,7 @@ class ReceiptPositionMapperTests: XCTestCase {
     override func setUp() {
         super.setUp()
         sut = ReceiptPositionMapper()
-        context = CoreDataStackFake().context
+        context = InMemoryCoreDataStack().context
     }
 
     override func tearDown() {

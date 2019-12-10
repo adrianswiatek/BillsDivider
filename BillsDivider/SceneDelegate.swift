@@ -5,6 +5,12 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
+    private var isUiTesting: Bool = false {
+        didSet {
+            UIView.setAnimationsEnabled(!isUiTesting)
+        }
+    }
+
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
@@ -12,21 +18,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = scene as? UIWindowScene else { return }
 
+        isUiTesting = CommandLine.arguments.contains("ui-testing")
+
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UIHostingController(rootView: getTabsView())
+        window.rootViewController = UIHostingController(rootView: getRootView())
         self.window = window
         window.makeKeyAndVisible()
     }
 
-    private func getTabsView() -> some View {
-        let coreDataStack: CoreDataStack = SqliteCoreDataStack()
+    private func getRootView() -> some View {
         let receiptPositionService: ReceiptPositionService =
-            CoreDataReceiptPositionService(context: coreDataStack.context, mapper: ReceiptPositionMapper())
+            CoreDataReceiptPositionService(context: getCoreDataStack().context, mapper: ReceiptPositionMapper())
         let viewModelFactory = ViewModelFactory(
             receiptPositionService: receiptPositionService,
             divider: Divider(),
             numberFormatter: .twoFractionDigitsNumberFormatter
         )
         return TabsView(viewModelFactory: viewModelFactory)
+    }
+
+    private func getCoreDataStack() -> CoreDataStack {
+        isUiTesting ? InMemoryCoreDataStack() : SqliteCoreDataStack()
     }
 }
