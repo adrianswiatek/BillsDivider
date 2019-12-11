@@ -3,7 +3,7 @@ import SwiftUI
 struct ReceiptListView: View {
     @ObservedObject private var viewModel: ReceiptListViewModel
 
-    @State private var presentingEditOverlay: Bool = false
+    @State private var editOverlayParams: EditOverlayViewParams = .hidden
     @State private var presentingOptionsMenu: Bool = false
 
     private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
@@ -18,9 +18,17 @@ struct ReceiptListView: View {
         NavigationView {
             List {
                 Section(header: ReceiptHeaderView(columnWidth)) {
-                    ForEach(viewModel.positions) {
-                        ReceiptPositionView($0, self.columnWidth, self.viewModel.formatNumber)
+                    ForEach(viewModel.positions) { position in
+                        ReceiptPositionView(position, self.columnWidth, self.viewModel.formatNumber)
                             .offset(x: -24, y: 0)
+                            .contextMenu {
+                                Button(action: {
+                                    self.editOverlayParams = .shown(mode: .editing, position: position)
+                                }) {
+                                    Text("Edit position")
+                                    Image(systemName: "pencil")
+                                }
+                            }
                     }
                     .onDelete {
                         guard let index = $0.first else { return }
@@ -39,13 +47,15 @@ struct ReceiptListView: View {
                         .rotationEffect(.degrees(90))
                 }
                 .disabled(viewModel.positions.isEmpty),
-                trailing: Button(action: { self.presentingEditOverlay = true }) {
+                trailing: Button(action: {
+                    self.editOverlayParams = .shown(mode: .adding, position: self.viewModel.positions.first)
+                }) {
                     Image(systemName: "plus")
                         .frame(width: 32, height: 32)
                 }
             )
         }
-        .sheet(isPresented: $presentingEditOverlay) {
+        .sheet(isPresented: $editOverlayParams.show) {
             self.createEditOverlayView()
         }
         .actionSheet(isPresented: $presentingOptionsMenu) {
@@ -57,11 +67,11 @@ struct ReceiptListView: View {
     }
 
     private func createEditOverlayView() -> some View {
-        let editOverlayViewModel = viewModelFactory.editOverlayViewModel(
-            presenting: $presentingEditOverlay,
-            receiptPosition: viewModel.positions.first
+        let editOverlayViewModel = viewModelFactory.editOverlayViewModel(presentingParams: $editOverlayParams)
+        viewModel.subscribe(
+            addingPublisher: editOverlayViewModel.positionAdded,
+            editingPublisher: editOverlayViewModel.positionEdited
         )
-        viewModel.subscribe(to: editOverlayViewModel.positionAdded)
         return EditOverlayView(editOverlayViewModel)
     }
 }

@@ -20,21 +20,21 @@ final class ViewModelFactory {
 
 extension ViewModelFactory {
     var receiptListViewModel: ReceiptListViewModel {
-        ReceiptListViewModel(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
+        .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
     }
 
     func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        SummaryViewModel(positions: positions, divider: divider, numberFormatter: numberFormatter)
+        .init(positions: positions, divider: divider, numberFormatter: numberFormatter)
     }
 
-    func editOverlayViewModel(
-        presenting: Binding<Bool>,
-        receiptPosition: ReceiptPosition? = nil
-    ) -> EditOverlayViewModel {
-        EditOverlayViewModel(
-            presenting: presenting,
-            buyer: receiptPosition?.buyer ?? .me,
-            owner: receiptPosition?.owner ?? .all,
+    func editOverlayViewModel(presentingParams: Binding<EditOverlayViewParams>) -> EditOverlayViewModel {
+        let position = presentingParams.wrappedValue.position
+
+        return .init(
+            presenting: presentingParams.show,
+            editOverlayStrategy: presentingParams.wrappedValue.mode == .adding
+                ? AddingModeStrategy(receiptPosition: position)
+                : EditingModeStrategy(receiptPosition: position, numberFormatter: numberFormatter),
             numberFormatter: numberFormatter
         )
     }

@@ -2,7 +2,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-class EditOverlayViewModel: ObservableObject {
+final class EditOverlayViewModel: ObservableObject {
     @Binding private var presenting: Bool
 
     @Published var priceText: String
@@ -12,37 +12,47 @@ class EditOverlayViewModel: ObservableObject {
     @Published var isPriceCorrect: Bool
     @Published var canConfirm: Bool
 
-    var pricePlaceHolderText: String {
-        numberFormatter.format(value: 0)
+    let pricePlaceHolderText: String
+
+    var positionAdded: AnyPublisher<ReceiptPosition, Never>
+    var positionEdited: AnyPublisher<ReceiptPosition, Never>
+
+    var showAddAnother: Bool {
+        editOverlayStrategy.showAddAnother
     }
 
-    var positionAdded: AnyPublisher<ReceiptPosition, Never> {
-        positionAddedSubject.eraseToAnyPublisher()
+    var pageName: String {
+        editOverlayStrategy.pageName
     }
 
-    private let positionAddedSubject: PassthroughSubject<ReceiptPosition, Never>
-    private let numberFormatter: NumberFormatter
+    private let editOverlayStrategy: EditOverlayStrategy
     private var subscriptions: [AnyCancellable]
 
     init(
         presenting: Binding<Bool>,
-        buyer: Buyer,
-        owner: Owner,
+        editOverlayStrategy: EditOverlayStrategy,
         numberFormatter: NumberFormatter
     ) {
         self._presenting = presenting
-        self.numberFormatter = numberFormatter
+        self.editOverlayStrategy = editOverlayStrategy
 
         self.priceText = ""
-        self.buyer = buyer
-        self.owner = owner
-        self.addAnother = true
+        self.pricePlaceHolderText = numberFormatter.format(value: 0)
+        self.buyer = .me
+        self.owner = .notMe
+        self.addAnother = false
         self.canConfirm = false
         self.isPriceCorrect = false
-        self.positionAddedSubject = PassthroughSubject<ReceiptPosition, Never>()
+        self.positionAdded = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
+        self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.subscriptions = []
 
         self.setupSubscriptions()
+        self.editOverlayStrategy.set(viewModel: self)
+    }
+
+    deinit {
+        print("EditOverlayViewModel has been deinitialized.")
     }
 
     func confirmDidTap() {
@@ -51,7 +61,7 @@ class EditOverlayViewModel: ObservableObject {
         }
 
         addAnother ? priceText.removeAll() : dismiss()
-        positionAddedSubject.send(receiptPosition)
+        editOverlayStrategy.confirmDidTap(with: receiptPosition, in: self)
     }
 
     func dismiss() {

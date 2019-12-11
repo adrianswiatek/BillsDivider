@@ -50,7 +50,11 @@ class ReceiptListViewModelTests: XCTestCase {
 
     func testObject_whenSubscribedPublisherEmitsPositions_positionsIsInsertedToPositionsList() {
         let publisher = PassthroughSubject<ReceiptPosition, Never>()
-        sut.subscribe(to: publisher.eraseToAnyPublisher())
+        let emptyPublisher = Empty<ReceiptPosition, Never>()
+        sut.subscribe(
+            addingPublisher: publisher.eraseToAnyPublisher(),
+            editingPublisher: emptyPublisher.eraseToAnyPublisher()
+        )
 
         let position1 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
         publisher.send(position1)
@@ -64,7 +68,11 @@ class ReceiptListViewModelTests: XCTestCase {
 
     func testRemovePositionAtIndex_removePositionAtGivenIndex() {
         let publisher = PassthroughSubject<ReceiptPosition, Never>()
-        sut.subscribe(to: publisher.eraseToAnyPublisher())
+        let emptyPublisher = Empty<ReceiptPosition, Never>()
+        sut.subscribe(
+            addingPublisher: publisher.eraseToAnyPublisher(),
+            editingPublisher: emptyPublisher.eraseToAnyPublisher()
+        )
 
         let positionAtIndex2 = ReceiptPosition(amount: 2, buyer: .me, owner: .notMe)
         publisher.send(positionAtIndex2)

@@ -20,11 +20,23 @@ class ReceiptListViewModel: ObservableObject {
         self.subscriptions = []
     }
 
-    func subscribe(to publisher: AnyPublisher<ReceiptPosition, Never>) {
+    func subscribe(
+        addingPublisher: AnyPublisher<ReceiptPosition, Never>,
+        editingPublisher: AnyPublisher<ReceiptPosition, Never>
+    ) {
         subscriptions.removeAll()
 
-        publisher
+        addingPublisher
             .sink { [weak self] in self?.positions.insert($0, at: 0) }
+            .store(in: &subscriptions)
+
+        editingPublisher
+            .sink { [weak self] position in
+                guard let positionsIndex = self?.positions.firstIndex(where: { $0.id == position.id }) else {
+                    preconditionFailure("Cannot find index for given position")
+                }
+                self?.positions[positionsIndex] = position
+            }
             .store(in: &subscriptions)
     }
 

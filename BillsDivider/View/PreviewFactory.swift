@@ -23,8 +23,9 @@ extension PreviewFactory {
     }
 
     var summaryView: some View {
-        let positions = Empty<[ReceiptPosition], Never>().eraseToAnyPublisher()
-        return SummaryView(viewModelFactory.summaryViewModel(positions: positions))
+        SummaryView(viewModelFactory.summaryViewModel(
+            positions: Empty<[ReceiptPosition], Never>().eraseToAnyPublisher()
+        ))
     }
 
     var receiptListView: some View {
@@ -40,6 +41,6 @@ extension PreviewFactory {
     }
 
     var editOverlayView: some View {
-        EditOverlayView(viewModelFactory.editOverlayViewModel(presenting: .constant(true)))
+        EditOverlayView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.hidden)))
     }
 }

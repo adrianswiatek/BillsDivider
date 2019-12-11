@@ -15,8 +15,7 @@ class EditOverlayViewModelTests: XCTestCase {
         super.setUp()
         sut = EditOverlayViewModel(
             presenting: .constant(true),
-            buyer: .me,
-            owner: .all,
+            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
             numberFormatter: numberFormatter
         )
         subscriptions = []
@@ -36,8 +35,7 @@ class EditOverlayViewModelTests: XCTestCase {
         var presenting: Bool = true
         sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
-            buyer: .me,
-            owner: .all,
+            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
             numberFormatter: numberFormatter
         )
         sut.dismiss()
@@ -57,8 +55,7 @@ class EditOverlayViewModelTests: XCTestCase {
         var presenting: Bool = true
         sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
-            buyer: .me,
-            owner: .all,
+            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
             numberFormatter: numberFormatter
         )
         sut.priceText = "123"

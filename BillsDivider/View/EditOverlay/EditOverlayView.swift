@@ -23,11 +23,13 @@ struct EditOverlayView: View {
                     OwnerSectionView(owner: $viewModel.owner)
                 }
 
-                Section {
-                    AddAnotherSectionView(addAnother: $viewModel.addAnother)
+                if viewModel.showAddAnother {
+                    Section {
+                        AddAnotherSectionView(addAnother: $viewModel.addAnother)
+                    }
                 }
             }
-            .navigationBarTitle(Text("Add position"), displayMode: .inline)
+            .navigationBarTitle(Text(viewModel.pageName), displayMode: .inline)
             .navigationBarItems(
                 leading: Button(action: viewModel.dismiss) {
                     Image(systemName: "xmark")

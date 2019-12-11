@@ -32,7 +32,7 @@ class ReceiptPositionTests: XCTestCase {
         XCTAssertNotEqual(position1, position2)
     }
 
-    func testEquals_twoPositionswithDifferentOwner_returnsFalse() {
+    func testEquals_twoPositionsWithDifferentOwner_returnsFalse() {
         let position1 = ReceiptPosition(amount: 1, buyer: .me, owner: .me)
         let position2 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
         XCTAssertNotEqual(position1, position2)
