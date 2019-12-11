@@ -48,40 +48,60 @@ class ReceiptListViewModelTests: XCTestCase {
         XCTAssertTrue(sut.positions.isEmpty)
     }
 
-    func testObject_whenSubscribedPublisherEmitsPositions_positionsIsInsertedToPositionsList() {
-        let publisher = PassthroughSubject<ReceiptPosition, Never>()
+    func test_whenSubscribedPublisherEmitsAddedPositions_positionsIsInsertedToPositionsList() {
+        let addingPublisher = PassthroughSubject<ReceiptPosition, Never>()
         let emptyPublisher = Empty<ReceiptPosition, Never>()
         sut.subscribe(
-            addingPublisher: publisher.eraseToAnyPublisher(),
+            addingPublisher: addingPublisher.eraseToAnyPublisher(),
             editingPublisher: emptyPublisher.eraseToAnyPublisher()
         )
 
         let position1 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        publisher.send(position1)
+        addingPublisher.send(position1)
 
         let position2 = ReceiptPosition(amount: 2, buyer: .notMe, owner: .me)
-        publisher.send(position2)
+        addingPublisher.send(position2)
 
-        XCTAssertEqual(position1, sut.positions[1])
-        XCTAssertEqual(position2, sut.positions[0])
+        XCTAssertEqual(sut.positions[1], position1)
+        XCTAssertEqual(sut.positions[0], position2)
+    }
+
+    func test_whenSubscribedPublisherEmitsEditedPosition_positionIsUpdatedInPositionsList() {
+        let addingPublisher = PassthroughSubject<ReceiptPosition, Never>()
+        let editingPublisher = PassthroughSubject<ReceiptPosition, Never>()
+        sut.subscribe(
+            addingPublisher: addingPublisher.eraseToAnyPublisher(),
+            editingPublisher: editingPublisher.eraseToAnyPublisher()
+        )
+
+        let addedPosition = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
+        addingPublisher.send(addedPosition)
+
+        let editedPosition = ReceiptPosition(id: addedPosition.id, amount: 2, buyer: .notMe, owner: .all)
+        editingPublisher.send(editedPosition)
+
+        XCTAssertEqual(sut.positions.first?.id, editedPosition.id)
+        XCTAssertEqual(sut.positions.first?.amount, editedPosition.amount)
+        XCTAssertEqual(sut.positions.first?.buyer, editedPosition.buyer)
+        XCTAssertEqual(sut.positions.first?.owner, editedPosition.owner)
     }
 
     func testRemovePositionAtIndex_removePositionAtGivenIndex() {
-        let publisher = PassthroughSubject<ReceiptPosition, Never>()
+        let addingPublisher = PassthroughSubject<ReceiptPosition, Never>()
         let emptyPublisher = Empty<ReceiptPosition, Never>()
         sut.subscribe(
-            addingPublisher: publisher.eraseToAnyPublisher(),
+            addingPublisher: addingPublisher.eraseToAnyPublisher(),
             editingPublisher: emptyPublisher.eraseToAnyPublisher()
         )
 
         let positionAtIndex2 = ReceiptPosition(amount: 2, buyer: .me, owner: .notMe)
-        publisher.send(positionAtIndex2)
+        addingPublisher.send(positionAtIndex2)
 
         let positionAtIndex1 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        publisher.send(positionAtIndex1)
+        addingPublisher.send(positionAtIndex1)
 
         let positionAtIndex0 = ReceiptPosition(amount: 0, buyer: .me, owner: .notMe)
-        publisher.send(positionAtIndex0)
+        addingPublisher.send(positionAtIndex0)
 
         sut.removePosition(at: 1)
 

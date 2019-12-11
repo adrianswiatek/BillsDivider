@@ -15,7 +15,7 @@ class EditOverlayViewModelTests: XCTestCase {
         super.setUp()
         sut = EditOverlayViewModel(
             presenting: .constant(true),
-            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
+            editOverlayStrategy: EditOverlayStrategyDummy(),
             numberFormatter: numberFormatter
         )
         subscriptions = []
@@ -35,7 +35,7 @@ class EditOverlayViewModelTests: XCTestCase {
         var presenting: Bool = true
         sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
-            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
+            editOverlayStrategy: EditOverlayStrategyDummy(),
             numberFormatter: numberFormatter
         )
         sut.dismiss()
@@ -55,7 +55,7 @@ class EditOverlayViewModelTests: XCTestCase {
         var presenting: Bool = true
         sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
-            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
+            editOverlayStrategy: EditOverlayStrategyDummy(),
             numberFormatter: numberFormatter
         )
         sut.priceText = "123"
@@ -68,6 +68,11 @@ class EditOverlayViewModelTests: XCTestCase {
 
     func testConfirmDidTap_withProperAmount_respectivePositionAddedIsSent() {
         var receiptPosition: ReceiptPosition?
+        sut = EditOverlayViewModel(
+            presenting: .constant(true),
+            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
+            numberFormatter: numberFormatter
+        )
         sut.positionAdded.sink { receiptPosition = $0 }.store(in: &subscriptions)
         sut.priceText = "123.00"
         sut.buyer = .notMe
