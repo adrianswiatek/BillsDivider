@@ -2,7 +2,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-class AddOverlayViewModel: ObservableObject {
+class EditOverlayViewModel: ObservableObject {
     @Binding private var presenting: Bool
 
     @Published var priceText: String

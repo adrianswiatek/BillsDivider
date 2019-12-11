@@ -35,9 +35,9 @@ class ReceiptListPage: Page {
         table.cells.count
     }
 
-    @discardableResult func tapPlusButton() -> AddOverlayPage {
+    @discardableResult func tapPlusButton() -> EditOverlayPage {
         plusButton.tap()
-        return AddOverlayPage(app)
+        return EditOverlayPage(app)
     }
 
     @discardableResult func tapEllipsisButton() -> ReceiptListPage {

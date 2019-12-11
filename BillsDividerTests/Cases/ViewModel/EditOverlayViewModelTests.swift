@@ -3,8 +3,8 @@ import Combine
 import SwiftUI
 import XCTest
 
-class AddOverlayViewModelTests: XCTestCase {
-    private var sut: AddOverlayViewModel!
+class EditOverlayViewModelTests: XCTestCase {
+    private var sut: EditOverlayViewModel!
     private var subscriptions: [AnyCancellable]!
 
     private var numberFormatter: NumberFormatter {
@@ -13,7 +13,7 @@ class AddOverlayViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = AddOverlayViewModel(
+        sut = EditOverlayViewModel(
             presenting: .constant(true),
             buyer: .me,
             owner: .all,
@@ -34,7 +34,7 @@ class AddOverlayViewModelTests: XCTestCase {
 
     func testDismiss_setsPresentingToFalse() {
         var presenting: Bool = true
-        sut = AddOverlayViewModel(
+        sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
             buyer: .me,
             owner: .all,
@@ -55,7 +55,7 @@ class AddOverlayViewModelTests: XCTestCase {
 
     func testConfirmDidTap_whenAddAnotherIsDisabled_setsPresentingToFalse() {
         var presenting: Bool = true
-        sut = AddOverlayViewModel(
+        sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
             buyer: .me,
             owner: .all,

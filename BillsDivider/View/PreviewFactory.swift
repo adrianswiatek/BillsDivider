@@ -39,7 +39,7 @@ extension PreviewFactory {
         ReceiptPositionView(.empty, receiptListColumnWidth, numberFormatter.format)
     }
 
-    var addOverlayView: some View {
-        AddOverlayView(viewModelFactory.addOverlayViewModel(presenting: .constant(true)))
+    var editOverlayView: some View {
+        EditOverlayView(viewModelFactory.editOverlayViewModel(presenting: .constant(true)))
     }
 }

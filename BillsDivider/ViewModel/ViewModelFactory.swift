@@ -27,11 +27,11 @@ extension ViewModelFactory {
         SummaryViewModel(positions: positions, divider: divider, numberFormatter: numberFormatter)
     }
 
-    func addOverlayViewModel(
+    func editOverlayViewModel(
         presenting: Binding<Bool>,
         receiptPosition: ReceiptPosition? = nil
-    ) -> AddOverlayViewModel {
-        AddOverlayViewModel(
+    ) -> EditOverlayViewModel {
+        EditOverlayViewModel(
             presenting: presenting,
             buyer: receiptPosition?.buyer ?? .me,
             owner: receiptPosition?.owner ?? .all,

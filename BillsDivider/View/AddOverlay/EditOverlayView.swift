@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct AddOverlayView: View {
-    @ObservedObject private var viewModel: AddOverlayViewModel
+struct EditOverlayView: View {
+    @ObservedObject private var viewModel: EditOverlayViewModel
 
-    init(_ viewModel: AddOverlayViewModel) {
+    init(_ viewModel: EditOverlayViewModel) {
         self.viewModel = viewModel
     }
 
@@ -43,8 +43,8 @@ struct AddOverlayView: View {
     }
 }
 
-struct AddOverlayView_Previews: PreviewProvider {
+struct EditOverlayView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewFactory().addOverlayView
+        PreviewFactory().editOverlayView
     }
 }

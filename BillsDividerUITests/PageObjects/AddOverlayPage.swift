@@ -1,6 +1,6 @@
 import XCTest
 
-class AddOverlayPage: Page {
+class EditOverlayPage: Page {
     private let app: XCUIApplication
 
     required init(_ app: XCUIApplication) {
@@ -27,7 +27,7 @@ class AddOverlayPage: Page {
         navigationBar.exists
     }
 
-    @discardableResult func tapConfirmButton() -> AddOverlayPage {
+    @discardableResult func tapConfirmButton() -> EditOverlayPage {
         confirmButton.tap()
         return self
     }
@@ -37,12 +37,12 @@ class AddOverlayPage: Page {
         return ReceiptListPage(app)
     }
 
-    @discardableResult func tapPriceTextField() -> AddOverlayPage {
+    @discardableResult func tapPriceTextField() -> EditOverlayPage {
         priceTextField.tap()
         return self
     }
 
-    @discardableResult func typeIntoPriceTextField(_ text: String) -> AddOverlayPage {
+    @discardableResult func typeIntoPriceTextField(_ text: String) -> EditOverlayPage {
         priceTextField.typeText(text)
         return self
     }

@@ -3,7 +3,7 @@ import SwiftUI
 struct ReceiptListView: View {
     @ObservedObject private var viewModel: ReceiptListViewModel
 
-    @State private var presentingAddOverlay: Bool = false
+    @State private var presentingEditOverlay: Bool = false
     @State private var presentingOptionsMenu: Bool = false
 
     private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
@@ -39,14 +39,14 @@ struct ReceiptListView: View {
                         .rotationEffect(.degrees(90))
                 }
                 .disabled(viewModel.positions.isEmpty),
-                trailing: Button(action: { self.presentingAddOverlay = true }) {
+                trailing: Button(action: { self.presentingEditOverlay = true }) {
                     Image(systemName: "plus")
                         .frame(width: 32, height: 32)
                 }
             )
         }
-        .sheet(isPresented: $presentingAddOverlay) {
-            self.createAddOverlayView()
+        .sheet(isPresented: $presentingEditOverlay) {
+            self.createEditOverlayView()
         }
         .actionSheet(isPresented: $presentingOptionsMenu) {
             ActionSheet(title: Text("Actions"), buttons: [
@@ -56,13 +56,13 @@ struct ReceiptListView: View {
         }
     }
 
-    private func createAddOverlayView() -> some View {
-        let addOverlayViewModel = viewModelFactory.addOverlayViewModel(
-            presenting: $presentingAddOverlay,
+    private func createEditOverlayView() -> some View {
+        let editOverlayViewModel = viewModelFactory.editOverlayViewModel(
+            presenting: $presentingEditOverlay,
             receiptPosition: viewModel.positions.first
         )
-        viewModel.subscribe(to: addOverlayViewModel.positionAdded)
-        return AddOverlayView(addOverlayViewModel)
+        viewModel.subscribe(to: editOverlayViewModel.positionAdded)
+        return EditOverlayView(editOverlayViewModel)
     }
 }
 
