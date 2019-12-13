@@ -23,8 +23,28 @@ class EditOverlayPage: Page {
         app.textFields.element
     }
 
+    private var buyerSegmentedControl: XCUIElement {
+        app.segmentedControls["BuyerSegmentedControl"]
+    }
+
+    private var ownerSegmentedControl: XCUIElement {
+        app.segmentedControls["OwnerSegmentedControl"]
+    }
+
     var isVisible: Bool {
         navigationBar.exists
+    }
+
+    var selectedIndexOfBuyerSegmentedControl: Int? {
+        buyerSegmentedControl.buttons.allElementsBoundByIndex.enumerated().reduce(0) {
+            $1.element.isSelected ? $1.offset : $0
+        }
+    }
+
+    var selectedIndexOfOwnerSegmentedControl: Int? {
+        ownerSegmentedControl.buttons.allElementsBoundByIndex.enumerated().reduce(0) {
+            $1.element.isSelected ? $1.offset : $0
+        }
     }
 
     @discardableResult func tapConfirmButton() -> EditOverlayPage {
@@ -44,6 +64,16 @@ class EditOverlayPage: Page {
 
     @discardableResult func typeIntoPriceTextField(_ text: String) -> EditOverlayPage {
         priceTextField.typeText(text)
+        return self
+    }
+
+    @discardableResult func tapBuyerSegmentedControl(atIndex index: Int) -> EditOverlayPage {
+        buyerSegmentedControl.buttons.element(boundBy: index).tap()
+        return self
+    }
+
+    @discardableResult func tapOwnerSegmentedControl(atIndex index: Int) -> EditOverlayPage {
+        ownerSegmentedControl.buttons.element(boundBy: index).tap()
         return self
     }
 }
