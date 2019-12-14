@@ -23,7 +23,7 @@ struct ReceiptListView: View {
                             .offset(x: -24, y: 0)
                             .contextMenu {
                                 Button(action: {
-                                    self.editOverlayParams = .shown(mode: .editing, position: position)
+                                    self.editOverlayParams = .shownEditing(position)
                                 }) {
                                     Text("Edit position")
                                     Image(systemName: "pencil")
@@ -48,7 +48,7 @@ struct ReceiptListView: View {
                 }
                 .disabled(viewModel.positions.isEmpty),
                 trailing: Button(action: {
-                    self.editOverlayParams = .shown(mode: .adding, position: self.viewModel.positions.first)
+                    self.editOverlayParams = .shownAdding()
                 }) {
                     Image(systemName: "plus")
                         .frame(width: 32, height: 32)
@@ -67,6 +67,8 @@ struct ReceiptListView: View {
     }
 
     private func createEditOverlayView() -> some View {
+        editOverlayParams.providePosition(self.viewModel.positions.first)
+
         let editOverlayViewModel = viewModelFactory.editOverlayViewModel(presentingParams: $editOverlayParams)
         viewModel.subscribe(
             addingPublisher: editOverlayViewModel.positionAdded,

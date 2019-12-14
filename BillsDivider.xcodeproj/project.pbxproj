@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A70478C623A42DF6001AD82E /* EditOverlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */; };
 		A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70AEB972398711D00ED0E7A /* BuyerTests.swift */; };
 		A7290223239F07C90012FA47 /* InMemoryReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7290222239F07C90012FA47 /* InMemoryReceiptPositionService.swift */; };
 		A73283F6237F68990012CBB8 /* EditOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73283F5237F68990012CBB8 /* EditOverlayView.swift */; };
@@ -25,7 +26,7 @@
 		A7550E7B239BD7E60004797D /* ReceiptListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7A239BD7E60004797D /* ReceiptListPage.swift */; };
 		A7550E7D239BD8050004797D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7C239BD8050004797D /* Page.swift */; };
 		A7550E7F239BDE3D0004797D /* SummaryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7E239BDE3D0004797D /* SummaryPage.swift */; };
-		A7550E81239BDE6D0004797D /* AddOverlayPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E80239BDE6D0004797D /* AddOverlayPage.swift */; };
+		A7550E81239BDE6D0004797D /* EditOverlayPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E80239BDE6D0004797D /* EditOverlayPage.swift */; };
 		A75B79C5239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */; };
 		A75B79C7239EEB0000C740BB /* OwnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B79C6239EEB0000C740BB /* OwnerTests.swift */; };
 		A75E802023A15D6600B549F9 /* EditOverlayStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E801F23A15D6600B549F9 /* EditOverlayStrategy.swift */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7043E84238C4DC500630D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayUITests.swift; sourceTree = "<group>"; };
 		A70AEB972398711D00ED0E7A /* BuyerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerTests.swift; sourceTree = "<group>"; };
 		A7290222239F07C90012FA47 /* InMemoryReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionService.swift; sourceTree = "<group>"; };
 		A73283F5237F68990012CBB8 /* EditOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayView.swift; sourceTree = "<group>"; };
@@ -105,7 +107,7 @@
 		A7550E7A239BD7E60004797D /* ReceiptListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListPage.swift; sourceTree = "<group>"; };
 		A7550E7C239BD8050004797D /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		A7550E7E239BDE3D0004797D /* SummaryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPage.swift; sourceTree = "<group>"; };
-		A7550E80239BDE6D0004797D /* AddOverlayPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOverlayPage.swift; sourceTree = "<group>"; };
+		A7550E80239BDE6D0004797D /* EditOverlayPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayPage.swift; sourceTree = "<group>"; };
 		A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataReceiptPositionServiceTests.swift; sourceTree = "<group>"; };
 		A75B79C6239EEB0000C740BB /* OwnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTests.swift; sourceTree = "<group>"; };
 		A75E801F23A15D6600B549F9 /* EditOverlayStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayStrategy.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		A734263423A140CB00BAEFF0 /* Cases */ = {
 			isa = PBXGroup;
 			children = (
+				A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */,
 				A774361C239AB696008F53B5 /* ReceiptListUITests.swift */,
 				A7385B5C239C6A1B00A41C09 /* TabsUITests.swift */,
 			);
@@ -249,7 +252,7 @@
 		A7550E79239BD7A50004797D /* PageObjects */ = {
 			isa = PBXGroup;
 			children = (
-				A7550E80239BDE6D0004797D /* AddOverlayPage.swift */,
+				A7550E80239BDE6D0004797D /* EditOverlayPage.swift */,
 				A7550E7C239BD8050004797D /* Page.swift */,
 				A7550E7A239BD7E60004797D /* ReceiptListPage.swift */,
 				A7550E7E239BDE3D0004797D /* SummaryPage.swift */,
@@ -634,8 +637,9 @@
 				A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */,
 				A7550E7B239BD7E60004797D /* ReceiptListPage.swift in Sources */,
 				A7385B5D239C6A1B00A41C09 /* TabsUITests.swift in Sources */,
+				A70478C623A42DF6001AD82E /* EditOverlayUITests.swift in Sources */,
 				A7550E7D239BD8050004797D /* Page.swift in Sources */,
-				A7550E81239BDE6D0004797D /* AddOverlayPage.swift in Sources */,
+				A7550E81239BDE6D0004797D /* EditOverlayPage.swift in Sources */,
 				A7550E7F239BDE3D0004797D /* SummaryPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

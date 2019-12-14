@@ -17,6 +17,7 @@ struct BuyerSectionView: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .frame(width: UIScreen.main.bounds.width * 0.7)
+            .accessibility(identifier: "BuyerSegmentedControl")
         }
     }
 }
