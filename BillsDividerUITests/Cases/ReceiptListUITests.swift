@@ -61,6 +61,7 @@ class ReceiptListUITests: XCTestCase {
             .tapCellsDeleteButton(atIndex: 0)
 
         XCTAssertEqual(receiptListPage.numberOfCells, 1)
+        XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "1.00")
     }
 
     func testCanEditAmount() {
@@ -84,5 +85,28 @@ class ReceiptListUITests: XCTestCase {
             .tapConfirmButton()
 
         XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "10.00")
+    }
+
+    func testCanRemovePositionFromContextMenu() {
+        let receiptListPage = ReceiptListPage(app)
+
+        receiptListPage
+            .tapPlusButton()
+            .tapPriceTextField()
+            .typeIntoPriceTextField("1")
+            .tapConfirmButton()
+            .tapPriceTextField()
+            .typeIntoPriceTextField("2")
+            .tapConfirmButton()
+            .tapCloseButton()
+
+        XCTAssertEqual(receiptListPage.numberOfCells, 2)
+
+        receiptListPage
+            .longPressCell(atIndex: 0)
+            .tapRemovePositionButton()
+
+        XCTAssertEqual(receiptListPage.numberOfCells, 1)
+        XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "1.00")
     }
 }

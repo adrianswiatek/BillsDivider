@@ -86,7 +86,7 @@ class ReceiptListViewModelTests: XCTestCase {
         XCTAssertEqual(sut.positions.first?.owner, editedPosition.owner)
     }
 
-    func testRemovePositionAtIndex_removePositionAtGivenIndex() {
+    func testRemovePositionAtIndex_removesPositionAtGivenIndex() {
         let addingPublisher = PassthroughSubject<ReceiptPosition, Never>()
         let emptyPublisher = Empty<ReceiptPosition, Never>()
         sut.subscribe(
@@ -107,6 +107,29 @@ class ReceiptListViewModelTests: XCTestCase {
 
         XCTAssertEqual(sut.positions[0], positionAtIndex0)
         XCTAssertEqual(sut.positions[1], positionAtIndex2)
+    }
+
+    func testRemovePosition_removesGivenPosition() {
+        let addingPublisher = PassthroughSubject<ReceiptPosition, Never>()
+        let emptyPublisher = Empty<ReceiptPosition, Never>()
+        sut.subscribe(
+            addingPublisher: addingPublisher.eraseToAnyPublisher(),
+            editingPublisher: emptyPublisher.eraseToAnyPublisher()
+        )
+
+        let position3 = ReceiptPosition(amount: 3, buyer: .me, owner: .notMe)
+        addingPublisher.send(position3)
+
+        let position2 = ReceiptPosition(amount: 2, buyer: .me, owner: .notMe)
+        addingPublisher.send(position2)
+
+        let position1 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
+        addingPublisher.send(position1)
+
+        sut.removePosition(position2)
+
+        XCTAssertEqual(sut.positions[0], position1)
+        XCTAssertEqual(sut.positions[1], position3)
     }
 
     func testFormatNumber_returnsFormattedValue() {

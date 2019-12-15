@@ -45,6 +45,11 @@ class ReceiptListViewModel: ObservableObject {
         positions.remove(at: index)
     }
 
+    func removePosition(_ position: ReceiptPosition) {
+        assert(positions.contains(position), "Positions doesn't contain given position")
+        positions.removeAll { $0 == position }
+    }
+
     func removeAllPositions() {
         positions.removeAll()
     }
