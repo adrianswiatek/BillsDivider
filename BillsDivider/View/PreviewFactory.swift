@@ -36,10 +36,6 @@ extension PreviewFactory {
         ReceiptHeaderView(receiptListColumnWidth)
     }
 
-    var receiptListPositionsView: some View {
-        ReceiptPositionView(.empty, receiptListColumnWidth, numberFormatter.format)
-    }
-
     var editOverlayView: some View {
         EditOverlayView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.hidden)))
     }

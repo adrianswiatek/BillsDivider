@@ -14,7 +14,6 @@
 		A732E904239FC47600B1D0B7 /* ReceiptPositionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732E903239FC47600B1D0B7 /* ReceiptPositionMapper.swift */; };
 		A732E906239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732E905239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift */; };
 		A734263923A142DA00BAEFF0 /* AddingModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A734263823A142DA00BAEFF0 /* AddingModeStrategy.swift */; };
-		A736A1962369DAE20096C2E1 /* ReceiptPositionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */; };
 		A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */; };
 		A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */; };
 		A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1A12369EB5D0096C2E1 /* TabsView.swift */; };
@@ -95,7 +94,6 @@
 		A732E903239FC47600B1D0B7 /* ReceiptPositionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionMapper.swift; sourceTree = "<group>"; };
 		A732E905239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionMapperTests.swift; sourceTree = "<group>"; };
 		A734263823A142DA00BAEFF0 /* AddingModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStrategy.swift; sourceTree = "<group>"; };
-		A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionView.swift; sourceTree = "<group>"; };
 		A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
 		A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPosition.swift; sourceTree = "<group>"; };
 		A736A1A12369EB5D0096C2E1 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
@@ -344,7 +342,6 @@
 			children = (
 				A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */,
 				A7FED237235CEF8B00CCD069 /* ReceiptListView.swift */,
-				A736A1952369DAE20096C2E1 /* ReceiptPositionView.swift */,
 			);
 			path = ReceiptList;
 			sourceTree = "<group>";
@@ -649,7 +646,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77D54CD238192DF003D7E9D /* BuyerSectionView.swift in Sources */,
-				A736A1962369DAE20096C2E1 /* ReceiptPositionView.swift in Sources */,
 				A747A736238198170065CD20 /* EditOverlayViewModel.swift in Sources */,
 				A77D54CF23819328003D7E9D /* OwnerSectionView.swift in Sources */,
 				A7FED236235CEF8B00CCD069 /* BillsDivider.xcdatamodeld in Sources */,
