@@ -19,16 +19,35 @@ struct ReceiptListView: View {
             List {
                 Section(header: ReceiptHeaderView(columnWidth)) {
                     ForEach(viewModel.positions) { position in
-                        ReceiptPositionView(position, self.columnWidth, self.viewModel.formatNumber)
-                            .offset(x: -24, y: 0)
-                            .contextMenu {
-                                Button(action: {
-                                    self.editOverlayParams = .shownEditing(position)
-                                }) {
-                                    Text("Edit position")
-                                    Image(systemName: "pencil")
-                                }
+                        HStack {
+                            Text(self.viewModel.formatNumber(value: position.amount))
+                                .frame(width: self.columnWidth)
+
+                            Text(position.buyer.formatted)
+                                .foregroundColor(.white)
+                                .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
+                                .background(
+                                    Capsule(style: .continuous)
+                                        .foregroundColor(self.getBuyerColor(for: position))
+                                )
+                                .frame(width: self.columnWidth)
+
+                            Text(position.owner.formatted)
+                                .foregroundColor(.white)
+                                .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
+                                .background(
+                                    Capsule(style: .continuous)
+                                        .foregroundColor(self.getOwnerColor(for: position))
+                                )
+                                .frame(width: self.columnWidth)
+                        }
+                        .offset(x: -24, y: 0)
+                        .contextMenu {
+                            Button(action: { self.editOverlayParams = .shownEditing(position) }) {
+                                Text("Edit position")
+                                Image(systemName: "pencil")
                             }
+                        }
                     }
                     .onDelete {
                         guard let index = $0.first else { return }
@@ -47,9 +66,7 @@ struct ReceiptListView: View {
                         .rotationEffect(.degrees(90))
                 }
                 .disabled(viewModel.positions.isEmpty),
-                trailing: Button(action: {
-                    self.editOverlayParams = .shownAdding()
-                }) {
+                trailing: Button(action: { self.editOverlayParams = .shownAdding() }) {
                     Image(systemName: "plus")
                         .frame(width: 32, height: 32)
                 }
@@ -63,6 +80,21 @@ struct ReceiptListView: View {
                 .destructive(Text("Remove all"), action: { self.viewModel.removeAllPositions() }),
                 .cancel()
             ])
+        }
+    }
+
+    private func getBuyerColor(for position: ReceiptPosition) -> Color {
+        switch position.buyer {
+        case .me: return .blue
+        case .notMe: return .green
+        }
+    }
+
+    private func getOwnerColor(for position: ReceiptPosition) -> Color {
+        switch position.owner {
+        case .me: return .blue
+        case .notMe: return .green
+        case .all: return .purple
         }
     }
 

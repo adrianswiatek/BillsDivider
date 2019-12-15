@@ -8,7 +8,8 @@ class EditOverlayPage: Page {
     }
 
     private var navigationBar: XCUIElement {
-        app.navigationBars["Add position"]
+        let addPositionNavigationBar = app.navigationBars["Add position"]
+        return addPositionNavigationBar.exists ? addPositionNavigationBar : app.navigationBars["Edit position"]
     }
 
     private var confirmButton: XCUIElement {
@@ -64,6 +65,11 @@ class EditOverlayPage: Page {
 
     @discardableResult func typeIntoPriceTextField(_ text: String) -> EditOverlayPage {
         priceTextField.typeText(text)
+        return self
+    }
+
+    @discardableResult func deletePriceTextFieldCharacter(count: Int = 1) -> EditOverlayPage {
+        priceTextField.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: count))
         return self
     }
 
