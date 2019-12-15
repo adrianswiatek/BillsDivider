@@ -31,6 +31,10 @@ class ReceiptListPage: Page {
         app.buttons["Edit position"]
     }
 
+    private var removePositionButton: XCUIElement {
+        app.buttons["Remove position"]
+    }
+
     var isVisible: Bool {
         plusButton.exists && ellipsisButton.exists
     }
@@ -72,6 +76,11 @@ class ReceiptListPage: Page {
     @discardableResult func tapEditPositionButton() -> EditOverlayPage {
         editPositionButton.tap()
         return EditOverlayPage(app)
+    }
+
+    @discardableResult func tapRemovePositionButton() -> ReceiptListPage {
+        removePositionButton.tap()
+        return self
     }
 
     func getAmountFromCell(atIndex index: Int) -> String {

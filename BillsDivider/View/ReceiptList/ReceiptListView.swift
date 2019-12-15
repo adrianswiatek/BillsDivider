@@ -47,6 +47,10 @@ struct ReceiptListView: View {
                                 Text("Edit position")
                                 Image(systemName: "pencil")
                             }
+                            Button(action: { self.viewModel.removePosition(position) }) {
+                                Text("Remove position")
+                                Image(systemName: "trash")
+                            }
                         }
                     }
                     .onDelete {
