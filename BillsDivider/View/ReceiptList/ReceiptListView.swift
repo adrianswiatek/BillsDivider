@@ -24,6 +24,7 @@ struct ReceiptListView: View {
                                 .frame(width: self.columnWidth)
 
                             Text(position.buyer.formatted)
+                                .multilineTextAlignment(.center)
                                 .foregroundColor(.white)
                                 .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
                                 .background(
@@ -33,6 +34,7 @@ struct ReceiptListView: View {
                                 .frame(width: self.columnWidth)
 
                             Text(position.owner.formatted)
+                                .multilineTextAlignment(.center)
                                 .foregroundColor(.white)
                                 .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
                                 .background(

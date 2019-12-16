@@ -49,6 +49,8 @@
 		A77D54CF23819328003D7E9D /* OwnerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CE23819328003D7E9D /* OwnerSectionView.swift */; };
 		A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */; };
 		A77FAD202384B30E00B66C98 /* ReceiptListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */; };
+		A7873D2C23A839C8008C9552 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2B23A839C8008C9552 /* SettingsView.swift */; };
+		A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2E23A83C3D008C9552 /* SettingsPage.swift */; };
 		A78B1B8E239EB12F006A1B91 /* SqliteCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */; };
 		A78B1B90239EB14C006A1B91 /* InMemoryCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */; };
 		A78B1B98239EB814006A1B91 /* ReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */; };
@@ -131,6 +133,8 @@
 		A77D54CE23819328003D7E9D /* OwnerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSectionView.swift; sourceTree = "<group>"; };
 		A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnotherSectionView.swift; sourceTree = "<group>"; };
 		A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModel.swift; sourceTree = "<group>"; };
+		A7873D2B23A839C8008C9552 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A7873D2E23A83C3D008C9552 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionService.swift; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 				A7550E80239BDE6D0004797D /* EditOverlayPage.swift */,
 				A7550E7C239BD8050004797D /* Page.swift */,
 				A7550E7A239BD7E60004797D /* ReceiptListPage.swift */,
+				A7873D2E23A83C3D008C9552 /* SettingsPage.swift */,
 				A7550E7E239BDE3D0004797D /* SummaryPage.swift */,
 				A7385B5A239C696F00A41C09 /* TabBarPage.swift */,
 			);
@@ -310,6 +315,7 @@
 			children = (
 				A77D54C723819225003D7E9D /* EditOverlay */,
 				A77D54C6238191D2003D7E9D /* ReceiptList */,
+				A7873D2A23A8397F008C9552 /* Settings */,
 				A7F213AF238B410E0084B466 /* Summary */,
 				A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */,
 				A736A1A12369EB5D0096C2E1 /* TabsView.swift */,
@@ -365,6 +371,14 @@
 				A77D54CA23819255003D7E9D /* PriceSectionView.swift */,
 			);
 			path = Sections;
+			sourceTree = "<group>";
+		};
+		A7873D2A23A8397F008C9552 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A7873D2B23A839C8008C9552 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A78B1B96239EB805006A1B91 /* ReceiptPositionService */ = {
@@ -630,6 +644,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */,
 				A7385B5B239C696F00A41C09 /* TabBarPage.swift in Sources */,
 				A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */,
 				A7550E7B239BD7E60004797D /* ReceiptListPage.swift in Sources */,
@@ -645,6 +660,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7873D2C23A839C8008C9552 /* SettingsView.swift in Sources */,
 				A77D54CD238192DF003D7E9D /* BuyerSectionView.swift in Sources */,
 				A747A736238198170065CD20 /* EditOverlayViewModel.swift in Sources */,
 				A77D54CF23819328003D7E9D /* OwnerSectionView.swift in Sources */,

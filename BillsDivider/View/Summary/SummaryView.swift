@@ -53,12 +53,14 @@ struct SummaryView: View {
 
     private func generatePersonView(withLabel label: String, andColor color: Color) -> some View {
         Text(label)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
             .font(.system(size: 20))
             .foregroundColor(.white)
             .padding(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
             .background(color)
             .cornerRadius(8)
-            .frame(width: 100)
+            .frame(width: 120)
             .shadow(color: .gray, radius: 2, x: 0, y: 1)
             .padding(.horizontal, 8)
     }

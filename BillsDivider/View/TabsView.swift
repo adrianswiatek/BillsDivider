@@ -24,6 +24,11 @@ struct TabsView: View {
                 Image(systemName: "doc.text")
                 Text("Summary")
             }
+
+            SettingsView().tabItem {
+                Image(systemName: "hammer")
+                Text("Settings")
+            }
         }
         .edgesIgnoringSafeArea(.top)
     }

@@ -51,10 +51,6 @@ final class EditOverlayViewModel: ObservableObject {
         self.editOverlayStrategy.set(viewModel: self)
     }
 
-    deinit {
-        print("EditOverlayViewModel has been deinitialized.")
-    }
-
     func confirmDidTap() {
         guard let receiptPosition = tryCreateReceiptPosition() else {
             preconditionFailure("Unable to create Receipt Position.")

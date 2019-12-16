@@ -25,7 +25,6 @@ struct EditingModeStrategy: EditOverlayStrategy {
         viewModel.priceText = numberFormatter.format(value: receiptPosition.amount)
         viewModel.buyer = receiptPosition.buyer
         viewModel.owner = receiptPosition.owner
-        viewModel.canConfirm = false
         viewModel.addAnother = false
         viewModel.positionEdited = positionEditedSubject.eraseToAnyPublisher()
     }

@@ -28,6 +28,10 @@ class TabsUITests: XCTestCase {
         XCTAssertTrue(tabBarPage.isSummaryButtonSelected)
         XCTAssertTrue(summaryPage.isVisible)
 
+        let settingsPage = tabBarPage.tapSettingsButton()
+        XCTAssertTrue(tabBarPage.isSettingsButtonSelected)
+        XCTAssertTrue(settingsPage.isVisible)
+
         let receiptPage = tabBarPage.tapReceiptButton()
         XCTAssertTrue(tabBarPage.isReceiptButtonSelected)
         XCTAssertTrue(receiptPage.isVisible)
