@@ -22,12 +22,6 @@ extension PreviewFactory {
         TabsView(viewModelFactory: viewModelFactory)
     }
 
-    var summaryView: some View {
-        SummaryView(viewModelFactory.summaryViewModel(
-            positions: Empty<[ReceiptPosition], Never>().eraseToAnyPublisher()
-        ))
-    }
-
     var receiptListView: some View {
         ReceiptListView(viewModelFactory.receiptListViewModel, viewModelFactory)
     }
@@ -38,5 +32,15 @@ extension PreviewFactory {
 
     var editOverlayView: some View {
         EditOverlayView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.hidden)))
+    }
+
+    var summaryView: some View {
+        SummaryView(viewModelFactory.summaryViewModel(
+            positions: Empty<[ReceiptPosition], Never>().eraseToAnyPublisher()
+        ))
+    }
+
+    var settingsView: some View {
+        SettingsView(viewModelFactory.settingsViewModel)
     }
 }

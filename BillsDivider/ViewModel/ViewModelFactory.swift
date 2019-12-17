@@ -23,10 +23,6 @@ extension ViewModelFactory {
         .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
     }
 
-    func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        .init(positions: positions, divider: divider, numberFormatter: numberFormatter)
-    }
-
     func editOverlayViewModel(presentingParams: Binding<EditOverlayViewParams>) -> EditOverlayViewModel {
         let position = presentingParams.wrappedValue.position
 
@@ -37,5 +33,13 @@ extension ViewModelFactory {
                 : EditingModeStrategy(receiptPosition: position, numberFormatter: numberFormatter),
             numberFormatter: numberFormatter
         )
+    }
+
+    func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
+        .init(positions: positions, divider: divider, numberFormatter: numberFormatter)
+    }
+
+    var settingsViewModel: SettingsViewModel {
+        .init()
     }
 }
