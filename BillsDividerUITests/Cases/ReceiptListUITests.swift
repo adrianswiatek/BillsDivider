@@ -40,7 +40,7 @@ class ReceiptListUITests: XCTestCase {
         XCTAssertEqual(receiptListPage.numberOfCells, 0)
     }
 
-    func testCanRemoveSingleItem() {
+    func testCanRemoveSingleItemBySwipeGesture() {
         let receiptListPage = ReceiptListPage(app)
 
         XCTAssertEqual(receiptListPage.numberOfCells, 0)
@@ -59,6 +59,29 @@ class ReceiptListUITests: XCTestCase {
         receiptListPage
             .swipeLeftCell(atIndex: 0)
             .tapCellsDeleteButton(atIndex: 0)
+
+        XCTAssertEqual(receiptListPage.numberOfCells, 1)
+        XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "1.00")
+    }
+
+    func testCanRemoveSingleItemFromContextMenu() {
+        let receiptListPage = ReceiptListPage(app)
+
+        receiptListPage
+            .tapPlusButton()
+            .tapPriceTextField()
+            .typeIntoPriceTextField("1")
+            .tapConfirmButton()
+            .tapPriceTextField()
+            .typeIntoPriceTextField("2")
+            .tapConfirmButton()
+            .tapCloseButton()
+
+        XCTAssertEqual(receiptListPage.numberOfCells, 2)
+
+        receiptListPage
+            .longPressCell(atIndex: 0)
+            .tapRemovePositionButton()
 
         XCTAssertEqual(receiptListPage.numberOfCells, 1)
         XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "1.00")
@@ -85,28 +108,5 @@ class ReceiptListUITests: XCTestCase {
             .tapConfirmButton()
 
         XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "10.00")
-    }
-
-    func testCanRemovePositionFromContextMenu() {
-        let receiptListPage = ReceiptListPage(app)
-
-        receiptListPage
-            .tapPlusButton()
-            .tapPriceTextField()
-            .typeIntoPriceTextField("1")
-            .tapConfirmButton()
-            .tapPriceTextField()
-            .typeIntoPriceTextField("2")
-            .tapConfirmButton()
-            .tapCloseButton()
-
-        XCTAssertEqual(receiptListPage.numberOfCells, 2)
-
-        receiptListPage
-            .longPressCell(atIndex: 0)
-            .tapRemovePositionButton()
-
-        XCTAssertEqual(receiptListPage.numberOfCells, 1)
-        XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "1.00")
     }
 }
