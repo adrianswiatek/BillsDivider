@@ -1,33 +1,27 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var numberOfPeople: Int = 2
+    @ObservedObject var viewModel: SettingsViewModel
 
-    var numberFormatter: NumberFormatter {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .ordinal
-        return numberFormatter
-    }
-
-    private var people: [String] {
-        ["Me"] + (2...numberOfPeople).map { "\(numberFormatter.string(for: $0)!) person" }
+    init(_ viewModel: SettingsViewModel) {
+        self.viewModel = viewModel
     }
 
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    Stepper(value: $numberOfPeople, in: 2...10) {
+                    Stepper(value: $viewModel.numberOfPeople, in: viewModel.peopleRange) {
                         Text("Number of People:")
                             .font(.footnote)
-                        Text(numberOfPeople.description)
+                        Text(viewModel.numberOfPeople.description)
                             .fontWeight(.bold)
                     }
                 }
 
                 Section(header: Text("People")) {
                     List {
-                        ForEach(people, id: \.self) {
+                        ForEach(viewModel.people, id: \.self) {
                             Text($0)
                                 .padding(.horizontal, 8)
                         }
@@ -41,6 +35,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView().environment(\.colorScheme, .dark)
+        SettingsView(SettingsViewModel())
     }
 }

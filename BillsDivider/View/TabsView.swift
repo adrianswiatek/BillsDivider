@@ -25,7 +25,7 @@ struct TabsView: View {
                 Text("Summary")
             }
 
-            SettingsView().tabItem {
+            SettingsView(SettingsViewModel()).tabItem {
                 Image(systemName: "hammer")
                 Text("Settings")
             }
