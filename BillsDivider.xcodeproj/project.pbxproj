@@ -22,6 +22,8 @@
 		A7385B5F239C80DF00A41C09 /* EditOverlayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */; };
 		A747A736238198170065CD20 /* EditOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747A735238198170065CD20 /* EditOverlayViewModel.swift */; };
 		A754170723A05537008DB5F7 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A754170623A05537008DB5F7 /* CoreDataStack.swift */; };
+		A75443C123A9499800A8775E /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75443C023A9499800A8775E /* SettingsViewModelTests.swift */; };
+		A75443C323A94A0F00A8775E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75443C223A94A0F00A8775E /* SettingsViewModel.swift */; };
 		A7550E7B239BD7E60004797D /* ReceiptListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7A239BD7E60004797D /* ReceiptListPage.swift */; };
 		A7550E7D239BD8050004797D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7C239BD8050004797D /* Page.swift */; };
 		A7550E7F239BDE3D0004797D /* SummaryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7E239BDE3D0004797D /* SummaryPage.swift */; };
@@ -104,6 +106,8 @@
 		A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewModelTests.swift; sourceTree = "<group>"; };
 		A747A735238198170065CD20 /* EditOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewModel.swift; sourceTree = "<group>"; };
 		A754170623A05537008DB5F7 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		A75443C023A9499800A8775E /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
+		A75443C223A94A0F00A8775E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		A7550E7A239BD7E60004797D /* ReceiptListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListPage.swift; sourceTree = "<group>"; };
 		A7550E7C239BD8050004797D /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		A7550E7E239BDE3D0004797D /* SummaryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPage.swift; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 				A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */,
 				A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */,
 				A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */,
+				A75443C223A94A0F00A8775E /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -434,6 +439,7 @@
 				A75E802923A17BF700B549F9 /* EditOverlayViewModel */,
 				A76BBCD223948481003AE654 /* DivisionResultTests.swift */,
 				A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */,
+				A75443C023A9499800A8775E /* SettingsViewModelTests.swift */,
 				A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */,
 			);
 			path = ViewModel;
@@ -637,6 +643,7 @@
 				A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */,
 				A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */,
 				A75B79C5239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift in Sources */,
+				A75443C123A9499800A8775E /* SettingsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +702,7 @@
 				A7F213B2238B41310084B466 /* SummaryView.swift in Sources */,
 				A734263923A142DA00BAEFF0 /* AddingModeStrategy.swift in Sources */,
 				A78B1B8E239EB12F006A1B91 /* SqliteCoreDataStack.swift in Sources */,
+				A75443C323A94A0F00A8775E /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
