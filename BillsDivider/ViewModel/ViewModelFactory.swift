@@ -40,6 +40,6 @@ extension ViewModelFactory {
     }
 
     var settingsViewModel: SettingsViewModel {
-        .init()
+        .init(minimumNumberOfPeople: 2, maximumNumberOfPeople: 2)
     }
 }

@@ -11,19 +11,31 @@ struct SettingsView: View {
         NavigationView {
             Form {
                 Section {
-                    Stepper(value: $viewModel.numberOfPeople, in: viewModel.peopleRange) {
-                        Text("Number of People:")
+                    HStack {
+                        Text("Number of people:")
                             .font(.footnote)
-                        Text(viewModel.numberOfPeople.description)
+                        Text(viewModel.people.count.description)
                             .fontWeight(.bold)
                     }
                 }
 
                 Section(header: Text("People")) {
                     List {
-                        ForEach(viewModel.people, id: \.self) {
-                            Text($0)
+                        ForEach(viewModel.people, id: \.self) { person in
+                            HStack {
+                                TextField(person, text: .constant(""))
+                                    .padding(.horizontal, 8)
+                            }
+                        }
+
+                        if viewModel.canAddPerson() {
+                            Button(action: { self.viewModel.addPerson() }) {
+                                HStack {
+                                    Image(systemName: "plus")
+                                    Text("New person")
+                                }
                                 .padding(.horizontal, 8)
+                            }
                         }
                     }
                 }

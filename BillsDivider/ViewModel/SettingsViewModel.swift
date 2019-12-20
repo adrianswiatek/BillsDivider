@@ -4,28 +4,13 @@ import Foundation
 final class SettingsViewModel: ObservableObject {
     @Published var people: [String]
 
-    let peopleRange: ClosedRange<Int>
+    private let minimumNumberOfPeople: Int
+    private let maximumNumberOfPeople: Int
 
-    var numberOfPeople: Int {
-        get {
-            people.count
-        }
-        set {
-            let difference = newValue - numberOfPeople
-            if difference > 0 {
-                (0..<difference).forEach { _ in addPerson() }
-            } else if difference < 0 {
-                (difference..<0).forEach { _ in removePerson() }
-            }
-        }
-    }
-
-    init() {
-        people = []
-
-        let minimumNumberOfPeople = 2
-        let maximumNumberOfPeople = 3
-        peopleRange = minimumNumberOfPeople...maximumNumberOfPeople
+    init(minimumNumberOfPeople: Int, maximumNumberOfPeople: Int) {
+        self.minimumNumberOfPeople = minimumNumberOfPeople
+        self.maximumNumberOfPeople = maximumNumberOfPeople
+        self.people = []
 
         (0..<minimumNumberOfPeople).forEach { _ in addPerson() }
     }
@@ -46,11 +31,11 @@ final class SettingsViewModel: ObservableObject {
         return "\(oridinalNumber) person"
     }
 
-    func removePerson() {
-        guard people.count > 2 else {
-            return
-        }
+    func canAddPerson() -> Bool {
+        people.count < maximumNumberOfPeople
+    }
 
-        people.removeLast()
+    func canRemovePerson(atIndex index: Int) -> Bool {
+        index > minimumNumberOfPeople - 1
     }
 }
