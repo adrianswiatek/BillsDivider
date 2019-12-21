@@ -40,6 +40,10 @@
 		A76BBCCE23947CAC003AE654 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCCD23947CAC003AE654 /* Divider.swift */; };
 		A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCCF23947FCC003AE654 /* DividerTests.swift */; };
 		A76BBCD323948481003AE654 /* DivisionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCD223948481003AE654 /* DivisionResultTests.swift */; };
+		A7705B9123AD83AD0073D8E8 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9023AD83AD0073D8E8 /* Person.swift */; };
+		A7705B9623AD868F0073D8E8 /* PeopleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9523AD868F0073D8E8 /* PeopleService.swift */; };
+		A7705B9823AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */; };
+		A7705B9A23AD87C90073D8E8 /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9923AD87C90073D8E8 /* PersonTests.swift */; };
 		A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */; };
 		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
 		A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptListUITests.swift */; };
@@ -124,6 +128,10 @@
 		A76BBCCD23947CAC003AE654 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
 		A76BBCCF23947FCC003AE654 /* DividerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerTests.swift; sourceTree = "<group>"; };
 		A76BBCD223948481003AE654 /* DivisionResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionResultTests.swift; sourceTree = "<group>"; };
+		A7705B9023AD83AD0073D8E8 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		A7705B9523AD868F0073D8E8 /* PeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleService.swift; sourceTree = "<group>"; };
+		A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryPeopleServiceTests.swift; sourceTree = "<group>"; };
+		A7705B9923AD87C90073D8E8 /* PersonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTests.swift; sourceTree = "<group>"; };
 		A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModelTests.swift; sourceTree = "<group>"; };
 		A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionTests.swift; sourceTree = "<group>"; };
 		A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +227,7 @@
 				A7BDA2FB2399B93B00B5DE47 /* Divider */,
 				A77D54C223819182003D7E9D /* Buyer.swift */,
 				A77D54C423819198003D7E9D /* Owner.swift */,
+				A7705B9023AD83AD0073D8E8 /* Person.swift */,
 				A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */,
 			);
 			path = Model;
@@ -305,6 +314,14 @@
 			path = EditOverlayStrategy;
 			sourceTree = "<group>";
 		};
+		A7705B9423AD86570073D8E8 /* PeopleService */ = {
+			isa = PBXGroup;
+			children = (
+				A7705B9523AD868F0073D8E8 /* PeopleService.swift */,
+			);
+			path = PeopleService;
+			sourceTree = "<group>";
+		};
 		A774361B239AB696008F53B5 /* BillsDividerUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +348,7 @@
 		A7794C37239D52B10001EB73 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A7705B9423AD86570073D8E8 /* PeopleService */,
 				A754170523A0551D008DB5F7 /* CoreDataStack */,
 				A78B1B96239EB805006A1B91 /* ReceiptPositionService */,
 				A732E903239FC47600B1D0B7 /* ReceiptPositionMapper.swift */,
@@ -417,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */,
+				A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */,
 				A732E905239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift */,
 			);
 			path = Service;
@@ -429,6 +448,7 @@
 				A76BBCCF23947FCC003AE654 /* DividerTests.swift */,
 				A75B79C6239EEB0000C740BB /* OwnerTests.swift */,
 				A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */,
+				A7705B9923AD87C90073D8E8 /* PersonTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -632,9 +652,11 @@
 			files = (
 				A7385B5F239C80DF00A41C09 /* EditOverlayViewModelTests.swift in Sources */,
 				A76BBCD323948481003AE654 /* DivisionResultTests.swift in Sources */,
+				A7705B9823AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift in Sources */,
 				A75E802D23A17C2900B549F9 /* AddingModeStrategyTests.swift in Sources */,
 				A75E803023A17C8D00B549F9 /* EditingModeStrategy.swift in Sources */,
 				A732E906239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift in Sources */,
+				A7705B9A23AD87C90073D8E8 /* PersonTests.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A75E802823A1773D00B549F9 /* EditOverlayStrategyDummy.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */,
@@ -676,10 +698,12 @@
 				A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */,
 				A7290223239F07C90012FA47 /* InMemoryReceiptPositionService.swift in Sources */,
 				A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */,
+				A7705B9123AD83AD0073D8E8 /* Person.swift in Sources */,
 				A754170723A05537008DB5F7 /* CoreDataStack.swift in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
 				A7794C39239D52E90001EB73 /* CoreDataReceiptPositionService.swift in Sources */,
 				A75E802523A1727C00B549F9 /* EditOverlayViewParams.swift in Sources */,
+				A7705B9623AD868F0073D8E8 /* PeopleService.swift in Sources */,
 				A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */,
 				A77D54C323819182003D7E9D /* Buyer.swift in Sources */,
 				A75E802023A15D6600B549F9 /* EditOverlayStrategy.swift in Sources */,
