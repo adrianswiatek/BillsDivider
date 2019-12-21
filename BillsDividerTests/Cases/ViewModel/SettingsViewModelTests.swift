@@ -4,13 +4,16 @@ import XCTest
 
 class SettingsViewModelTests: XCTestCase {
     private var sut: SettingsViewModel!
+    private var peopleService: PeopleService!
 
     override func setUp() {
         super.setUp()
-        sut = SettingsViewModel(minimumNumberOfPeople: 2, maximumNumberOfPeople: 3)
+        peopleService = PeopleServiceDummy()
+        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
     }
 
     override func tearDown() {
+        peopleService = nil
         sut = nil
         super.tearDown()
     }
@@ -40,28 +43,28 @@ class SettingsViewModelTests: XCTestCase {
     }
 
     func testCanAddPerson_whenNumberOfPeopleIsLessThanMaximum_returnsTrue() {
-        sut = SettingsViewModel(minimumNumberOfPeople: 2, maximumNumberOfPeople: 3)
+        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
         XCTAssertTrue(sut.canAddPerson())
     }
 
     func testCanAddPerson_whenNumberOfPeopleIsEqualToMaximum_returnsFalse() {
-        sut = SettingsViewModel(minimumNumberOfPeople: 2, maximumNumberOfPeople: 2)
+        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 2)
         XCTAssertFalse(sut.canAddPerson())
     }
 
     func testCanRemovePerson_whenIndexIsGreaterThanMinimum_returnsTrue() {
-        sut = SettingsViewModel(minimumNumberOfPeople: 2, maximumNumberOfPeople: 3)
+        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
         sut.addPerson()
         XCTAssertTrue(sut.canRemovePerson(atIndex: 2))
     }
 
     func testCanRemovePerson_whenIndexIsEqualToMinium_returnsFalse() {
-        sut = SettingsViewModel(minimumNumberOfPeople: 2, maximumNumberOfPeople: 3)
+        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
         XCTAssertFalse(sut.canRemovePerson(atIndex: 1))
     }
 
     func testCanRemovePerson_whenIndexIsLessThanMinimum_returnsFalse() {
-        sut = SettingsViewModel(minimumNumberOfPeople: 2, maximumNumberOfPeople: 3)
+        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
         XCTAssertFalse(sut.canRemovePerson(atIndex: 0))
     }
 }

@@ -4,15 +4,18 @@ import SwiftUI
 
 final class ViewModelFactory {
     private let receiptPositionService: ReceiptPositionService
+    private let peopleService: PeopleService
     private let divider: Divider
     private let numberFormatter: NumberFormatter
 
     init(
         receiptPositionService: ReceiptPositionService,
+        peopleService: PeopleService,
         divider: Divider,
         numberFormatter: NumberFormatter
     ) {
         self.receiptPositionService = receiptPositionService
+        self.peopleService = peopleService
         self.divider = divider
         self.numberFormatter = numberFormatter
     }
@@ -40,6 +43,6 @@ extension ViewModelFactory {
     }
 
     var settingsViewModel: SettingsViewModel {
-        .init(minimumNumberOfPeople: 2, maximumNumberOfPeople: 2)
+        .init(peopleService: peopleService, maximumNumberOfPeople: 2)
     }
 }

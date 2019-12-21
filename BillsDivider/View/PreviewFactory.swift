@@ -11,6 +11,7 @@ struct PreviewFactory {
         numberFormatter = .twoFractionDigitsNumberFormatter
         viewModelFactory = .init(
             receiptPositionService: InMemoryReceiptPositionService(),
+            peopleService: InMemoryPeopleService(),
             divider: .init(),
             numberFormatter: numberFormatter
         )

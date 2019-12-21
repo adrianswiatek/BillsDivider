@@ -28,9 +28,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func getRootView() -> some View {
         let receiptPositionService: ReceiptPositionService =
-            CoreDataReceiptPositionService(context: getCoreDataStack().context, mapper: ReceiptPositionMapper())
+            CoreDataReceiptPositionService(
+                context: getCoreDataStack().context,
+                mapper: ReceiptPositionMapper()
+        )
+        let peopleService: PeopleService = InMemoryPeopleService()
+
         let viewModelFactory = ViewModelFactory(
             receiptPositionService: receiptPositionService,
+            peopleService: peopleService,
             divider: Divider(),
             numberFormatter: .twoFractionDigitsNumberFormatter
         )
