@@ -4,11 +4,11 @@ import XCTest
 
 class SettingsViewModelTests: XCTestCase {
     private var sut: SettingsViewModel!
-    private var peopleService: PeopleService!
+    private var peopleService: PeopleServiceMock!
 
     override func setUp() {
         super.setUp()
-        peopleService = PeopleServiceDummy()
+        peopleService = PeopleServiceMock()
         sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
     }
 
@@ -18,28 +18,26 @@ class SettingsViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func testInit_setsPeopleCountToTwo() {
-        XCTAssertEqual(sut.people.count, 2)
-    }
-
-    func testInit_setsFirstPersonToMe() {
-        XCTAssertEqual(sut.people[0], "1st person")
-    }
-
-    func testInit_setsSecondPersonTo2ndPerson() {
-        XCTAssertEqual(sut.people[1], "2nd person")
+    func whenTwoInitialPersonAdded() {
+        sut.addPerson()
+        sut.addPerson()
     }
 
     func testAddPerson_adds3rdPersonAtTheVeryEndOfPeopleProperty() {
+        whenTwoInitialPersonAdded()
+
         sut.addPerson()
-        XCTAssertEqual(sut.people.last, "3rd person")
+        
+        XCTAssertEqual(sut.people[2].name, "3rd person")
     }
 
     func testAddPerson_withTwoPeople_adds4thPersonAtTheVeryEndOfPeopleProperty() {
+        whenTwoInitialPersonAdded()
+
         sut.addPerson()
         sut.addPerson()
 
-        XCTAssertEqual(sut.people[3], "4th person")
+        XCTAssertEqual(sut.people[3].name, "4th person")
     }
 
     func testCanAddPerson_whenNumberOfPeopleIsLessThanMaximum_returnsTrue() {
@@ -49,22 +47,37 @@ class SettingsViewModelTests: XCTestCase {
 
     func testCanAddPerson_whenNumberOfPeopleIsEqualToMaximum_returnsFalse() {
         sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 2)
+        whenTwoInitialPersonAdded()
         XCTAssertFalse(sut.canAddPerson())
     }
 
-    func testCanRemovePerson_whenIndexIsGreaterThanMinimum_returnsTrue() {
-        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
+    func testAddPerson_callsAddPersonOnPeopleService() {
         sut.addPerson()
-        XCTAssertTrue(sut.canRemovePerson(atIndex: 2))
+        XCTAssertTrue(peopleService.addPersonHasBeenCalled)
     }
 
-    func testCanRemovePerson_whenIndexIsEqualToMinium_returnsFalse() {
-        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
-        XCTAssertFalse(sut.canRemovePerson(atIndex: 1))
+    func testCanRemovePerson_callsCanRemovePersonOnPeopleService() {
+        _ = sut.canRemovePerson()
+        XCTAssertTrue(peopleService.canRemovePersonHasBeenCalled)
     }
 
-    func testCanRemovePerson_whenIndexIsLessThanMinimum_returnsFalse() {
-        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
-        XCTAssertFalse(sut.canRemovePerson(atIndex: 0))
+    func testGetPlaceholderForPerson_whenNameIsSet_returnsEmptyString() {
+        let person: Person = .withName("My name")
+        XCTAssertEqual(sut.getPlaceholder(for: person), "")
+    }
+
+    func testGetPlaceholderForPerson_whenNameIsGenerated_returnsProperName() {
+        let person: Person = .withGeneratedName(forNumber: 1)
+        XCTAssertEqual(sut.getPlaceholder(for: person), "1st person")
+    }
+
+    func testGetNameForPerson_whenNameIsSet_returnsProperName() {
+        let person: Person = .withName("My name")
+        XCTAssertEqual(sut.getName(for: person), "My name")
+    }
+
+    func testGetNameForPerson_whenNameIsGenerated_returnsEmptyString() {
+        let person: Person = .withGeneratedName(forNumber: 1)
+        XCTAssertEqual(sut.getName(for: person), "")
     }
 }

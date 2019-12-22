@@ -44,7 +44,7 @@
 		A7705B9623AD868F0073D8E8 /* PeopleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9523AD868F0073D8E8 /* PeopleService.swift */; };
 		A7705B9823AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */; };
 		A7705B9A23AD87C90073D8E8 /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9923AD87C90073D8E8 /* PersonTests.swift */; };
-		A7705B9C23AD9C530073D8E8 /* PeopleServiceDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9B23AD9C530073D8E8 /* PeopleServiceDummy.swift */; };
+		A7705B9C23AD9C530073D8E8 /* PeopleServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9B23AD9C530073D8E8 /* PeopleServiceMock.swift */; };
 		A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */; };
 		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
 		A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptListUITests.swift */; };
@@ -67,6 +67,7 @@
 		A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */; };
 		A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */; };
 		A7F213B2238B41310084B466 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F213B1238B41310084B466 /* SummaryView.swift */; };
+		A7F3D50023AFF9F100B9AD14 /* InMemoryPeopleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F3D4FF23AFF9F100B9AD14 /* InMemoryPeopleService.swift */; };
 		A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED230235CEF8B00CCD069 /* AppDelegate.swift */; };
 		A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */; };
 		A7FED236235CEF8B00CCD069 /* BillsDivider.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */; };
@@ -133,7 +134,7 @@
 		A7705B9523AD868F0073D8E8 /* PeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleService.swift; sourceTree = "<group>"; };
 		A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryPeopleServiceTests.swift; sourceTree = "<group>"; };
 		A7705B9923AD87C90073D8E8 /* PersonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTests.swift; sourceTree = "<group>"; };
-		A7705B9B23AD9C530073D8E8 /* PeopleServiceDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleServiceDummy.swift; sourceTree = "<group>"; };
+		A7705B9B23AD9C530073D8E8 /* PeopleServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleServiceMock.swift; sourceTree = "<group>"; };
 		A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModelTests.swift; sourceTree = "<group>"; };
 		A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionTests.swift; sourceTree = "<group>"; };
 		A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +159,7 @@
 		A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFactory.swift; sourceTree = "<group>"; };
 		A7F213B1238B41310084B466 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		A7F3D4FF23AFF9F100B9AD14 /* InMemoryPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryPeopleService.swift; sourceTree = "<group>"; };
 		A7FED22D235CEF8A00CCD069 /* BillsDivider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillsDivider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FED230235CEF8B00CCD069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -250,9 +252,9 @@
 			children = (
 				A734263723A1428100BAEFF0 /* EditOverlayViewModel */,
 				A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */,
+				A75443C223A94A0F00A8775E /* SettingsViewModel.swift */,
 				A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */,
 				A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */,
-				A75443C223A94A0F00A8775E /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -294,7 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */,
-				A7705B9B23AD9C530073D8E8 /* PeopleServiceDummy.swift */,
+				A7705B9B23AD9C530073D8E8 /* PeopleServiceMock.swift */,
 			);
 			path = Double;
 			sourceTree = "<group>";
@@ -320,6 +322,7 @@
 		A7705B9423AD86570073D8E8 /* PeopleService */ = {
 			isa = PBXGroup;
 			children = (
+				A7F3D4FF23AFF9F100B9AD14 /* InMemoryPeopleService.swift */,
 				A7705B9523AD868F0073D8E8 /* PeopleService.swift */,
 			);
 			path = PeopleService;
@@ -664,7 +667,7 @@
 				A75E802823A1773D00B549F9 /* EditOverlayStrategyDummy.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */,
 				A75B79C7239EEB0000C740BB /* OwnerTests.swift in Sources */,
-				A7705B9C23AD9C530073D8E8 /* PeopleServiceDummy.swift in Sources */,
+				A7705B9C23AD9C530073D8E8 /* PeopleServiceMock.swift in Sources */,
 				A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */,
 				A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */,
 				A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */,
@@ -727,6 +730,7 @@
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
 				A78B1B90239EB14C006A1B91 /* InMemoryCoreDataStack.swift in Sources */,
 				A7B7DE5A238C79E800D38BC8 /* DivisionResult.swift in Sources */,
+				A7F3D50023AFF9F100B9AD14 /* InMemoryPeopleService.swift in Sources */,
 				A7F213B2238B41310084B466 /* SummaryView.swift in Sources */,
 				A734263923A142DA00BAEFF0 /* AddingModeStrategy.swift in Sources */,
 				A78B1B8E239EB12F006A1B91 /* SqliteCoreDataStack.swift in Sources */,

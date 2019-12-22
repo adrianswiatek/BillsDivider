@@ -21,10 +21,13 @@ struct SettingsView: View {
 
                 Section(header: Text("People")) {
                     List {
-                        ForEach(viewModel.people, id: \.self) { person in
+                        ForEach(viewModel.people) { person in
                             HStack {
-                                TextField(person, text: .constant(""))
-                                    .padding(.horizontal, 8)
+                                TextField(
+                                    self.viewModel.getPlaceholder(for: person),
+                                    text: .constant(self.viewModel.getName(for: person))
+                                )
+                                .padding(.horizontal, 8)
                             }
                         }
 

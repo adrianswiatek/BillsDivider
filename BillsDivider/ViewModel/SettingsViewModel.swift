@@ -2,43 +2,55 @@ import Combine
 import Foundation
 
 final class SettingsViewModel: ObservableObject {
-    @Published var people: [String]
+    @Published var people: [Person]
 
     private let maximumNumberOfPeople: Int
-    private let minimumNumberOfPeople: Int
 
     private let peopleService: PeopleService
+    private var subscriptions: [AnyCancellable]
 
     init(peopleService: PeopleService, maximumNumberOfPeople: Int) {
         self.peopleService = peopleService
         self.maximumNumberOfPeople = maximumNumberOfPeople
-        self.minimumNumberOfPeople = 2
-        self.people = []
+        self.people = peopleService.fetchPeople()
+        self.subscriptions = []
 
-        (0..<minimumNumberOfPeople).forEach { _ in addPerson() }
+        self.bind()
     }
 
     func addPerson() {
         let nextPersonsIndex = people.count + 1
-        people.append(generatePersonsName(for: nextPersonsIndex))
+        people.append(Person.withGeneratedName(forNumber: nextPersonsIndex))
     }
 
-    private func generatePersonsName(for index: Int) -> String {
-        let oridinalNumberFormatter = NumberFormatter()
-        oridinalNumberFormatter.numberStyle = .ordinal
+    private func bind() {
+        $people
+            .sink { [weak self] in self?.onPeopleChange(with: $0) }
+            .store(in: &subscriptions)
+    }
 
-        guard let oridinalNumber = oridinalNumberFormatter.string(for: index) else {
-            preconditionFailure("Can not format given argument.")
+    private func onPeopleChange(with people: [Person]) {
+        let numberOfPeople = peopleService.getNumberOfPeople()
+
+        let personHasBeenAdded = people.count > numberOfPeople
+        if personHasBeenAdded, let person = people.last {
+            peopleService.addPerson(person)
         }
-
-        return "\(oridinalNumber) person"
     }
 
     func canAddPerson() -> Bool {
         people.count < maximumNumberOfPeople
     }
 
-    func canRemovePerson(atIndex index: Int) -> Bool {
-        index > minimumNumberOfPeople - 1
+    func canRemovePerson() -> Bool {
+        peopleService.canRemovePerson()
+    }
+
+    func getPlaceholder(for person: Person) -> String {
+        person.state == .generated ? person.name : ""
+    }
+
+    func getName(for person: Person) -> String {
+        person.state == .generated ? "" : person.name
     }
 }

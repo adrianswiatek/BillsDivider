@@ -32,8 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 context: getCoreDataStack().context,
                 mapper: ReceiptPositionMapper()
         )
-        let peopleService: PeopleService = InMemoryPeopleService()
-
+        let peopleService: PeopleService = preparePeopleService()
         let viewModelFactory = ViewModelFactory(
             receiptPositionService: receiptPositionService,
             peopleService: peopleService,
@@ -45,5 +44,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func getCoreDataStack() -> CoreDataStack {
         isUiTesting ? InMemoryCoreDataStack() : SqliteCoreDataStack()
+    }
+
+    private func preparePeopleService() -> PeopleService {
+        let peopleService = InMemoryPeopleService()
+        let numberOfPeople = peopleService.getNumberOfPeople()
+        let minimumNumberOfPeople = 2
+
+        (numberOfPeople ..< minimumNumberOfPeople).forEach {
+            peopleService.addPerson(.withGeneratedName(forNumber: $0 + 1))
+        }
+
+        return peopleService
     }
 }
