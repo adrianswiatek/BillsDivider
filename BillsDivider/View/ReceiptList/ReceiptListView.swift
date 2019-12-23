@@ -90,18 +90,11 @@ struct ReceiptListView: View {
     }
 
     private func getBuyerColor(for position: ReceiptPosition) -> Color {
-        switch position.buyer {
-        case .me: return .blue
-        case .notMe: return .green
-        }
+        .blue
     }
 
     private func getOwnerColor(for position: ReceiptPosition) -> Color {
-        switch position.owner {
-        case .me: return .blue
-        case .notMe: return .green
-        case .all: return .purple
-        }
+        position.owner == .all ? .purple : .blue
     }
 
     private func createEditOverlayView() -> some View {

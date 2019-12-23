@@ -31,6 +31,7 @@ final class EditOverlayViewModel: ObservableObject {
     init(
         presenting: Binding<Bool>,
         editOverlayStrategy: EditOverlayStrategy,
+        peopleService: PeopleService,
         numberFormatter: NumberFormatter
     ) {
         self._presenting = presenting

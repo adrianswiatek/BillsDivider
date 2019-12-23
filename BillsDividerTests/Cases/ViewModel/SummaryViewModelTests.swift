@@ -5,20 +5,23 @@ import XCTest
 
 class SummaryViewModelTests: XCTestCase {
     private var subscriptions: [AnyCancellable]!
+    private var peopleService: PeopleService!
 
     override func setUp() {
         super.setUp()
+        peopleService = PeopleServiceFake()
         subscriptions = []
     }
 
     override func tearDown() {
         subscriptions = nil
+        peopleService = nil
         super.tearDown()
     }
 
     // MARK: - Helpers
     private func summaryViewModel(with positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        SummaryViewModel(positions: positions, divider: .init(), numberFormatter: numberFormatter)
+        .init(positions: positions, divider: .init(), numberFormatter: numberFormatter, peopleService: peopleService)
     }
 
     private var numberFormatter: NumberFormatter {

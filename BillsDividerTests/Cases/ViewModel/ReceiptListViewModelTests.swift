@@ -5,6 +5,7 @@ import XCTest
 class ReceiptListViewModelTests: XCTestCase {
     private var sut: ReceiptListViewModel!
     private var receiptPositionService: ReceiptPositionService!
+    private var peopleService: PeopleService!
 
     private var numberFormatter: NumberFormatter {
         .twoFractionDigitsNumberFormatter
@@ -13,11 +14,17 @@ class ReceiptListViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         receiptPositionService = InMemoryReceiptPositionService()
-        sut = .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
+        peopleService = PeopleServiceFake()
+        sut = .init(
+            receiptPositionService: receiptPositionService,
+            peopleService: peopleService,
+            numberFormatter: numberFormatter
+        )
     }
 
     override func tearDown() {
         sut = nil
+        peopleService = nil
         receiptPositionService = nil
         super.tearDown()
     }
@@ -33,7 +40,11 @@ class ReceiptListViewModelTests: XCTestCase {
         ]
         receiptPositionService.set(positions)
 
-        sut = .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
+        sut = .init(
+            receiptPositionService: receiptPositionService,
+            peopleService: peopleService,
+            numberFormatter: numberFormatter
+        )
 
         XCTAssertEqual(sut.positions.count, 2)
         XCTAssertEqual(sut.positions[0], positions[0])

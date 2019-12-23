@@ -13,7 +13,11 @@ class ReceiptListViewModel: ObservableObject {
 
     private var subscriptions: [AnyCancellable]
 
-    init(receiptPositionService: ReceiptPositionService, numberFormatter: NumberFormatter) {
+    init(
+        receiptPositionService: ReceiptPositionService,
+        peopleService: PeopleService,
+        numberFormatter: NumberFormatter
+    ) {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
         self.positions = receiptPositionService.fetchPositions()

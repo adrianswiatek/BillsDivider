@@ -30,7 +30,7 @@ final class SettingsViewModel: ObservableObject {
 
         $peopleNames
             .dropFirst(2)
-            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.25), scheduler: DispatchQueue.main)
             .sink { [weak self] in self?.onPeopleNamesChange(with: $0) }
             .store(in: &subscriptions)
     }

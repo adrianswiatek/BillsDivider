@@ -23,7 +23,11 @@ final class ViewModelFactory {
 
 extension ViewModelFactory {
     var receiptListViewModel: ReceiptListViewModel {
-        .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
+        .init(
+            receiptPositionService: receiptPositionService,
+            peopleService: peopleService,
+            numberFormatter: numberFormatter
+        )
     }
 
     func editOverlayViewModel(presentingParams: Binding<EditOverlayViewParams>) -> EditOverlayViewModel {
@@ -34,12 +38,13 @@ extension ViewModelFactory {
             editOverlayStrategy: presentingParams.wrappedValue.mode == .adding
                 ? AddingModeStrategy(receiptPosition: position)
                 : EditingModeStrategy(receiptPosition: position, numberFormatter: numberFormatter),
+            peopleService: peopleService,
             numberFormatter: numberFormatter
         )
     }
 
     func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        .init(positions: positions, divider: divider, numberFormatter: numberFormatter)
+        .init(positions: positions, divider: divider, numberFormatter: numberFormatter, peopleService: peopleService)
     }
 
     var settingsViewModel: SettingsViewModel {

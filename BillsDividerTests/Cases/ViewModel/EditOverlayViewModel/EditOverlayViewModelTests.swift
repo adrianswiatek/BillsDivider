@@ -5,6 +5,7 @@ import XCTest
 
 class EditOverlayViewModelTests: XCTestCase {
     private var sut: EditOverlayViewModel!
+    private var peopleService: PeopleService!
     private var subscriptions: [AnyCancellable]!
 
     private var numberFormatter: NumberFormatter {
@@ -13,9 +14,11 @@ class EditOverlayViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        peopleService = PeopleServiceFake()
         sut = EditOverlayViewModel(
             presenting: .constant(true),
             editOverlayStrategy: EditOverlayStrategyDummy(),
+            peopleService: peopleService,
             numberFormatter: numberFormatter
         )
         subscriptions = []
@@ -24,6 +27,7 @@ class EditOverlayViewModelTests: XCTestCase {
     override func tearDown() {
         subscriptions = nil
         sut = nil
+        peopleService = nil
         super.tearDown()
     }
 
@@ -36,6 +40,7 @@ class EditOverlayViewModelTests: XCTestCase {
         sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
             editOverlayStrategy: EditOverlayStrategyDummy(),
+            peopleService: peopleService,
             numberFormatter: numberFormatter
         )
         sut.dismiss()
@@ -56,6 +61,7 @@ class EditOverlayViewModelTests: XCTestCase {
         sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
             editOverlayStrategy: EditOverlayStrategyDummy(),
+            peopleService: peopleService,
             numberFormatter: numberFormatter
         )
         sut.priceText = "123"
@@ -71,6 +77,7 @@ class EditOverlayViewModelTests: XCTestCase {
         sut = EditOverlayViewModel(
             presenting: .constant(true),
             editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
+            peopleService: peopleService,
             numberFormatter: numberFormatter
         )
         sut.positionAdded.sink { receiptPosition = $0 }.store(in: &subscriptions)

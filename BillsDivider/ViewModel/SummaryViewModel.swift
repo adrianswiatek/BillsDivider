@@ -26,7 +26,12 @@ class SummaryViewModel: ObservableObject {
     private let numberFormatter: NumberFormatter
     private var subscriptions: [AnyCancellable]
 
-    init(positions: AnyPublisher<[ReceiptPosition], Never>, divider: Divider, numberFormatter: NumberFormatter) {
+    init(
+        positions: AnyPublisher<[ReceiptPosition], Never>,
+        divider: Divider,
+        numberFormatter: NumberFormatter,
+        peopleService: PeopleService
+    ) {
         self.numberFormatter = numberFormatter
         self.divider = divider
         self.subscriptions = []
