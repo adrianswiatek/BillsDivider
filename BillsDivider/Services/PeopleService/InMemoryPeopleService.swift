@@ -1,8 +1,13 @@
 class InMemoryPeopleService: PeopleService {
     private var people: [Person]
 
-    init() {
-        people = []
+    private let maximumNumberOfPeople: Int
+    private let minimumNumberOfPeople: Int
+
+    required init(maximumNumberOfPeople: Int = 2) {
+        self.maximumNumberOfPeople = maximumNumberOfPeople
+        self.minimumNumberOfPeople = 2
+        self.people = []
     }
 
     func getNumberOfPeople() -> Int {
@@ -13,23 +18,15 @@ class InMemoryPeopleService: PeopleService {
         people
     }
 
-    func addPerson(_ person: Person) {
-        people.append(person)
+    func updatePeople(_ people: [Person]) {
+        self.people = people
     }
 
-    func removePerson(_ person: Person) {
-        people.removeAll { $0 == person }
-    }
-
-    func updatePerson(_ person: Person) {
-        guard let index = people.firstIndex(where: { $0.id == person.id }) else {
-            return
-        }
-
-        people[index] = person
+    func canAddPerson() -> Bool {
+        getNumberOfPeople() < maximumNumberOfPeople
     }
 
     func canRemovePerson() -> Bool {
-        getNumberOfPeople() > 2
+        getNumberOfPeople() > minimumNumberOfPeople
     }
 }

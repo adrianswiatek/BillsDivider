@@ -44,7 +44,7 @@
 		A7705B9623AD868F0073D8E8 /* PeopleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9523AD868F0073D8E8 /* PeopleService.swift */; };
 		A7705B9823AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */; };
 		A7705B9A23AD87C90073D8E8 /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9923AD87C90073D8E8 /* PersonTests.swift */; };
-		A7705B9C23AD9C530073D8E8 /* PeopleServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9B23AD9C530073D8E8 /* PeopleServiceMock.swift */; };
+		A7705B9C23AD9C530073D8E8 /* PeopleServiceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9B23AD9C530073D8E8 /* PeopleServiceFake.swift */; };
 		A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */; };
 		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
 		A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptListUITests.swift */; };
@@ -134,7 +134,7 @@
 		A7705B9523AD868F0073D8E8 /* PeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleService.swift; sourceTree = "<group>"; };
 		A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryPeopleServiceTests.swift; sourceTree = "<group>"; };
 		A7705B9923AD87C90073D8E8 /* PersonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTests.swift; sourceTree = "<group>"; };
-		A7705B9B23AD9C530073D8E8 /* PeopleServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleServiceMock.swift; sourceTree = "<group>"; };
+		A7705B9B23AD9C530073D8E8 /* PeopleServiceFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleServiceFake.swift; sourceTree = "<group>"; };
 		A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListViewModelTests.swift; sourceTree = "<group>"; };
 		A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionTests.swift; sourceTree = "<group>"; };
 		A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,7 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */,
-				A7705B9B23AD9C530073D8E8 /* PeopleServiceMock.swift */,
+				A7705B9B23AD9C530073D8E8 /* PeopleServiceFake.swift */,
 			);
 			path = Double;
 			sourceTree = "<group>";
@@ -667,7 +667,7 @@
 				A75E802823A1773D00B549F9 /* EditOverlayStrategyDummy.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */,
 				A75B79C7239EEB0000C740BB /* OwnerTests.swift in Sources */,
-				A7705B9C23AD9C530073D8E8 /* PeopleServiceMock.swift in Sources */,
+				A7705B9C23AD9C530073D8E8 /* PeopleServiceFake.swift in Sources */,
 				A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */,
 				A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */,
 				A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */,

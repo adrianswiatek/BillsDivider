@@ -4,12 +4,14 @@ import XCTest
 
 class SettingsViewModelTests: XCTestCase {
     private var sut: SettingsViewModel!
-    private var peopleService: PeopleServiceMock!
+    private var peopleService: PeopleServiceFake!
+    private var subscriptions: [AnyCancellable]!
 
     override func setUp() {
         super.setUp()
-        peopleService = PeopleServiceMock()
-        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
+        peopleService = PeopleServiceFake()
+        sut = SettingsViewModel(peopleService: peopleService)
+        subscriptions = []
     }
 
     override func tearDown() {
@@ -18,13 +20,12 @@ class SettingsViewModelTests: XCTestCase {
         super.tearDown()
     }
 
-    func whenTwoInitialPersonAdded() {
-        sut.addPerson()
-        sut.addPerson()
+    func whenPeopleAdded(_ numberOfPeople: Int) {
+        (0 ..< numberOfPeople).forEach { _ in sut.addPerson() }
     }
 
     func testAddPerson_adds3rdPersonAtTheVeryEndOfPeopleProperty() {
-        whenTwoInitialPersonAdded()
+        whenPeopleAdded(2)
 
         sut.addPerson()
         
@@ -32,7 +33,7 @@ class SettingsViewModelTests: XCTestCase {
     }
 
     func testAddPerson_withTwoPeople_adds4thPersonAtTheVeryEndOfPeopleProperty() {
-        whenTwoInitialPersonAdded()
+        whenPeopleAdded(2)
 
         sut.addPerson()
         sut.addPerson()
@@ -40,20 +41,19 @@ class SettingsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.people[3].name, "4th person")
     }
 
-    func testCanAddPerson_whenNumberOfPeopleIsLessThanMaximum_returnsTrue() {
-        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 3)
-        XCTAssertTrue(sut.canAddPerson())
+    func testAddPerson_addsEmptyPersonNameToPeopleNamesArray() {
+        whenPeopleAdded(1)
+        XCTAssertEqual(sut.peopleNames[0], "")
     }
 
-    func testCanAddPerson_whenNumberOfPeopleIsEqualToMaximum_returnsFalse() {
-        sut = SettingsViewModel(peopleService: peopleService, maximumNumberOfPeople: 2)
-        whenTwoInitialPersonAdded()
-        XCTAssertFalse(sut.canAddPerson())
+    func testAddPerson_withTwoPeople_addsTwoEmptyPersonNamesToPeopleNamesArray() {
+        whenPeopleAdded(2)
+        XCTAssertEqual(sut.peopleNames.count, 2)
     }
 
-    func testAddPerson_callsAddPersonOnPeopleService() {
-        sut.addPerson()
-        XCTAssertTrue(peopleService.addPersonHasBeenCalled)
+    func testCanAddPerson_callsCanAddPersonOnPeopleService() {
+        _ = sut.canAddPerson()
+        XCTAssertTrue(peopleService.canAddPersonHasBeenCalled)
     }
 
     func testCanRemovePerson_callsCanRemovePersonOnPeopleService() {
@@ -61,23 +61,43 @@ class SettingsViewModelTests: XCTestCase {
         XCTAssertTrue(peopleService.canRemovePersonHasBeenCalled)
     }
 
-    func testGetPlaceholderForPerson_whenNameIsSet_returnsEmptyString() {
+    func testPlaceholderForPerson_whenNameIsSet_returnsEmptyString() {
         let person: Person = .withName("My name")
-        XCTAssertEqual(sut.getPlaceholder(for: person), "")
+        XCTAssertEqual(sut.placeholder(for: person), "")
     }
 
-    func testGetPlaceholderForPerson_whenNameIsGenerated_returnsProperName() {
+    func testPlaceholderForPerson_whenNameIsGenerated_returnsProperName() {
         let person: Person = .withGeneratedName(forNumber: 1)
-        XCTAssertEqual(sut.getPlaceholder(for: person), "1st person")
+        XCTAssertEqual(sut.placeholder(for: person), "1st person")
     }
 
-    func testGetNameForPerson_whenNameIsSet_returnsProperName() {
+    func testNameForPerson_whenNameIsSet_returnsProperName() {
         let person: Person = .withName("My name")
-        XCTAssertEqual(sut.getName(for: person), "My name")
+        XCTAssertEqual(sut.name(for: person), "My name")
     }
 
-    func testGetNameForPerson_whenNameIsGenerated_returnsEmptyString() {
+    func testNameForPerson_whenNameIsGenerated_returnsEmptyString() {
         let person: Person = .withGeneratedName(forNumber: 1)
-        XCTAssertEqual(sut.getName(for: person), "")
+        XCTAssertEqual(sut.name(for: person), "")
+    }
+
+    func testIndexOfPerson_returnsIndexOfPerson() {
+        whenPeopleAdded(5)
+        let thirdPerson = sut.people[2]
+        XCTAssertEqual(sut.index(of: thirdPerson), 2)
+    }
+
+    func testPeopleNames_whenUpdate_callsUpdatePeopleOnPeopleService() {
+        whenPeopleAdded(1)
+        let expectation = self.expectation(description: "update person")
+        sut.$people
+            .dropFirst(1)
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+
+        sut.peopleNames[0] = "My name"
+
+        wait(for: [expectation], timeout: 2)
+        XCTAssertTrue(peopleService.updatePeopleHasBeenCalled)
     }
 }

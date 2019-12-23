@@ -11,6 +11,10 @@ struct Person: Equatable, Identifiable {
     let name: String
     let state: Person.State
 
+    private static var numberFormatter: NumberFormatter {
+        .oridinalNumberFormatter
+    }
+
     private init(id: UUID, name: String, state: State = .default) {
         self.id = id
         self.name = name
@@ -21,8 +25,16 @@ struct Person: Equatable, Identifiable {
         self.init(id: UUID(), name: name, state: state)
     }
 
-    func withUpdated(name: String) -> Person {
-        .init(id: id, name: name)
+    func withUpdated(name: String, andNumber number: Int? = nil) -> Person {
+        if name != "" {
+            return .init(id: id, name: name)
+        }
+
+        guard let number = number else {
+            return .init(id: id, name: name)
+        }
+
+        return .init(id: id, name: "\(Self.numberFormatter.format(value: number)) person", state: .generated)
     }
 
     static var empty: Person {
@@ -34,13 +46,6 @@ struct Person: Equatable, Identifiable {
     }
 
     static func withGeneratedName(forNumber number: Int) -> Person {
-        let oridinalNumberFormatter = NumberFormatter()
-        oridinalNumberFormatter.numberStyle = .ordinal
-
-        guard let oridinalNumber = oridinalNumberFormatter.string(for: number) else {
-            preconditionFailure("Can not format given argument.")
-        }
-
-        return .init(name: "\(oridinalNumber) person", state: .generated)
+        .init(name: "\(numberFormatter.format(value: number)) person", state: .generated)
     }
 }

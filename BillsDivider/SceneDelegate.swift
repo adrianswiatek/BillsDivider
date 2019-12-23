@@ -51,8 +51,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let numberOfPeople = peopleService.getNumberOfPeople()
         let minimumNumberOfPeople = 2
 
-        (numberOfPeople ..< minimumNumberOfPeople).forEach {
-            peopleService.addPerson(.withGeneratedName(forNumber: $0 + 1))
+        let initialPeople: [Person] = (numberOfPeople ..< minimumNumberOfPeople)
+            .map { .withGeneratedName(forNumber: $0 + 1) }
+
+        if !initialPeople.isEmpty {
+            peopleService.updatePeople(initialPeople)
         }
 
         return peopleService

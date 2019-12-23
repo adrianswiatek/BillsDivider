@@ -3,54 +3,68 @@ import Foundation
 
 final class SettingsViewModel: ObservableObject {
     @Published var people: [Person]
-
-    private let maximumNumberOfPeople: Int
+    @Published var peopleNames: [String]
 
     private let peopleService: PeopleService
     private var subscriptions: [AnyCancellable]
 
-    init(peopleService: PeopleService, maximumNumberOfPeople: Int) {
+    init(peopleService: PeopleService) {
         self.peopleService = peopleService
-        self.maximumNumberOfPeople = maximumNumberOfPeople
         self.people = peopleService.fetchPeople()
+        self.peopleNames = []
         self.subscriptions = []
 
+        self.peopleNames = self.people.map { name(for: $0) }
         self.bind()
     }
 
     func addPerson() {
         let nextPersonsIndex = people.count + 1
-        people.append(Person.withGeneratedName(forNumber: nextPersonsIndex))
+        people.append(.withGeneratedName(forNumber: nextPersonsIndex))
     }
 
     private func bind() {
         $people
             .sink { [weak self] in self?.onPeopleChange(with: $0) }
             .store(in: &subscriptions)
+
+        $peopleNames
+            .dropFirst(2)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .sink { [weak self] in self?.onPeopleNamesChange(with: $0) }
+            .store(in: &subscriptions)
     }
 
     private func onPeopleChange(with people: [Person]) {
-        let numberOfPeople = peopleService.getNumberOfPeople()
+        peopleNames = people.map { name(for: $0) }
+        peopleService.updatePeople(people)
+    }
 
-        let personHasBeenAdded = people.count > numberOfPeople
-        if personHasBeenAdded, let person = people.last {
-            peopleService.addPerson(person)
-        }
+    private func onPeopleNamesChange(with names: [String]) {
+        people = people.enumerated().map { $1.withUpdated(name: names[$0], andNumber: $0 + 1)}
     }
 
     func canAddPerson() -> Bool {
-        people.count < maximumNumberOfPeople
+        peopleService.canAddPerson()
     }
 
     func canRemovePerson() -> Bool {
         peopleService.canRemovePerson()
     }
 
-    func getPlaceholder(for person: Person) -> String {
+    func placeholder(for person: Person) -> String {
         person.state == .generated ? person.name : ""
     }
 
-    func getName(for person: Person) -> String {
+    func name(for person: Person) -> String {
         person.state == .generated ? "" : person.name
+    }
+
+    func index(of person: Person) -> Int {
+        guard let index = people.firstIndex(of: person) else {
+            preconditionFailure("Given person does not exist in people list")
+        }
+
+        return index
     }
 }

@@ -24,8 +24,8 @@ struct SettingsView: View {
                         ForEach(viewModel.people) { person in
                             HStack {
                                 TextField(
-                                    self.viewModel.getPlaceholder(for: person),
-                                    text: .constant(self.viewModel.getName(for: person))
+                                    self.viewModel.placeholder(for: person),
+                                    text: self.$viewModel.peopleNames[self.viewModel.index(of: person)]
                                 )
                                 .padding(.horizontal, 8)
                             }

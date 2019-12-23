@@ -15,9 +15,7 @@ class InMemoryPeopleServiceTests: XCTestCase {
     }
 
     func whenPeopleAdded(_ numberOfPeople: Int) {
-        (0 ..< numberOfPeople).forEach {
-            sut.addPerson(.withGeneratedName(forNumber: $0 + 1))
-        }
+        sut.updatePeople((0 ..< numberOfPeople).map { .withGeneratedName(forNumber: $0 + 1) })
     }
 
     func testInit_createsEmptyArrayOfPeople() {
@@ -28,33 +26,50 @@ class InMemoryPeopleServiceTests: XCTestCase {
         XCTAssertEqual(sut.fetchPeople(), [])
     }
 
-    func testAddPerson_addsGivenPerson() {
-        let person: Person = .withName("My name")
-        sut.addPerson(person)
-        XCTAssertEqual(person, sut.fetchPeople().first)
+    func testUpdatePeople_whenInitiallyEmptyArrayAndNewPeopleAdding_addsGivenPeople() {
+        let person1: Person = .withGeneratedName(forNumber: 1)
+        let person2: Person = .withGeneratedName(forNumber: 2)
+
+        sut.updatePeople([person1, person2])
+
+        let people = sut.fetchPeople()
+        XCTAssertEqual(people.count, 2)
+        XCTAssertEqual(people[0], person1)
+        XCTAssertEqual(people[1], person2)
     }
 
-    func testRemovePerson_removesGivenPerson() {
-        let person: Person = .withName("My name")
-        sut.addPerson(person)
-        sut.removePerson(person)
-        XCTAssertEqual(sut.getNumberOfPeople(), 0)
+    func testUpdatePeople_whenInitiallyFilledArrayAndAllPeopleRemoving_removesAllPeople() {
+        whenPeopleAdded(3)
+        sut.updatePeople([])
+        XCTAssertEqual(sut.fetchPeople().count, 0)
     }
 
-    func testRemovePerson_withNonExistingPerson_doesNothing() {
-        let person: Person = .withName("My name")
-        sut.removePerson(person)
-        XCTAssertEqual(sut.getNumberOfPeople(), 0)
+    func testUpdatePeople_whenInitiallyFilledArrayAndPersonUpdating_updatesGivenPerson() {
+        whenPeopleAdded(3)
+        let people = sut.fetchPeople()
+        let updatedPerson = people[1].withUpdated(name: "My name")
+
+        sut.updatePeople([people[0]] + [updatedPerson] + [people[2]])
+
+        XCTAssertEqual(sut.fetchPeople()[1].name, "My name")
     }
 
-    func testUpdatePerson_updatesGivenPerson() {
-        let originalPerson: Person = .withName("Original person")
-        sut.addPerson(originalPerson)
+    func testCanAddPerson_whenNumberOfPeopleIsLowerThanMaximum_returnsTrue() {
+        sut = InMemoryPeopleService(maximumNumberOfPeople: 3)
+        whenPeopleAdded(2)
+        XCTAssertTrue(sut.canAddPerson())
+    }
 
-        let updatedPerson = originalPerson.withUpdated(name: "Updated person")
-        sut.updatePerson(updatedPerson)
+    func testCanAddPerson_whenNumberOfPeopleIsGreaterThanMaximum_returnsFalse() {
+        sut = InMemoryPeopleService(maximumNumberOfPeople: 2)
+        whenPeopleAdded(3)
+        XCTAssertFalse(sut.canAddPerson())
+    }
 
-        XCTAssertEqual(sut.fetchPeople().first?.name, "Updated person")
+    func testCanAddPerson_whenNumberOfPeopleIsEqualToMaximum_returnsFalse() {
+        sut = InMemoryPeopleService(maximumNumberOfPeople: 2)
+        whenPeopleAdded(2)
+        XCTAssertFalse(sut.canAddPerson())
     }
 
     func testCanRemovePerson_whenTwoPeopleInTheList_returnsFalse() {
