@@ -11,7 +11,8 @@ class ReceiptListViewModel: ObservableObject {
     private let receiptPositionService: ReceiptPositionService
     private let numberFormatter: NumberFormatter
 
-    private var subscriptions: [AnyCancellable]
+    private var positionSubscriptions: [AnyCancellable]
+    private var peopleSubscriptions: [AnyCancellable]
 
     init(
         receiptPositionService: ReceiptPositionService,
@@ -21,18 +22,21 @@ class ReceiptListViewModel: ObservableObject {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
         self.positions = receiptPositionService.fetchPositions()
-        self.subscriptions = []
+        self.positionSubscriptions = []
+        self.peopleSubscriptions = []
+
+        self.subscribe(to: peopleService.peopleDidUpdate)
     }
 
     func subscribe(
         addingPublisher: AnyPublisher<ReceiptPosition, Never>,
         editingPublisher: AnyPublisher<ReceiptPosition, Never>
     ) {
-        subscriptions.removeAll()
+        positionSubscriptions.removeAll()
 
         addingPublisher
             .sink { [weak self] in self?.positions.insert($0, at: 0) }
-            .store(in: &subscriptions)
+            .store(in: &positionSubscriptions)
 
         editingPublisher
             .sink { [weak self] position in
@@ -41,7 +45,7 @@ class ReceiptListViewModel: ObservableObject {
                 }
                 self?.positions[positionsIndex] = position
             }
-            .store(in: &subscriptions)
+            .store(in: &positionSubscriptions)
     }
 
     func removePosition(at index: Int) {
@@ -60,5 +64,11 @@ class ReceiptListViewModel: ObservableObject {
 
     func formatNumber(value: Decimal) -> String {
         numberFormatter.format(value: value)
+    }
+
+    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+        peopleDidUpdate
+            .sink { _ in  }
+            .store(in: &peopleSubscriptions)
     }
 }

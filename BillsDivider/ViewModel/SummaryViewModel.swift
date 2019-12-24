@@ -30,7 +30,6 @@ class SummaryViewModel: ObservableObject {
         return numberFormatter.format(value: divisionResult.debtAmount)
     }
 
-    private let peopleService: PeopleService
     private let divider: Divider
     private let numberFormatter: NumberFormatter
     private var subscriptions: [AnyCancellable]
@@ -41,7 +40,6 @@ class SummaryViewModel: ObservableObject {
         divider: Divider,
         numberFormatter: NumberFormatter
     ) {
-        self.peopleService = peopleService
         self.divider = divider
         self.numberFormatter = numberFormatter
         self.subscriptions = []

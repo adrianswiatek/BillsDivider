@@ -48,7 +48,8 @@ final class EditOverlayViewModel: ObservableObject {
         self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.subscriptions = []
 
-        self.setupSubscriptions()
+        self.subscribe(to: peopleService.peopleDidUpdate)
+        self.subscribe(to: $priceText.eraseToAnyPublisher())
         self.editOverlayStrategy.set(viewModel: self)
     }
 
@@ -65,8 +66,12 @@ final class EditOverlayViewModel: ObservableObject {
         presenting = false
     }
 
-    private func setupSubscriptions() {
-        $priceText
+    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+        peopleDidUpdate.sink { _ in }.store(in: &subscriptions)
+    }
+
+    private func subscribe(to priceText: AnyPublisher<String, Never>) {
+        priceText
             .sink { [weak self] in
                 guard let self = self else { return }
                 self.isPriceCorrect = $0.isEmpty || self.tryParsePrice($0) != nil

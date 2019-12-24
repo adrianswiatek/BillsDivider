@@ -49,3 +49,9 @@ struct Person: Equatable, Identifiable {
         .init(name: "\(numberFormatter.format(value: number)) person", state: .generated)
     }
 }
+
+extension Person: CustomDebugStringConvertible {
+    var debugDescription: String {
+        "\(Person.self)(id: \(id), name: \(name), state: \(state))"
+    }
+}
