@@ -1,13 +1,22 @@
 @testable import BillsDivider
+import Combine
 
 class PeopleServiceFake: PeopleService {
-    private var people: [Person] = []
+    var peopleDidUpdate: AnyPublisher<[Person], Never> {
+        peopleDidUpdateSubject.eraseToAnyPublisher()
+    }
+
+    private let peopleDidUpdateSubject: PassthroughSubject<[Person], Never>
+    private var people: [Person]
 
     var updatePeopleHasBeenCalled: Bool = false
     var canAddPersonHasBeenCalled: Bool = true
     var canRemovePersonHasBeenCalled: Bool = false
 
-    required init(maximumNumberOfPeople: Int = 2) {}
+    required init(maximumNumberOfPeople: Int = 2) {
+        self.peopleDidUpdateSubject = .init()
+        self.people = []
+    }
 
     func getNumberOfPeople() -> Int {
         people.count
@@ -19,6 +28,7 @@ class PeopleServiceFake: PeopleService {
 
     func updatePeople(_ people: [Person]) {
         self.people = people
+        peopleDidUpdateSubject.send(people)
         updatePeopleHasBeenCalled = true
     }
 

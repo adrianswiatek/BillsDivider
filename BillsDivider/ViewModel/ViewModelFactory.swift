@@ -44,7 +44,7 @@ extension ViewModelFactory {
     }
 
     func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        .init(positions: positions, divider: divider, numberFormatter: numberFormatter, peopleService: peopleService)
+        .init(positions: positions, peopleService: peopleService, divider: divider, numberFormatter: numberFormatter)
     }
 
     var settingsViewModel: SettingsViewModel {

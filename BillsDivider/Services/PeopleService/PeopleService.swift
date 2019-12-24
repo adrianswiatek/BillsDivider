@@ -1,4 +1,8 @@
+import Combine
+
 protocol PeopleService {
+    var peopleDidUpdate: AnyPublisher<[Person], Never> { get }
+
     init(maximumNumberOfPeople: Int)
     
     func getNumberOfPeople() -> Int
