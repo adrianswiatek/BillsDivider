@@ -27,16 +27,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func getRootView() -> some View {
-        let receiptPositionService: ReceiptPositionService =
-            CoreDataReceiptPositionService(
-                context: getCoreDataStack().context,
-                mapper: ReceiptPositionMapper()
-        )
+//        let receiptPositionService: ReceiptPositionService =
+//            CoreDataReceiptPositionService(
+//                context: getCoreDataStack().context,
+//                mapper: ReceiptPositionMapper()
+//        )
         let peopleService: PeopleService = preparePeopleService()
         let viewModelFactory = ViewModelFactory(
-            receiptPositionService: receiptPositionService,
+            receiptPositionService: InMemoryReceiptPositionService(),
+            receiptPositionService2: InMemoryReceiptPositionService2(peopleService: peopleService),
             peopleService: peopleService,
-            divider: Divider(),
+            divider: .init(),
             numberFormatter: .twoFractionDigitsNumberFormatter
         )
         return TabsView(viewModelFactory: viewModelFactory)

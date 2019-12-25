@@ -1,10 +1,17 @@
+import Combine
 import CoreData
 
 final class CoreDataReceiptPositionService: ReceiptPositionService {
+    var positionsDidUpdate: AnyPublisher<[ReceiptPosition], Never> {
+        positionsDidUpdateSubject.eraseToAnyPublisher()
+    }
+
+    private let positionsDidUpdateSubject: PassthroughSubject<[ReceiptPosition], Never>
     private let context: NSManagedObjectContext
     private let mapper: ReceiptPositionMapper
 
     init(context: NSManagedObjectContext, mapper: ReceiptPositionMapper) {
+        self.positionsDidUpdateSubject = .init()
         self.context = context
         self.mapper = mapper
     }
@@ -18,6 +25,8 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
             .forEach { context.insert($0) }
 
         save()
+
+        positionsDidUpdateSubject.send(positions)
     }
 
     func fetchPositions() -> [ReceiptPosition] {
@@ -36,6 +45,7 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
 
     private func removeExistingPositions() {
         fetchEntities(sorted: false).forEach { context.delete($0) }
+        positionsDidUpdateSubject.send([])
     }
 
     private func save() {

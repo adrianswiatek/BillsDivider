@@ -5,7 +5,7 @@ class InMemoryPeopleService: PeopleService {
         peopleDidUpdateSubject.eraseToAnyPublisher()
     }
 
-    private var peopleDidUpdateSubject: PassthroughSubject<[Person], Never>
+    private var peopleDidUpdateSubject: CurrentValueSubject<[Person], Never>
     private var people: [Person]
 
     private let maximumNumberOfPeople: Int
@@ -14,7 +14,7 @@ class InMemoryPeopleService: PeopleService {
     required init(maximumNumberOfPeople: Int = 2) {
         self.maximumNumberOfPeople = maximumNumberOfPeople
         self.minimumNumberOfPeople = 2
-        self.peopleDidUpdateSubject = .init()
+        self.peopleDidUpdateSubject = .init([])
         self.people = []
     }
 

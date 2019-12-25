@@ -4,17 +4,20 @@ import SwiftUI
 
 final class ViewModelFactory {
     private let receiptPositionService: ReceiptPositionService
+    private let receiptPositionService2: ReceiptPositionService2
     private let peopleService: PeopleService
-    private let divider: Divider
+    private let divider: Divider2
     private let numberFormatter: NumberFormatter
 
     init(
         receiptPositionService: ReceiptPositionService,
+        receiptPositionService2: ReceiptPositionService2,
         peopleService: PeopleService,
-        divider: Divider,
+        divider: Divider2,
         numberFormatter: NumberFormatter
     ) {
         self.receiptPositionService = receiptPositionService
+        self.receiptPositionService2 = receiptPositionService2
         self.peopleService = peopleService
         self.divider = divider
         self.numberFormatter = numberFormatter
@@ -22,6 +25,10 @@ final class ViewModelFactory {
 }
 
 extension ViewModelFactory {
+    var receiptViewModel: ReceiptViewModel {
+        .init(receiptPositionService: receiptPositionService2, numberFormatter: numberFormatter)
+    }
+
     var receiptListViewModel: ReceiptListViewModel {
         .init(
             receiptPositionService: receiptPositionService,
@@ -44,7 +51,12 @@ extension ViewModelFactory {
     }
 
     func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        .init(positions: positions, peopleService: peopleService, divider: divider, numberFormatter: numberFormatter)
+        .init(
+            receiptPositionService: receiptPositionService2,
+            peopleService: peopleService,
+            divider: divider,
+            numberFormatter: numberFormatter
+        )
     }
 
     var settingsViewModel: SettingsViewModel {

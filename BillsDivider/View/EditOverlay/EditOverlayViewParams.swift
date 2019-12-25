@@ -27,7 +27,3 @@ struct EditOverlayViewParams {
         .init(show: true, mode: .editing, position: position)
     }
 }
-
-enum EditOverlayViewMode {
-    case adding, editing
-}

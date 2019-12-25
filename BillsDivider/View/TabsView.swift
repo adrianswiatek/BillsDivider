@@ -15,10 +15,14 @@ struct TabsView: View {
 
     var body: some View {
         TabView {
-            ReceiptListView(receiptListViewModel, viewModelFactory).tabItem {
+            ReceiptView(viewModelFactory.receiptViewModel).tabItem {
                 Image(systemName: "list.dash")
                 Text("Receipt")
             }
+//            ReceiptListView(receiptListViewModel, viewModelFactory).tabItem {
+//                Image(systemName: "list.dash")
+//                Text("Receipt")
+//            }
 
             SummaryView(summaryViewModel).tabItem {
                 Image(systemName: "doc.text")

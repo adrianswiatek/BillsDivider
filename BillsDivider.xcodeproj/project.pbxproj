@@ -48,6 +48,13 @@
 		A7743613239A9760008F53B5 /* ReceiptListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743612239A9760008F53B5 /* ReceiptListViewModelTests.swift */; };
 		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
 		A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptListUITests.swift */; };
+		A7788B4523B398DD0059EB71 /* ReceiptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4423B398DD0059EB71 /* ReceiptViewModel.swift */; };
+		A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4623B3991A0059EB71 /* ReceiptView.swift */; };
+		A7788B4923B3B3920059EB71 /* ReceiptPositions2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4823B3B3920059EB71 /* ReceiptPositions2.swift */; };
+		A7788B4C23B3B47E0059EB71 /* Owner2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4B23B3B47E0059EB71 /* Owner2.swift */; };
+		A7788B4E23B3B5810059EB71 /* Buyer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4D23B3B5810059EB71 /* Buyer2.swift */; };
+		A7788B5023B3B6CE0059EB71 /* ReceiptPositionService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4F23B3B6CE0059EB71 /* ReceiptPositionService2.swift */; };
+		A7788B5223B3B6FD0059EB71 /* InMemoryReceiptPositionService2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B5123B3B6FD0059EB71 /* InMemoryReceiptPositionService2.swift */; };
 		A7794C39239D52E90001EB73 /* CoreDataReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */; };
 		A77D54C323819182003D7E9D /* Buyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C223819182003D7E9D /* Buyer.swift */; };
 		A77D54C523819198003D7E9D /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54C423819198003D7E9D /* Owner.swift */; };
@@ -61,6 +68,9 @@
 		A78B1B8E239EB12F006A1B91 /* SqliteCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */; };
 		A78B1B90239EB14C006A1B91 /* InMemoryCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */; };
 		A78B1B98239EB814006A1B91 /* ReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */; };
+		A7A3336D23B3BD9300DBA26E /* EditOverlayViewParams2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams2.swift */; };
+		A7A3336F23B3D6CA00DBA26E /* Divider2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3336E23B3D6CA00DBA26E /* Divider2.swift */; };
+		A7A3337123B3D6E600DBA26E /* DivisionResult2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3337023B3D6E600DBA26E /* DivisionResult2.swift */; };
 		A7B7DE58238C5F1600D38BC8 /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */; };
 		A7B7DE5A238C79E800D38BC8 /* DivisionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */; };
 		A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */; };
@@ -140,6 +150,13 @@
 		A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A774361C239AB696008F53B5 /* ReceiptListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListUITests.swift; sourceTree = "<group>"; };
 		A774361E239AB696008F53B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7788B4423B398DD0059EB71 /* ReceiptViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewModel.swift; sourceTree = "<group>"; };
+		A7788B4623B3991A0059EB71 /* ReceiptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
+		A7788B4823B3B3920059EB71 /* ReceiptPositions2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositions2.swift; sourceTree = "<group>"; };
+		A7788B4B23B3B47E0059EB71 /* Owner2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner2.swift; sourceTree = "<group>"; };
+		A7788B4D23B3B5810059EB71 /* Buyer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buyer2.swift; sourceTree = "<group>"; };
+		A7788B4F23B3B6CE0059EB71 /* ReceiptPositionService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionService2.swift; sourceTree = "<group>"; };
+		A7788B5123B3B6FD0059EB71 /* InMemoryReceiptPositionService2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionService2.swift; sourceTree = "<group>"; };
 		A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataReceiptPositionService.swift; sourceTree = "<group>"; };
 		A77D54C223819182003D7E9D /* Buyer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buyer.swift; sourceTree = "<group>"; };
 		A77D54C423819198003D7E9D /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
@@ -153,6 +170,9 @@
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionService.swift; sourceTree = "<group>"; };
+		A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewParams2.swift; sourceTree = "<group>"; };
+		A7A3336E23B3D6CA00DBA26E /* Divider2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider2.swift; sourceTree = "<group>"; };
+		A7A3337023B3D6E600DBA26E /* DivisionResult2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionResult2.swift; sourceTree = "<group>"; };
 		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
 		A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionResult.swift; sourceTree = "<group>"; };
 		A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtensions.swift; sourceTree = "<group>"; };
@@ -233,6 +253,9 @@
 				A77D54C423819198003D7E9D /* Owner.swift */,
 				A7705B9023AD83AD0073D8E8 /* Person.swift */,
 				A736A19B2369DE100096C2E1 /* ReceiptPosition.swift */,
+				A7788B4823B3B3920059EB71 /* ReceiptPositions2.swift */,
+				A7788B4D23B3B5810059EB71 /* Buyer2.swift */,
+				A7788B4B23B3B47E0059EB71 /* Owner2.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +275,7 @@
 			children = (
 				A734263723A1428100BAEFF0 /* EditOverlayViewModel */,
 				A77FAD1F2384B30E00B66C98 /* ReceiptListViewModel.swift */,
+				A7788B4423B398DD0059EB71 /* ReceiptViewModel.swift */,
 				A75443C223A94A0F00A8775E /* SettingsViewModel.swift */,
 				A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */,
 				A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */,
@@ -377,6 +401,7 @@
 			children = (
 				A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */,
 				A7FED237235CEF8B00CCD069 /* ReceiptListView.swift */,
+				A7788B4623B3991A0059EB71 /* ReceiptView.swift */,
 			);
 			path = ReceiptList;
 			sourceTree = "<group>";
@@ -387,6 +412,7 @@
 				A77FAD212384B3F000B66C98 /* Sections */,
 				A73283F5237F68990012CBB8 /* EditOverlayView.swift */,
 				A75E802423A1727C00B549F9 /* EditOverlayViewParams.swift */,
+				A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams2.swift */,
 			);
 			path = EditOverlay;
 			sourceTree = "<group>";
@@ -416,6 +442,8 @@
 				A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */,
 				A7290222239F07C90012FA47 /* InMemoryReceiptPositionService.swift */,
 				A78B1B97239EB814006A1B91 /* ReceiptPositionService.swift */,
+				A7788B4F23B3B6CE0059EB71 /* ReceiptPositionService2.swift */,
+				A7788B5123B3B6FD0059EB71 /* InMemoryReceiptPositionService2.swift */,
 			);
 			path = ReceiptPositionService;
 			sourceTree = "<group>";
@@ -433,6 +461,8 @@
 			children = (
 				A7B7DE59238C79E800D38BC8 /* DivisionResult.swift */,
 				A76BBCCD23947CAC003AE654 /* Divider.swift */,
+				A7A3336E23B3D6CA00DBA26E /* Divider2.swift */,
+				A7A3337023B3D6E600DBA26E /* DivisionResult2.swift */,
 			);
 			path = Divider;
 			sourceTree = "<group>";
@@ -704,18 +734,24 @@
 				A77FAD202384B30E00B66C98 /* ReceiptListViewModel.swift in Sources */,
 				A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */,
 				A7290223239F07C90012FA47 /* InMemoryReceiptPositionService.swift in Sources */,
+				A7788B4E23B3B5810059EB71 /* Buyer2.swift in Sources */,
 				A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */,
 				A7705B9123AD83AD0073D8E8 /* Person.swift in Sources */,
 				A754170723A05537008DB5F7 /* CoreDataStack.swift in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
 				A7794C39239D52E90001EB73 /* CoreDataReceiptPositionService.swift in Sources */,
+				A7A3337123B3D6E600DBA26E /* DivisionResult2.swift in Sources */,
 				A75E802523A1727C00B549F9 /* EditOverlayViewParams.swift in Sources */,
 				A7705B9623AD868F0073D8E8 /* PeopleService.swift in Sources */,
+				A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */,
 				A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */,
+				A7788B5223B3B6FD0059EB71 /* InMemoryReceiptPositionService2.swift in Sources */,
 				A77D54C323819182003D7E9D /* Buyer.swift in Sources */,
+				A7788B4923B3B3920059EB71 /* ReceiptPositions2.swift in Sources */,
 				A75E802023A15D6600B549F9 /* EditOverlayStrategy.swift in Sources */,
 				A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */,
 				A7FED238235CEF8B00CCD069 /* ReceiptListView.swift in Sources */,
+				A7788B4523B398DD0059EB71 /* ReceiptViewModel.swift in Sources */,
 				A7B7DE58238C5F1600D38BC8 /* SummaryViewModel.swift in Sources */,
 				A736A19C2369DE100096C2E1 /* ReceiptPosition.swift in Sources */,
 				A73283F6237F68990012CBB8 /* EditOverlayView.swift in Sources */,
@@ -724,7 +760,11 @@
 				A75E802223A15D8800B549F9 /* EditingModeStrategy.swift in Sources */,
 				A77D54C523819198003D7E9D /* Owner.swift in Sources */,
 				A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */,
+				A7A3336D23B3BD9300DBA26E /* EditOverlayViewParams2.swift in Sources */,
+				A7A3336F23B3D6CA00DBA26E /* Divider2.swift in Sources */,
+				A7788B5023B3B6CE0059EB71 /* ReceiptPositionService2.swift in Sources */,
 				A732E904239FC47600B1D0B7 /* ReceiptPositionMapper.swift in Sources */,
+				A7788B4C23B3B47E0059EB71 /* Owner2.swift in Sources */,
 				A78B1B98239EB814006A1B91 /* ReceiptPositionService.swift in Sources */,
 				A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */,
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,

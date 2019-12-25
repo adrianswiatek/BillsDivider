@@ -9,9 +9,11 @@ struct PreviewFactory {
     init() {
         receiptListColumnWidth = UIScreen.main.bounds.width / 3
         numberFormatter = .twoFractionDigitsNumberFormatter
+        let peopleService: PeopleService = InMemoryPeopleService()
         viewModelFactory = .init(
             receiptPositionService: InMemoryReceiptPositionService(),
-            peopleService: InMemoryPeopleService(),
+            receiptPositionService2: InMemoryReceiptPositionService2(peopleService: peopleService),
+            peopleService: peopleService,
             divider: .init(),
             numberFormatter: numberFormatter
         )
@@ -21,6 +23,10 @@ struct PreviewFactory {
 extension PreviewFactory {
     var tabsView: some View {
         TabsView(viewModelFactory: viewModelFactory)
+    }
+
+    var receiptView: some View {
+        ReceiptView(viewModelFactory.receiptViewModel)
     }
 
     var receiptListView: some View {

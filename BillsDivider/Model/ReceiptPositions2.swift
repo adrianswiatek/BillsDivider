@@ -1,18 +1,18 @@
 import Foundation
 
-struct ReceiptPosition: Identifiable {
+struct ReceiptPosition2: Identifiable {
     let id: UUID
     let amount: Decimal
-    let buyer: Buyer
-    let owner: Owner
+    let buyer: Buyer2
+    let owner: Owner2
 
-    static var empty: ReceiptPosition {
-        .init(amount: 0, buyer: .me, owner: .all)
+    static var empty: ReceiptPosition2 {
+        .init(amount: 0, buyer: .person(.empty), owner: .all)
     }
 }
 
-extension ReceiptPosition {
-    init(amount: Decimal, buyer: Buyer, owner: Owner) {
+extension ReceiptPosition2 {
+    init(amount: Decimal, buyer: Buyer2, owner: Owner2) {
         self.id = UUID()
         self.amount = amount
         self.buyer = buyer
@@ -20,7 +20,7 @@ extension ReceiptPosition {
     }
 }
 
-extension ReceiptPosition: Equatable {
+extension ReceiptPosition2: Equatable {
     static func ==(lhs: Self, rhs: Self) -> Bool {
         lhs.amount == rhs.amount && lhs.buyer == rhs.buyer && lhs.owner == rhs.owner
     }
