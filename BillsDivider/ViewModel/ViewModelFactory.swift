@@ -50,6 +50,19 @@ extension ViewModelFactory {
         )
     }
 
+    func editOverlayViewModel2(presentingParams: Binding<EditOverlayViewParams2>) -> EditOverlayViewModel2 {
+        let position = presentingParams.wrappedValue.position
+
+        return .init(
+            presenting: presentingParams.show,
+            editOverlayStrategy: presentingParams.wrappedValue.mode == .adding
+                ? AddingModeStrategy2(receiptPosition: position)
+                : EditingModeStrategy2(receiptPosition: position, numberFormatter: numberFormatter),
+            peopleService: peopleService,
+            numberFormatter: numberFormatter
+        )
+    }
+
     func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
         .init(
             receiptPositionService: receiptPositionService2,

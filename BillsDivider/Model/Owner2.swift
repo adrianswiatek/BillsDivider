@@ -24,3 +24,14 @@ extension Owner2: Equatable {
         }
     }
 }
+
+extension Owner2: Hashable {
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .person(let person):
+            hasher.combine(person)
+        case .all:
+            hasher.combine(self.formatted)
+        }
+    }
+}

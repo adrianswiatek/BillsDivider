@@ -6,10 +6,12 @@ struct ReceiptView: View {
     @State private var editOverlayParams: EditOverlayViewParams2 = .hidden
     @State private var presentingOptionsMenu: Bool = false
 
+    private let viewModelFactory: ViewModelFactory
     private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
 
-    init(_ viewModel: ReceiptViewModel) {
+    init(_ viewModel: ReceiptViewModel, _ viewModelFactory: ViewModelFactory) {
         self.viewModel = viewModel
+        self.viewModelFactory = viewModelFactory
     }
 
     var body: some View {
@@ -76,9 +78,9 @@ struct ReceiptView: View {
                 }
             )
         }
-//        .sheet(isPresented: $editOverlayParams.show) {
-//
-//        }
+        .sheet(isPresented: $editOverlayParams.show) {
+            self.createEditOverlayView()
+        }
         .actionSheet(isPresented: $presentingOptionsMenu) {
             ActionSheet(title: Text("Actions"), buttons: [
                 .destructive(Text("Delete all"), action: { self.viewModel.removeAllPositions() }),
@@ -89,6 +91,17 @@ struct ReceiptView: View {
 
     private func getBackgroundColor(for owner: Owner2) -> Color {
         owner == .all ? .purple : .blue
+    }
+
+    private func createEditOverlayView() -> some View {
+        editOverlayParams.providePosition(self.viewModel.positions.first)
+
+        let editOverlayViewModel = viewModelFactory.editOverlayViewModel2(presentingParams: $editOverlayParams)
+        viewModel.subscribe(
+            addingPublisher: editOverlayViewModel.positionAdded,
+            editingPublisher: editOverlayViewModel.positionEdited
+        )
+        return EditOverlayView2(editOverlayViewModel)
     }
 }
 

@@ -15,7 +15,7 @@ struct TabsView: View {
 
     var body: some View {
         TabView {
-            ReceiptView(viewModelFactory.receiptViewModel).tabItem {
+            ReceiptView(viewModelFactory.receiptViewModel, viewModelFactory).tabItem {
                 Image(systemName: "list.dash")
                 Text("Receipt")
             }

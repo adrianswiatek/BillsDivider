@@ -1,4 +1,4 @@
-enum Buyer2 {
+enum Buyer2: Hashable {
     case person(Person)
 
     var asPerson: Person {

@@ -26,7 +26,7 @@ extension PreviewFactory {
     }
 
     var receiptView: some View {
-        ReceiptView(viewModelFactory.receiptViewModel)
+        ReceiptView(viewModelFactory.receiptViewModel, viewModelFactory)
     }
 
     var receiptListView: some View {
@@ -38,7 +38,27 @@ extension PreviewFactory {
     }
 
     var editOverlayView: some View {
-        EditOverlayView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.hidden)))
+        EditOverlayView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
+    }
+
+    var editOverlayView2: some View {
+        EditOverlayView2(viewModelFactory.editOverlayViewModel2(presentingParams: .constant(.shownAdding())))
+    }
+
+    var buyerSectionView: some View {
+        BuyerSectionView(buyer: .constant(.me))
+    }
+
+    var ownerSectionView: some View {
+        OwnerSectionView(owner: .constant(.all))
+    }
+
+    var buyerSectionView2: some View {
+        BuyerSectionView2(viewModelFactory.editOverlayViewModel2(presentingParams: .constant(.shownAdding())))
+    }
+
+    var ownerSectionView2: some View {
+        OwnerSectionView2(viewModelFactory.editOverlayViewModel2(presentingParams: .constant(.shownAdding())))
     }
 
     var summaryView: some View {
