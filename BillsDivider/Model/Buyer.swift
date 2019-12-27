@@ -1,44 +1,39 @@
-enum Buyer {
-    case me
-    case notMe
+enum Buyer: Hashable {
+    case person(Person)
+
+    var asPerson: Person {
+        guard case let .person(person) = self else {
+            preconditionFailure("self must be a person")
+        }
+        return person
+    }
 
     var formatted: String {
         switch self {
-        case .me: return "Me"
-        case .notMe: return "They"
+        case .person(let person):
+            return person.name
         }
     }
 
-    static func from(string: String) -> Buyer? {
-        switch string {
-        case "me":
-            return .me
-        case "notMe":
-            return .notMe
-        default:
-            return nil
-        }
-    }
-
-    func isEqualTo(owner: Owner) -> Bool {
+    func isEqualTo(_ owner: Owner) -> Bool {
         switch (self, owner) {
-        case (.me, .me), (.notMe, .notMe):
-            return true
-        default:
+        case (_, .all):
             return false
+        case let (.person(buyerPerson), .person(ownerPerson)):
+            return buyerPerson == ownerPerson
         }
     }
 
-    func isNotEqualTo(owner: Owner) -> Bool {
-        !isEqualTo(owner: owner)
+    func isNotEqualTo(_ owner: Owner) -> Bool {
+        !isEqualTo(owner)
     }
+}
 
-    func next() -> Buyer {
-        switch self {
-        case .me:
-            return .notMe
-        case .notMe:
-            return .me
+extension Buyer: Equatable {
+    static func ==(lhs: Self, rhs: Self) -> Bool {
+        switch (lhs, rhs) {
+        case let (.person(lhsPerson), .person(rhsPerson)):
+            return lhsPerson == rhsPerson
         }
     }
 }

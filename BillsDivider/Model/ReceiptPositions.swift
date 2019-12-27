@@ -7,7 +7,7 @@ struct ReceiptPosition: Identifiable {
     let owner: Owner
 
     static var empty: ReceiptPosition {
-        .init(amount: 0, buyer: .me, owner: .all)
+        .init(amount: 0, buyer: .person(.empty), owner: .all)
     }
 }
 

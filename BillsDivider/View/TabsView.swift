@@ -2,15 +2,9 @@ import SwiftUI
 
 struct TabsView: View {
     private let viewModelFactory: ViewModelFactory
-    private let receiptListViewModel: ReceiptListViewModel
-    private let summaryViewModel: SummaryViewModel
 
     init(viewModelFactory: ViewModelFactory) {
         self.viewModelFactory = viewModelFactory
-        self.receiptListViewModel = viewModelFactory.receiptListViewModel
-
-        let positions = self.receiptListViewModel.$positions.eraseToAnyPublisher()
-        self.summaryViewModel = viewModelFactory.summaryViewModel(positions: positions)
     }
 
     var body: some View {
@@ -19,12 +13,8 @@ struct TabsView: View {
                 Image(systemName: "list.dash")
                 Text("Receipt")
             }
-//            ReceiptListView(receiptListViewModel, viewModelFactory).tabItem {
-//                Image(systemName: "list.dash")
-//                Text("Receipt")
-//            }
 
-            SummaryView(summaryViewModel).tabItem {
+            SummaryView(viewModelFactory.summaryViewModel).tabItem {
                 Image(systemName: "doc.text")
                 Text("Summary")
             }

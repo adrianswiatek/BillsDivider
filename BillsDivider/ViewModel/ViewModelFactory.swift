@@ -4,20 +4,17 @@ import SwiftUI
 
 final class ViewModelFactory {
     private let receiptPositionService: ReceiptPositionService
-    private let receiptPositionService2: ReceiptPositionService2
     private let peopleService: PeopleService
-    private let divider: Divider2
+    private let divider: Divider
     private let numberFormatter: NumberFormatter
 
     init(
         receiptPositionService: ReceiptPositionService,
-        receiptPositionService2: ReceiptPositionService2,
         peopleService: PeopleService,
-        divider: Divider2,
+        divider: Divider,
         numberFormatter: NumberFormatter
     ) {
         self.receiptPositionService = receiptPositionService
-        self.receiptPositionService2 = receiptPositionService2
         self.peopleService = peopleService
         self.divider = divider
         self.numberFormatter = numberFormatter
@@ -26,15 +23,7 @@ final class ViewModelFactory {
 
 extension ViewModelFactory {
     var receiptViewModel: ReceiptViewModel {
-        .init(receiptPositionService: receiptPositionService2, numberFormatter: numberFormatter)
-    }
-
-    var receiptListViewModel: ReceiptListViewModel {
-        .init(
-            receiptPositionService: receiptPositionService,
-            peopleService: peopleService,
-            numberFormatter: numberFormatter
-        )
+        .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
     }
 
     func editOverlayViewModel(presentingParams: Binding<EditOverlayViewParams>) -> EditOverlayViewModel {
@@ -50,22 +39,9 @@ extension ViewModelFactory {
         )
     }
 
-    func editOverlayViewModel2(presentingParams: Binding<EditOverlayViewParams2>) -> EditOverlayViewModel2 {
-        let position = presentingParams.wrappedValue.position
-
-        return .init(
-            presenting: presentingParams.show,
-            editOverlayStrategy: presentingParams.wrappedValue.mode == .adding
-                ? AddingModeStrategy2(receiptPosition: position)
-                : EditingModeStrategy2(receiptPosition: position, numberFormatter: numberFormatter),
-            peopleService: peopleService,
-            numberFormatter: numberFormatter
-        )
-    }
-
-    func summaryViewModel(positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
+    var summaryViewModel: SummaryViewModel {
         .init(
-            receiptPositionService: receiptPositionService2,
+            receiptPositionService: receiptPositionService,
             peopleService: peopleService,
             divider: divider,
             numberFormatter: numberFormatter

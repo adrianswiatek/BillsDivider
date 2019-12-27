@@ -1,15 +1,15 @@
 import SwiftUI
 
-struct ReceiptListView: View {
-    @ObservedObject private var viewModel: ReceiptListViewModel
+struct ReceiptView: View {
+    @ObservedObject private var viewModel: ReceiptViewModel
 
     @State private var editOverlayParams: EditOverlayViewParams = .hidden
     @State private var presentingOptionsMenu: Bool = false
 
-    private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
     private let viewModelFactory: ViewModelFactory
+    private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
 
-    init(_ viewModel: ReceiptListViewModel, _ viewModelFactory: ViewModelFactory) {
+    init(_ viewModel: ReceiptViewModel, _ viewModelFactory: ViewModelFactory) {
         self.viewModel = viewModel
         self.viewModelFactory = viewModelFactory
     }
@@ -29,7 +29,7 @@ struct ReceiptListView: View {
                                 .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
                                 .background(
                                     Capsule(style: .continuous)
-                                        .foregroundColor(self.getBuyerColor(for: position))
+                                        .foregroundColor(.blue)
                                 )
                                 .frame(width: self.columnWidth)
 
@@ -39,7 +39,7 @@ struct ReceiptListView: View {
                                 .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
                                 .background(
                                     Capsule(style: .continuous)
-                                        .foregroundColor(self.getOwnerColor(for: position))
+                                        .foregroundColor(self.getBackgroundColor(for: position.owner))
                                 )
                                 .frame(width: self.columnWidth)
                         }
@@ -71,7 +71,7 @@ struct ReceiptListView: View {
                         .frame(width: 32, height: 32)
                         .rotationEffect(.degrees(90))
                 }
-                .disabled(viewModel.positions.isEmpty),
+                .disabled(viewModel.ellipsisModeDisabled),
                 trailing: Button(action: { self.editOverlayParams = .shownAdding() }) {
                     Image(systemName: "plus")
                         .frame(width: 32, height: 32)
@@ -83,18 +83,14 @@ struct ReceiptListView: View {
         }
         .actionSheet(isPresented: $presentingOptionsMenu) {
             ActionSheet(title: Text("Actions"), buttons: [
-                .destructive(Text("Remove all"), action: { self.viewModel.removeAllPositions() }),
+                .destructive(Text("Delete all"), action: { self.viewModel.removeAllPositions() }),
                 .cancel()
             ])
         }
     }
 
-    private func getBuyerColor(for position: ReceiptPosition) -> Color {
-        .blue
-    }
-
-    private func getOwnerColor(for position: ReceiptPosition) -> Color {
-        position.owner == .all ? .purple : .blue
+    private func getBackgroundColor(for owner: Owner) -> Color {
+        owner == .all ? .purple : .blue
     }
 
     private func createEditOverlayView() -> some View {
@@ -109,8 +105,8 @@ struct ReceiptListView: View {
     }
 }
 
-struct ReceiptListView_Previews: PreviewProvider {
+struct ReceiptView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewFactory().receiptListView
+        PreviewFactory().receiptView
     }
 }

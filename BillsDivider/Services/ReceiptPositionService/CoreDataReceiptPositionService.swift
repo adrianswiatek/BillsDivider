@@ -3,34 +3,81 @@ import CoreData
 
 final class CoreDataReceiptPositionService: ReceiptPositionService {
     var positionsDidUpdate: AnyPublisher<[ReceiptPosition], Never> {
-        positionsDidUpdateSubject.eraseToAnyPublisher()
+         positionsDidUpdateSubject.eraseToAnyPublisher()
     }
 
-    private let positionsDidUpdateSubject: PassthroughSubject<[ReceiptPosition], Never>
+    private let peopleService: PeopleService
     private let context: NSManagedObjectContext
     private let mapper: ReceiptPositionMapper
 
-    init(context: NSManagedObjectContext, mapper: ReceiptPositionMapper) {
-        self.positionsDidUpdateSubject = .init()
+    private let positionsDidUpdateSubject: PassthroughSubject<[ReceiptPosition], Never>
+    private var subscriptions: [AnyCancellable]
+
+    init(context: NSManagedObjectContext, mapper: ReceiptPositionMapper, peopleService: PeopleService) {
         self.context = context
         self.mapper = mapper
+        self.peopleService = peopleService
+        self.positionsDidUpdateSubject = .init()
+        self.subscriptions = []
+
+        subscribe(to: peopleService.peopleDidUpdate)
     }
 
-    func set(_ positions: [ReceiptPosition]) {
-        removeExistingPositions()
+    func insert(_ position: ReceiptPosition) {
+        var positions = fetchPositions()
+        removeAllPositions()
 
-        positions
-            .enumerated()
-            .map { self.mapper.map($1, $0, self.context) }
-            .forEach { context.insert($0) }
+        positions.insert(position, at: 0)
 
+        insert(positions)
         save()
 
         positionsDidUpdateSubject.send(positions)
     }
 
+    private func insert(_ positions: [ReceiptPosition]) {
+        positions
+            .enumerated()
+            .map { mapper.map($1, $0, context) }
+            .forEach { context.insert($0) }
+    }
+
+    func update(_ position: ReceiptPosition) {
+        var positions = fetchPositions()
+        removeAllPositions()
+
+        guard let index = positions.firstIndex(where: { $0.id == position.id}) else {
+            return
+        }
+
+        positions[index] = position
+
+        insert(positions)
+        save()
+
+        positionsDidUpdateSubject.send(positions)
+    }
+
+    func remove(_ position: ReceiptPosition) {
+        var positions = fetchPositions()
+        removeAllPositions()
+
+        positions.removeAll { $0 == position }
+
+        insert(positions)
+        save()
+
+        positionsDidUpdateSubject.send(positions)
+    }
+
+    func removeAllPositions() {
+        fetchEntities(sorted: false).forEach { context.delete($0) }
+        positionsDidUpdateSubject.send([])
+    }
+
     func fetchPositions() -> [ReceiptPosition] {
-        fetchEntities(sorted: true).compactMap { self.mapper.map($0) }
+        let people = peopleService.fetchPeople()
+        return fetchEntities(sorted: true).compactMap { self.mapper.map($0, people) }
     }
 
     private func fetchEntities(sorted: Bool) -> [ReceiptPositionEntity] {
@@ -43,13 +90,17 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
         return (try? context.fetch(request)) ?? []
     }
 
-    private func removeExistingPositions() {
-        fetchEntities(sorted: false).forEach { context.delete($0) }
-        positionsDidUpdateSubject.send([])
-    }
-
     private func save() {
         guard context.hasChanges else { return }
         try? context.save()
+    }
+
+    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+        peopleDidUpdate
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.positionsDidUpdateSubject.send(self.fetchPositions())
+            }
+            .store(in: &subscriptions)
     }
 }

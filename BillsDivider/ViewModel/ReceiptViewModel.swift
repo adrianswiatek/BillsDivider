@@ -2,15 +2,19 @@ import Combine
 import Foundation
 
 class ReceiptViewModel: ObservableObject {
-    @Published var positions: [ReceiptPosition2]
+    @Published var positions: [ReceiptPosition]
 
-    private let receiptPositionService: ReceiptPositionService2
+    var ellipsisModeDisabled: Bool {
+        positions.isEmpty
+    }
+
+    private let receiptPositionService: ReceiptPositionService
     private let numberFormatter: NumberFormatter
 
     private var externalSubscriptions: [AnyCancellable]
     private var internalSubscriptions: [AnyCancellable]
 
-    init(receiptPositionService: ReceiptPositionService2, numberFormatter: NumberFormatter) {
+    init(receiptPositionService: ReceiptPositionService, numberFormatter: NumberFormatter) {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
         self.positions = []
@@ -21,8 +25,8 @@ class ReceiptViewModel: ObservableObject {
     }
 
     func subscribe(
-        addingPublisher: AnyPublisher<ReceiptPosition2, Never>,
-        editingPublisher: AnyPublisher<ReceiptPosition2, Never>
+        addingPublisher: AnyPublisher<ReceiptPosition, Never>,
+        editingPublisher: AnyPublisher<ReceiptPosition, Never>
     ) {
         externalSubscriptions.removeAll()
 
@@ -40,7 +44,7 @@ class ReceiptViewModel: ObservableObject {
         removePosition(positions[index])
     }
 
-    func removePosition(_ position: ReceiptPosition2) {
+    func removePosition(_ position: ReceiptPosition) {
         receiptPositionService.remove(position)
     }
 
@@ -52,7 +56,7 @@ class ReceiptViewModel: ObservableObject {
         numberFormatter.format(value: value)
     }
 
-    private func subscribe(to receiptPositionDidUpdate: AnyPublisher<[ReceiptPosition2], Never>) {
+    private func subscribe(to receiptPositionDidUpdate: AnyPublisher<[ReceiptPosition], Never>) {
         receiptPositionDidUpdate
             .sink { [weak self] in self?.positions = $0 }
             .store(in: &internalSubscriptions)

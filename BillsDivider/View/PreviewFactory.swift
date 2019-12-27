@@ -11,8 +11,7 @@ struct PreviewFactory {
         numberFormatter = .twoFractionDigitsNumberFormatter
         let peopleService: PeopleService = InMemoryPeopleService()
         viewModelFactory = .init(
-            receiptPositionService: InMemoryReceiptPositionService(),
-            receiptPositionService2: InMemoryReceiptPositionService2(peopleService: peopleService),
+            receiptPositionService: InMemoryReceiptPositionService(peopleService: peopleService),
             peopleService: peopleService,
             divider: .init(),
             numberFormatter: numberFormatter
@@ -29,10 +28,6 @@ extension PreviewFactory {
         ReceiptView(viewModelFactory.receiptViewModel, viewModelFactory)
     }
 
-    var receiptListView: some View {
-        ReceiptListView(viewModelFactory.receiptListViewModel, viewModelFactory)
-    }
-
     var receiptHeaderView: some View {
         ReceiptHeaderView(receiptListColumnWidth)
     }
@@ -41,30 +36,16 @@ extension PreviewFactory {
         EditOverlayView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
     }
 
-    var editOverlayView2: some View {
-        EditOverlayView2(viewModelFactory.editOverlayViewModel2(presentingParams: .constant(.shownAdding())))
-    }
-
     var buyerSectionView: some View {
-        BuyerSectionView(buyer: .constant(.me))
+        BuyerSectionView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
     }
 
     var ownerSectionView: some View {
-        OwnerSectionView(owner: .constant(.all))
-    }
-
-    var buyerSectionView2: some View {
-        BuyerSectionView2(viewModelFactory.editOverlayViewModel2(presentingParams: .constant(.shownAdding())))
-    }
-
-    var ownerSectionView2: some View {
-        OwnerSectionView2(viewModelFactory.editOverlayViewModel2(presentingParams: .constant(.shownAdding())))
+        OwnerSectionView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
     }
 
     var summaryView: some View {
-        SummaryView(viewModelFactory.summaryViewModel(
-            positions: Empty<[ReceiptPosition], Never>().eraseToAnyPublisher()
-        ))
+        SummaryView(viewModelFactory.summaryViewModel)
     }
 
     var settingsView: some View {

@@ -2,10 +2,10 @@ import Combine
 import Foundation
 
 class SummaryViewModel: ObservableObject {
-    @Published private var divisionResult: DivisionResult2
+    @Published private var divisionResult: DivisionResult
 
-    var leftSidedBuyer: Buyer2
-    var rightSidedBuyer: Buyer2
+    var leftSidedBuyer: Buyer
+    var rightSidedBuyer: Buyer
 
     var formattedDirection: String {
         switch divisionResult {
@@ -22,17 +22,17 @@ class SummaryViewModel: ObservableObject {
         return numberFormatter.format(value: divisionResult.debtAmount)
     }
 
-    private let receiptPositionService: ReceiptPositionService2
-    private let divider: Divider2
+    private let receiptPositionService: ReceiptPositionService
+    private let divider: Divider
     private let numberFormatter: NumberFormatter
 
     private var people: [Person]
     private var subscriptions: [AnyCancellable]
 
     init(
-        receiptPositionService: ReceiptPositionService2,
+        receiptPositionService: ReceiptPositionService,
         peopleService: PeopleService,
-        divider: Divider2,
+        divider: Divider,
         numberFormatter: NumberFormatter
     ) {
         self.receiptPositionService = receiptPositionService
@@ -50,7 +50,7 @@ class SummaryViewModel: ObservableObject {
         self.subscribe(to: peopleService.peopleDidUpdate)
     }
 
-    private func subscribe(to positionsDidUpdate: AnyPublisher<[ReceiptPosition2], Never>) {
+    private func subscribe(to positionsDidUpdate: AnyPublisher<[ReceiptPosition], Never>) {
         positionsDidUpdate
             .sink { [weak self] in
                 guard let self = self else { return }
