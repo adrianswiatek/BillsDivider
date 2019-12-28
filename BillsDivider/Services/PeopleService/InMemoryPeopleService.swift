@@ -1,17 +1,17 @@
 import Combine
 
-class InMemoryPeopleService: PeopleService {
+final class InMemoryPeopleService: PeopleService {
     var peopleDidUpdate: AnyPublisher<[Person], Never> {
         peopleDidUpdateSubject.eraseToAnyPublisher()
     }
 
-    private var peopleDidUpdateSubject: CurrentValueSubject<[Person], Never>
+    let maximumNumberOfPeople: Int
+    let minimumNumberOfPeople: Int
+
+    private let peopleDidUpdateSubject: CurrentValueSubject<[Person], Never>
     private var people: [Person]
 
-    private let maximumNumberOfPeople: Int
-    private let minimumNumberOfPeople: Int
-
-    required init(maximumNumberOfPeople: Int = 2) {
+    init(maximumNumberOfPeople: Int) {
         self.maximumNumberOfPeople = maximumNumberOfPeople
         self.minimumNumberOfPeople = 2
         self.peopleDidUpdateSubject = .init([])
@@ -29,13 +29,5 @@ class InMemoryPeopleService: PeopleService {
     func updatePeople(_ people: [Person]) {
         self.people = people
         self.peopleDidUpdateSubject.send(people)
-    }
-
-    func canAddPerson() -> Bool {
-        getNumberOfPeople() < maximumNumberOfPeople
-    }
-
-    func canRemovePerson() -> Bool {
-        getNumberOfPeople() > minimumNumberOfPeople
     }
 }

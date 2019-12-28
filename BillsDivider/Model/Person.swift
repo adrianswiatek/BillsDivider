@@ -1,7 +1,7 @@
 import Foundation
 
 struct Person: Equatable, Hashable, Identifiable {
-    enum State {
+    enum State: String {
         case `default`
         case empty
         case generated
@@ -53,5 +53,14 @@ struct Person: Equatable, Hashable, Identifiable {
 extension Person: CustomDebugStringConvertible {
     var debugDescription: String {
         "\(Person.self)(id: \(id), name: \(name), state: \(state))"
+    }
+}
+
+extension Person {
+    static func fromEntity(_ entity: PersonEntity) -> Person {
+        guard let id = entity.id, let name = entity.name, let state = State(rawValue: entity.state ?? "") else {
+            preconditionFailure("Unable to create Person from entity")
+        }
+        return .init(id: id, name: name, state: state)
     }
 }

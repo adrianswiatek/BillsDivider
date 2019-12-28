@@ -27,19 +27,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func getRootView() -> some View {
-        let peopleService: PeopleService = preparePeopleService()
-        let receiptPositionService: ReceiptPositionService =
-            CoreDataReceiptPositionService(
-                context: getCoreDataStack().context,
-                mapper: .init(),
-                peopleService: peopleService
-        )
+        let context: NSManagedObjectContext = getCoreDataStack().context
+        let peopleService: PeopleService = preparePeopleService(context)
+
         let viewModelFactory = ViewModelFactory(
-            receiptPositionService: receiptPositionService,
+            receiptPositionService: prepareReceiptPositionService(context, peopleService),
             peopleService: peopleService,
             divider: .init(),
             numberFormatter: .twoFractionDigitsNumberFormatter
         )
+
         return TabsView(viewModelFactory: viewModelFactory)
     }
 
@@ -47,8 +44,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         isUiTesting ? InMemoryCoreDataStack() : SqliteCoreDataStack()
     }
 
-    private func preparePeopleService() -> PeopleService {
-        let peopleService = InMemoryPeopleService()
+    private func prepareReceiptPositionService(
+        _ context: NSManagedObjectContext,
+        _ peopleService: PeopleService
+    ) -> ReceiptPositionService {
+        CoreDataReceiptPositionService(
+            context: context,
+            mapper: .init(),
+            peopleService: peopleService
+        )
+    }
+
+    private func preparePeopleService(_ context: NSManagedObjectContext) -> PeopleService {
+        let peopleService = CoreDataPeopleService(context: context, maximumNumberOfPeople: 2)
         let numberOfPeople = peopleService.getNumberOfPeople()
         let minimumNumberOfPeople = 2
 

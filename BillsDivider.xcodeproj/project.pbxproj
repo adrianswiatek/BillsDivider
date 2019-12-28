@@ -63,6 +63,7 @@
 		A7AC988423B69F48003D8AE6 /* EditOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988323B69F48003D8AE6 /* EditOverlayView.swift */; };
 		A7AC988623B6A01A003D8AE6 /* BuyerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */; };
 		A7AC988823B6A032003D8AE6 /* OwnerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */; };
+		A7AC988A23B6D788003D8AE6 /* CoreDataPeopleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988923B6D788003D8AE6 /* CoreDataPeopleService.swift */; };
 		A7B7DE58238C5F1600D38BC8 /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */; };
 		A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */; };
 		A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */; };
@@ -155,6 +156,7 @@
 		A7AC988323B69F48003D8AE6 /* EditOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayView.swift; sourceTree = "<group>"; };
 		A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerSectionView.swift; sourceTree = "<group>"; };
 		A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSectionView.swift; sourceTree = "<group>"; };
+		A7AC988923B6D788003D8AE6 /* CoreDataPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleService.swift; sourceTree = "<group>"; };
 		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
 		A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtensions.swift; sourceTree = "<group>"; };
 		A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		A7705B9423AD86570073D8E8 /* PeopleService */ = {
 			isa = PBXGroup;
 			children = (
+				A7AC988923B6D788003D8AE6 /* CoreDataPeopleService.swift */,
 				A7F3D4FF23AFF9F100B9AD14 /* InMemoryPeopleService.swift */,
 				A7705B9523AD868F0073D8E8 /* PeopleService.swift */,
 			);
@@ -703,6 +706,7 @@
 				A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */,
 				A7788B4E23B3B5810059EB71 /* Buyer.swift in Sources */,
 				A7AC987E23B69C5B003D8AE6 /* EditOverlayStrategy.swift in Sources */,
+				A7AC988A23B6D788003D8AE6 /* CoreDataPeopleService.swift in Sources */,
 				A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */,
 				A7705B9123AD83AD0073D8E8 /* Person.swift in Sources */,
 				A754170723A05537008DB5F7 /* CoreDataStack.swift in Sources */,

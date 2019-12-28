@@ -9,7 +9,7 @@ struct PreviewFactory {
     init() {
         receiptListColumnWidth = UIScreen.main.bounds.width / 3
         numberFormatter = .twoFractionDigitsNumberFormatter
-        let peopleService: PeopleService = InMemoryPeopleService()
+        let peopleService: PeopleService = InMemoryPeopleService(maximumNumberOfPeople: 2)
         viewModelFactory = .init(
             receiptPositionService: InMemoryReceiptPositionService(peopleService: peopleService),
             peopleService: peopleService,

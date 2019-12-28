@@ -1,9 +1,10 @@
 import Combine
 
 protocol PeopleService {
-    var peopleDidUpdate: AnyPublisher<[Person], Never> { get }
+    var maximumNumberOfPeople: Int { get }
+    var minimumNumberOfPeople: Int { get }
 
-    init(maximumNumberOfPeople: Int)
+    var peopleDidUpdate: AnyPublisher<[Person], Never> { get }
     
     func getNumberOfPeople() -> Int
     func fetchPeople() -> [Person]
@@ -11,4 +12,14 @@ protocol PeopleService {
 
     func canAddPerson() -> Bool
     func canRemovePerson() -> Bool
+}
+
+extension PeopleService {
+    func canAddPerson() -> Bool {
+        getNumberOfPeople() < maximumNumberOfPeople
+    }
+
+    func canRemovePerson() -> Bool {
+        getNumberOfPeople() > minimumNumberOfPeople
+    }
 }
