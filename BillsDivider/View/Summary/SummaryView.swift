@@ -33,7 +33,7 @@ struct SummaryView: View {
                     .offset(x: 0, y: 16)
 
                 HStack {
-                    generatePersonView(withLabel: viewModel.formattedLeftSidedBuyer)
+                    generatePersonView(withLabel: viewModel.leftSidedBuyer.formatted)
 
                     Spacer()
 
@@ -42,7 +42,7 @@ struct SummaryView: View {
 
                     Spacer()
 
-                    generatePersonView(withLabel: viewModel.formattedRightSidedBuyer)
+                    generatePersonView(withLabel: viewModel.rightSidedBuyer.formatted)
                 }
             }
             .padding(.horizontal)

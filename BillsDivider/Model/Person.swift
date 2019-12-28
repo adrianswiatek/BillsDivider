@@ -1,6 +1,6 @@
 import Foundation
 
-struct Person: Equatable, Identifiable {
+struct Person: Equatable, Hashable, Identifiable {
     enum State {
         case `default`
         case empty
