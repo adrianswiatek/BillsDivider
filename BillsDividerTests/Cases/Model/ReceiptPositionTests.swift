@@ -2,39 +2,47 @@
 import XCTest
 
 class ReceiptPositionTests: XCTestCase {
-    func testEmpty_returnsReceiptPositionWithZeroAmountBuyerSetToMeAndOwnerSetToAll() {
-        let sut: ReceiptPosition = .empty
-        XCTAssertEqual(sut.amount, 0)
-        XCTAssertEqual(sut.buyer, .me)
-        XCTAssertEqual(sut.owner, .all)
+    func testEmpty_returnsReceiptPositionWithZeroAmount() {
+        XCTAssertEqual(ReceiptPosition.empty.amount, 0)
     }
 
-    func testEquals_theSamePositions_returnsTrue() {
-        let position = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        XCTAssertEqual(position, position)
+    func testEmpty_returnsReceiptPositionWithBuyerAsEmptyPerson() {
+        XCTAssertEqual(ReceiptPosition.empty.buyer, .person(.empty))
+    }
+
+    func testEmpty_returnsReceiptPositionWithOwnerSetToAll() {
+        XCTAssertEqual(ReceiptPosition.empty.owner, .all)
+    }
+
+    func testEquals_twoTheSamePositions_returnsTrue() {
+        let position: ReceiptPosition = .init(amount: 1, buyer: .person(.empty), owner: .all)
+        XCTAssertTrue(position == position)
     }
 
     func testEquals_twoNewButTheSamePositions_returnsTrue() {
-        let position1 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        let position2 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        XCTAssertEqual(position1, position2)
+        let person = Person.withName("My name")
+        let position1 = ReceiptPosition(amount: 1, buyer: .person(person), owner: .all)
+        let position2 = ReceiptPosition(amount: 1, buyer: .person(person), owner: .all)
+        XCTAssertTrue(position1 == position2)
     }
 
     func testEquals_twoPositionsWithDifferentAmount_returnsFalse() {
-        let position1 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        let position2 = ReceiptPosition(amount: 2, buyer: .me, owner: .notMe)
-        XCTAssertNotEqual(position1, position2)
+        let person = Person.withName("My name")
+        let position1 = ReceiptPosition(amount: 1, buyer: .person(person), owner: .all)
+        let position2 = ReceiptPosition(amount: 2, buyer: .person(person), owner: .all)
+        XCTAssertFalse(position1 == position2)
     }
 
     func testEquals_twoPositionsWithDifferentBuyer_returnsFalse() {
-        let position1 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        let position2 = ReceiptPosition(amount: 1, buyer: .notMe, owner: .notMe)
-        XCTAssertNotEqual(position1, position2)
+        let position1 = ReceiptPosition(amount: 1, buyer: .person(.withGeneratedName(forNumber: 1)), owner: .all)
+        let position2 = ReceiptPosition(amount: 1, buyer: .person(.withGeneratedName(forNumber: 2)), owner: .all)
+        XCTAssertFalse(position1 == position2)
     }
 
     func testEquals_twoPositionsWithDifferentOwner_returnsFalse() {
-        let position1 = ReceiptPosition(amount: 1, buyer: .me, owner: .me)
-        let position2 = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        XCTAssertNotEqual(position1, position2)
+        let person = Person.withName("My name")
+        let position1 = ReceiptPosition(amount: 1, buyer: .person(person), owner: .person(person))
+        let position2 = ReceiptPosition(amount: 1, buyer: .person(person), owner: .all)
+        XCTAssertFalse(position1 == position2)
     }
 }
