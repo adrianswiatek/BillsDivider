@@ -3,7 +3,7 @@ import XCTest
 
 class OwnerTests: XCTestCase {
     func testFormatted_personCase_returnsGivenPersonName() {
-        XCTAssertEqual(Owner.person(.init(name: "My name")).formatted, "My name")
+        XCTAssertEqual(Owner.person(.withName("My name")).formatted, "My name")
     }
 
     func testAsPerson_allCase_returnsNil() {
@@ -26,12 +26,12 @@ class OwnerTests: XCTestCase {
 
     func testEquals_twoTheSamePersonCases_returnsTrue() {
         let person: Person = .withGeneratedName(forNumber: 1)
-        XCTAssertEqual(person, person)
+        XCTAssertTrue(Owner.person(person) == Owner.person(person))
     }
 
     func testEquals_twoDifferentPersonCases_returnsFalse() {
         let person1: Person = .withGeneratedName(forNumber: 1)
         let person2: Person = .withGeneratedName(forNumber: 2)
-        XCTAssertNotEqual(person1, person2)
+        XCTAssertFalse(Owner.person(person1) == Owner.person(person2))
     }
 }
