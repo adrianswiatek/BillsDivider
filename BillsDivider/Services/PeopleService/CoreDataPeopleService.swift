@@ -25,24 +25,15 @@ final class CoreDataPeopleService: PeopleService {
     }
 
     func fetchPeople() -> [Person] {
-        fetchEntities().map { Person.fromEntity($0) }
+        fetchEntities().map { $0.asPerson() }
     }
 
     func updatePeople(_ people: [Person]) {
         removeAllPeople()
 
         people.enumerated()
-            .map {
-                let entity = PersonEntity(context: context)
-                entity.id = $1.id
-                entity.name = $1.name
-                entity.state = $1.state.rawValue
-                entity.orderNumber = Int32($0)
-                return entity
-            }
-            .forEach {
-                context.insert($0)
-            }
+            .map { $1.asPersonEntity(orderNumber: $0, context: context) }
+            .forEach { context.insert($0) }
 
         save()
 

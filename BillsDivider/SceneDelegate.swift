@@ -48,11 +48,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         _ context: NSManagedObjectContext,
         _ peopleService: PeopleService
     ) -> ReceiptPositionService {
-        CoreDataReceiptPositionService(
-            context: context,
-            mapper: .init(),
-            peopleService: peopleService
-        )
+        CoreDataReceiptPositionService(context: context, peopleService: peopleService)
     }
 
     private func preparePeopleService(_ context: NSManagedObjectContext) -> PeopleService {

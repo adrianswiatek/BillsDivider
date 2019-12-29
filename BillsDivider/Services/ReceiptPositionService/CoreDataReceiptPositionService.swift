@@ -8,14 +8,12 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
 
     private let peopleService: PeopleService
     private let context: NSManagedObjectContext
-    private let mapper: ReceiptPositionMapper
 
     private let positionsDidUpdateSubject: PassthroughSubject<[ReceiptPosition], Never>
     private var subscriptions: [AnyCancellable]
 
-    init(context: NSManagedObjectContext, mapper: ReceiptPositionMapper, peopleService: PeopleService) {
+    init(context: NSManagedObjectContext, peopleService: PeopleService) {
         self.context = context
-        self.mapper = mapper
         self.peopleService = peopleService
         self.positionsDidUpdateSubject = .init()
         self.subscriptions = []
@@ -38,7 +36,7 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
     private func insert(_ positions: [ReceiptPosition]) {
         positions
             .enumerated()
-            .map { mapper.map($1, $0, context) }
+            .map { $1.asReceiptPositionEntity(orderNumber: $0, context: context) }
             .forEach { context.insert($0) }
     }
 
@@ -77,7 +75,7 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
 
     func fetchPositions() -> [ReceiptPosition] {
         let people = peopleService.fetchPeople()
-        return fetchEntities(sorted: true).compactMap { self.mapper.map($0, people) }
+        return fetchEntities(sorted: true).compactMap { $0.asReceiptPosition(people: people) }
     }
 
     private func fetchEntities(sorted: Bool) -> [ReceiptPositionEntity] {

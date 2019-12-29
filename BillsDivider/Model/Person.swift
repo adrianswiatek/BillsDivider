@@ -9,20 +9,30 @@ struct Person: Equatable, Hashable, Identifiable {
 
     let id: UUID
     let name: String
-    let state: Person.State
+    let state: State
 
-    private static var numberFormatter: NumberFormatter {
-        .oridinalNumberFormatter
-    }
+    private static var emptyUuid = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
 
-    private init(id: UUID, name: String, state: State = .default) {
+    init(id: UUID = .init(), name: String, state: State = .default) {
+        if id == Self.emptyUuid, state != .empty {
+            assertionFailure("If empty Id, State must be also empty")
+        }
+
+        if id != Self.emptyUuid, state == .empty {
+            assertionFailure("If empty State, Id must be also empty")
+        }
+
+        if name.first?.isNumber == true, name.contains("person"), state != .generated {
+            assertionFailure("If Name is generated, State must be also generated")
+        }
+
         self.id = id
         self.name = name
         self.state = state
     }
 
-    private init(name: String, state: State = .default) {
-        self.init(id: UUID(), name: name, state: state)
+    private static var numberFormatter: NumberFormatter {
+        .oridinalNumberFormatter
     }
 
     func withUpdated(name: String, andNumber number: Int? = nil) -> Person {
@@ -38,7 +48,7 @@ struct Person: Equatable, Hashable, Identifiable {
     }
 
     static var empty: Person {
-        .init(id: UUID(uuidString: "00000000-0000-0000-0000-000000000000")!, name: "", state: .empty)
+        .init(id: Self.emptyUuid, name: "", state: .empty)
     }
 
     static func withName(_ name: String) -> Person {
@@ -53,14 +63,5 @@ struct Person: Equatable, Hashable, Identifiable {
 extension Person: CustomDebugStringConvertible {
     var debugDescription: String {
         "\(Person.self)(id: \(id), name: \(name), state: \(state))"
-    }
-}
-
-extension Person {
-    static func fromEntity(_ entity: PersonEntity) -> Person {
-        guard let id = entity.id, let name = entity.name, let state = State(rawValue: entity.state ?? "") else {
-            preconditionFailure("Unable to create Person from entity")
-        }
-        return .init(id: id, name: name, state: state)
     }
 }
