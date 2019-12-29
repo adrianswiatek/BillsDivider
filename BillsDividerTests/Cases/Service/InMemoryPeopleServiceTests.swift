@@ -6,7 +6,7 @@ class InMemoryPeopleServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = InMemoryPeopleService()
+        sut = InMemoryPeopleService(maximumNumberOfPeople: 2)
     }
 
     override func tearDown() {

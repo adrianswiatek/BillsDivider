@@ -10,7 +10,6 @@
 		A70478C623A42DF6001AD82E /* EditOverlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */; };
 		A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70AEB972398711D00ED0E7A /* BuyerTests.swift */; };
 		A732E904239FC47600B1D0B7 /* ReceiptPosition+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732E903239FC47600B1D0B7 /* ReceiptPosition+CoreData.swift */; };
-		A732E906239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732E905239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift */; };
 		A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */; };
 		A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1A12369EB5D0096C2E1 /* TabsView.swift */; };
 		A7385B5B239C696F00A41C09 /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5A239C696F00A41C09 /* TabBarPage.swift */; };
@@ -102,7 +101,6 @@
 		A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayUITests.swift; sourceTree = "<group>"; };
 		A70AEB972398711D00ED0E7A /* BuyerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerTests.swift; sourceTree = "<group>"; };
 		A732E903239FC47600B1D0B7 /* ReceiptPosition+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReceiptPosition+CoreData.swift"; sourceTree = "<group>"; };
-		A732E905239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionMapperTests.swift; sourceTree = "<group>"; };
 		A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
 		A736A1A12369EB5D0096C2E1 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		A7385B5A239C696F00A41C09 /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
@@ -448,7 +446,6 @@
 			children = (
 				A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */,
 				A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */,
-				A732E905239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -667,7 +664,6 @@
 				A7705B9823AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift in Sources */,
 				A75E802D23A17C2900B549F9 /* AddingModeStrategyTests.swift in Sources */,
 				A75E803023A17C8D00B549F9 /* EditingModeStrategy.swift in Sources */,
-				A732E906239FC49D00B1D0B7 /* ReceiptPositionMapperTests.swift in Sources */,
 				A7705B9A23AD87C90073D8E8 /* PersonTests.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A75E802823A1773D00B549F9 /* EditOverlayStrategyDummy.swift in Sources */,
