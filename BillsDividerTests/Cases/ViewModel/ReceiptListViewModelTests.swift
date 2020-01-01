@@ -2,7 +2,7 @@
 import Combine
 import XCTest
 
-class ReceiptListViewModelTests: XCTestCase {
+class ReceiptViewModelTests: XCTestCase {
     private var sut: ReceiptViewModel!
     private var receiptPositionService: ReceiptPositionService!
     private var peopleService: PeopleService!
@@ -39,8 +39,8 @@ class ReceiptListViewModelTests: XCTestCase {
         sut = .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
 
         XCTAssertEqual(sut.positions.count, 2)
-        XCTAssertEqual(sut.positions[0], positions[0])
-        XCTAssertEqual(sut.positions[1], positions[1])
+        XCTAssertEqual(sut.positions[0], positions[1])
+        XCTAssertEqual(sut.positions[1], positions[0])
     }
 
     func testRemoveAllPositions_positionsAreEmpty() {
