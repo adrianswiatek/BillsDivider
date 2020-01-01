@@ -50,7 +50,7 @@ struct ReceiptView: View {
                                 Image(systemName: "pencil")
                             }
                             Button(action: { self.viewModel.removePosition(position) }) {
-                                Text("Remove position")
+                                Text("Delete position")
                                 Image(systemName: "trash")
                             }
                         }
