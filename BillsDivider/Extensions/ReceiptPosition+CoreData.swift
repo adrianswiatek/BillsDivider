@@ -31,7 +31,7 @@ extension ReceiptPositionEntity {
         return .person(person)
     }
 
-    private func getOwner(from people: [Person]) -> Owner? {
+    private func getOwner(from people: [Person]) -> Owner {
         guard let person = people.first(where: { $0.id == ownerId }) else {
             return .all
         }

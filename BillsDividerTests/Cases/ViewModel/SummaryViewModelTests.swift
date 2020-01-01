@@ -4,95 +4,120 @@ import Foundation
 import XCTest
 
 class SummaryViewModelTests: XCTestCase {
-    private var subscriptions: [AnyCancellable]!
+    private var sut: SummaryViewModel!
+    private var receiptPositionService: ReceiptPositionService!
     private var peopleService: PeopleServiceFake!
+    private var subscriptions: [AnyCancellable]!
+
+    private var people: [Person] = [
+        .withGeneratedName(forNumber: 1),
+        .withGeneratedName(forNumber: 2)
+    ]
 
     override func setUp() {
         super.setUp()
         peopleService = PeopleServiceFake()
+        receiptPositionService = InMemoryReceiptPositionService(peopleService: peopleService)
+        sut = SummaryViewModel(
+            receiptPositionService: receiptPositionService,
+            peopleService: peopleService,
+            divider: .init(),
+            numberFormatter: numberFormatter
+        )
         subscriptions = []
+        peopleService.updatePeople(people)
     }
 
     override func tearDown() {
         subscriptions = nil
+        sut = nil
+        receiptPositionService = nil
         peopleService = nil
         super.tearDown()
     }
 
     // MARK: - Helpers
-    private func summaryViewModel(_ positions: AnyPublisher<[ReceiptPosition], Never>) -> SummaryViewModel {
-        .init(positions: positions, peopleService: peopleService, divider: .init(), numberFormatter: numberFormatter)
+    private func position(withAmount amount: Decimal) -> ReceiptPosition {
+        return .init(amount: amount, buyer: .person(people[0]), owner: .person(people[1]))
     }
 
     private var numberFormatter: NumberFormatter {
         .twoFractionDigitsNumberFormatter
     }
 
-    private var emptyPositions: AnyPublisher<[ReceiptPosition], Never> {
-        Empty<[ReceiptPosition], Never>().eraseToAnyPublisher()
-    }
-
     // MARK: - Tests
     func testInit_leftSidedBuyerSetToFirstPerson() {
         let people: [Person] = [.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]
-        let sut = summaryViewModel(emptyPositions)
         peopleService.updatePeople(people)
-        XCTAssertEqual(sut.formattedLeftSidedBuyer, people[0].name)
+        XCTAssertEqual(sut.leftSidedBuyer.formatted, people[0].name)
     }
 
     func testInit_rightSidedBuyerSetToSecondPerson() {
         let people: [Person] = [.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]
-        let sut = summaryViewModel(emptyPositions)
         peopleService.updatePeople(people)
-        XCTAssertEqual(sut.formattedRightSidedBuyer, people[1].name)
+        XCTAssertEqual(sut.rightSidedBuyer.formatted, people[1].name)
     }
 
     func testInit_formattedDebtReturnsFormattedZero() {
-        let expected = numberFormatter.format(value: 0)
-        let result = summaryViewModel(emptyPositions).formattedDebt
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(sut.formattedDebt, numberFormatter.format(value: 0))
     }
 
     func testInit_formattedDirectionSetToEqual() {
-        XCTAssertEqual(summaryViewModel(emptyPositions).formattedDirection, "equal")
+        XCTAssertEqual(sut.formattedDirection, "equal")
     }
 
     func testFormattedDirection_whenNoDebtDivisionResult_returnsEqual() {
-        let position = ReceiptPosition(amount: 0, buyer: .me, owner: .notMe)
-        let positions = CurrentValueSubject<[ReceiptPosition], Never>([position])
-        let sut = summaryViewModel(positions.eraseToAnyPublisher())
         XCTAssertEqual(sut.formattedDirection, "equal")
     }
 
     func testFormattedDirection_whenDebtDivisionResultAndLenderAsLeftSidedBuyer_returnsArrowLeft() {
-        let position = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        let positions = CurrentValueSubject<[ReceiptPosition], Never>([position])
-        let sut = summaryViewModel(positions.eraseToAnyPublisher())
+        let expectation = self.expectation(description: "Position has been sent")
+
+        receiptPositionService.positionsDidUpdate
+            .dropFirst()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        receiptPositionService.insert(.init(amount: 1, buyer: .person(people[0]), owner: .person(people[1])))
+
+        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(sut.formattedDirection, "arrow.left")
     }
 
     func testFormattedDirection_whenDebtDivisionResultAndLenderAsRightSidedBuyer_returnsArrowRight() {
-        let position = ReceiptPosition(amount: 1, buyer: .notMe, owner: .me)
-        let positions = CurrentValueSubject<[ReceiptPosition], Never>([position])
-        let sut = summaryViewModel(positions.eraseToAnyPublisher())
+        let expectation = self.expectation(description: "Position has been sent")
+
+        receiptPositionService.positionsDidUpdate
+            .dropFirst()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        receiptPositionService.insert(.init(amount: 1, buyer: .person(people[1]), owner: .person(people[0])))
+
+        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(sut.formattedDirection, "arrow.right")
     }
 
     func testObject_whenPositionSend_objectShouldChange() {
-        let positions = PassthroughSubject<[ReceiptPosition], Never>()
-        let sut = summaryViewModel(positions.eraseToAnyPublisher())
-        let exp = expectation(description: "object should change after sending position")
-        sut.objectWillChange.sink { exp.fulfill() }.store(in: &subscriptions)
+        let expectation = self.expectation(description: "Position has been sent")
 
-        positions.send([ReceiptPosition(amount: 0, buyer: .me, owner: .notMe)])
+        sut.objectWillChange
+            .sink { expectation.fulfill() }
+            .store(in: &subscriptions)
 
-        wait(for: [exp], timeout: 1)
+        receiptPositionService.insert(position(withAmount: 0))
+
+        wait(for: [expectation], timeout: 1)
     }
 
-    func testFormattedDebt_whenDebtPositionSend_shouldReturnFormattedValue() {
-        let position = ReceiptPosition(amount: 1, buyer: .me, owner: .notMe)
-        let positions = CurrentValueSubject<[ReceiptPosition], Never>([position])
-        let sut = summaryViewModel(positions.eraseToAnyPublisher())
+    func testFormattedDebt_whenDebtPositionInserted_shouldReturnFormattedValue() {
+        let expectation = self.expectation(description: "Position has been sent")
+
+        receiptPositionService.positionsDidUpdate
+            .dropFirst()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        receiptPositionService.insert(position(withAmount: 1))
+
+        wait(for: [expectation], timeout: 1)
         XCTAssertEqual(sut.formattedDebt, numberFormatter.format(value: 1))
     }
 }

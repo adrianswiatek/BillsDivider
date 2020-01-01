@@ -38,7 +38,7 @@ extension Owner: Hashable {
         case .person(let person):
             hasher.combine(person)
         case .all:
-            hasher.combine(self.formatted)
+            hasher.combine(formatted)
         }
     }
 }

@@ -2,31 +2,36 @@
 import XCTest
 
 class OwnerTests: XCTestCase {
-    func testFormatted_meCase_returnsMe() {
-        XCTAssertEqual(Owner.me.formatted, "Me")
+    func testFormatted_personCase_returnsGivenPersonName() {
+        XCTAssertEqual(Owner.person(.withName("My name")).formatted, "My name")
     }
 
-    func testFormatted_notMeCase_returnsThey() {
-        XCTAssertEqual(Owner.notMe.formatted, "They")
+    func testAsPerson_allCase_returnsNil() {
+        XCTAssertNil(Owner.all.asPerson)
     }
 
-    func testFormatted_allCase_returnsAll() {
-        XCTAssertEqual(Owner.all.formatted, "All")
+    func testAsPerson_personCase_returnsGivenPerson() {
+        let person: Person = .withName("My name")
+        XCTAssertEqual(Owner.person(person).asPerson, person)
     }
 
-    func testFromString_meString_returnsMeCase() {
-        XCTAssertEqual(Owner.from(string: "me"), .me)
+    func testEquals_twoAllCases_returnsTrue() {
+        XCTAssertEqual(Owner.all, Owner.all)
     }
 
-    func testFromString_notMeString_returnsNotMeCase() {
-        XCTAssertEqual(Owner.from(string: "notMe"), .notMe)
+    func testEquals_allAndPersonCases_returnsFalse() {
+        XCTAssertFalse(Owner.all == Owner.person(.empty))
+        XCTAssertFalse(Owner.person(.empty) == Owner.all)
     }
 
-    func testFromString_allString_returnsAllCase() {
-        XCTAssertEqual(Owner.from(string: "all"), .all)
+    func testEquals_twoTheSamePersonCases_returnsTrue() {
+        let person: Person = .withGeneratedName(forNumber: 1)
+        XCTAssertTrue(Owner.person(person) == Owner.person(person))
     }
 
-    func testFromString_randomString_returnsNil() {
-        XCTAssertNil(Owner.from(string: "random string"))
+    func testEquals_twoDifferentPersonCases_returnsFalse() {
+        let person1: Person = .withGeneratedName(forNumber: 1)
+        let person2: Person = .withGeneratedName(forNumber: 2)
+        XCTAssertFalse(Owner.person(person1) == Owner.person(person2))
     }
 }

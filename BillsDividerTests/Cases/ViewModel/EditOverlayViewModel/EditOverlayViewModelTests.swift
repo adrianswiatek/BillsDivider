@@ -73,21 +73,24 @@ class EditOverlayViewModelTests: XCTestCase {
     }
 
     func testConfirmDidTap_withProperAmount_respectivePositionAddedIsSent() {
-        var receiptPosition: ReceiptPosition?
+        let firstPerson: Person = .withGeneratedName(forNumber: 1)
+        let secondPerson: Person = .withGeneratedName(forNumber: 2)
+        var actualPosition: ReceiptPosition?
         sut = EditOverlayViewModel(
             presenting: .constant(true),
             editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
             peopleService: peopleService,
             numberFormatter: numberFormatter
         )
-        sut.positionAdded.sink { receiptPosition = $0 }.store(in: &subscriptions)
+        sut.positionAdded.sink { actualPosition = $0 }.store(in: &subscriptions)
         sut.priceText = "123.00"
-        sut.buyer = .notMe
-        sut.owner = .me
+        sut.buyer = .person(firstPerson)
+        sut.owner = .person(secondPerson)
 
         sut.confirmDidTap()
 
-        XCTAssertEqual(receiptPosition, ReceiptPosition(amount: 123, buyer: .notMe, owner: .me))
+        let expectedPosition = ReceiptPosition(amount: 123, buyer: .person(firstPerson), owner: .person(secondPerson))
+        XCTAssertEqual(actualPosition, expectedPosition)
     }
 
     func testPriceText_withEmptyString_setsIsPriceCorrectToTrue() {

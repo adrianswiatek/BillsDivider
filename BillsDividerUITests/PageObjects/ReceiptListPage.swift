@@ -23,16 +23,16 @@ class ReceiptListPage: Page {
         app.sheets.element
     }
 
-    private var removeAllButton: XCUIElement {
-        sheet.buttons["Remove all"]
+    private var deleteAllButton: XCUIElement {
+        sheet.buttons["Delete all"]
     }
 
     private var editPositionButton: XCUIElement {
         app.buttons["Edit position"]
     }
 
-    private var removePositionButton: XCUIElement {
-        app.buttons["Remove position"]
+    private var deletePositionButton: XCUIElement {
+        app.buttons["Delete position"]
     }
 
     var isVisible: Bool {
@@ -53,8 +53,8 @@ class ReceiptListPage: Page {
         return self
     }
 
-    @discardableResult func tapRemoveAllButton() -> ReceiptListPage {
-        removeAllButton.tap()
+    @discardableResult func tapDeleteAllButton() -> ReceiptListPage {
+        deleteAllButton.tap()
         return self
     }
 
@@ -79,7 +79,7 @@ class ReceiptListPage: Page {
     }
 
     @discardableResult func tapRemovePositionButton() -> ReceiptListPage {
-        removePositionButton.tap()
+        deletePositionButton.tap()
         return self
     }
 

@@ -2,6 +2,9 @@
 import Combine
 
 class PeopleServiceFake: PeopleService {
+    var maximumNumberOfPeople: Int
+    var minimumNumberOfPeople: Int
+
     var peopleDidUpdate: AnyPublisher<[Person], Never> {
         peopleDidUpdateSubject.eraseToAnyPublisher()
     }
@@ -13,8 +16,10 @@ class PeopleServiceFake: PeopleService {
     var canAddPersonHasBeenCalled: Bool = true
     var canRemovePersonHasBeenCalled: Bool = false
 
-    required init(maximumNumberOfPeople: Int = 2) {
+    init() {
         self.peopleDidUpdateSubject = .init()
+        self.maximumNumberOfPeople = 2
+        self.minimumNumberOfPeople = 2
         self.people = []
     }
 

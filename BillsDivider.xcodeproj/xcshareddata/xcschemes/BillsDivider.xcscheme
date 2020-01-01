@@ -38,9 +38,14 @@
                BlueprintName = "BillsDividerTests"
                ReferencedContainer = "container:BillsDivider.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "PersonTests/testWithUpdatedName_whenEmptyPerson_returnsPersonInDefaultState()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
-            skipped = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A7743619239AB696008F53B5"

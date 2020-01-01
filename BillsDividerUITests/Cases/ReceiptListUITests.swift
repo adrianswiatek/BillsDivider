@@ -35,7 +35,7 @@ class ReceiptListUITests: XCTestCase {
 
         receiptListPage
             .tapEllipsisButton()
-            .tapRemoveAllButton()
+            .tapDeleteAllButton()
 
         XCTAssertEqual(receiptListPage.numberOfCells, 0)
     }
