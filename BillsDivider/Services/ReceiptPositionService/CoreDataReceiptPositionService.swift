@@ -3,7 +3,7 @@ import CoreData
 
 final class CoreDataReceiptPositionService: ReceiptPositionService {
     var positionsDidUpdate: AnyPublisher<[ReceiptPosition], Never> {
-         positionsDidUpdateSubject.eraseToAnyPublisher()
+        positionsDidUpdateSubject.eraseToAnyPublisher()
     }
 
     private let peopleService: PeopleService
