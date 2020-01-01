@@ -20,8 +20,8 @@ class OwnerTests: XCTestCase {
     }
 
     func testEquals_allAndPersonCases_returnsFalse() {
-        XCTAssertEqual(Owner.all, Owner.person(.empty))
-        XCTAssertEqual(Owner.person(.empty), Owner.all)
+        XCTAssertFalse(Owner.all == Owner.person(.empty))
+        XCTAssertFalse(Owner.person(.empty) == Owner.all)
     }
 
     func testEquals_twoTheSamePersonCases_returnsTrue() {
