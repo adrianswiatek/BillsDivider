@@ -2,23 +2,28 @@
 import XCTest
 
 class DivisionResultTests: XCTestCase {
+    private let buyers: [Buyer] = [
+        .person(.withGeneratedName(forNumber: 1)),
+        .person(.withGeneratedName(forNumber: 2))
+    ]
+
+    private func buyer(_ number: Int) -> Buyer {
+        buyers[number - 1]
+    }
+
     func testDebtAmount_noDebtCase_returnsZero() {
         let sut: DivisionResult = .noDebt
         XCTAssertEqual(sut.debtAmount, 0)
     }
 
-    private func buyer(_ number: Int) -> Buyer {
-        .person(.withGeneratedName(forNumber: number))
-    }
-
     func testDebtAmount_debtCase_returnsGivenAmount() {
-        let zeroAmountCase: DivisionResult = .debt(lender: buyer(1), debtor: buyer(1), amount: 0)
+        let zeroAmountCase: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 0)
         XCTAssertEqual(zeroAmountCase.debtAmount, 0)
 
-        let oneAmountCase: DivisionResult = .debt(lender: buyer(1), debtor: buyer(1), amount: 1)
+        let oneAmountCase: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 1)
         XCTAssertEqual(oneAmountCase.debtAmount, 1)
 
-        let oneFifthyCase: DivisionResult = .debt(lender: buyer(1), debtor: buyer(1), amount: 1.5)
+        let oneFifthyCase: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 1.5)
         XCTAssertEqual(oneFifthyCase.debtAmount, 1.5)
     }
 
@@ -28,39 +33,39 @@ class DivisionResultTests: XCTestCase {
 
     func testEquals_oneNoDebtCaseAndOneDebtCase_returnsFalse() {
         let first: DivisionResult = .noDebt
-        let second: DivisionResult = .debt(lender: buyer(1), debtor: buyer(1), amount: 0)
+        let second: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 0)
 
         XCTAssertFalse(first == second)
         XCTAssertFalse(second == first)
     }
 
-    func testEqualsOperator_twoIdenticalNoDebtCases_returnsTrue() {
-        let first: DivisionResult = .debt(lender: buyer(1), debtor: buyer(1), amount: 0)
-        let second: DivisionResult = .debt(lender: buyer(1), debtor: buyer(1), amount: 0)
+    func testEquals_twoIdenticalDebtCases_returnsTrue() {
+        let first: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 0)
+        let second: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 0)
 
         XCTAssertTrue(first == second)
         XCTAssertTrue(second == first)
     }
 
-    func testEqualsOperator_twoNoDebtCasesWithDifferentLenders_returnsFalse() {
-        let first: DivisionResult = .debt(lender:  buyer(1), debtor: buyer(1), amount: 0)
-        let second: DivisionResult = .debt(lender: buyer(2), debtor: buyer(1), amount: 0)
+    func testEquals_twoDebtCasesWithDifferentLenders_returnsFalse() {
+        let first: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 0)
+        let second: DivisionResult = .debt(lender: buyers[1], debtor: buyers[0], amount: 0)
 
         XCTAssertFalse(first == second)
         XCTAssertFalse(second == first)
     }
 
-    func testEqualsOperator_twoNoDebtCasesWithDifferentDebtors_returnsFalse() {
-        let first: DivisionResult = .debt(lender:  buyer(1), debtor: buyer(1), amount: 0)
-        let second: DivisionResult = .debt(lender: buyer(1), debtor: buyer(2), amount: 0)
+    func testEquals_twoDebtCasesWithDifferentDebtors_returnsFalse() {
+        let first: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 0)
+        let second: DivisionResult = .debt(lender: buyers[0], debtor: buyers[1], amount: 0)
 
         XCTAssertFalse(first == second)
         XCTAssertFalse(second == first)
     }
 
-    func testEqualsOperator_twoNoDebtCasesWithDifferentAmount_returnsFalse() {
-        let first: DivisionResult = .debt(lender:  buyer(1), debtor: buyer(1), amount: 0)
-        let second: DivisionResult = .debt(lender: buyer(1), debtor: buyer(1), amount: 1)
+    func testEquals_twoDebtCasesWithDifferentAmount_returnsFalse() {
+        let first: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 0)
+        let second: DivisionResult = .debt(lender: buyers[0], debtor: buyers[0], amount: 1)
 
         XCTAssertFalse(first == second)
         XCTAssertFalse(second == first)
