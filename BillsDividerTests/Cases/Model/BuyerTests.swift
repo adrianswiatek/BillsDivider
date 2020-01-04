@@ -2,13 +2,13 @@
 import XCTest
 
 class BuyerTests: XCTestCase {
-    func testFormatted_personCase_returnsGivenPersonName() {
-        XCTAssertEqual(Buyer.person(.withName("My name")).formatted, "My name")
-    }
-
     func testAsPerson_personCase_returnsGivenPerson() {
         let person: Person = .withName("My name")
         XCTAssertEqual(Buyer.person(person).asPerson, person)
+    }
+
+    func testFormatted_personCase_returnsGivenPersonName() {
+        XCTAssertEqual(Buyer.person(.withName("My name")).formatted, "My name")
     }
 
     func testIsEqualTo_BuyerSetToPersonAndOwnerSetToAll_returnsFalse() {

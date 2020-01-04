@@ -36,15 +36,18 @@ struct Person: Equatable, Hashable, Identifiable {
     }
 
     func withUpdated(name: String, andNumber number: Int? = nil) -> Person {
-        if name != "" {
+        let id = state == .empty ? UUID() : self.id
+
+        if !name.isEmpty {
             return .init(id: id, name: name)
         }
 
         guard let number = number else {
-            return .init(id: id, name: name)
+            return .empty
         }
 
-        return .init(id: id, name: "\(Self.numberFormatter.format(value: number)) person", state: .generated)
+        let formattedNumber = Self.numberFormatter.format(value: number)
+        return .init(id: id, name: "\(formattedNumber) person", state: .generated)
     }
 
     static var empty: Person {

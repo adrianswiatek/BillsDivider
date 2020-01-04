@@ -205,9 +205,9 @@
 		A7043E81238C4DC500630D35 /* BillsDividerTests */ = {
 			isa = PBXGroup;
 			children = (
+				A7043E84238C4DC500630D35 /* Info.plist */,
 				A7794C3C239D5C4B0001EB73 /* Cases */,
 				A75E802623A1773100B549F9 /* Double */,
-				A7043E84238C4DC500630D35 /* Info.plist */,
 			);
 			path = BillsDividerTests;
 			sourceTree = "<group>";
@@ -225,8 +225,8 @@
 		A734263723A1428100BAEFF0 /* EditOverlayViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A75E801E23A15D4F00B549F9 /* EditOverlayStrategy */,
 				A774B1DD23B57F97005A868E /* EditOverlayViewModel.swift */,
+				A75E801E23A15D4F00B549F9 /* EditOverlayStrategy */,
 			);
 			path = EditOverlayViewModel;
 			sourceTree = "<group>";
@@ -234,11 +234,11 @@
 		A736A1992369DDD70096C2E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A7BDA2FB2399B93B00B5DE47 /* Divider */,
 				A7788B4D23B3B5810059EB71 /* Buyer.swift */,
 				A7788B4B23B3B47E0059EB71 /* Owner.swift */,
 				A7705B9023AD83AD0073D8E8 /* Person.swift */,
 				A7788B4823B3B3920059EB71 /* ReceiptPositions.swift */,
+				A7BDA2FB2399B93B00B5DE47 /* Divider */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -246,9 +246,9 @@
 		A736A19A2369DDE90096C2E1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A7FED23B235CEF8B00CCD069 /* Preview Content */,
 				A7FED239235CEF8B00CCD069 /* Assets.xcassets */,
 				A7FED23E235CEF8B00CCD069 /* LaunchScreen.storyboard */,
+				A7FED23B235CEF8B00CCD069 /* Preview Content */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -256,11 +256,11 @@
 		A747A734238197F00065CD20 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A734263723A1428100BAEFF0 /* EditOverlayViewModel */,
 				A7788B4423B398DD0059EB71 /* ReceiptViewModel.swift */,
 				A75443C223A94A0F00A8775E /* SettingsViewModel.swift */,
 				A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */,
 				A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */,
+				A734263723A1428100BAEFF0 /* EditOverlayViewModel */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -288,6 +288,15 @@
 			path = PageObjects;
 			sourceTree = "<group>";
 		};
+		A75AA5A623C0E46D004D856F /* Divider */ = {
+			isa = PBXGroup;
+			children = (
+				A76BBCCF23947FCC003AE654 /* DividerTests.swift */,
+				A76BBCD223948481003AE654 /* DivisionResultTests.swift */,
+			);
+			path = Divider;
+			sourceTree = "<group>";
+		};
 		A75E801E23A15D4F00B549F9 /* EditOverlayStrategy */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,8 +319,8 @@
 		A75E802923A17BF700B549F9 /* EditOverlayViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A75E802A23A17C0E00B549F9 /* EditOverlayStrategy */,
 				A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */,
+				A75E802A23A17C0E00B549F9 /* EditOverlayStrategy */,
 			);
 			path = EditOverlayViewModel;
 			sourceTree = "<group>";
@@ -338,9 +347,9 @@
 		A774361B239AB696008F53B5 /* BillsDividerUITests */ = {
 			isa = PBXGroup;
 			children = (
+				A774361E239AB696008F53B5 /* Info.plist */,
 				A734263423A140CB00BAEFF0 /* Cases */,
 				A7550E79239BD7A50004797D /* PageObjects */,
-				A774361E239AB696008F53B5 /* Info.plist */,
 			);
 			path = BillsDividerUITests;
 			sourceTree = "<group>";
@@ -348,12 +357,12 @@
 		A77936BD235CF66700EC64D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */,
+				A736A1A12369EB5D0096C2E1 /* TabsView.swift */,
 				A77D54C723819225003D7E9D /* EditOverlay */,
 				A77D54C6238191D2003D7E9D /* Receipt */,
 				A7873D2A23A8397F008C9552 /* Settings */,
 				A7F213AF238B410E0084B466 /* Summary */,
-				A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */,
-				A736A1A12369EB5D0096C2E1 /* TabsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -361,8 +370,8 @@
 		A7794C37239D52B10001EB73 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A7705B9423AD86570073D8E8 /* PeopleService */,
 				A754170523A0551D008DB5F7 /* CoreDataStack */,
+				A7705B9423AD86570073D8E8 /* PeopleService */,
 				A78B1B96239EB805006A1B91 /* ReceiptPositionService */,
 			);
 			path = Services;
@@ -391,9 +400,9 @@
 		A77D54C723819225003D7E9D /* EditOverlay */ = {
 			isa = PBXGroup;
 			children = (
-				A77FAD212384B3F000B66C98 /* Sections */,
 				A7AC988323B69F48003D8AE6 /* EditOverlayView.swift */,
 				A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams.swift */,
+				A77FAD212384B3F000B66C98 /* Sections */,
 			);
 			path = EditOverlay;
 			sourceTree = "<group>";
@@ -468,10 +477,10 @@
 			isa = PBXGroup;
 			children = (
 				A70AEB972398711D00ED0E7A /* BuyerTests.swift */,
-				A76BBCCF23947FCC003AE654 /* DividerTests.swift */,
 				A75B79C6239EEB0000C740BB /* OwnerTests.swift */,
-				A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */,
 				A7705B9923AD87C90073D8E8 /* PersonTests.swift */,
+				A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */,
+				A75AA5A623C0E46D004D856F /* Divider */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -479,11 +488,10 @@
 		A7D2A840239DAEBA002712FE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A75E802923A17BF700B549F9 /* EditOverlayViewModel */,
-				A76BBCD223948481003AE654 /* DivisionResultTests.swift */,
 				A76FF43523BD40F9000D584F /* ReceiptViewModelTests.swift */,
 				A75443C023A9499800A8775E /* SettingsViewModelTests.swift */,
 				A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */,
+				A75E802923A17BF700B549F9 /* EditOverlayViewModel */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -519,16 +527,16 @@
 		A7FED22F235CEF8A00CCD069 /* BillsDivider */ = {
 			isa = PBXGroup;
 			children = (
+				A7FED241235CEF8B00CCD069 /* Info.plist */,
+				A7FED230235CEF8B00CCD069 /* AppDelegate.swift */,
+				A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */,
+				A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */,
 				A7B7DE5E238C7E4100D38BC8 /* Extensions */,
 				A736A1992369DDD70096C2E1 /* Model */,
 				A736A19A2369DDE90096C2E1 /* Resources */,
 				A7794C37239D52B10001EB73 /* Services */,
 				A77936BD235CF66700EC64D0 /* View */,
 				A747A734238197F00065CD20 /* ViewModel */,
-				A7FED241235CEF8B00CCD069 /* Info.plist */,
-				A7FED230235CEF8B00CCD069 /* AppDelegate.swift */,
-				A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */,
-				A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */,
 			);
 			path = BillsDivider;
 			sourceTree = "<group>";
