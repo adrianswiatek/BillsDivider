@@ -15,7 +15,7 @@ class PersonPlusCoreDataTests: XCTestCase {
         super.tearDown()
     }
 
-    func testAsPersonEntity_returnsPersonEntityWithGivenOrder() {
+    func testAsPersonEntity_returnsPersonEntityWithGivenOrderNumber() {
         let uuid = UUID()
         let person = Person(id: uuid, name: "My name", state: .default)
 

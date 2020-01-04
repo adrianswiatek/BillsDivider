@@ -68,6 +68,7 @@
 		A7B7DE5D238C7B9B00D38BC8 /* NumberFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */; };
 		A7B7DE60238C805600D38BC8 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */; };
 		A7C50A9623C00F760088DF12 /* Person+CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50A9523C00F760088DF12 /* Person+CoreDataTests.swift */; };
+		A7C50A9823C016760088DF12 /* ReceiptPosition+CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50A9723C016760088DF12 /* ReceiptPosition+CoreDataTests.swift */; };
 		A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */; };
 		A7F213B2238B41310084B466 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F213B1238B41310084B466 /* SummaryView.swift */; };
 		A7F3D50023AFF9F100B9AD14 /* InMemoryPeopleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F3D4FF23AFF9F100B9AD14 /* InMemoryPeopleService.swift */; };
@@ -162,6 +163,7 @@
 		A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtensions.swift; sourceTree = "<group>"; };
 		A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		A7C50A9523C00F760088DF12 /* Person+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataTests.swift"; sourceTree = "<group>"; };
+		A7C50A9723C016760088DF12 /* ReceiptPosition+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReceiptPosition+CoreDataTests.swift"; sourceTree = "<group>"; };
 		A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFactory.swift; sourceTree = "<group>"; };
 		A7F213B1238B41310084B466 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		A7F3D4FF23AFF9F100B9AD14 /* InMemoryPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryPeopleService.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				A7C50A9523C00F760088DF12 /* Person+CoreDataTests.swift */,
+				A7C50A9723C016760088DF12 /* ReceiptPosition+CoreDataTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				A7705B9A23AD87C90073D8E8 /* PersonTests.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A75E802823A1773D00B549F9 /* EditOverlayStrategyDummy.swift in Sources */,
+				A7C50A9823C016760088DF12 /* ReceiptPosition+CoreDataTests.swift in Sources */,
 				A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */,
 				A75B79C7239EEB0000C740BB /* OwnerTests.swift in Sources */,
 				A7705B9C23AD9C530073D8E8 /* PeopleServiceFake.swift in Sources */,
