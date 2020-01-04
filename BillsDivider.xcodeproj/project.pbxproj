@@ -48,6 +48,7 @@
 		A7788B5223B3B6FD0059EB71 /* InMemoryReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B5123B3B6FD0059EB71 /* InMemoryReceiptPositionService.swift */; };
 		A7794C39239D52E90001EB73 /* CoreDataReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */; };
 		A77ACA9923C11EB200F9335D /* CoreDataPeopleServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77ACA9823C11EB200F9335D /* CoreDataPeopleServiceTests.swift */; };
+		A77ACA9B23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77ACA9A23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
 		A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */; };
 		A7873D2C23A839C8008C9552 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2B23A839C8008C9552 /* SettingsView.swift */; };
@@ -144,6 +145,7 @@
 		A7788B5123B3B6FD0059EB71 /* InMemoryReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionService.swift; sourceTree = "<group>"; };
 		A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataReceiptPositionService.swift; sourceTree = "<group>"; };
 		A77ACA9823C11EB200F9335D /* CoreDataPeopleServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleServiceTests.swift; sourceTree = "<group>"; };
+		A77ACA9A23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionServiceTests.swift; sourceTree = "<group>"; };
 		A77D54CA23819255003D7E9D /* PriceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSectionView.swift; sourceTree = "<group>"; };
 		A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnotherSectionView.swift; sourceTree = "<group>"; };
 		A7873D2B23A839C8008C9552 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */,
+				A77ACA9A23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift */,
 			);
 			path = ReceiptPositionService;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 				A7705B9C23AD9C530073D8E8 /* PeopleServiceFake.swift in Sources */,
 				A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */,
 				A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */,
+				A77ACA9B23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift in Sources */,
 				A75B79C5239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift in Sources */,
 				A75443C123A9499800A8775E /* SettingsViewModelTests.swift in Sources */,
 			);
