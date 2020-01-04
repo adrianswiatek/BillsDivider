@@ -95,11 +95,7 @@ class CoreDataPeopleServiceTests: XCTestCase {
         sut.updatePeople(people)
 
         let persistedPeople = sut.fetchPeople()
-        XCTAssertEqual(persistedPeople.count, 4)
-        XCTAssertEqual(persistedPeople[0], people[0])
-        XCTAssertEqual(persistedPeople[1], people[1])
-        XCTAssertEqual(persistedPeople[2], people[2])
-        XCTAssertEqual(persistedPeople[3], people[3])
+        XCTAssertEqual(persistedPeople, people)
     }
 
     func testUpdatePeople_whenUpdateExistingPerson_persistsUpdatedPerson() {
@@ -138,8 +134,7 @@ class CoreDataPeopleServiceTests: XCTestCase {
 
         let result = sut.fetchPeople()
 
-        XCTAssertEqual(result.count, 1)
-        XCTAssertEqual(result[0], people[0])
+        XCTAssertEqual(result, people)
     }
 
     func testFetchPeople_whenTwoPeoplePersisted_returnsArrayWithTwoPeople() {
@@ -148,9 +143,7 @@ class CoreDataPeopleServiceTests: XCTestCase {
 
         let result = sut.fetchPeople()
 
-        XCTAssertEqual(result.count, 2)
-        XCTAssertEqual(result[0], people[0])
-        XCTAssertEqual(result[1], people[1])
+        XCTAssertEqual(result, people)
     }
 
     func testNumberOfPeople_whenNoPeoplePersisted_returnsZero() {

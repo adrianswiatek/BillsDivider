@@ -1,4 +1,5 @@
 @testable import BillsDivider
+import Combine
 import CoreData
 import XCTest
 
@@ -6,81 +7,230 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
     private var sut: CoreDataReceiptPositionService!
     private var context: NSManagedObjectContext!
     private var peopleService: PeopleService!
+    private var people: [Person]!
+    private var subscriptions: [AnyCancellable]!
+
+    private var firstPerson: Person {
+        people[0]
+    }
+
+    private var secondPerson: Person {
+        people[1]
+    }
 
     override func setUp() {
         super.setUp()
+        people = [.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]
         peopleService = PeopleServiceFake()
+        peopleService.updatePeople(people)
         context = InMemoryCoreDataStack().context
         sut = CoreDataReceiptPositionService(context: context, peopleService: peopleService)
+        subscriptions = []
     }
 
     override func tearDown() {
+        subscriptions = nil
         sut = nil
         context = nil
+        peopleService = nil
+        people = nil
         super.tearDown()
     }
 
     func testInsertPositions_withPosition_saveMethodHasBeenCalled() {
         let position = ReceiptPosition(amount: 1, buyer: .person(.empty), owner: .all)
-        let exp = expectation(
-            forNotification: .NSManagedObjectContextDidSave,
-            object: context,
-            handler: { _ in true }
-        )
+        let expectation = XCTNSNotificationExpectation(name: .NSManagedObjectContextDidSave)
 
         sut.insert(position)
 
-        wait(for: [exp], timeout: 0.2)
+        wait(for: [expectation], timeout: 0.3)
     }
 
-    func testInsertPositions_withPosition_oneItemHasBeenInserted() {
-        var insertedItems: Set<ReceiptPositionEntity>?
-        let position = ReceiptPosition(amount: 1, buyer: .person(.empty), owner: .all)
-        let exp = expectation(
-            forNotification: .NSManagedObjectContextDidSave,
-            object: context,
-            handler: {
-                insertedItems = $0.userInfo?["inserted"] as? Set<ReceiptPositionEntity>
-                return true
-            }
-        )
-
+    func testInsertPositions_withPosition_oneItemIsPersisted() {
+        let position = ReceiptPosition(amount: 1, buyer: .person(firstPerson), owner: .all)
         sut.insert(position)
 
-        wait(for: [exp], timeout: 0.2)
-        XCTAssertEqual(insertedItems?.count, 1)
-        XCTAssertEqual(insertedItems?.first?.id, position.id)
+        XCTAssertEqual(sut.fetchPositions(), [position])
     }
 
-    func testRemovePosition_oneItemHasBeenDeletedAndZeroInserted() {
-        let firstPerson: Person = .withGeneratedName(forNumber: 1)
-        let secondPerson: Person = .withGeneratedName(forNumber: 2)
-        var insertedUuids: [UUID] = []
-        var deletedUuids: [UUID] = []
-        let position = ReceiptPosition(amount: 1, buyer: .person(firstPerson), owner: .person(secondPerson))
+    func testInsertPositions_withPosition_sendsPositionThroughPositionsDidUpdate() {
+        var result: [ReceiptPosition]?
+        let expectation = self.expectation(description: "Receipt positions are sent")
+        sut.positionsDidUpdate
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
 
+        let position = ReceiptPosition(amount: 1, buyer: .person(firstPerson), owner: .all)
         sut.insert(position)
 
-        let expectation = self.expectation(
-            forNotification: .NSManagedObjectContextDidSave,
-            object: context,
-            handler: {
-                let insertedItems = $0.userInfo?["inserted"] as? Set<ReceiptPositionEntity>
-                insertedUuids.append(contentsOf: insertedItems?.compactMap { $0.id } ?? [])
+        wait(for: [expectation], timeout: 0.3)
+        XCTAssertEqual(result, [position])
+    }
 
-                let deletedItems = $0.userInfo?["deleted"] as? Set<ReceiptPositionEntity>
-                deletedUuids.append(contentsOf: deletedItems?.compactMap { $0.id } ?? [])
-
-                return true
+    func testInsertPositions_withTwoPositions_sendsPositionThroughPositionsDidUpdate() {
+        var result: [ReceiptPosition]?
+        let expectation = self.expectation(description: "Receipt positions are sent")
+        expectation.expectedFulfillmentCount = 2
+        sut.positionsDidUpdate
+            .sink {
+                result = $0
+                expectation.fulfill()
             }
-        )
+            .store(in: &subscriptions)
+
+        let positions: [ReceiptPosition] = [
+            .init(amount: 1, buyer: .person(firstPerson), owner: .all),
+            .init(amount: 2, buyer: .person(secondPerson), owner: .all)
+        ]
+        positions.forEach { sut.insert($0) }
+
+        wait(for: [expectation], timeout: 0.3)
+        XCTAssertEqual(result, positions.reversed())
+    }
+
+    func testRemovePosition_whenOnePositionPersisted_removesGivenPosition() {
+        let position = ReceiptPosition(amount: 1, buyer: .person(firstPerson), owner: .all)
+        sut.insert(position)
 
         sut.remove(position)
 
-        wait(for: [expectation], timeout: 0.2)
-        XCTAssertEqual(deletedUuids.count, 1)
-        XCTAssertEqual(insertedUuids.count, 0)
-        XCTAssertNotNil(deletedUuids.contains(position.id))
+        XCTAssertEqual(sut.fetchPositions(), [])
+    }
+
+    func testRemovePosition_whenTwoPositionsPersisted_removesGivenPosition() {
+        let positions: [ReceiptPosition] = [
+            .init(amount: 1, buyer: .person(firstPerson), owner: .all),
+            .init(amount: 2, buyer: .person(secondPerson), owner: .all)
+        ]
+        positions.forEach { sut.insert($0) }
+
+        sut.remove(positions[0])
+
+        XCTAssertEqual(sut.fetchPositions(), [positions[1]])
+    }
+
+    func testRemovePosition_whenOnePositionPersisted_sendsEmptyArrayThroughPositionsDidUpdate() {
+        let position = ReceiptPosition(amount: 1, buyer: .person(firstPerson), owner: .all)
+        sut.insert(position)
+
+        var result: [ReceiptPosition]?
+        let expectation = self.expectation(description: "Receipt Positions are sent")
+        sut.positionsDidUpdate
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        sut.remove(position)
+
+        wait(for: [expectation], timeout: 0.3)
+        XCTAssertEqual(result, [])
+    }
+
+    func testUpdatePosition_updatesGivenPosition() {
+        let positions: [ReceiptPosition] = [
+            .init(amount: 1, buyer: .person(firstPerson), owner: .all),
+            .init(amount: 2, buyer: .person(secondPerson), owner: .all)
+        ]
+        positions.forEach { sut.insert($0) }
+
+        let updatedPosition = ReceiptPosition(
+            id: positions[1].id,
+            amount: 3,
+            buyer: .person(firstPerson),
+            owner: .person(secondPerson)
+        )
+
+        sut.update(updatedPosition)
+
+        XCTAssertEqual(sut.fetchPositions(), [updatedPosition, positions[0]])
+    }
+
+    func testUpdatePosition_sendsPositionthroughPositionsDidUpdate() {
+        let positions: [ReceiptPosition] = [
+            .init(amount: 1, buyer: .person(firstPerson), owner: .all),
+            .init(amount: 2, buyer: .person(secondPerson), owner: .all)
+        ]
+        positions.forEach { sut.insert($0) }
+
+        let expectation = self.expectation(description: "Receipt positions are sent")
+
+        var result: [ReceiptPosition]?
+        sut.positionsDidUpdate
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        let updatedPosition = ReceiptPosition(
+            id: positions[1].id,
+            amount: 3,
+            buyer: .person(firstPerson),
+            owner: .person(secondPerson)
+        )
+
+        sut.update(updatedPosition)
+
+        wait(for: [expectation], timeout: 0.3)
+        XCTAssertEqual(result, [updatedPosition, positions[0]])
+    }
+
+    func testRemovePosition_whenTwoPositionsPersisted_sendsPositionThroughPositionsDidUpdate() {
+        let positions: [ReceiptPosition] = [
+            .init(amount: 1, buyer: .person(firstPerson), owner: .all),
+            .init(amount: 2, buyer: .person(secondPerson), owner: .all)
+        ]
+        positions.forEach { sut.insert($0) }
+
+        var result: [ReceiptPosition]?
+        let expectation = self.expectation(description: "Receipt Positions are sent")
+        sut.positionsDidUpdate
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        sut.remove(positions[0])
+
+        wait(for: [expectation], timeout: 0.3)
+        XCTAssertEqual(result, [positions[1]])
+    }
+
+    func testRemoveAllPositions_oneItemPersisted_deletesOneItem() {
+        sut.insert(.init(amount: 1, buyer: .person(.empty), owner: .all))
+        sut.removeAllPositions()
+        XCTAssertEqual(sut.fetchPositions(), [])
+    }
+
+    func testRemoveAllPositions_twoItemsPersisted_deletesTwoItems() {
+        sut.insert(.init(amount: 1, buyer: .person(firstPerson), owner: .all))
+        sut.insert(.init(amount: 2, buyer: .person(secondPerson), owner: .all))
+
+        sut.removeAllPositions()
+
+        XCTAssertEqual(sut.fetchPositions(), [])
+    }
+
+    func testRemoveAllPositions_sendsEmptyArrayThroughPositionsDidUpdate() {
+        var result: [ReceiptPosition]?
+        let expectation = self.expectation(description: "Receipt Positions are sent")
+        sut.positionsDidUpdate
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        sut.removeAllPositions()
+
+        wait(for: [expectation], timeout: 0.3)
+        XCTAssertEqual(result, [])
     }
 
     func testFetchPositions_whenNoItems_returnsEmptyArray() {
@@ -94,17 +244,10 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
         let position = ReceiptPosition(amount: 1, buyer: .person(person), owner: .all)
         sut.insert(position)
 
-        let result = sut.fetchPositions()
-
-        XCTAssertEqual(result.count, 1)
-        XCTAssertEqual(result[0], position)
+        XCTAssertEqual(sut.fetchPositions(), [position])
     }
 
     func testFetchPositions_whenFourItemAdded_returnsFourItemsInGivenOrder() {
-        let firstPerson: Person = .withGeneratedName(forNumber: 1)
-        let secondPerson: Person = .withGeneratedName(forNumber: 2)
-        peopleService.updatePeople([firstPerson, secondPerson])
-
         let positions: [ReceiptPosition] = [
             .init(amount: 1, buyer: .person(firstPerson), owner: .person(secondPerson)),
             .init(amount: 2, buyer: .person(secondPerson), owner: .person(firstPerson)),
@@ -114,12 +257,6 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
         positions.forEach { sut.insert($0) }
 
-        let result = sut.fetchPositions()
-
-        XCTAssertEqual(result.count, 4)
-        XCTAssertEqual(result[0], positions[3])
-        XCTAssertEqual(result[1], positions[2])
-        XCTAssertEqual(result[2], positions[1])
-        XCTAssertEqual(result[3], positions[0])
+        XCTAssertEqual(sut.fetchPositions(), positions.reversed())
     }
 }
