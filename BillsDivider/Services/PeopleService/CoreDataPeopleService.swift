@@ -20,7 +20,7 @@ final class CoreDataPeopleService: PeopleService {
         self.peopleDidUpdateSubject.send(fetchPeople())
     }
 
-    func getNumberOfPeople() -> Int {
+    func numberOfPeople() -> Int {
         (try? context.count(for: PersonEntity.fetchRequest())) ?? 0
     }
 

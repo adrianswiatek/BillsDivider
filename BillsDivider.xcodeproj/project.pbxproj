@@ -467,8 +467,8 @@
 		A7D2A83E239DAE8B002712FE /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */,
-				A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */,
+				A7EE469F23C11CE000370E29 /* PeopleService */,
+				A7EE46A023C11CE500370E29 /* ReceiptPositionService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -494,6 +494,22 @@
 				A75E802923A17BF700B549F9 /* EditOverlayViewModel */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A7EE469F23C11CE000370E29 /* PeopleService */ = {
+			isa = PBXGroup;
+			children = (
+				A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */,
+			);
+			path = PeopleService;
+			sourceTree = "<group>";
+		};
+		A7EE46A023C11CE500370E29 /* ReceiptPositionService */ = {
+			isa = PBXGroup;
+			children = (
+				A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */,
+			);
+			path = ReceiptPositionService;
 			sourceTree = "<group>";
 		};
 		A7F213AF238B410E0084B466 /* Summary */ = {

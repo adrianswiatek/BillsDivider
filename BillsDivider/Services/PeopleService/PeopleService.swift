@@ -6,7 +6,7 @@ protocol PeopleService {
 
     var peopleDidUpdate: AnyPublisher<[Person], Never> { get }
     
-    func getNumberOfPeople() -> Int
+    func numberOfPeople() -> Int
     func fetchPeople() -> [Person]
     func updatePeople(_ people: [Person])
 
@@ -16,10 +16,10 @@ protocol PeopleService {
 
 extension PeopleService {
     func canAddPerson() -> Bool {
-        getNumberOfPeople() < maximumNumberOfPeople
+        numberOfPeople() < maximumNumberOfPeople
     }
 
     func canRemovePerson() -> Bool {
-        getNumberOfPeople() > minimumNumberOfPeople
+        numberOfPeople() > minimumNumberOfPeople
     }
 }

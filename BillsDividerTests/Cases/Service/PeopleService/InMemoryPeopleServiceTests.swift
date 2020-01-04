@@ -1,25 +1,38 @@
 @testable import BillsDivider
+import Combine
 import XCTest
 
 class InMemoryPeopleServiceTests: XCTestCase {
     private var sut: PeopleService!
+    private var subscriptions: [AnyCancellable]!
 
     override func setUp() {
         super.setUp()
         sut = InMemoryPeopleService(maximumNumberOfPeople: 2)
+        subscriptions = []
     }
 
     override func tearDown() {
         sut = nil
+        subscriptions = nil
         super.tearDown()
     }
 
-    func whenPeopleAdded(_ numberOfPeople: Int) {
+    private func whenPeopleAdded(_ numberOfPeople: Int) {
         sut.updatePeople((0 ..< numberOfPeople).map { .withGeneratedName(forNumber: $0 + 1) })
     }
 
     func testInit_createsEmptyArrayOfPeople() {
-        XCTAssertEqual(sut.getNumberOfPeople(), 0)
+        XCTAssertEqual(sut.numberOfPeople(), 0)
+    }
+
+    func testNumberOfPeople_whenNoPeopleAdded_returnsZero() {
+        XCTAssertEqual(sut.numberOfPeople(), 0)
+    }
+
+    func testNumberOfPeople_returnsNumberOfPeople() {
+        whenPeopleAdded(5)
+        XCTAssertEqual(sut.numberOfPeople(), 5)
     }
 
     func testFetchPeople_returnsEmptyArrayOfPeople() {
@@ -52,6 +65,27 @@ class InMemoryPeopleServiceTests: XCTestCase {
         sut.updatePeople([people[0]] + [updatedPerson] + [people[2]])
 
         XCTAssertEqual(sut.fetchPeople()[1].name, "My name")
+    }
+
+    func testUpdatePeople_sendsOutputThroughPeopleDidUpdate() {
+        let people: [Person] = [.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]
+        let expectation = self.expectation(description: "People are updated")
+        var result: [Person] = []
+
+        sut.peopleDidUpdate
+            .dropFirst()
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        sut.updatePeople(people)
+
+        wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result[0], people[0])
+        XCTAssertEqual(result[1], people[1])
     }
 
     func testCanAddPerson_whenNumberOfPeopleIsLowerThanMaximum_returnsTrue() {
