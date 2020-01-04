@@ -18,7 +18,7 @@
 		A754170723A05537008DB5F7 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A754170623A05537008DB5F7 /* CoreDataStack.swift */; };
 		A75443C123A9499800A8775E /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75443C023A9499800A8775E /* SettingsViewModelTests.swift */; };
 		A75443C323A94A0F00A8775E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75443C223A94A0F00A8775E /* SettingsViewModel.swift */; };
-		A7550E7B239BD7E60004797D /* ReceiptListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7A239BD7E60004797D /* ReceiptListPage.swift */; };
+		A7550E7B239BD7E60004797D /* ReceiptPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7A239BD7E60004797D /* ReceiptPage.swift */; };
 		A7550E7D239BD8050004797D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7C239BD8050004797D /* Page.swift */; };
 		A7550E7F239BDE3D0004797D /* SummaryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7E239BDE3D0004797D /* SummaryPage.swift */; };
 		A7550E81239BDE6D0004797D /* EditOverlayPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E80239BDE6D0004797D /* EditOverlayPage.swift */; };
@@ -37,7 +37,7 @@
 		A7705B9A23AD87C90073D8E8 /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9923AD87C90073D8E8 /* PersonTests.swift */; };
 		A7705B9C23AD9C530073D8E8 /* PeopleServiceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9B23AD9C530073D8E8 /* PeopleServiceFake.swift */; };
 		A7743615239AA6A2008F53B5 /* ReceiptPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */; };
-		A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptListUITests.swift */; };
+		A774361D239AB696008F53B5 /* ReceiptUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptUITests.swift */; };
 		A774B1DE23B57F97005A868E /* EditOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774B1DD23B57F97005A868E /* EditOverlayViewModel.swift */; };
 		A7788B4523B398DD0059EB71 /* ReceiptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4423B398DD0059EB71 /* ReceiptViewModel.swift */; };
 		A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4623B3991A0059EB71 /* ReceiptView.swift */; };
@@ -47,6 +47,7 @@
 		A7788B5023B3B6CE0059EB71 /* ReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4F23B3B6CE0059EB71 /* ReceiptPositionService.swift */; };
 		A7788B5223B3B6FD0059EB71 /* InMemoryReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B5123B3B6FD0059EB71 /* InMemoryReceiptPositionService.swift */; };
 		A7794C39239D52E90001EB73 /* CoreDataReceiptPositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */; };
+		A77ACA9923C11EB200F9335D /* CoreDataPeopleServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77ACA9823C11EB200F9335D /* CoreDataPeopleServiceTests.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
 		A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */; };
 		A7873D2C23A839C8008C9552 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2B23A839C8008C9552 /* SettingsView.swift */; };
@@ -111,7 +112,7 @@
 		A754170623A05537008DB5F7 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A75443C023A9499800A8775E /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		A75443C223A94A0F00A8775E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		A7550E7A239BD7E60004797D /* ReceiptListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListPage.swift; sourceTree = "<group>"; };
+		A7550E7A239BD7E60004797D /* ReceiptPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPage.swift; sourceTree = "<group>"; };
 		A7550E7C239BD8050004797D /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		A7550E7E239BDE3D0004797D /* SummaryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPage.swift; sourceTree = "<group>"; };
 		A7550E80239BDE6D0004797D /* EditOverlayPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayPage.swift; sourceTree = "<group>"; };
@@ -131,7 +132,7 @@
 		A7705B9B23AD9C530073D8E8 /* PeopleServiceFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleServiceFake.swift; sourceTree = "<group>"; };
 		A7743614239AA6A2008F53B5 /* ReceiptPositionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionTests.swift; sourceTree = "<group>"; };
 		A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A774361C239AB696008F53B5 /* ReceiptListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptListUITests.swift; sourceTree = "<group>"; };
+		A774361C239AB696008F53B5 /* ReceiptUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptUITests.swift; sourceTree = "<group>"; };
 		A774361E239AB696008F53B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A774B1DD23B57F97005A868E /* EditOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewModel.swift; sourceTree = "<group>"; };
 		A7788B4423B398DD0059EB71 /* ReceiptViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewModel.swift; sourceTree = "<group>"; };
@@ -142,6 +143,7 @@
 		A7788B4F23B3B6CE0059EB71 /* ReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPositionService.swift; sourceTree = "<group>"; };
 		A7788B5123B3B6FD0059EB71 /* InMemoryReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionService.swift; sourceTree = "<group>"; };
 		A7794C38239D52E90001EB73 /* CoreDataReceiptPositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataReceiptPositionService.swift; sourceTree = "<group>"; };
+		A77ACA9823C11EB200F9335D /* CoreDataPeopleServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleServiceTests.swift; sourceTree = "<group>"; };
 		A77D54CA23819255003D7E9D /* PriceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSectionView.swift; sourceTree = "<group>"; };
 		A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnotherSectionView.swift; sourceTree = "<group>"; };
 		A7873D2B23A839C8008C9552 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -216,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */,
-				A774361C239AB696008F53B5 /* ReceiptListUITests.swift */,
+				A774361C239AB696008F53B5 /* ReceiptUITests.swift */,
 				A7385B5C239C6A1B00A41C09 /* TabsUITests.swift */,
 			);
 			path = Cases;
@@ -280,7 +282,7 @@
 			children = (
 				A7550E80239BDE6D0004797D /* EditOverlayPage.swift */,
 				A7550E7C239BD8050004797D /* Page.swift */,
-				A7550E7A239BD7E60004797D /* ReceiptListPage.swift */,
+				A7550E7A239BD7E60004797D /* ReceiptPage.swift */,
 				A7873D2E23A83C3D008C9552 /* SettingsPage.swift */,
 				A7550E7E239BDE3D0004797D /* SummaryPage.swift */,
 				A7385B5A239C696F00A41C09 /* TabBarPage.swift */,
@@ -499,6 +501,7 @@
 		A7EE469F23C11CE000370E29 /* PeopleService */ = {
 			isa = PBXGroup;
 			children = (
+				A77ACA9823C11EB200F9335D /* CoreDataPeopleServiceTests.swift */,
 				A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */,
 			);
 			path = PeopleService;
@@ -698,6 +701,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7385B5F239C80DF00A41C09 /* EditOverlayViewModelTests.swift in Sources */,
+				A77ACA9923C11EB200F9335D /* CoreDataPeopleServiceTests.swift in Sources */,
 				A76FF43623BD40F9000D584F /* ReceiptViewModelTests.swift in Sources */,
 				A76BBCD323948481003AE654 /* DivisionResultTests.swift in Sources */,
 				A7705B9823AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift in Sources */,
@@ -724,8 +728,8 @@
 			files = (
 				A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */,
 				A7385B5B239C696F00A41C09 /* TabBarPage.swift in Sources */,
-				A774361D239AB696008F53B5 /* ReceiptListUITests.swift in Sources */,
-				A7550E7B239BD7E60004797D /* ReceiptListPage.swift in Sources */,
+				A774361D239AB696008F53B5 /* ReceiptUITests.swift in Sources */,
+				A7550E7B239BD7E60004797D /* ReceiptPage.swift in Sources */,
 				A7385B5D239C6A1B00A41C09 /* TabsUITests.swift in Sources */,
 				A70478C623A42DF6001AD82E /* EditOverlayUITests.swift in Sources */,
 				A7550E7D239BD8050004797D /* Page.swift in Sources */,

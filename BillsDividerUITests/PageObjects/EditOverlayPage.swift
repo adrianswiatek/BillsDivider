@@ -53,9 +53,9 @@ class EditOverlayPage: Page {
         return self
     }
 
-    @discardableResult func tapCloseButton() -> ReceiptListPage {
+    @discardableResult func tapCloseButton() -> ReceiptPage {
         closeButton.tap()
-        return ReceiptListPage(app)
+        return ReceiptPage(app)
     }
 
     @discardableResult func tapPriceTextField() -> EditOverlayPage {

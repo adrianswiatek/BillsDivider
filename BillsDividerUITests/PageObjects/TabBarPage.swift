@@ -35,9 +35,9 @@ class TabBarPage: Page {
         settingsButton.isSelected
     }
 
-    func tapReceiptButton() -> ReceiptListPage {
+    func tapReceiptButton() -> ReceiptPage {
         receiptButton.tap()
-        return ReceiptListPage(app)
+        return ReceiptPage(app)
     }
 
     func tapSummaryButton() -> SummaryPage {

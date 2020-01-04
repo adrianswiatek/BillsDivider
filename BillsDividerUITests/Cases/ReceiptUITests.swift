@@ -1,6 +1,6 @@
 import XCTest
 
-class ReceiptListUITests: XCTestCase {
+class ReceiptUITests: XCTestCase {
     private var app: XCUIApplication!
 
     override func setUp() {
@@ -18,7 +18,7 @@ class ReceiptListUITests: XCTestCase {
     }
 
     func testCanRemoveAllItems() {
-        let receiptListPage = ReceiptListPage(app)
+        let receiptListPage = ReceiptPage(app)
 
         XCTAssertEqual(receiptListPage.numberOfCells, 0)
 
@@ -41,7 +41,7 @@ class ReceiptListUITests: XCTestCase {
     }
 
     func testCanRemoveSingleItemBySwipeGesture() {
-        let receiptListPage = ReceiptListPage(app)
+        let receiptListPage = ReceiptPage(app)
 
         XCTAssertEqual(receiptListPage.numberOfCells, 0)
 
@@ -65,7 +65,7 @@ class ReceiptListUITests: XCTestCase {
     }
 
     func testCanRemoveSingleItemFromContextMenu() {
-        let receiptListPage = ReceiptListPage(app)
+        let receiptListPage = ReceiptPage(app)
 
         receiptListPage
             .tapPlusButton()
@@ -88,7 +88,7 @@ class ReceiptListUITests: XCTestCase {
     }
 
     func testCanEditAmount() {
-        let receiptListPage = ReceiptListPage(app)
+        let receiptListPage = ReceiptPage(app)
 
         receiptListPage
             .tapPlusButton()
