@@ -23,7 +23,7 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
 
     func insert(_ position: ReceiptPosition) {
         var positions = fetchPositions()
-        removeAllPositions()
+        removeAllEntities()
 
         positions.insert(position, at: 0)
 
@@ -42,7 +42,7 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
 
     func update(_ position: ReceiptPosition) {
         var positions = fetchPositions()
-        removeAllPositions()
+        removeAllEntities()
 
         guard let index = positions.firstIndex(where: { $0.id == position.id}) else {
             return
@@ -58,7 +58,7 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
 
     func remove(_ position: ReceiptPosition) {
         var positions = fetchPositions()
-        removeAllPositions()
+        removeAllEntities()
 
         positions.removeAll { $0 == position }
 
@@ -69,7 +69,8 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
     }
 
     func removeAllPositions() {
-        fetchEntities(sorted: false).forEach { context.delete($0) }
+        removeAllEntities()
+        save()
         positionsDidUpdateSubject.send([])
     }
 
@@ -86,6 +87,10 @@ final class CoreDataReceiptPositionService: ReceiptPositionService {
             : []
 
         return (try? context.fetch(request)) ?? []
+    }
+
+    private func removeAllEntities() {
+        fetchEntities(sorted: false).forEach { context.delete($0) }
     }
 
     private func save() {

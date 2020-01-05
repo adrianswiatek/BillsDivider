@@ -18,6 +18,7 @@ struct SummaryView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.top, 24)
+                .accessibility(identifier: "SummaryView.title")
 
             Rectangle()
                 .foregroundColor(.red)
@@ -34,6 +35,7 @@ struct SummaryView: View {
 
                 HStack {
                     generatePersonView(withLabel: viewModel.leftSidedBuyer.formatted)
+                        .accessibility(identifier: "SummaryView.firstPerson")
 
                     Spacer()
 
@@ -43,6 +45,7 @@ struct SummaryView: View {
                     Spacer()
 
                     generatePersonView(withLabel: viewModel.rightSidedBuyer.formatted)
+                        .accessibility(identifier: "SummaryView.secondPerson")
                 }
             }
             .padding(.horizontal)

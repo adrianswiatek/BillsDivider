@@ -1,6 +1,6 @@
 import XCTest
 
-class ReceiptListPage: Page {
+class ReceiptPage: Page {
     private let app: XCUIApplication
 
     required init(_ app: XCUIApplication) {
@@ -48,27 +48,27 @@ class ReceiptListPage: Page {
         return EditOverlayPage(app)
     }
 
-    @discardableResult func tapEllipsisButton() -> ReceiptListPage {
+    @discardableResult func tapEllipsisButton() -> ReceiptPage {
         ellipsisButton.tap()
         return self
     }
 
-    @discardableResult func tapDeleteAllButton() -> ReceiptListPage {
+    @discardableResult func tapDeleteAllButton() -> ReceiptPage {
         deleteAllButton.tap()
         return self
     }
 
-    @discardableResult func swipeLeftCell(atIndex index: Int) -> ReceiptListPage {
+    @discardableResult func swipeLeftCell(atIndex index: Int) -> ReceiptPage {
         table.cells.element(boundBy: index).swipeLeft()
         return self
     }
 
-    @discardableResult func tapCellsDeleteButton(atIndex index: Int) -> ReceiptListPage {
+    @discardableResult func tapCellsDeleteButton(atIndex index: Int) -> ReceiptPage {
         table.cells.element(boundBy: index).buttons["Delete"].tap()
         return self
     }
 
-    @discardableResult func longPressCell(atIndex index: Int) -> ReceiptListPage {
+    @discardableResult func longPressCell(atIndex index: Int) -> ReceiptPage {
         table.cells.element(boundBy: index).press(forDuration: 1)
         return self
     }
@@ -78,12 +78,20 @@ class ReceiptListPage: Page {
         return EditOverlayPage(app)
     }
 
-    @discardableResult func tapRemovePositionButton() -> ReceiptListPage {
+    @discardableResult func tapRemovePositionButton() -> ReceiptPage {
         deletePositionButton.tap()
         return self
     }
 
-    func getAmountFromCell(atIndex index: Int) -> String {
-        table.cells.element(boundBy: index).staticTexts.firstMatch.label
+    func amountFromCell(atIndex index: Int) -> String {
+        table.cells.element(boundBy: index).staticTexts.element(boundBy: 0).label
+    }
+
+    func buyerLabelFromCell(atIndex index: Int) -> String {
+        table.cells.element(boundBy: index).staticTexts.element(boundBy: 1).label
+    }
+
+    func ownerLabelFromCell(atIndex index: Int) -> String {
+        table.cells.element(boundBy: index).staticTexts.element(boundBy: 2).label
     }
 }

@@ -20,8 +20,8 @@ final class CoreDataPeopleService: PeopleService {
         self.peopleDidUpdateSubject.send(fetchPeople())
     }
 
-    func getNumberOfPeople() -> Int {
-        (try? context.count(for: PersonEntity.fetchRequest())) ?? 0
+    func numberOfPeople() -> Int {
+        (try? context.count(for: fetchRequest())) ?? 0
     }
 
     func fetchPeople() -> [Person] {
@@ -41,7 +41,7 @@ final class CoreDataPeopleService: PeopleService {
     }
 
     private func fetchEntities() -> [PersonEntity] {
-        let request: NSFetchRequest<PersonEntity> = PersonEntity.fetchRequest()
+        let request = fetchRequest()
         request.sortDescriptors = [.init(keyPath: \PersonEntity.orderNumber, ascending: true)]
 
         return (try? context.fetch(request)) ?? []
@@ -55,5 +55,9 @@ final class CoreDataPeopleService: PeopleService {
     private func save() {
         guard context.hasChanges else { return }
         try? context.save()
+    }
+
+    private func fetchRequest() -> NSFetchRequest<PersonEntity> {
+        PersonEntity.fetchRequest() as NSFetchRequest<PersonEntity>
     }
 }

@@ -18,7 +18,7 @@ class EditOverlayUITests: XCTestCase {
     }
 
     func testRememberBuyerAndOwnerPositionsWhileAddingItems() {
-        let editOverlayPage = ReceiptListPage(app)
+        let editOverlayPage = ReceiptPage(app)
             .tapPlusButton()
             .tapPriceTextField()
             .typeIntoPriceTextField("1")

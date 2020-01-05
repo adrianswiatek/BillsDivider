@@ -72,10 +72,16 @@ class PersonTests: XCTestCase {
         XCTAssertEqual(updatedPerson.state, .default)
     }
 
+    func testWithUpdatedName_whenEmptyName_returnsPersonInEmptyState() {
+        let originalPerson: Person = .withName("Original name")
+        let updatedPerson: Person = originalPerson.withUpdated(name: "")
+        XCTAssertEqual(updatedPerson.state, .empty)
+    }
+
     func testWithUpdatedName_whenGeneratedPerson_returnsPersonInDefaultState() {
         let originalPerson: Person = .withGeneratedName(forNumber: 1)
-        let udpatedPerson: Person = originalPerson.withUpdated(name: "Updated name")
-        XCTAssertEqual(udpatedPerson.state, .default)
+        let updatedPerson: Person = originalPerson.withUpdated(name: "Updated name")
+        XCTAssertEqual(updatedPerson.state, .default)
     }
 
     func testWithUpdatedNameAndNumber_whenEmptyNameAndNumberProvided_returnsPersonInGeneratedState() {

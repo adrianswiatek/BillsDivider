@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func preparePeopleService(_ context: NSManagedObjectContext) -> PeopleService {
         let peopleService = CoreDataPeopleService(context: context, maximumNumberOfPeople: 2)
-        let numberOfPeople = peopleService.getNumberOfPeople()
+        let numberOfPeople = peopleService.numberOfPeople()
         let minimumNumberOfPeople = 2
 
         let initialPeople: [Person] = (numberOfPeople ..< minimumNumberOfPeople)

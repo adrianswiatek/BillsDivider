@@ -35,17 +35,17 @@ class TabBarPage: Page {
         settingsButton.isSelected
     }
 
-    func tapReceiptButton() -> ReceiptListPage {
+    @discardableResult func tapReceiptButton() -> ReceiptPage {
         receiptButton.tap()
-        return ReceiptListPage(app)
+        return ReceiptPage(app)
     }
 
-    func tapSummaryButton() -> SummaryPage {
+    @discardableResult func tapSummaryButton() -> SummaryPage {
         summaryButton.tap()
         return SummaryPage(app)
     }
 
-    func tapSettingsButton() -> SettingsPage {
+    @discardableResult func tapSettingsButton() -> SettingsPage {
         settingsButton.tap()
         return SettingsPage(app)
     }

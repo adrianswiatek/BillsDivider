@@ -7,11 +7,27 @@ class SummaryPage: Page {
         self.app = app
     }
 
-    private var summaryStaticText: XCUIElement {
-        app.staticTexts["Summary"]
+    private var titleStaticText: XCUIElement {
+        app.staticTexts["SummaryView.title"]
+    }
+
+    private var firstPersonStaticText: XCUIElement {
+        app.staticTexts["SummaryView.firstPerson"]
+    }
+
+    private var secondPersonStaticText: XCUIElement {
+        app.staticTexts["SummaryView.secondPerson"]
     }
 
     var isVisible: Bool {
-        summaryStaticText.exists
+        titleStaticText.exists
+    }
+
+    var firstPersonLabel: String {
+        firstPersonStaticText.label
+    }
+
+    var secondPersonLabel: String {
+        secondPersonStaticText.label
     }
 }

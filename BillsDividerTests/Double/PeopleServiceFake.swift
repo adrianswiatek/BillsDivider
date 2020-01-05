@@ -23,7 +23,7 @@ class PeopleServiceFake: PeopleService {
         self.people = []
     }
 
-    func getNumberOfPeople() -> Int {
+    func numberOfPeople() -> Int {
         people.count
     }
 
