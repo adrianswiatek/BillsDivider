@@ -34,7 +34,7 @@ struct SummaryView: View {
                     .offset(x: 0, y: 16)
 
                 HStack {
-                    generatePersonView(withLabel: viewModel.leftSidedBuyer.formatted)
+                    generatePersonView(withLabel: viewModel.leftSidedBuyer.formatted, andColor: .green)
                         .accessibility(identifier: "SummaryView.firstPersonText")
 
                     Spacer()
@@ -44,7 +44,7 @@ struct SummaryView: View {
 
                     Spacer()
 
-                    generatePersonView(withLabel: viewModel.rightSidedBuyer.formatted)
+                    generatePersonView(withLabel: viewModel.rightSidedBuyer.formatted, andColor: .blue)
                         .accessibility(identifier: "SummaryView.secondPersonText")
                 }
             }
@@ -54,14 +54,14 @@ struct SummaryView: View {
         }
     }
 
-    private func generatePersonView(withLabel label: String) -> some View {
+    private func generatePersonView(withLabel label: String, andColor color: Color) -> some View {
         Text(label)
             .multilineTextAlignment(.center)
             .lineLimit(2)
             .font(.system(size: 20))
             .foregroundColor(.white)
             .padding(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
-            .background(Color.blue)
+            .background(color)
             .cornerRadius(8)
             .frame(width: 120)
             .shadow(color: .gray, radius: 2, x: 0, y: 1)

@@ -23,7 +23,11 @@ final class ViewModelFactory {
 
 extension ViewModelFactory {
     var receiptViewModel: ReceiptViewModel {
-        .init(receiptPositionService: receiptPositionService, numberFormatter: numberFormatter)
+        .init(
+            receiptPositionService: receiptPositionService,
+            peopleService: peopleService,
+            numberFormatter: numberFormatter
+        )
     }
 
     func editOverlayViewModel(presentingParams: Binding<EditOverlayViewParams>) -> EditOverlayViewModel {

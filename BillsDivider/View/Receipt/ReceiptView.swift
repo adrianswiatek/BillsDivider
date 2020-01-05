@@ -29,7 +29,7 @@ struct ReceiptView: View {
                                 .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
                                 .background(
                                     Capsule(style: .continuous)
-                                        .foregroundColor(.blue)
+                                        .foregroundColor(self.viewModel.colorFor(position.buyer))
                                 )
                                 .frame(width: self.columnWidth)
 
@@ -39,7 +39,7 @@ struct ReceiptView: View {
                                 .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
                                 .background(
                                     Capsule(style: .continuous)
-                                        .foregroundColor(self.getBackgroundColor(for: position.owner))
+                                        .foregroundColor(self.viewModel.colorFor(position.owner))
                                 )
                                 .frame(width: self.columnWidth)
                         }
@@ -87,10 +87,6 @@ struct ReceiptView: View {
                 .cancel()
             ])
         }
-    }
-
-    private func getBackgroundColor(for owner: Owner) -> Color {
-        owner == .all ? .purple : .blue
     }
 
     private func createEditOverlayView() -> some View {

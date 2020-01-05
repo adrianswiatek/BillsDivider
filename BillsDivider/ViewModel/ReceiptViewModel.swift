@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import SwiftUI
 
 class ReceiptViewModel: ObservableObject {
     @Published var positions: [ReceiptPosition]
@@ -11,17 +12,25 @@ class ReceiptViewModel: ObservableObject {
     private let receiptPositionService: ReceiptPositionService
     private let numberFormatter: NumberFormatter
 
+    private var people: [Person]
+
     private var externalSubscriptions: [AnyCancellable]
     private var internalSubscriptions: [AnyCancellable]
 
-    init(receiptPositionService: ReceiptPositionService, numberFormatter: NumberFormatter) {
+    init(
+        receiptPositionService: ReceiptPositionService,
+        peopleService: PeopleService,
+        numberFormatter: NumberFormatter
+    ) {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
+        self.people = []
         self.positions = []
         self.externalSubscriptions = []
         self.internalSubscriptions = []
 
         self.subscribe(to: receiptPositionService.positionsDidUpdate)
+        self.subscribe(to: peopleService.peopleDidUpdate)
     }
 
     func subscribe(
@@ -56,9 +65,27 @@ class ReceiptViewModel: ObservableObject {
         numberFormatter.format(value: value)
     }
 
+    func colorFor(_ buyer: Buyer) -> Color {
+        buyer.asPerson == people.first ? .green : .blue
+    }
+
+    func colorFor(_ owner: Owner) -> Color {
+        if owner == .all {
+            return .purple
+        }
+
+        return owner.asPerson == people.first ? .green : .blue
+    }
+
     private func subscribe(to receiptPositionDidUpdate: AnyPublisher<[ReceiptPosition], Never>) {
         receiptPositionDidUpdate
             .sink { [weak self] in self?.positions = $0 }
+            .store(in: &internalSubscriptions)
+    }
+
+    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+        peopleDidUpdate
+            .sink { [weak self] in self?.people = $0 }
             .store(in: &internalSubscriptions)
     }
 }
