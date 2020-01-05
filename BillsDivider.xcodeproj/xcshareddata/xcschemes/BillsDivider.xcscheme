@@ -40,12 +40,22 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A7743619239AB696008F53B5"
                BuildableName = "BillsDividerUITests.xctest"
                BlueprintName = "BillsDividerUITests"
+               ReferencedContainer = "container:BillsDivider.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A72B1A5723C2935100E09786"
+               BuildableName = "BillsDivider_ModelTests.xctest"
+               BlueprintName = "BillsDivider_ModelTests"
                ReferencedContainer = "container:BillsDivider.xcodeproj">
             </BuildableReference>
          </TestableReference>

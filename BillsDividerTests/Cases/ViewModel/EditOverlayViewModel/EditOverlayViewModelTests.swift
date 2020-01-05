@@ -1,4 +1,5 @@
 @testable import BillsDivider
+@testable import BillsDivider_Model
 import Combine
 import SwiftUI
 import XCTest

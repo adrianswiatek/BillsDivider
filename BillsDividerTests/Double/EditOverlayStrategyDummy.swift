@@ -1,4 +1,5 @@
 @testable import BillsDivider
+@testable import BillsDivider_Model
 
 class EditOverlayStrategyDummy: EditOverlayStrategy {
     let receiptPosition: ReceiptPosition = .empty
