@@ -8,7 +8,13 @@ extension NumberFormatter {
         return formatter
     }
 
-    func format(value: Decimal) -> String {
+    static var oridinalNumberFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .ordinal
+        return formatter
+    }
+
+    func format<T: Numeric>(value: T) -> String {
         guard let result = string(for: value) else {
             preconditionFailure("Unable to format provided value.")
         }

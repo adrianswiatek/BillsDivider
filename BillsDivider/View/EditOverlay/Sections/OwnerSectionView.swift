@@ -1,7 +1,11 @@
 import SwiftUI
 
 struct OwnerSectionView: View {
-    @Binding var owner: Owner
+    @ObservedObject private var viewModel: EditOverlayViewModel
+
+    init(_ viewModel: EditOverlayViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         HStack {
@@ -11,20 +15,20 @@ struct OwnerSectionView: View {
 
             Spacer()
 
-            Picker(selection: $owner, label: EmptyView()) {
-                Text(Owner.me.formatted).tag(Owner.me)
-                Text(Owner.notMe.formatted).tag(Owner.notMe)
-                Text(Owner.all.formatted).tag(Owner.all)
+            Picker(selection: $viewModel.owner, label: EmptyView()) {
+                ForEach(viewModel.owners, id: \.self) {
+                    Text($0.formatted).tag($0.formatted)
+                }
             }
             .pickerStyle(SegmentedPickerStyle())
             .frame(width: UIScreen.main.bounds.width * 0.7)
-            .accessibility(identifier: "OwnerSegmentedControl")
+            .accessibility(identifier: "OwnerSectionView.segmentedControl")
         }
     }
 }
 
-struct OwnerSectionView_Previews: PreviewProvider {
+struct OwnerSectionView2_Previews: PreviewProvider {
     static var previews: some View {
-        OwnerSectionView(owner: .constant(.all))
+        PreviewFactory().ownerSectionView
     }
 }

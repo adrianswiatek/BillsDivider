@@ -12,7 +12,13 @@ final class EditOverlayViewModel: ObservableObject {
     @Published var isPriceCorrect: Bool
     @Published var canConfirm: Bool
 
+    @Published var buyers: [Buyer]
+    @Published var owners: [Owner]
+
     let pricePlaceHolderText: String
+
+    var getInitialBuyer: (() -> Buyer)?
+    var getInitialOwner: (() -> Owner)?
 
     var positionAdded: AnyPublisher<ReceiptPosition, Never>
     var positionEdited: AnyPublisher<ReceiptPosition, Never>
@@ -31,6 +37,7 @@ final class EditOverlayViewModel: ObservableObject {
     init(
         presenting: Binding<Bool>,
         editOverlayStrategy: EditOverlayStrategy,
+        peopleService: PeopleService,
         numberFormatter: NumberFormatter
     ) {
         self._presenting = presenting
@@ -38,21 +45,23 @@ final class EditOverlayViewModel: ObservableObject {
 
         self.priceText = ""
         self.pricePlaceHolderText = numberFormatter.format(value: 0)
-        self.buyer = .me
-        self.owner = .notMe
+        self.buyer = .person(.empty)
+        self.owner = .all
         self.addAnother = false
         self.canConfirm = false
         self.isPriceCorrect = false
+
+        self.buyers = []
+        self.owners = []
+
         self.positionAdded = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.subscriptions = []
 
-        self.setupSubscriptions()
         self.editOverlayStrategy.set(viewModel: self)
-    }
 
-    deinit {
-        print("EditOverlayViewModel has been deinitialized.")
+        self.subscribe(to: peopleService.peopleDidUpdate)
+        self.subscribe(to: $priceText.eraseToAnyPublisher())
     }
 
     func confirmDidTap() {
@@ -68,8 +77,28 @@ final class EditOverlayViewModel: ObservableObject {
         presenting = false
     }
 
-    private func setupSubscriptions() {
-        $priceText
+    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+        peopleDidUpdate
+            .sink { [weak self] in
+                guard let self = self else { return }
+                precondition($0.count >= 2, "There must be at least 2 people.")
+
+                self.buyers = $0.map { Buyer.person($0) }
+                self.owners = $0.map { Owner.person($0) } + [.all]
+
+                if let initialBuyer = self.getInitialBuyer?() {
+                    self.buyer = initialBuyer
+                }
+
+                if let initialOwner = self.getInitialOwner?() {
+                    self.owner = initialOwner
+                }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func subscribe(to priceText: AnyPublisher<String, Never>) {
+        priceText
             .sink { [weak self] in
                 guard let self = self else { return }
                 self.isPriceCorrect = $0.isEmpty || self.tryParsePrice($0) != nil

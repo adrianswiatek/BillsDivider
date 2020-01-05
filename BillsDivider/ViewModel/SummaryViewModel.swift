@@ -4,8 +4,8 @@ import Foundation
 class SummaryViewModel: ObservableObject {
     @Published private var divisionResult: DivisionResult
 
-    let leftSidedBuyer: Buyer
-    let rightSidedBuyer: Buyer
+    var leftSidedBuyer: Buyer
+    var rightSidedBuyer: Buyer
 
     var formattedDirection: String {
         switch divisionResult {
@@ -22,24 +22,54 @@ class SummaryViewModel: ObservableObject {
         return numberFormatter.format(value: divisionResult.debtAmount)
     }
 
+    private let receiptPositionService: ReceiptPositionService
     private let divider: Divider
     private let numberFormatter: NumberFormatter
+
+    private var people: [Person]
     private var subscriptions: [AnyCancellable]
 
-    init(positions: AnyPublisher<[ReceiptPosition], Never>, divider: Divider, numberFormatter: NumberFormatter) {
-        self.numberFormatter = numberFormatter
+    init(
+        receiptPositionService: ReceiptPositionService,
+        peopleService: PeopleService,
+        divider: Divider,
+        numberFormatter: NumberFormatter
+    ) {
+        self.receiptPositionService = receiptPositionService
         self.divider = divider
-        self.subscriptions = []
-        self.divisionResult = .noDebt
-        self.leftSidedBuyer = .me
-        self.rightSidedBuyer = .notMe
+        self.numberFormatter = numberFormatter
 
-        self.setupSubscriptions(positions)
+        self.people = []
+        self.subscriptions = []
+
+        self.divisionResult = .noDebt
+        self.leftSidedBuyer = .person(.empty)
+        self.rightSidedBuyer = .person(.empty)
+
+        self.subscribe(to: receiptPositionService.positionsDidUpdate)
+        self.subscribe(to: peopleService.peopleDidUpdate)
     }
 
-    private func setupSubscriptions(_ positions: AnyPublisher<[ReceiptPosition], Never>) {
-        positions
-            .sink { [weak self] in self?.divisionResult = self?.divider.divide($0) ?? .noDebt }
+    private func subscribe(to positionsDidUpdate: AnyPublisher<[ReceiptPosition], Never>) {
+        positionsDidUpdate
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.divisionResult = self.divider.divide($0, between: self.people)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+        peopleDidUpdate
+            .sink { [weak self] in
+                guard let self = self else { return }
+                precondition($0.count >= 2, "There must be at least 2 people.")
+
+                self.people = $0
+                self.leftSidedBuyer = .person($0[0])
+                self.rightSidedBuyer = .person($0[1])
+                self.objectWillChange.send()
+            }
             .store(in: &subscriptions)
     }
 }

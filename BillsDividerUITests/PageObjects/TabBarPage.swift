@@ -7,33 +7,46 @@ class TabBarPage: Page {
         self.app = app
     }
 
-    private var summaryButton: XCUIElement {
-        app.tabBars.buttons["Summary"]
-    }
-
     private var receiptButton: XCUIElement {
         app.tabBars.buttons["Receipt"]
+    }
+
+    private var settingsButton: XCUIElement {
+        app.tabBars.buttons["Settings"]
+    }
+
+    private var summaryButton: XCUIElement {
+        app.tabBars.buttons["Summary"]
     }
 
     var isVisible: Bool {
         summaryButton.exists && receiptButton.exists
     }
 
-    var isSummaryButtonSelected: Bool {
-        summaryButton.isSelected
-    }
-
     var isReceiptButtonSelected: Bool {
         receiptButton.isSelected
     }
 
-    func tapSummaryButton() -> SummaryPage {
+    var isSummaryButtonSelected: Bool {
+        summaryButton.isSelected
+    }
+
+    var isSettingsButtonSelected: Bool {
+        settingsButton.isSelected
+    }
+
+    @discardableResult func tapReceiptButton() -> ReceiptPage {
+        receiptButton.tap()
+        return ReceiptPage(app)
+    }
+
+    @discardableResult func tapSummaryButton() -> SummaryPage {
         summaryButton.tap()
         return SummaryPage(app)
     }
 
-    func tapReceiptButton() -> ReceiptListPage {
-        receiptButton.tap()
-        return ReceiptListPage(app)
+    @discardableResult func tapSettingsButton() -> SettingsPage {
+        settingsButton.tap()
+        return SettingsPage(app)
     }
 }

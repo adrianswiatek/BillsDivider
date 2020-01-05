@@ -9,8 +9,10 @@ struct PreviewFactory {
     init() {
         receiptListColumnWidth = UIScreen.main.bounds.width / 3
         numberFormatter = .twoFractionDigitsNumberFormatter
+        let peopleService: PeopleService = InMemoryPeopleService(maximumNumberOfPeople: 2)
         viewModelFactory = .init(
-            receiptPositionService: InMemoryReceiptPositionService(),
+            receiptPositionService: InMemoryReceiptPositionService(peopleService: peopleService),
+            peopleService: peopleService,
             divider: .init(),
             numberFormatter: numberFormatter
         )
@@ -22,14 +24,8 @@ extension PreviewFactory {
         TabsView(viewModelFactory: viewModelFactory)
     }
 
-    var summaryView: some View {
-        SummaryView(viewModelFactory.summaryViewModel(
-            positions: Empty<[ReceiptPosition], Never>().eraseToAnyPublisher()
-        ))
-    }
-
-    var receiptListView: some View {
-        ReceiptListView(viewModelFactory.receiptListViewModel, viewModelFactory)
+    var receiptView: some View {
+        ReceiptView(viewModelFactory.receiptViewModel, viewModelFactory)
     }
 
     var receiptHeaderView: some View {
@@ -37,6 +33,22 @@ extension PreviewFactory {
     }
 
     var editOverlayView: some View {
-        EditOverlayView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.hidden)))
+        EditOverlayView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
+    }
+
+    var buyerSectionView: some View {
+        BuyerSectionView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
+    }
+
+    var ownerSectionView: some View {
+        OwnerSectionView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
+    }
+
+    var summaryView: some View {
+        SummaryView(viewModelFactory.summaryViewModel)
+    }
+
+    var settingsView: some View {
+        SettingsView(viewModelFactory.settingsViewModel)
     }
 }

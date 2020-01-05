@@ -22,11 +22,15 @@ class TabsUITests: XCTestCase {
         let tabBarPage = TabBarPage(app)
         XCTAssertTrue(tabBarPage.isVisible)
         XCTAssertTrue(tabBarPage.isReceiptButtonSelected)
-        XCTAssertTrue(ReceiptListPage(app).isVisible)
+        XCTAssertTrue(ReceiptPage(app).isVisible)
 
         let summaryPage = tabBarPage.tapSummaryButton()
         XCTAssertTrue(tabBarPage.isSummaryButtonSelected)
         XCTAssertTrue(summaryPage.isVisible)
+
+        let settingsPage = tabBarPage.tapSettingsButton()
+        XCTAssertTrue(tabBarPage.isSettingsButtonSelected)
+        XCTAssertTrue(settingsPage.isVisible)
 
         let receiptPage = tabBarPage.tapReceiptButton()
         XCTAssertTrue(tabBarPage.isReceiptButtonSelected)

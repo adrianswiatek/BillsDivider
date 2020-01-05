@@ -18,6 +18,7 @@ struct SummaryView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.top, 24)
+                .accessibility(identifier: "SummaryView.title")
 
             Rectangle()
                 .foregroundColor(.red)
@@ -33,7 +34,8 @@ struct SummaryView: View {
                     .offset(x: 0, y: 16)
 
                 HStack {
-                    generatePersonView(withLabel: viewModel.leftSidedBuyer.formatted, andColor: .blue)
+                    generatePersonView(withLabel: viewModel.leftSidedBuyer.formatted)
+                        .accessibility(identifier: "SummaryView.firstPerson")
 
                     Spacer()
 
@@ -42,7 +44,8 @@ struct SummaryView: View {
 
                     Spacer()
 
-                    generatePersonView(withLabel: viewModel.rightSidedBuyer.formatted, andColor: .green)
+                    generatePersonView(withLabel: viewModel.rightSidedBuyer.formatted)
+                        .accessibility(identifier: "SummaryView.secondPerson")
                 }
             }
             .padding(.horizontal)
@@ -51,14 +54,16 @@ struct SummaryView: View {
         }
     }
 
-    private func generatePersonView(withLabel label: String, andColor color: Color) -> some View {
+    private func generatePersonView(withLabel label: String) -> some View {
         Text(label)
+            .multilineTextAlignment(.center)
+            .lineLimit(2)
             .font(.system(size: 20))
             .foregroundColor(.white)
             .padding(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
-            .background(color)
+            .background(Color.blue)
             .cornerRadius(8)
-            .frame(width: 100)
+            .frame(width: 120)
             .shadow(color: .gray, radius: 2, x: 0, y: 1)
             .padding(.horizontal, 8)
     }

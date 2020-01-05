@@ -2,83 +2,53 @@
 import XCTest
 
 class BuyerTests: XCTestCase {
-    func testFormatted_meCase_returnsMe() {
-        XCTAssertEqual(Buyer.me.formatted, "Me")
+    func testAsPerson_personCase_returnsGivenPerson() {
+        let person: Person = .withName("My name")
+        XCTAssertEqual(Buyer.person(person).asPerson, person)
     }
 
-    func testFormatted_notMeCase_returnsThey() {
-        XCTAssertEqual(Buyer.notMe.formatted, "They")
+    func testFormatted_personCase_returnsGivenPersonName() {
+        XCTAssertEqual(Buyer.person(.withName("My name")).formatted, "My name")
     }
 
-    // MARK: - isEqualTo(owner:)
-    func testIsEqualTo_buyerSetToMeAndOwnerSetToMe_returnsTrue() {
-        XCTAssertTrue(Buyer.me.isEqualTo(owner: .me))
+    func testIsEqualTo_BuyerSetToPersonAndOwnerSetToAll_returnsFalse() {
+        XCTAssertFalse(Buyer.person(.withName("My name")).isEqualTo(.all))
     }
 
-    func testIsEqualTo_buyerSetToMeAndOwnerSetToNotMe_returnsFalse() {
-        XCTAssertFalse(Buyer.me.isEqualTo(owner: .notMe))
+    func testIsEqualTo_BuyerAndOwnerSetToTheSamePerson_returnsTrue() {
+        let person: Person = .withName("My name")
+        XCTAssertTrue(Buyer.person(person).isEqualTo(.person(person)))
     }
 
-    func testIsEqualTo_buyerSetToMeAndOwnerSetToAll_returnsFalse() {
-        XCTAssertFalse(Buyer.me.isEqualTo(owner: .all))
+    func testIsEqualTo_BuyerAndOwnerSetToDifferentPersons_returnsFalse() {
+        let person1: Person = .withGeneratedName(forNumber: 1)
+        let person2: Person = .withGeneratedName(forNumber: 2)
+        XCTAssertFalse(Buyer.person(person1).isEqualTo(.person(person2)))
     }
 
-    func testIsEqualTo_buyerSetToNotMeAndOwnerSetToMe_returnsFalse() {
-        XCTAssertFalse(Buyer.notMe.isEqualTo(owner: .me))
+    func testIsNotEqual_BuyerSetToPersonAndOwnerSetToAll_returnsTrue() {
+        XCTAssertTrue(Buyer.person(.withName("My name")).isNotEqualTo(.all))
     }
 
-    func testIsEqualTo_buyerSetToNotMeAndOwnerSetToNotMe_returnsTrue() {
-        XCTAssertTrue(Buyer.notMe.isEqualTo(owner: .notMe))
+    func testIsNotEqual_BuyerAndOwnerSetToTheSamePerson_returnsFalse() {
+        let person: Person = .withName("My name")
+        XCTAssertFalse(Buyer.person(person).isNotEqualTo(.person(person)))
     }
 
-    func testIsEqualTo_buyerSetToNotMeAndOwnerSetToAll_returnsFalse() {
-        XCTAssertFalse(Buyer.notMe.isEqualTo(owner: .all))
+    func testIsNotEqual_BuyerAndOwnerSetToDifferentPersons_returnsTrue() {
+        let person1: Person = .withGeneratedName(forNumber: 1)
+        let person2: Person = .withGeneratedName(forNumber: 2)
+        XCTAssertTrue(Buyer.person(person1).isNotEqualTo(.person(person2)))
     }
 
-    // MARK: - isNotEqualTo(owner:)
-    func testIsNotEqualTo_buyerSetToMeAndOwnerSetToMe_returnsFalse() {
-        XCTAssertFalse(Buyer.me.isNotEqualTo(owner: .me))
+    func testEquals_twoTheSamePersons_returnsTrue() {
+        let person: Person = .withGeneratedName(forNumber: 1)
+        XCTAssertTrue(Buyer.person(person) == Buyer.person(person))
     }
 
-    func testIsNotEqualTo_buyerSetToMeAndOwnerSetToNotMe_returnsTrue() {
-        XCTAssertTrue(Buyer.me.isNotEqualTo(owner: .notMe))
-    }
-
-    func testIsNotEqualTo_buyerSetToMeAndOwnerSetToAll_returnsTrue() {
-        XCTAssertTrue(Buyer.me.isNotEqualTo(owner: .all))
-    }
-
-    func testIsNotEqualTo_buyerSetToNotMeAndOwnerSetToMe_returnsTrue() {
-        XCTAssertTrue(Buyer.notMe.isNotEqualTo(owner: .me))
-    }
-
-    func testIsNotEqualTo_buyerSetToNotMeAndOwnerSetToNotMe_returnsFalse() {
-        XCTAssertFalse(Buyer.notMe.isNotEqualTo(owner: .notMe))
-    }
-
-    func testIsNotEqualTo_buyerSetToNotMeAndOwnerSetToAll_returnsTrue() {
-        XCTAssertTrue(Buyer.notMe.isNotEqualTo(owner: .all))
-    }
-
-    // MARK: - next()
-    func testNext_meCase_returnsNotMe() {
-        XCTAssertEqual(Buyer.me.next(), .notMe)
-    }
-
-    func testNext_notMeCase_returnsMe() {
-        XCTAssertEqual(Buyer.notMe.next(), .me)
-    }
-
-    // MARK: - from(string:)
-    func testFromString_meString_returnsMeCase() {
-        XCTAssertEqual(Buyer.from(string: "me"), .me)
-    }
-
-    func testFromString_notMeString_returnsNotMeCase() {
-        XCTAssertEqual(Buyer.from(string: "notMe"), .notMe)
-    }
-
-    func testFromString_randomString_returnsNil() {
-        XCTAssertNil(Buyer.from(string: "random string"))
+    func testEquals_twoDifferentPersons_returnsFalse() {
+        let person1: Person = .withGeneratedName(forNumber: 1)
+        let person2: Person = .withGeneratedName(forNumber: 2)
+        XCTAssertFalse(Buyer.person(person1) == Buyer.person(person2))
     }
 }

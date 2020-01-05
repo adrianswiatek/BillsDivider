@@ -1,7 +1,11 @@
 import SwiftUI
 
 struct BuyerSectionView: View {
-    @Binding var buyer: Buyer
+    @ObservedObject private var viewModel: EditOverlayViewModel
+
+    init(_ viewModel: EditOverlayViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         HStack {
@@ -11,19 +15,20 @@ struct BuyerSectionView: View {
 
             Spacer()
 
-            Picker(selection: $buyer, label: EmptyView()) {
-                Text(Buyer.me.formatted).tag(Buyer.me)
-                Text(Buyer.notMe.formatted).tag(Buyer.notMe)
+            Picker(selection: $viewModel.buyer, label: EmptyView()) {
+                ForEach(viewModel.buyers, id: \.self) {
+                    Text($0.formatted).tag($0.formatted)
+                }
             }
             .pickerStyle(SegmentedPickerStyle())
             .frame(width: UIScreen.main.bounds.width * 0.7)
-            .accessibility(identifier: "BuyerSegmentedControl")
+            .accessibility(identifier: "BuyerSectionView.segmentedControl")
         }
     }
 }
 
-struct BuyerSectionView_Previews: PreviewProvider {
+struct BuyerSectionView2_Previews: PreviewProvider {
     static var previews: some View {
-        BuyerSectionView(buyer: .constant(.me))
+        PreviewFactory().buyerSectionView
     }
 }

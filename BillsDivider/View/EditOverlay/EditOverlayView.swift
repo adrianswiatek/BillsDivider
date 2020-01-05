@@ -19,8 +19,8 @@ struct EditOverlayView: View {
                 }
 
                 Section {
-                    BuyerSectionView(buyer: $viewModel.buyer)
-                    OwnerSectionView(owner: $viewModel.owner)
+                    BuyerSectionView(viewModel)
+                    OwnerSectionView(viewModel)
                 }
 
                 if viewModel.showAddAnother {
@@ -45,7 +45,7 @@ struct EditOverlayView: View {
     }
 }
 
-struct EditOverlayView_Previews: PreviewProvider {
+struct EditOverlayView2_Previews: PreviewProvider {
     static var previews: some View {
         PreviewFactory().editOverlayView
     }

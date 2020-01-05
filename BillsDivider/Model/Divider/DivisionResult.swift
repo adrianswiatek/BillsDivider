@@ -17,9 +17,7 @@ extension DivisionResult: Equatable {
         switch (lhs, rhs) {
         case (.noDebt, .noDebt):
             return true
-        case (.noDebt, .debt):
-            return false
-        case (.debt, .noDebt):
+        case (.noDebt, .debt), (.debt, .noDebt):
             return false
         case let (.debt(leftLender, leftDebtor, leftAmount), .debt(rightLender, rightDebtor, rightAmount)):
             return leftLender == rightLender && leftDebtor == rightDebtor && leftAmount == rightAmount
