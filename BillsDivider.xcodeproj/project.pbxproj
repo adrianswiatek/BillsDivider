@@ -25,8 +25,8 @@
 		A75B79C5239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */; };
 		A75B79C7239EEB0000C740BB /* OwnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B79C6239EEB0000C740BB /* OwnerTests.swift */; };
 		A75E802823A1773D00B549F9 /* EditOverlayStrategyDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */; };
-		A75E802D23A17C2900B549F9 /* AddingModeStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802C23A17C2900B549F9 /* AddingModeStrategyTests.swift */; };
-		A75E803023A17C8D00B549F9 /* EditingModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802F23A17C8D00B549F9 /* EditingModeStrategy.swift */; };
+		A75E802D23A17C2900B549F9 /* EditingModeStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */; };
+		A75E803023A17C8D00B549F9 /* AddingModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802F23A17C8D00B549F9 /* AddingModeStrategy.swift */; };
 		A76A31A82399CFB80025B850 /* SummaryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */; };
 		A76BBCD023947FCC003AE654 /* DividerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCCF23947FCC003AE654 /* DividerTests.swift */; };
 		A76BBCD323948481003AE654 /* DivisionResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76BBCD223948481003AE654 /* DivisionResultTests.swift */; };
@@ -120,8 +120,8 @@
 		A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataReceiptPositionServiceTests.swift; sourceTree = "<group>"; };
 		A75B79C6239EEB0000C740BB /* OwnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTests.swift; sourceTree = "<group>"; };
 		A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayStrategyDummy.swift; sourceTree = "<group>"; };
-		A75E802C23A17C2900B549F9 /* AddingModeStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStrategyTests.swift; sourceTree = "<group>"; };
-		A75E802F23A17C8D00B549F9 /* EditingModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModeStrategy.swift; sourceTree = "<group>"; };
+		A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModeStrategyTests.swift; sourceTree = "<group>"; };
+		A75E802F23A17C8D00B549F9 /* AddingModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStrategy.swift; sourceTree = "<group>"; };
 		A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModelTests.swift; sourceTree = "<group>"; };
 		A76BBCCF23947FCC003AE654 /* DividerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerTests.swift; sourceTree = "<group>"; };
 		A76BBCD223948481003AE654 /* DivisionResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivisionResultTests.swift; sourceTree = "<group>"; };
@@ -332,8 +332,8 @@
 		A75E802A23A17C0E00B549F9 /* EditOverlayStrategy */ = {
 			isa = PBXGroup;
 			children = (
-				A75E802C23A17C2900B549F9 /* AddingModeStrategyTests.swift */,
-				A75E802F23A17C8D00B549F9 /* EditingModeStrategy.swift */,
+				A75E802F23A17C8D00B549F9 /* AddingModeStrategy.swift */,
+				A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */,
 			);
 			path = EditOverlayStrategy;
 			sourceTree = "<group>";
@@ -709,8 +709,8 @@
 				A76BBCD323948481003AE654 /* DivisionResultTests.swift in Sources */,
 				A7705B9823AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift in Sources */,
 				A7C50A9623C00F760088DF12 /* Person+CoreDataTests.swift in Sources */,
-				A75E802D23A17C2900B549F9 /* AddingModeStrategyTests.swift in Sources */,
-				A75E803023A17C8D00B549F9 /* EditingModeStrategy.swift in Sources */,
+				A75E802D23A17C2900B549F9 /* EditingModeStrategyTests.swift in Sources */,
+				A75E803023A17C8D00B549F9 /* AddingModeStrategy.swift in Sources */,
 				A7705B9A23AD87C90073D8E8 /* PersonTests.swift in Sources */,
 				A70AEB982398711D00ED0E7A /* BuyerTests.swift in Sources */,
 				A75E802823A1773D00B549F9 /* EditOverlayStrategyDummy.swift in Sources */,
