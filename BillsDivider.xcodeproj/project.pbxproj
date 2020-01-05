@@ -72,6 +72,7 @@
 		A7C50A9623C00F760088DF12 /* Person+CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50A9523C00F760088DF12 /* Person+CoreDataTests.swift */; };
 		A7C50A9823C016760088DF12 /* ReceiptPosition+CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C50A9723C016760088DF12 /* ReceiptPosition+CoreDataTests.swift */; };
 		A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */; };
+		A7EB145E23C2581600894F99 /* SettingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB145D23C2581600894F99 /* SettingsUITests.swift */; };
 		A7F213B2238B41310084B466 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F213B1238B41310084B466 /* SummaryView.swift */; };
 		A7F3D50023AFF9F100B9AD14 /* InMemoryPeopleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F3D4FF23AFF9F100B9AD14 /* InMemoryPeopleService.swift */; };
 		A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FED230235CEF8B00CCD069 /* AppDelegate.swift */; };
@@ -169,6 +170,7 @@
 		A7C50A9523C00F760088DF12 /* Person+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataTests.swift"; sourceTree = "<group>"; };
 		A7C50A9723C016760088DF12 /* ReceiptPosition+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReceiptPosition+CoreDataTests.swift"; sourceTree = "<group>"; };
 		A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFactory.swift; sourceTree = "<group>"; };
+		A7EB145D23C2581600894F99 /* SettingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUITests.swift; sourceTree = "<group>"; };
 		A7F213B1238B41310084B466 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		A7F3D4FF23AFF9F100B9AD14 /* InMemoryPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryPeopleService.swift; sourceTree = "<group>"; };
 		A7FED22D235CEF8A00CCD069 /* BillsDivider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillsDivider.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +224,7 @@
 				A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */,
 				A774361C239AB696008F53B5 /* ReceiptUITests.swift */,
 				A7385B5C239C6A1B00A41C09 /* TabsUITests.swift */,
+				A7EB145D23C2581600894F99 /* SettingsUITests.swift */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 			files = (
 				A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */,
 				A7385B5B239C696F00A41C09 /* TabBarPage.swift in Sources */,
+				A7EB145E23C2581600894F99 /* SettingsUITests.swift in Sources */,
 				A774361D239AB696008F53B5 /* ReceiptUITests.swift in Sources */,
 				A7550E7B239BD7E60004797D /* ReceiptPage.swift in Sources */,
 				A7385B5D239C6A1B00A41C09 /* TabsUITests.swift in Sources */,

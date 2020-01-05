@@ -25,11 +25,11 @@ class EditOverlayPage: Page {
     }
 
     private var buyerSegmentedControl: XCUIElement {
-        app.segmentedControls["BuyerSegmentedControl"]
+        app.segmentedControls["BuyerSectionView.segmentedControl"]
     }
 
     private var ownerSegmentedControl: XCUIElement {
-        app.segmentedControls["OwnerSegmentedControl"]
+        app.segmentedControls["OwnerSectionView.segmentedControl"]
     }
 
     var isVisible: Bool {
@@ -81,5 +81,13 @@ class EditOverlayPage: Page {
     @discardableResult func tapOwnerSegmentedControl(atIndex index: Int) -> EditOverlayPage {
         ownerSegmentedControl.buttons.element(boundBy: index).tap()
         return self
+    }
+
+    func labelForBuyerSegmentedControl(atIndex index: Int) -> String {
+        buyerSegmentedControl.buttons.element(boundBy: index).label
+    }
+
+    func labelForOwnerSegmentedControl(atIndex index: Int) -> String? {
+        ownerSegmentedControl.buttons.element(boundBy: index).label
     }
 }

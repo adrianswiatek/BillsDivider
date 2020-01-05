@@ -18,11 +18,11 @@ class ReceiptUITests: XCTestCase {
     }
 
     func testCanRemoveAllItems() {
-        let receiptListPage = ReceiptPage(app)
+        let receiptPage = ReceiptPage(app)
 
-        XCTAssertEqual(receiptListPage.numberOfCells, 0)
+        XCTAssertEqual(receiptPage.numberOfCells, 0)
 
-        receiptListPage
+        receiptPage
             .tapPlusButton()
             .tapPriceTextField()
             .typeIntoPriceTextField("1")
@@ -31,13 +31,13 @@ class ReceiptUITests: XCTestCase {
             .tapConfirmButton()
             .tapCloseButton()
 
-        XCTAssertEqual(receiptListPage.numberOfCells, 2)
+        XCTAssertEqual(receiptPage.numberOfCells, 2)
 
-        receiptListPage
+        receiptPage
             .tapEllipsisButton()
             .tapDeleteAllButton()
 
-        XCTAssertEqual(receiptListPage.numberOfCells, 0)
+        XCTAssertEqual(receiptPage.numberOfCells, 0)
     }
 
     func testCanRemoveSingleItemBySwipeGesture() {
@@ -61,7 +61,7 @@ class ReceiptUITests: XCTestCase {
             .tapCellsDeleteButton(atIndex: 0)
 
         XCTAssertEqual(receiptListPage.numberOfCells, 1)
-        XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "1.00")
+        XCTAssertEqual(receiptListPage.amountFromCell(atIndex: 0), "1.00")
     }
 
     func testCanRemoveSingleItemFromContextMenu() {
@@ -84,7 +84,7 @@ class ReceiptUITests: XCTestCase {
             .tapRemovePositionButton()
 
         XCTAssertEqual(receiptListPage.numberOfCells, 1)
-        XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "1.00")
+        XCTAssertEqual(receiptListPage.amountFromCell(atIndex: 0), "1.00")
     }
 
     func testCanEditAmount() {
@@ -97,7 +97,7 @@ class ReceiptUITests: XCTestCase {
             .tapConfirmButton()
             .tapCloseButton()
 
-        XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "1.00")
+        XCTAssertEqual(receiptListPage.amountFromCell(atIndex: 0), "1.00")
 
         receiptListPage
             .longPressCell(atIndex: 0)
@@ -107,6 +107,6 @@ class ReceiptUITests: XCTestCase {
             .typeIntoPriceTextField("0.00")
             .tapConfirmButton()
 
-        XCTAssertEqual(receiptListPage.getAmountFromCell(atIndex: 0), "10.00")
+        XCTAssertEqual(receiptListPage.amountFromCell(atIndex: 0), "10.00")
     }
 }

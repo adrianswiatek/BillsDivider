@@ -83,7 +83,15 @@ class ReceiptPage: Page {
         return self
     }
 
-    func getAmountFromCell(atIndex index: Int) -> String {
-        table.cells.element(boundBy: index).staticTexts.firstMatch.label
+    func amountFromCell(atIndex index: Int) -> String {
+        table.cells.element(boundBy: index).staticTexts.element(boundBy: 0).label
+    }
+
+    func buyerLabelFromCell(atIndex index: Int) -> String {
+        table.cells.element(boundBy: index).staticTexts.element(boundBy: 1).label
+    }
+
+    func ownerLabelFromCell(atIndex index: Int) -> String {
+        table.cells.element(boundBy: index).staticTexts.element(boundBy: 2).label
     }
 }

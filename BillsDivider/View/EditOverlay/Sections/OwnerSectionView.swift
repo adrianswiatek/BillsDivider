@@ -22,7 +22,7 @@ struct OwnerSectionView: View {
             }
             .pickerStyle(SegmentedPickerStyle())
             .frame(width: UIScreen.main.bounds.width * 0.7)
-            .accessibility(identifier: "OwnerSegmentedControl")
+            .accessibility(identifier: "OwnerSectionView.segmentedControl")
         }
     }
 }
