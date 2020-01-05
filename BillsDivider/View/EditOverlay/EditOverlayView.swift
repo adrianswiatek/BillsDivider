@@ -23,23 +23,25 @@ struct EditOverlayView: View {
                     OwnerSectionView(viewModel)
                 }
 
-                if viewModel.showAddAnother {
-                    Section {
-                        AddAnotherSectionView(addAnother: $viewModel.addAnother)
+                Section {
+                    Button(action: viewModel.confirmDidTap) {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "checkmark.circle.fill")
+                            Text("Confirm")
+                            Spacer()
+                        }
                     }
+                    .disabled(!viewModel.canConfirm)
+                    .accessibility(identifier: "EditOverlayView.confirmButton")
                 }
             }
             .navigationBarTitle(Text(viewModel.pageName), displayMode: .inline)
             .navigationBarItems(
-                leading: Button(action: viewModel.dismiss) {
+                trailing: Button(action: viewModel.dismiss) {
                     Image(systemName: "xmark")
                         .frame(width: 32, height: 32)
-                },
-                trailing: Button(action: viewModel.confirmDidTap) {
-                    Image(systemName: "checkmark.circle.fill")
-                        .frame(width: 32, height: 32)
                 }
-                .disabled(!viewModel.canConfirm)
             )
         }
     }

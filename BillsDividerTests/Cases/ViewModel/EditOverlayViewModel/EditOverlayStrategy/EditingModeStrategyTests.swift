@@ -37,10 +37,6 @@ class EditingModeStrategyTests: XCTestCase {
         XCTAssertEqual(sut.pageName, "Edit position")
     }
 
-    func testShowAddanother_returnsFalse() {
-        XCTAssertFalse(sut.showAddAnother)
-    }
-
     func testInit_withReceiptPosition_setsGivenReceiptPosition() {
         XCTAssertEqual(sut.receiptPosition, position)
     }

@@ -8,7 +8,6 @@ final class EditOverlayViewModel: ObservableObject {
     @Published var priceText: String
     @Published var buyer: Buyer
     @Published var owner: Owner
-    @Published var addAnother: Bool
     @Published var isPriceCorrect: Bool
     @Published var canConfirm: Bool
 
@@ -23,9 +22,7 @@ final class EditOverlayViewModel: ObservableObject {
     var positionAdded: AnyPublisher<ReceiptPosition, Never>
     var positionEdited: AnyPublisher<ReceiptPosition, Never>
 
-    var showAddAnother: Bool {
-        editOverlayStrategy.showAddAnother
-    }
+    var addAnother: Bool
 
     var pageName: String {
         editOverlayStrategy.pageName

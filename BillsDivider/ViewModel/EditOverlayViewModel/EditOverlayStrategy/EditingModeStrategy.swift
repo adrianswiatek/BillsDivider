@@ -8,10 +8,6 @@ struct EditingModeStrategy: EditOverlayStrategy {
         "Edit position"
     }
 
-    var showAddAnother: Bool {
-        false
-    }
-
     private let numberFormatter: NumberFormatter
     private let positionEditedSubject: PassthroughSubject<ReceiptPosition, Never>
 

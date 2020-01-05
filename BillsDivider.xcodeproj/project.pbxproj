@@ -50,7 +50,6 @@
 		A77ACA9923C11EB200F9335D /* CoreDataPeopleServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77ACA9823C11EB200F9335D /* CoreDataPeopleServiceTests.swift */; };
 		A77ACA9B23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77ACA9A23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
-		A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */; };
 		A7873D2C23A839C8008C9552 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2B23A839C8008C9552 /* SettingsView.swift */; };
 		A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2E23A83C3D008C9552 /* SettingsPage.swift */; };
 		A78B1B8E239EB12F006A1B91 /* SqliteCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */; };
@@ -148,7 +147,6 @@
 		A77ACA9823C11EB200F9335D /* CoreDataPeopleServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleServiceTests.swift; sourceTree = "<group>"; };
 		A77ACA9A23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionServiceTests.swift; sourceTree = "<group>"; };
 		A77D54CA23819255003D7E9D /* PriceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSectionView.swift; sourceTree = "<group>"; };
-		A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnotherSectionView.swift; sourceTree = "<group>"; };
 		A7873D2B23A839C8008C9552 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A7873D2E23A83C3D008C9552 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
@@ -417,7 +415,6 @@
 		A77FAD212384B3F000B66C98 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				A77D54D023819379003D7E9D /* AddAnotherSectionView.swift */,
 				A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */,
 				A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */,
 				A77D54CA23819255003D7E9D /* PriceSectionView.swift */,
@@ -777,7 +774,6 @@
 				A7AC988023B69C81003D8AE6 /* AddingModeStrategy.swift in Sources */,
 				A7AC988223B69CDB003D8AE6 /* EditingModeStrategy.swift in Sources */,
 				A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */,
-				A77D54D123819379003D7E9D /* AddAnotherSectionView.swift in Sources */,
 				A7A3336D23B3BD9300DBA26E /* EditOverlayViewParams.swift in Sources */,
 				A7A3336F23B3D6CA00DBA26E /* Divider.swift in Sources */,
 				A7788B5023B3B6CE0059EB71 /* ReceiptPositionService.swift in Sources */,

@@ -13,7 +13,7 @@ class EditOverlayPage: Page {
     }
 
     private var confirmButton: XCUIElement {
-        navigationBar.buttons["checkmark.circle.fill"]
+        app.buttons["EditOverlayView.confirmButton"]
     }
 
     private var closeButton: XCUIElement {

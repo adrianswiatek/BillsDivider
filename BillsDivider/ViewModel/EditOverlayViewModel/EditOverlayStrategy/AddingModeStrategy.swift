@@ -8,10 +8,6 @@ struct AddingModeStrategy: EditOverlayStrategy {
         "Add position"
     }
 
-    var showAddAnother: Bool {
-        true
-    }
-
     private let positionAddedSubject: PassthroughSubject<ReceiptPosition, Never>
 
     init(receiptPosition: ReceiptPosition) {

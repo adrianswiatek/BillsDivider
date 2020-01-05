@@ -47,10 +47,6 @@ class AddingModeStrategyTests: XCTestCase {
         XCTAssertEqual(sut.pageName, "Add position")
     }
 
-    func testShowAddanother_returnsFalse() {
-        XCTAssertTrue(sut.showAddAnother)
-    }
-
     func testInit_withReceiptPosition_setsGivenReceiptPosition() {
         XCTAssertEqual(sut.receiptPosition, position)
     }

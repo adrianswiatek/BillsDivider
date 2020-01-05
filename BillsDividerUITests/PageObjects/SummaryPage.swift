@@ -8,15 +8,15 @@ class SummaryPage: Page {
     }
 
     private var titleStaticText: XCUIElement {
-        app.staticTexts["SummaryView.title"]
+        app.staticTexts["SummaryView.summaryText"]
     }
 
     private var firstPersonStaticText: XCUIElement {
-        app.staticTexts["SummaryView.firstPerson"]
+        app.staticTexts["SummaryView.firstPersonText"]
     }
 
     private var secondPersonStaticText: XCUIElement {
-        app.staticTexts["SummaryView.secondPerson"]
+        app.staticTexts["SummaryView.secondPersonText"]
     }
 
     var isVisible: Bool {
