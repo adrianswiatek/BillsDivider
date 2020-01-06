@@ -1,3 +1,4 @@
+import BillsDivider_Model
 import CoreData
 import SwiftUI
 import UIKit
@@ -33,7 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewModelFactory = ViewModelFactory(
             receiptPositionService: prepareReceiptPositionService(context, peopleService),
             peopleService: peopleService,
-            divider: .init(),
+            divider: PositionsDivider(),
             numberFormatter: .twoFractionDigitsNumberFormatter
         )
 
