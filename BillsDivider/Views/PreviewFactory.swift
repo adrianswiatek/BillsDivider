@@ -20,6 +20,8 @@ struct PreviewFactory {
     }
 }
 
+import BillsDivider_ViewModel
+
 extension PreviewFactory {
     var tabsView: some View {
         TabsView(viewModelFactory: viewModelFactory)

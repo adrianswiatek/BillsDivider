@@ -59,6 +59,16 @@
                ReferencedContainer = "container:BillsDivider.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A797D69223C376FA002D550F"
+               BuildableName = "BillsDivider_ViewModelTests.xctest"
+               BlueprintName = "BillsDivider_ViewModelTests"
+               ReferencedContainer = "container:BillsDivider.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

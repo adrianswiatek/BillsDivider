@@ -1,4 +1,5 @@
 import BillsDivider_Model
+import BillsDivider_ViewModel
 import Combine
 import Foundation
 import SwiftUI

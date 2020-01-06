@@ -3,36 +3,36 @@ import Combine
 import Foundation
 import SwiftUI
 
-final class EditOverlayViewModel: ObservableObject {
-    @Binding private var presenting: Bool
+public final class EditOverlayViewModel: ObservableObject {
+    @Published public var priceText: String
+    @Published public var buyer: Buyer
+    @Published public var owner: Owner
+    @Published public var isPriceCorrect: Bool
+    @Published public var canConfirm: Bool
 
-    @Published var priceText: String
-    @Published var buyer: Buyer
-    @Published var owner: Owner
-    @Published var isPriceCorrect: Bool
-    @Published var canConfirm: Bool
+    @Published public var buyers: [Buyer]
+    @Published public var owners: [Owner]
 
-    @Published var buyers: [Buyer]
-    @Published var owners: [Owner]
+    public let pricePlaceHolderText: String
 
-    let pricePlaceHolderText: String
+    public var positionAdded: AnyPublisher<ReceiptPosition, Never>
+    public var positionEdited: AnyPublisher<ReceiptPosition, Never>
+
+    public var pageName: String {
+        editOverlayStrategy.pageName
+    }
 
     var getInitialBuyer: (() -> Buyer)?
     var getInitialOwner: (() -> Owner)?
 
-    var positionAdded: AnyPublisher<ReceiptPosition, Never>
-    var positionEdited: AnyPublisher<ReceiptPosition, Never>
-
     var addAnother: Bool
 
-    var pageName: String {
-        editOverlayStrategy.pageName
-    }
+    @Binding private var presenting: Bool
 
     private let editOverlayStrategy: EditOverlayStrategy
     private var subscriptions: [AnyCancellable]
 
-    init(
+    public init(
         presenting: Binding<Bool>,
         editOverlayStrategy: EditOverlayStrategy,
         peopleService: PeopleService,
@@ -62,7 +62,7 @@ final class EditOverlayViewModel: ObservableObject {
         self.subscribe(to: $priceText.eraseToAnyPublisher())
     }
 
-    func confirmDidTap() {
+    public func confirmDidTap() {
         guard let receiptPosition = tryCreateReceiptPosition() else {
             preconditionFailure("Unable to create Receipt Position.")
         }
@@ -71,7 +71,7 @@ final class EditOverlayViewModel: ObservableObject {
         editOverlayStrategy.confirmDidTap(with: receiptPosition, in: self)
     }
 
-    func dismiss() {
+    public func dismiss() {
         presenting = false
     }
 

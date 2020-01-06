@@ -1,5 +1,5 @@
-@testable import BillsDivider
 @testable import BillsDivider_Model
+@testable import BillsDivider_ViewModel
 import Combine
 import XCTest
 
@@ -14,7 +14,7 @@ class ReceiptViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        peopleService = PeopleServiceFake()
+        peopleService = InMemoryPeopleService(maximumNumberOfPeople: 2)
         receiptPositionService = InMemoryReceiptPositionService(peopleService: peopleService)
         sut = .init(
             receiptPositionService: receiptPositionService,

@@ -2,14 +2,14 @@ import BillsDivider_Model
 import Combine
 import Foundation
 
-final class SettingsViewModel: ObservableObject {
-    @Published var people: [Person]
-    @Published var peopleNames: [String]
+public final class SettingsViewModel: ObservableObject {
+    @Published public var people: [Person]
+    @Published public var peopleNames: [String]
 
     private let peopleService: PeopleService
     private var subscriptions: [AnyCancellable]
 
-    init(peopleService: PeopleService) {
+    public init(peopleService: PeopleService) {
         self.peopleService = peopleService
         self.people = peopleService.fetchPeople()
         self.peopleNames = []
@@ -19,7 +19,7 @@ final class SettingsViewModel: ObservableObject {
         self.bind()
     }
 
-    func addPerson() {
+    public func addPerson() {
         let nextPersonsIndex = people.count + 1
         people.append(.withGeneratedName(forNumber: nextPersonsIndex))
     }
@@ -46,23 +46,23 @@ final class SettingsViewModel: ObservableObject {
         people = people.enumerated().map { $1.withUpdated(name: names[$0], andNumber: $0 + 1)}
     }
 
-    func canAddPerson() -> Bool {
+    public func canAddPerson() -> Bool {
         peopleService.canAddPerson()
     }
 
-    func canRemovePerson() -> Bool {
+    public func canRemovePerson() -> Bool {
         peopleService.canRemovePerson()
     }
 
-    func placeholder(for person: Person) -> String {
+    public func placeholder(for person: Person) -> String {
         person.state == .generated ? person.name : ""
     }
 
-    func name(for person: Person) -> String {
+    public func name(for person: Person) -> String {
         person.state == .generated ? "" : person.name
     }
 
-    func index(of person: Person) -> Int {
+    public func index(of person: Person) -> Int {
         guard let index = people.firstIndex(of: person) else {
             preconditionFailure("Given person does not exist in people list")
         }

@@ -3,10 +3,10 @@ import Combine
 import Foundation
 import SwiftUI
 
-class ReceiptViewModel: ObservableObject {
-    @Published var positions: [ReceiptPosition]
+public class ReceiptViewModel: ObservableObject {
+    @Published public var positions: [ReceiptPosition]
 
-    var ellipsisModeDisabled: Bool {
+    public var ellipsisModeDisabled: Bool {
         positions.isEmpty
     }
 
@@ -18,7 +18,7 @@ class ReceiptViewModel: ObservableObject {
     private var externalSubscriptions: [AnyCancellable]
     private var internalSubscriptions: [AnyCancellable]
 
-    init(
+    public init(
         receiptPositionService: ReceiptPositionService,
         peopleService: PeopleService,
         numberFormatter: NumberFormatter
@@ -34,7 +34,7 @@ class ReceiptViewModel: ObservableObject {
         self.subscribe(to: peopleService.peopleDidUpdate)
     }
 
-    func subscribe(
+    public func subscribe(
         addingPublisher: AnyPublisher<ReceiptPosition, Never>,
         editingPublisher: AnyPublisher<ReceiptPosition, Never>
     ) {
@@ -49,28 +49,28 @@ class ReceiptViewModel: ObservableObject {
             .store(in: &externalSubscriptions)
     }
 
-    func removePosition(at index: Int) {
+    public func removePosition(at index: Int) {
         precondition(index >= 0 && index < positions.count, "Invalid index")
         removePosition(positions[index])
     }
 
-    func removePosition(_ position: ReceiptPosition) {
+    public func removePosition(_ position: ReceiptPosition) {
         receiptPositionService.remove(position)
     }
 
-    func removeAllPositions() {
+    public func removeAllPositions() {
         receiptPositionService.removeAllPositions()
     }
 
-    func formatNumber(value: Decimal) -> String {
+    public func formatNumber(value: Decimal) -> String {
         numberFormatter.format(value: value)
     }
 
-    func colorFor(_ buyer: Buyer) -> Color {
+    public func colorFor(_ buyer: Buyer) -> Color {
         buyer.asPerson == people.first ? .green : .blue
     }
 
-    func colorFor(_ owner: Owner) -> Color {
+    public func colorFor(_ owner: Owner) -> Color {
         if owner == .all {
             return .purple
         }

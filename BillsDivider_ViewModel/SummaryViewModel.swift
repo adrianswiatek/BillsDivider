@@ -2,13 +2,13 @@ import BillsDivider_Model
 import Combine
 import Foundation
 
-class SummaryViewModel: ObservableObject {
+public class SummaryViewModel: ObservableObject {
     @Published private var divisionResult: DivisionResult
 
-    var leftSidedBuyer: Buyer
-    var rightSidedBuyer: Buyer
+    public var leftSidedBuyer: Buyer
+    public var rightSidedBuyer: Buyer
 
-    var formattedDirection: String {
+    public var formattedDirection: String {
         switch divisionResult {
         case .noDebt:
             return "equal"
@@ -19,7 +19,7 @@ class SummaryViewModel: ObservableObject {
         }
     }
 
-    var formattedDebt: String {
+    public var formattedDebt: String {
         return numberFormatter.format(value: divisionResult.debtAmount)
     }
 
@@ -30,7 +30,7 @@ class SummaryViewModel: ObservableObject {
     private var people: [Person]
     private var subscriptions: [AnyCancellable]
 
-    init(
+    public init(
         receiptPositionService: ReceiptPositionService,
         peopleService: PeopleService,
         divider: PositionsDivider,

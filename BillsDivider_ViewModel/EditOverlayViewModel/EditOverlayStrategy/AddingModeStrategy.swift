@@ -2,21 +2,21 @@ import BillsDivider_Model
 import Combine
 import Foundation
 
-struct AddingModeStrategy: EditOverlayStrategy {
-    let receiptPosition: ReceiptPosition
+public struct AddingModeStrategy: EditOverlayStrategy {
+    public let receiptPosition: ReceiptPosition
 
-    var pageName: String {
+    public var pageName: String {
         "Add position"
     }
 
     private let positionAddedSubject: PassthroughSubject<ReceiptPosition, Never>
 
-    init(receiptPosition: ReceiptPosition) {
+    public init(receiptPosition: ReceiptPosition) {
         self.receiptPosition = receiptPosition
         self.positionAddedSubject = .init()
     }
 
-    func set(viewModel: EditOverlayViewModel) {
+    public func set(viewModel: EditOverlayViewModel) {
         viewModel.priceText = ""
         viewModel.addAnother = true
         viewModel.positionAdded = positionAddedSubject.eraseToAnyPublisher()
@@ -30,7 +30,7 @@ struct AddingModeStrategy: EditOverlayStrategy {
         }
     }
 
-    func confirmDidTap(with position: ReceiptPosition, in viewModel: EditOverlayViewModel) {
+    public func confirmDidTap(with position: ReceiptPosition, in viewModel: EditOverlayViewModel) {
         positionAddedSubject.send(position)
     }
 }
