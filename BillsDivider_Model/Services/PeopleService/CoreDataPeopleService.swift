@@ -25,7 +25,7 @@ public final class CoreDataPeopleService: PeopleService {
     }
 
     public func fetchPeople() -> People {
-        .from(fetchEntities().map { $0.asPerson() })
+        .fromArray(fetchEntities().map { $0.asPerson() })
     }
 
     public func updatePeople(_ people: People) {

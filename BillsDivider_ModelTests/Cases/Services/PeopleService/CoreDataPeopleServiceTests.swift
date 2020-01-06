@@ -31,7 +31,7 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testUpdatePeople_withPeopleArray_saveIsCalled() {
-        let people: People = .from(.withGeneratedName(forNumber: 1))
+        let people: People = .fromPerson(.withGeneratedName(forNumber: 1))
         let expectation = XCTNSNotificationExpectation(name: .NSManagedObjectContextDidSave)
 
         sut.updatePeople(people)
@@ -40,7 +40,10 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testUpdatePeople_withPeopleArray_sendsArrayWithGivenPeopleThroughPeopleDidUpdate() {
-        let people: People = .from(.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2))
+        let people: People = .fromArray([
+            .withGeneratedName(forNumber: 1),
+            .withGeneratedName(forNumber: 2)
+        ])
         var result: People = .empty
         let expectation = self.expectation(description: "People are sent")
         sut.peopleDidUpdate
@@ -86,12 +89,12 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testUpdatePeople_whenNoPeoplePersisted_persistsPeopleInGivenOrder() {
-        let people: People = .from(
+        let people: People = .fromArray([
             .withGeneratedName(forNumber: 1),
             .withGeneratedName(forNumber: 2),
             .withGeneratedName(forNumber: 3),
             .withGeneratedName(forNumber: 4)
-        )
+        ])
         sut.updatePeople(people)
 
         let persistedPeople = sut.fetchPeople()
@@ -100,10 +103,10 @@ class CoreDataPeopleServiceTests: XCTestCase {
 
     func testUpdatePeople_whenUpdateExistingPerson_persistsUpdatedPerson() {
         let originalPerson: Person = .withName("Original name")
-        sut.updatePeople(.from(originalPerson))
+        sut.updatePeople(.fromPerson(originalPerson))
 
         let updatedPerson: Person = originalPerson.withUpdated(name: "Updated name")
-        sut.updatePeople(.from(updatedPerson))
+        sut.updatePeople(.fromPerson(updatedPerson))
 
         let result = sut.fetchPeople()
 
@@ -129,7 +132,7 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testFetchPeople_whenOnePersonPersisted_returnsArrayWithOnePerson() {
-        let people: People = .from(.withName("My name"))
+        let people: People = .fromPerson(.withName("My name"))
         sut.updatePeople(people)
 
         let result = sut.fetchPeople()
@@ -138,7 +141,10 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testFetchPeople_whenTwoPeoplePersisted_returnsArrayWithTwoPeople() {
-        let people: People = .from(.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2))
+        let people: People = .fromArray([
+            .withGeneratedName(forNumber: 1),
+            .withGeneratedName(forNumber: 2)
+        ])
         sut.updatePeople(people)
 
         let result = sut.fetchPeople()
@@ -151,12 +157,16 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testNumberOfPeople_whenOnePersonPersisted_returnsOne() {
-        sut.updatePeople(.from(.withName("My name")))
+        sut.updatePeople(.fromPerson(.withName("My name")))
         XCTAssertEqual(sut.numberOfPeople(), 1)
     }
 
     func testNumberOfPeople_whenTwoPeoplePersisted_returnsTwo() {
-        sut.updatePeople(.from(.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)))
+        let people: People = .fromArray([
+            .withGeneratedName(forNumber: 1),
+            .withGeneratedName(forNumber: 2)
+        ])
+        sut.updatePeople(people)
         XCTAssertEqual(sut.numberOfPeople(), 2)
     }
 }

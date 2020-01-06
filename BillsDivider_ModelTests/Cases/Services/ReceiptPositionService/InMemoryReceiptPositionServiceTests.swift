@@ -128,7 +128,7 @@ class InMemoryReceiptPositionServiceTests: XCTestCase {
             .store(in: &subscriptions)
 
         let updatedPerson: Person = originalPerson.withUpdated(name: "Updated name")
-        peopleService.updatePeople(.from(updatedPerson))
+        peopleService.updatePeople(.fromPerson(updatedPerson))
 
         let expectedPosition = ReceiptPosition(
             amount: originalPosition.amount,

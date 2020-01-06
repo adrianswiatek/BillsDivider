@@ -43,7 +43,7 @@ public final class SettingsViewModel: ObservableObject {
 
     private func onPeopleNamesChange(with names: [String]) {
         guard names != people.map({ name(for: $0) }) else { return }
-        people = people.enumerated().map { $1.withUpdated(name: names[$0], andNumber: $0 + 1)}.asPeople()
+        people = people.enumerated().map { $1.withUpdated(name: names[$0], andNumber: $0 + 1)}.asPeople
     }
 
     public func canAddPerson() -> Bool {

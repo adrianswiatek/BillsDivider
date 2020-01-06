@@ -19,7 +19,7 @@ class InMemoryPeopleServiceTests: XCTestCase {
     }
 
     private func whenPeopleAdded(_ numberOfPeople: Int) {
-        sut.updatePeople((0 ..< numberOfPeople).map { .withGeneratedName(forNumber: $0 + 1) }.asPeople())
+        sut.updatePeople((0 ..< numberOfPeople).map { .withGeneratedName(forNumber: $0 + 1) }.asPeople)
     }
 
     func testInit_createsEmptyArrayOfPeople() {
@@ -43,7 +43,7 @@ class InMemoryPeopleServiceTests: XCTestCase {
         let person1: Person = .withGeneratedName(forNumber: 1)
         let person2: Person = .withGeneratedName(forNumber: 2)
 
-        sut.updatePeople(.from(person1, person2))
+        sut.updatePeople(.fromArray([person1, person2]))
 
         let people = sut.fetchPeople()
         XCTAssertEqual(people.count, 2)
@@ -62,13 +62,16 @@ class InMemoryPeopleServiceTests: XCTestCase {
         let people = sut.fetchPeople()
         let updatedPerson = people[1].withUpdated(name: "My name")
 
-        sut.updatePeople(.from(people[0], updatedPerson, people[2]))
+        sut.updatePeople(.fromArray([people[0], updatedPerson, people[2]]))
 
         XCTAssertEqual(sut.fetchPeople()[1].name, "My name")
     }
 
     func testUpdatePeople_sendsOutputThroughPeopleDidUpdate() {
-        let people: People = .from(.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2))
+        let people: People = .fromArray([
+            .withGeneratedName(forNumber: 1),
+            .withGeneratedName(forNumber: 2)
+        ])
         let expectation = self.expectation(description: "People are updated")
         var result: People = .empty
 

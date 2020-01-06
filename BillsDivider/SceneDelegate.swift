@@ -59,7 +59,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let initialPeople: People = (numberOfPeople ..< minimumNumberOfPeople)
             .map { .withGeneratedName(forNumber: $0 + 1) }
-            .asPeople()
+            .asPeople
 
         if initialPeople.any {
             peopleService.updatePeople(initialPeople)

@@ -15,7 +15,7 @@ class PositionsDividerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        people = .from(.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2))
+        people = .fromArray([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
         sut = PositionsDivider()
     }
 
@@ -29,7 +29,7 @@ class PositionsDividerTests: XCTestCase {
         let resultForZeroPeople = sut.divide([], between: .empty)
         XCTAssertEqual(resultForZeroPeople, .noDebt)
 
-        let resultForOnePerson = sut.divide([], between: .from(.withGeneratedName(forNumber: 1)))
+        let resultForOnePerson = sut.divide([], between: .fromPerson(.withGeneratedName(forNumber: 1)))
         XCTAssertEqual(resultForOnePerson, .noDebt)
     }
 

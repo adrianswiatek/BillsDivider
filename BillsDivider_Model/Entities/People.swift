@@ -5,19 +5,20 @@ public struct People {
         People(people: [])
     }
 
-    public static func from(_ people: [Person]) -> People {
+    public static func fromArray(_ people: [Person]) -> People {
         People(people: people)
     }
 
-    public static func from(_ people: Person...) -> People {
-        People(people: people)
+    public static func fromPerson(_ person: Person) -> People {
+        People(people: [person])
     }
 
     public subscript(index: Int) -> Person {
-        people[index]
+        assert(index < count, "There is no person under given index")
+        return people[index]
     }
 
-    public func asArray() -> [Person] {
+    public var asArray: [Person] {
         people
     }
 
@@ -34,7 +35,7 @@ public struct People {
     }
 
     public func appending(_ person: Person) -> People {
-        .from(people + [person])
+        .fromArray(people + [person])
     }
 
     public func findBy(id: UUID) -> Person? {
@@ -42,7 +43,7 @@ public struct People {
     }
 
     public func filter(_ predicate: (Person) -> Bool) -> People {
-        .from(people.filter(predicate))
+        .fromArray(people.filter(predicate))
     }
 
     public func map<T>(_ transform: (Person) -> T) -> [T] {
@@ -65,7 +66,7 @@ extension People: Equatable {
 }
 
 extension Array where Element == Person {
-    public func asPeople() -> People {
-        .from(self)
+    public var asPeople: People {
+        .fromArray(self)
     }
 }

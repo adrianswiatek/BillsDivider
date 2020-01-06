@@ -10,7 +10,7 @@ class SummaryViewModelTests: XCTestCase {
     private var peopleService: PeopleServiceFake!
     private var subscriptions: [AnyCancellable]!
 
-    private var people: People = .from([
+    private var people: People = .fromArray([
         .withGeneratedName(forNumber: 1),
         .withGeneratedName(forNumber: 2)
     ])
@@ -48,13 +48,13 @@ class SummaryViewModelTests: XCTestCase {
 
     // MARK: - Tests
     func testInit_leftSidedBuyerSetToFirstPerson() {
-        let people: People = .from([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
+        let people: People = .fromArray([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
         peopleService.updatePeople(people)
         XCTAssertEqual(sut.leftSidedBuyer.formatted, people[0].name)
     }
 
     func testInit_rightSidedBuyerSetToSecondPerson() {
-        let people: People = .from([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
+        let people: People = .fromArray([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
         peopleService.updatePeople(people)
         XCTAssertEqual(sut.rightSidedBuyer.formatted, people[1].name)
     }
