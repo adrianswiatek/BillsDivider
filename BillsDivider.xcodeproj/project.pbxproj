@@ -93,13 +93,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A7043E85238C4DC500630D35 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
-			remoteInfo = BillsDivider;
-		};
 		A72B1A5A23C2935100E09786 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
@@ -142,6 +135,13 @@
 			remoteGlobalIDString = A72B1A4F23C2935100E09786;
 			remoteInfo = BillsDivider_Model;
 		};
+		A797D6C423C37DED002D550F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
+			remoteInfo = BillsDivider;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -171,8 +171,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDividerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7043E84238C4DC500630D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayUITests.swift; sourceTree = "<group>"; };
 		A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BillsDivider_Model.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B1A5223C2935100E09786 /* BillsDivider_Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillsDivider_Model.h; sourceTree = "<group>"; };
@@ -263,13 +261,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A7043E7D238C4DC500630D35 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A72B1A4D23C2935100E09786 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,14 +311,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A7043E81238C4DC500630D35 /* BillsDividerTests */ = {
-			isa = PBXGroup;
-			children = (
-				A7043E84238C4DC500630D35 /* Info.plist */,
-			);
-			path = BillsDividerTests;
-			sourceTree = "<group>";
-		};
 		A72B1A5123C2935100E09786 /* BillsDivider_Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -682,13 +665,12 @@
 			children = (
 				A7FED22F235CEF8A00CCD069 /* BillsDivider */,
 				A72B1A5123C2935100E09786 /* BillsDivider_Model */,
-				A7043E81238C4DC500630D35 /* BillsDividerTests */,
 				A72B1A5E23C2935100E09786 /* BillsDivider_ModelTests */,
-				A774361B239AB696008F53B5 /* BillsDividerUITests */,
 				A797D68C23C376FA002D550F /* BillsDivider_ViewModel */,
 				A797D69923C376FA002D550F /* BillsDivider_ViewModelTests */,
-				A7FED22E235CEF8A00CCD069 /* Products */,
+				A774361B239AB696008F53B5 /* BillsDividerUITests */,
 				A797D6B323C377B2002D550F /* Frameworks */,
+				A7FED22E235CEF8A00CCD069 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -696,7 +678,6 @@
 			isa = PBXGroup;
 			children = (
 				A7FED22D235CEF8A00CCD069 /* BillsDivider.app */,
-				A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */,
 				A774361A239AB696008F53B5 /* BillsDividerUITests.xctest */,
 				A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */,
 				A72B1A5823C2935100E09786 /* BillsDivider_ModelTests.xctest */,
@@ -749,24 +730,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		A7043E7F238C4DC500630D35 /* BillsDividerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7043E87238C4DC500630D35 /* Build configuration list for PBXNativeTarget "BillsDividerTests" */;
-			buildPhases = (
-				A7043E7C238C4DC500630D35 /* Sources */,
-				A7043E7D238C4DC500630D35 /* Frameworks */,
-				A7043E7E238C4DC500630D35 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A7043E86238C4DC500630D35 /* PBXTargetDependency */,
-			);
-			name = BillsDividerTests;
-			productName = BillsDividerTests;
-			productReference = A7043E80238C4DC500630D35 /* BillsDividerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		A72B1A4F23C2935100E09786 /* BillsDivider_Model */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A72B1A6C23C2935100E09786 /* Build configuration list for PBXNativeTarget "BillsDivider_Model" */;
@@ -797,6 +760,7 @@
 			);
 			dependencies = (
 				A72B1A5B23C2935100E09786 /* PBXTargetDependency */,
+				A797D6C523C37DED002D550F /* PBXTargetDependency */,
 			);
 			name = BillsDivider_ModelTests;
 			productName = BillsDivider_ModelTests;
@@ -889,11 +853,6 @@
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Adrian Świątek";
 				TargetAttributes = {
-					A7043E7F238C4DC500630D35 = {
-						CreatedOnToolsVersion = 11.1;
-						LastSwiftMigration = 1110;
-						TestTargetID = A7FED22C235CEF8A00CCD069;
-					};
 					A72B1A4F23C2935100E09786 = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -930,24 +889,16 @@
 			projectRoot = "";
 			targets = (
 				A7FED22C235CEF8A00CCD069 /* BillsDivider */,
-				A7043E7F238C4DC500630D35 /* BillsDividerTests */,
-				A7743619239AB696008F53B5 /* BillsDividerUITests */,
-				A797D68A23C376FA002D550F /* BillsDivider_ViewModel */,
-				A797D69223C376FA002D550F /* BillsDivider_ViewModelTests */,
 				A72B1A4F23C2935100E09786 /* BillsDivider_Model */,
 				A72B1A5723C2935100E09786 /* BillsDivider_ModelTests */,
+				A797D68A23C376FA002D550F /* BillsDivider_ViewModel */,
+				A797D69223C376FA002D550F /* BillsDivider_ViewModelTests */,
+				A7743619239AB696008F53B5 /* BillsDividerUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A7043E7E238C4DC500630D35 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A72B1A4E23C2935100E09786 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -996,13 +947,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A7043E7C238C4DC500630D35 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A72B1A4C23C2935100E09786 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1118,11 +1062,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A7043E86238C4DC500630D35 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
-			targetProxy = A7043E85238C4DC500630D35 /* PBXContainerItemProxy */;
-		};
 		A72B1A5B23C2935100E09786 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A72B1A4F23C2935100E09786 /* BillsDivider_Model */;
@@ -1153,6 +1092,11 @@
 			target = A72B1A4F23C2935100E09786 /* BillsDivider_Model */;
 			targetProxy = A797D6B623C377B2002D550F /* PBXContainerItemProxy */;
 		};
+		A797D6C523C37DED002D550F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
+			targetProxy = A797D6C423C37DED002D550F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1167,51 +1111,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A7043E88238C4DC500630D35 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q924VJ4PLT;
-				INFOPLIST_FILE = BillsDividerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BillsDivider.app/BillsDivider";
-			};
-			name = Debug;
-		};
-		A7043E89238C4DC500630D35 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Q924VJ4PLT;
-				INFOPLIST_FILE = BillsDividerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pl.aswiatek.BillsDividerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BillsDivider.app/BillsDivider";
-			};
-			name = Release;
-		};
 		A72B1A6823C2935100E09786 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1610,15 +1509,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A7043E87238C4DC500630D35 /* Build configuration list for PBXNativeTarget "BillsDividerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7043E88238C4DC500630D35 /* Debug */,
-				A7043E89238C4DC500630D35 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A72B1A6C23C2935100E09786 /* Build configuration list for PBXNativeTarget "BillsDivider_Model" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

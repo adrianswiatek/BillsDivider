@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1100"
+   LastUpgradeVersion = "1130"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A7FED22C235CEF8A00CCD069"
-               BuildableName = "BillsDivider.app"
-               BlueprintName = "BillsDivider"
+               BlueprintIdentifier = "A797D68A23C376FA002D550F"
+               BuildableName = "BillsDivider_ViewModel.framework"
+               BlueprintName = "BillsDivider_ViewModel"
                ReferencedContainer = "container:BillsDivider.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,19 +26,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A72B1A5723C2935100E09786"
-               BuildableName = "BillsDivider_ModelTests.xctest"
-               BlueprintName = "BillsDivider_ModelTests"
-               ReferencedContainer = "container:BillsDivider.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -46,16 +35,6 @@
                BlueprintIdentifier = "A797D69223C376FA002D550F"
                BuildableName = "BillsDivider_ViewModelTests.xctest"
                BlueprintName = "BillsDivider_ViewModelTests"
-               ReferencedContainer = "container:BillsDivider.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A7743619239AB696008F53B5"
-               BuildableName = "BillsDividerUITests.xctest"
-               BlueprintName = "BillsDividerUITests"
                ReferencedContainer = "container:BillsDivider.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -71,23 +50,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7FED22C235CEF8A00CCD069"
-            BuildableName = "BillsDivider.app"
-            BlueprintName = "BillsDivider"
-            ReferencedContainer = "container:BillsDivider.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -95,16 +57,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7FED22C235CEF8A00CCD069"
-            BuildableName = "BillsDivider.app"
-            BlueprintName = "BillsDivider"
+            BlueprintIdentifier = "A797D68A23C376FA002D550F"
+            BuildableName = "BillsDivider_ViewModel.framework"
+            BlueprintName = "BillsDivider_ViewModel"
             ReferencedContainer = "container:BillsDivider.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
