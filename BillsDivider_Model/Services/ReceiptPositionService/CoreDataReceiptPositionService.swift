@@ -98,7 +98,7 @@ public final class CoreDataReceiptPositionService: ReceiptPositionService {
         try? context.save()
     }
 
-    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+    private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
         peopleDidUpdate
             .sink { [weak self] _ in
                 guard let self = self else { return }

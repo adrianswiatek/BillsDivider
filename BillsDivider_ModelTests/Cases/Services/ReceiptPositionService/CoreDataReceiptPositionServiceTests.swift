@@ -7,7 +7,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
     private var sut: CoreDataReceiptPositionService!
     private var context: NSManagedObjectContext!
     private var peopleService: PeopleService!
-    private var people: [Person]!
+    private var people: People!
     private var subscriptions: [AnyCancellable]!
 
     private var firstPerson: Person {
@@ -20,7 +20,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        people = [.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]
+        people = .from(.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2))
         peopleService = InMemoryPeopleService(maximumNumberOfPeople: 2)
         peopleService.updatePeople(people)
         context = InMemoryCoreDataStack().context
@@ -239,7 +239,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
     func testFetchPositions_whenOneItemAdded_returnsOneItem() {
         let person: Person = .withName("My name")
-        peopleService.updatePeople([person])
+        peopleService.updatePeople(.from(person))
 
         let position = ReceiptPosition(amount: 1, buyer: .person(person), owner: .all)
         sut.insert(position)

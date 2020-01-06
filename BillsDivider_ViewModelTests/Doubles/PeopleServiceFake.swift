@@ -6,12 +6,12 @@ class PeopleServiceFake: PeopleService {
     var maximumNumberOfPeople: Int
     var minimumNumberOfPeople: Int
 
-    var peopleDidUpdate: AnyPublisher<[Person], Never> {
+    var peopleDidUpdate: AnyPublisher<People, Never> {
         peopleDidUpdateSubject.eraseToAnyPublisher()
     }
 
-    private let peopleDidUpdateSubject: PassthroughSubject<[Person], Never>
-    private var people: [Person]
+    private let peopleDidUpdateSubject: PassthroughSubject<People, Never>
+    private var people: People
 
     var updatePeopleHasBeenCalled: Bool = false
     var canAddPersonHasBeenCalled: Bool = true
@@ -21,18 +21,18 @@ class PeopleServiceFake: PeopleService {
         self.peopleDidUpdateSubject = .init()
         self.maximumNumberOfPeople = 2
         self.minimumNumberOfPeople = 2
-        self.people = []
+        self.people = .empty
     }
 
     func numberOfPeople() -> Int {
         people.count
     }
 
-    func fetchPeople() -> [Person] {
+    func fetchPeople() -> People {
         people
     }
 
-    func updatePeople(_ people: [Person]) {
+    func updatePeople(_ people: People) {
         self.people = people
         peopleDidUpdateSubject.send(people)
         updatePeopleHasBeenCalled = true

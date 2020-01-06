@@ -78,6 +78,7 @@
 		A797D6BF23C379C5002D550F /* EditingModeStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */; };
 		A797D6C123C37A50002D550F /* EditOverlayStrategyDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */; };
 		A797D6C223C37AE0002D550F /* PeopleServiceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9B23AD9C530073D8E8 /* PeopleServiceFake.swift */; };
+		A797D6C923C395B5002D550F /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D6C823C395B5002D550F /* People.swift */; };
 		A7A3336D23B3BD9300DBA26E /* EditOverlayViewParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams.swift */; };
 		A7AC988423B69F48003D8AE6 /* EditOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988323B69F48003D8AE6 /* EditOverlayView.swift */; };
 		A7AC988623B6A01A003D8AE6 /* BuyerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */; };
@@ -232,6 +233,7 @@
 		A797D68E23C376FA002D550F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A797D69323C376FA002D550F /* BillsDivider_ViewModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDivider_ViewModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A797D69C23C376FA002D550F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A797D6C823C395B5002D550F /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
 		A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewParams.swift; sourceTree = "<group>"; };
 		A7A4189823B819CC00436CBE /* Person+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreData.swift"; sourceTree = "<group>"; };
 		A7AC987D23B69C5B003D8AE6 /* EditOverlayStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayStrategy.swift; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 			children = (
 				A797D64823C365C1002D550F /* Buyer.swift */,
 				A797D64623C365C1002D550F /* Owner.swift */,
+				A797D6C823C395B5002D550F /* People.swift */,
 				A797D64723C365C1002D550F /* Person.swift */,
 				A797D64923C365C1002D550F /* ReceiptPositions.swift */,
 			);
@@ -955,6 +958,7 @@
 				A797D67E23C3712B002D550F /* ReceiptPosition+CoreData.swift in Sources */,
 				A797D67823C36F74002D550F /* InMemoryReceiptPositionService.swift in Sources */,
 				A797D67C23C370F1002D550F /* CoreDataPeopleService.swift in Sources */,
+				A797D6C923C395B5002D550F /* People.swift in Sources */,
 				A797D64A23C365C1002D550F /* Owner.swift in Sources */,
 				A797D68023C37157002D550F /* CoreDataReceiptPositionService.swift in Sources */,
 				A797D65023C36605002D550F /* PositionsDivider.swift in Sources */,

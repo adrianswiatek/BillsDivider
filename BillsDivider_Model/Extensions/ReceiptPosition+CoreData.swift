@@ -13,7 +13,7 @@ extension ReceiptPosition {
 }
 
 extension ReceiptPositionEntity {
-    func asReceiptPosition(people: [Person]) -> ReceiptPosition? {
+    func asReceiptPosition(people: People) -> ReceiptPosition? {
         guard
             let id = id,
             let amount = amount?.decimalValue,
@@ -24,15 +24,15 @@ extension ReceiptPositionEntity {
         return .init(id: id, amount: amount, buyer: buyer, owner: owner)
     }
 
-    private func getBuyer(from people: [Person]) -> Buyer? {
-        guard let person = people.first(where: { $0.id == buyerId }) else {
+    private func getBuyer(from people: People) -> Buyer? {
+        guard let buyerId = buyerId, let person = people.findBy(id: buyerId) else {
             return nil
         }
         return .person(person)
     }
 
-    private func getOwner(from people: [Person]) -> Owner {
-        guard let person = people.first(where: { $0.id == ownerId }) else {
+    private func getOwner(from people: People) -> Owner {
+        guard let ownerId = ownerId, let person = people.findBy(id: ownerId) else {
             return .all
         }
         return .person(person)

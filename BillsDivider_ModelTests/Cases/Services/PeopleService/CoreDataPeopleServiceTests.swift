@@ -31,7 +31,7 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testUpdatePeople_withPeopleArray_saveIsCalled() {
-        let people: [Person] = [.withGeneratedName(forNumber: 1)]
+        let people: People = .from(.withGeneratedName(forNumber: 1))
         let expectation = XCTNSNotificationExpectation(name: .NSManagedObjectContextDidSave)
 
         sut.updatePeople(people)
@@ -40,8 +40,8 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testUpdatePeople_withPeopleArray_sendsArrayWithGivenPeopleThroughPeopleDidUpdate() {
-        let people: [Person] = [.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]
-        var result: [Person] = []
+        let people: People = .from(.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2))
+        var result: People = .empty
         let expectation = self.expectation(description: "People are sent")
         sut.peopleDidUpdate
             .dropFirst()
@@ -63,13 +63,13 @@ class CoreDataPeopleServiceTests: XCTestCase {
         let expectation = XCTNSNotificationExpectation(name: .NSManagedObjectContextDidSave)
         expectation.isInverted = true
 
-        sut.updatePeople([])
+        sut.updatePeople(.empty)
 
         wait(for: [expectation], timeout: 0.3)
     }
 
     func testUpdatePeople_withEmptyPeopleArray_sendsEmptyArrayThroughPeopleDidUpdate() {
-        var result: [Person]?
+        var result: People?
         let expectation = self.expectation(description: "People are sent")
         sut.peopleDidUpdate
             .dropFirst()
@@ -79,19 +79,19 @@ class CoreDataPeopleServiceTests: XCTestCase {
             }
             .store(in: &subscriptions)
 
-        sut.updatePeople([])
+        sut.updatePeople(.empty)
 
         wait(for: [expectation], timeout: 0.3)
-        XCTAssertEqual(result, [])
+        XCTAssertEqual(result, .empty)
     }
 
     func testUpdatePeople_whenNoPeoplePersisted_persistsPeopleInGivenOrder() {
-        let people: [Person] = [
+        let people: People = .from(
             .withGeneratedName(forNumber: 1),
             .withGeneratedName(forNumber: 2),
             .withGeneratedName(forNumber: 3),
             .withGeneratedName(forNumber: 4)
-        ]
+        )
         sut.updatePeople(people)
 
         let persistedPeople = sut.fetchPeople()
@@ -100,10 +100,10 @@ class CoreDataPeopleServiceTests: XCTestCase {
 
     func testUpdatePeople_whenUpdateExistingPerson_persistsUpdatedPerson() {
         let originalPerson: Person = .withName("Original name")
-        sut.updatePeople([originalPerson])
+        sut.updatePeople(.from(originalPerson))
 
         let updatedPerson: Person = originalPerson.withUpdated(name: "Updated name")
-        sut.updatePeople([updatedPerson])
+        sut.updatePeople(.from(updatedPerson))
 
         let result = sut.fetchPeople()
 
@@ -111,7 +111,7 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testPeopleDidUpdate_whenNoPeoplePersisted_sendsEmptyArrayWhenSubscribed() {
-        var result: [Person]?
+        var result: People?
         let expectation = self.expectation(description: "People are sent")
         sut.peopleDidUpdate
             .sink {
@@ -121,15 +121,15 @@ class CoreDataPeopleServiceTests: XCTestCase {
             .store(in: &subscriptions)
 
         wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(result, [])
+        XCTAssertEqual(result, .empty)
     }
 
     func testFetchPeople_whenNoPeoplePersisted_returnsEmptyArray() {
-        XCTAssertEqual(sut.fetchPeople(), [])
+        XCTAssertEqual(sut.fetchPeople(), .empty)
     }
 
     func testFetchPeople_whenOnePersonPersisted_returnsArrayWithOnePerson() {
-        let people: [Person] = [.withName("My name")]
+        let people: People = .from(.withName("My name"))
         sut.updatePeople(people)
 
         let result = sut.fetchPeople()
@@ -138,7 +138,7 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testFetchPeople_whenTwoPeoplePersisted_returnsArrayWithTwoPeople() {
-        let people: [Person] = [.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]
+        let people: People = .from(.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2))
         sut.updatePeople(people)
 
         let result = sut.fetchPeople()
@@ -151,12 +151,12 @@ class CoreDataPeopleServiceTests: XCTestCase {
     }
 
     func testNumberOfPeople_whenOnePersonPersisted_returnsOne() {
-        sut.updatePeople([.withName("My name")])
+        sut.updatePeople(.from(.withName("My name")))
         XCTAssertEqual(sut.numberOfPeople(), 1)
     }
 
     func testNumberOfPeople_whenTwoPeoplePersisted_returnsTwo() {
-        sut.updatePeople([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
+        sut.updatePeople(.from(.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)))
         XCTAssertEqual(sut.numberOfPeople(), 2)
     }
 }

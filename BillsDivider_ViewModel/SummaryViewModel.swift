@@ -27,7 +27,7 @@ public class SummaryViewModel: ObservableObject {
     private let divider: PositionsDivider
     private let numberFormatter: NumberFormatter
 
-    private var people: [Person]
+    private var people: People
     private var subscriptions: [AnyCancellable]
 
     public init(
@@ -40,7 +40,7 @@ public class SummaryViewModel: ObservableObject {
         self.divider = divider
         self.numberFormatter = numberFormatter
 
-        self.people = []
+        self.people = .empty
         self.subscriptions = []
 
         self.divisionResult = .noDebt
@@ -60,7 +60,7 @@ public class SummaryViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+    private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
         peopleDidUpdate
             .sink { [weak self] in
                 guard let self = self else { return }

@@ -22,7 +22,7 @@ struct SettingsView: View {
 
                 Section(header: Text("People")) {
                     List {
-                        ForEach(viewModel.people) { person in
+                        ForEach(viewModel.people.asArray()) { person in
                             HStack {
                                 TextField(
                                     self.viewModel.placeholder(for: person),

@@ -13,7 +13,7 @@ public class ReceiptViewModel: ObservableObject {
     private let receiptPositionService: ReceiptPositionService
     private let numberFormatter: NumberFormatter
 
-    private var people: [Person]
+    private var people: People
 
     private var externalSubscriptions: [AnyCancellable]
     private var internalSubscriptions: [AnyCancellable]
@@ -25,7 +25,7 @@ public class ReceiptViewModel: ObservableObject {
     ) {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
-        self.people = []
+        self.people = .empty
         self.positions = []
         self.externalSubscriptions = []
         self.internalSubscriptions = []
@@ -84,7 +84,7 @@ public class ReceiptViewModel: ObservableObject {
             .store(in: &internalSubscriptions)
     }
 
-    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+    private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
         peopleDidUpdate
             .sink { [weak self] in self?.people = $0 }
             .store(in: &internalSubscriptions)

@@ -2,7 +2,7 @@ import Combine
 import CoreData
 
 public final class CoreDataPeopleService: PeopleService {
-    public var peopleDidUpdate: AnyPublisher<[Person], Never> {
+    public var peopleDidUpdate: AnyPublisher<People, Never> {
         peopleDidUpdateSubject.eraseToAnyPublisher()
     }
 
@@ -10,13 +10,13 @@ public final class CoreDataPeopleService: PeopleService {
     public let minimumNumberOfPeople: Int
 
     private let context: NSManagedObjectContext
-    private let peopleDidUpdateSubject: CurrentValueSubject<[Person], Never>
+    private let peopleDidUpdateSubject: CurrentValueSubject<People, Never>
 
     public init(context: NSManagedObjectContext, maximumNumberOfPeople: Int) {
         self.context = context
         self.maximumNumberOfPeople = maximumNumberOfPeople
         self.minimumNumberOfPeople = 2
-        self.peopleDidUpdateSubject = .init([])
+        self.peopleDidUpdateSubject = .init(.empty)
         self.peopleDidUpdateSubject.send(fetchPeople())
     }
 
@@ -24,11 +24,11 @@ public final class CoreDataPeopleService: PeopleService {
         (try? context.count(for: fetchRequest())) ?? 0
     }
 
-    public func fetchPeople() -> [Person] {
-        fetchEntities().map { $0.asPerson() }
+    public func fetchPeople() -> People {
+        .from(fetchEntities().map { $0.asPerson() })
     }
 
-    public func updatePeople(_ people: [Person]) {
+    public func updatePeople(_ people: People) {
         removeAllPeople()
 
         people.enumerated()
