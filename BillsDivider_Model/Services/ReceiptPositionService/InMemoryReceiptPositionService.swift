@@ -47,7 +47,7 @@ public final class InMemoryReceiptPositionService: ReceiptPositionService {
         positions
     }
 
-    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+    private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
         peopleDidUpdate
             .sink { [weak self] people in
                 guard let self = self else { return }
@@ -62,19 +62,19 @@ public final class InMemoryReceiptPositionService: ReceiptPositionService {
             .store(in: &subscriptions)
     }
 
-    private func updatedBuyer(_ buyer: Buyer, in people: [Person]) -> Buyer {
+    private func updatedBuyer(_ buyer: Buyer, in people: People) -> Buyer {
         guard
             case let .person(existingPerson) = buyer,
-            let updatedPerson = people.first(where: { $0.id == existingPerson.id })
+            let updatedPerson = people.findBy(id: existingPerson.id)
         else { return buyer }
 
         return .person(updatedPerson)
     }
 
-    private func updatedOwner(_ owner: Owner, in people: [Person]) -> Owner {
+    private func updatedOwner(_ owner: Owner, in people: People) -> Owner {
         guard
             case let .person(existingPerson) = owner,
-            let updatedPerson = people.first(where: { $0.id == existingPerson.id })
+            let updatedPerson = people.findBy(id: existingPerson.id)
         else { return owner }
 
         return .person(updatedPerson)

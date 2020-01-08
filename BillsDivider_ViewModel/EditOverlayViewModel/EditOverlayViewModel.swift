@@ -75,7 +75,7 @@ public final class EditOverlayViewModel: ObservableObject {
         presenting = false
     }
 
-    private func subscribe(to peopleDidUpdate: AnyPublisher<[Person], Never>) {
+    private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
         peopleDidUpdate
             .sink { [weak self] in
                 guard let self = self else { return }

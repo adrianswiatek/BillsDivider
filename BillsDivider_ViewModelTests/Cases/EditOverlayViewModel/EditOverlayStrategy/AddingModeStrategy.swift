@@ -7,13 +7,13 @@ class AddingModeStrategyTests: XCTestCase {
     private var sut: AddingModeStrategy!
     private var position: ReceiptPosition!
 
-    private var people: [Person]!
+    private var people: People!
 
     private var subscriptions: [AnyCancellable]!
 
     override func setUp() {
         super.setUp()
-        people = [.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]
+        people = .fromArray([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
         position = ReceiptPosition(amount: 1, buyer: .person(people[0]), owner: .person(people[1]))
         sut = AddingModeStrategy(receiptPosition: position)
         subscriptions = []

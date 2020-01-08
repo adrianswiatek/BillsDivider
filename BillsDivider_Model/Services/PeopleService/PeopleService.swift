@@ -4,11 +4,11 @@ public protocol PeopleService {
     var maximumNumberOfPeople: Int { get }
     var minimumNumberOfPeople: Int { get }
 
-    var peopleDidUpdate: AnyPublisher<[Person], Never> { get }
+    var peopleDidUpdate: AnyPublisher<People, Never> { get }
     
     func numberOfPeople() -> Int
-    func fetchPeople() -> [Person]
-    func updatePeople(_ people: [Person])
+    func fetchPeople() -> People
+    func updatePeople(_ people: People)
 
     func canAddPerson() -> Bool
     func canRemovePerson() -> Bool

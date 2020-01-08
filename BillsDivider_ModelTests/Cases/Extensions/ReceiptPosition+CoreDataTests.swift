@@ -51,10 +51,10 @@ class ReceiptPositionPlusCoreDataTests: XCTestCase {
         let ownerId = UUID()
         let receiptPositionEntity = self.receiptPositionEntity(positionId, 1.25, buyerId, ownerId)
 
-        let receiptPosition = receiptPositionEntity.asReceiptPosition(people: [
+        let receiptPosition = receiptPositionEntity.asReceiptPosition(people: .fromArray([
             Person(id: buyerId, name: "Buyer", state: .default),
             Person(id: ownerId, name: "Owner", state: .default)
-        ])
+        ]))
 
         XCTAssertEqual(receiptPosition?.id, positionId)
         XCTAssertEqual(receiptPosition?.amount, 1.25)
@@ -67,9 +67,9 @@ class ReceiptPositionPlusCoreDataTests: XCTestCase {
         let buyerId = UUID()
         let receiptPositionEntity = self.receiptPositionEntity(positionId, 1.25, buyerId)
 
-        let receiptPosition = receiptPositionEntity.asReceiptPosition(people: [
-            Person(id: buyerId, name: "Buyer", state: .default)
-        ])
+        let receiptPosition = receiptPositionEntity.asReceiptPosition(
+            people: .fromPerson(.init(id: buyerId, name: "Buyer", state: .default))
+        )
 
         XCTAssertEqual(receiptPosition?.id, positionId)
         XCTAssertEqual(receiptPosition?.amount, 1.25)

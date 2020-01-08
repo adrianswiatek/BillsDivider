@@ -3,12 +3,12 @@ import Foundation
 public struct PositionsDivider {
     public init() {}
 
-    public func divide(_ positions: [ReceiptPosition], between people: [Person]) -> DivisionResult {
+    public func divide(_ positions: [ReceiptPosition], between people: People) -> DivisionResult {
         guard people.count >= 2 else { return .noDebt }
         return positions.reduce(into: DivisionResult.noDebt) { $0 = add($0, divide($1, between: people)) }
     }
 
-    private func divide(_ position: ReceiptPosition, between people: [Person]) -> DivisionResult {
+    private func divide(_ position: ReceiptPosition, between people: People) -> DivisionResult {
         guard canDivide(position) else { return .noDebt }
 
         let amount = position.owner == .all ? position.amount / Decimal(people.count) : position.amount
@@ -20,7 +20,7 @@ public struct PositionsDivider {
         position.amount != 0 && position.buyer.isNotEqualTo(position.owner)
     }
 
-    private func getDebtors(for position: ReceiptPosition, from people: [Person]) -> [Buyer] {
+    private func getDebtors(for position: ReceiptPosition, from people: People) -> [Buyer] {
         switch position.owner {
         case .all:
             return people.filter { $0.id != position.buyer.asPerson.id }.map { .person($0) }

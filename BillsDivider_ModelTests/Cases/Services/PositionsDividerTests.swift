@@ -3,7 +3,7 @@ import XCTest
 
 class PositionsDividerTests: XCTestCase {
     private var sut: PositionsDivider!
-    private var people: [Person]!
+    private var people: People!
 
     private var firstPerson: Person {
         people[0]
@@ -15,7 +15,7 @@ class PositionsDividerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        people = [.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]
+        people = .fromArray([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
         sut = PositionsDivider()
     }
 
@@ -26,10 +26,10 @@ class PositionsDividerTests: XCTestCase {
     }
 
     func testDivide_withPeopleCountLessThanTwo_returnsNoDebtResult() {
-        let resultForZeroPeople = sut.divide([], between: [])
+        let resultForZeroPeople = sut.divide([], between: .empty)
         XCTAssertEqual(resultForZeroPeople, .noDebt)
 
-        let resultForOnePerson = sut.divide([], between: [.withGeneratedName(forNumber: 1)])
+        let resultForOnePerson = sut.divide([], between: .fromPerson(.withGeneratedName(forNumber: 1)))
         XCTAssertEqual(resultForOnePerson, .noDebt)
     }
 

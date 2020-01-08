@@ -3,7 +3,7 @@ import Combine
 import Foundation
 
 public final class SettingsViewModel: ObservableObject {
-    @Published public var people: [Person]
+    @Published public var people: People
     @Published public var peopleNames: [String]
 
     private let peopleService: PeopleService
@@ -21,7 +21,7 @@ public final class SettingsViewModel: ObservableObject {
 
     public func addPerson() {
         let nextPersonsIndex = people.count + 1
-        people.append(.withGeneratedName(forNumber: nextPersonsIndex))
+        people = people.appending(.withGeneratedName(forNumber: nextPersonsIndex))
     }
 
     private func bind() {
@@ -36,14 +36,14 @@ public final class SettingsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func onPeopleChange(with people: [Person]) {
+    private func onPeopleChange(with people: People) {
         peopleNames = people.map { name(for: $0) }
         peopleService.updatePeople(people)
     }
 
     private func onPeopleNamesChange(with names: [String]) {
         guard names != people.map({ name(for: $0) }) else { return }
-        people = people.enumerated().map { $1.withUpdated(name: names[$0], andNumber: $0 + 1)}
+        people = people.enumerated().map { $1.withUpdated(name: names[$0], andNumber: $0 + 1)}.asPeople
     }
 
     public func canAddPerson() -> Bool {
