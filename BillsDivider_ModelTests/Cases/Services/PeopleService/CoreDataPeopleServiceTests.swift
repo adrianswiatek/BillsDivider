@@ -11,7 +11,7 @@ class CoreDataPeopleServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         context = InMemoryCoreDataStack().context
-        sut = CoreDataPeopleService(context: context, maximumNumberOfPeople: 2)
+        sut = CoreDataPeopleService(context, maximumNumberOfPeople: 2)
         subscriptions = []
     }
 

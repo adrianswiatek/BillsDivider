@@ -19,9 +19,9 @@ public class ReceiptViewModel: ObservableObject {
     private var internalSubscriptions: [AnyCancellable]
 
     public init(
-        receiptPositionService: ReceiptPositionService,
-        peopleService: PeopleService,
-        numberFormatter: NumberFormatter
+        _ receiptPositionService: ReceiptPositionService,
+        _ peopleService: PeopleService,
+        _ numberFormatter: NumberFormatter
     ) {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter

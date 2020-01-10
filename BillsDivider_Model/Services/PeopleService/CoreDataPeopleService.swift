@@ -12,7 +12,7 @@ public final class CoreDataPeopleService: PeopleService {
     private let context: NSManagedObjectContext
     private let peopleDidUpdateSubject: CurrentValueSubject<People, Never>
 
-    public init(context: NSManagedObjectContext, maximumNumberOfPeople: Int) {
+    public init(_ context: NSManagedObjectContext, maximumNumberOfPeople: Int) {
         self.context = context
         self.maximumNumberOfPeople = maximumNumberOfPeople
         self.minimumNumberOfPeople = 2

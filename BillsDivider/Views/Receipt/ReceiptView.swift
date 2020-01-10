@@ -7,12 +7,12 @@ struct ReceiptView: View {
     @State private var editOverlayParams: EditOverlayViewParams = .hidden
     @State private var presentingOptionsMenu: Bool = false
 
-    private let viewModelFactory: ViewModelFactory
+    private let editOverlayViewFactory: EditOverlayViewFactory
     private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
 
-    init(_ viewModel: ReceiptViewModel, _ viewModelFactory: ViewModelFactory) {
+    init(_ viewModel: ReceiptViewModel, _ editOverlayViewFactory: EditOverlayViewFactory) {
         self.viewModel = viewModel
-        self.viewModelFactory = viewModelFactory
+        self.editOverlayViewFactory = editOverlayViewFactory
     }
 
     var body: some View {
@@ -91,14 +91,13 @@ struct ReceiptView: View {
     }
 
     private func createEditOverlayView() -> some View {
-        editOverlayParams.providePosition(self.viewModel.positions.first)
-
-        let editOverlayViewModel = viewModelFactory.editOverlayViewModel(presentingParams: $editOverlayParams)
-        viewModel.subscribe(
-            addingPublisher: editOverlayViewModel.positionAdded,
-            editingPublisher: editOverlayViewModel.positionEdited
-        )
-        return EditOverlayView(editOverlayViewModel)
+        editOverlayParams.providePosition(viewModel.positions.first)
+        return editOverlayViewFactory.create(presentingParams: $editOverlayParams) {
+            viewModel.subscribe(
+                addingPublisher: $0.positionAdded,
+                editingPublisher: $0.positionEdited
+            )
+        }
     }
 }
 

@@ -11,7 +11,7 @@ class SettingsViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         peopleService = PeopleServiceFake()
-        sut = SettingsViewModel(peopleService: peopleService)
+        sut = SettingsViewModel(peopleService)
         subscriptions = []
     }
 

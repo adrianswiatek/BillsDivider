@@ -1,34 +1,25 @@
 import BillsDivider_Model
+import BillsDivider_ViewModel
 import Combine
 import SwiftUI
 
 struct PreviewFactory {
-    private let viewModelFactory: ViewModelFactory
-    private let numberFormatter: NumberFormatter
+    private let dependencyContainer: DependencyContainer
     private let receiptListColumnWidth: CGFloat
 
     init() {
         receiptListColumnWidth = UIScreen.main.bounds.width / 3
-        numberFormatter = .twoFractionDigitsNumberFormatter
-        let peopleService: PeopleService = InMemoryPeopleService(maximumNumberOfPeople: 2)
-        viewModelFactory = .init(
-            receiptPositionService: InMemoryReceiptPositionService(peopleService: peopleService),
-            peopleService: peopleService,
-            divider: .init(),
-            numberFormatter: numberFormatter
-        )
+        dependencyContainer = DependencyContainer(.testing)
     }
 }
 
-import BillsDivider_ViewModel
-
 extension PreviewFactory {
     var tabsView: some View {
-        TabsView(viewModelFactory: viewModelFactory)
+        dependencyContainer.resolve(TabsView.self) as AnyView
     }
 
     var receiptView: some View {
-        ReceiptView(viewModelFactory.receiptViewModel, viewModelFactory)
+        dependencyContainer.resolve(ReceiptView.self) as AnyView
     }
 
     var receiptHeaderView: some View {
@@ -36,22 +27,35 @@ extension PreviewFactory {
     }
 
     var editOverlayView: some View {
-        EditOverlayView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
+        let viewFactory: EditOverlayViewFactory = dependencyContainer.resolve(EditOverlayViewFactory.self)
+        return viewFactory.create(presentingParams: .constant(.shownAdding()), configure: { _ in })
     }
 
     var buyerSectionView: some View {
-        BuyerSectionView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
+        let viewModel = EditOverlayViewModel(
+            presenting: .constant(true),
+            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
+            peopleService: dependencyContainer.resolve(PeopleService.self),
+            numberFormatter: dependencyContainer.resolve(NumberFormatter.self)
+        )
+        return BuyerSectionView(viewModel)
     }
 
     var ownerSectionView: some View {
-        OwnerSectionView(viewModelFactory.editOverlayViewModel(presentingParams: .constant(.shownAdding())))
+        let viewModel = EditOverlayViewModel(
+            presenting: .constant(true),
+            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
+            peopleService: dependencyContainer.resolve(PeopleService.self),
+            numberFormatter: dependencyContainer.resolve(NumberFormatter.self)
+        )
+        return OwnerSectionView(viewModel)
     }
 
     var summaryView: some View {
-        SummaryView(viewModelFactory.summaryViewModel)
+        dependencyContainer.resolve(SummaryView.self) as AnyView
     }
 
     var settingsView: some View {
-        SettingsView(viewModelFactory.settingsViewModel)
+        dependencyContainer.resolve(SettingsView.self) as AnyView
     }
 }

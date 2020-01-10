@@ -17,10 +17,13 @@
 		A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1A12369EB5D0096C2E1 /* TabsView.swift */; };
 		A7385B5B239C696F00A41C09 /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5A239C696F00A41C09 /* TabBarPage.swift */; };
 		A7385B5D239C6A1B00A41C09 /* TabsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5C239C6A1B00A41C09 /* TabsUITests.swift */; };
+		A73E85FF23C939A000FAF4FA /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E85FE23C939A000FAF4FA /* DependencyContainer.swift */; };
+		A73E860123C94B5800FAF4FA /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E860023C94B5800FAF4FA /* TabItem.swift */; };
 		A7550E7B239BD7E60004797D /* ReceiptPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7A239BD7E60004797D /* ReceiptPage.swift */; };
 		A7550E7D239BD8050004797D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7C239BD8050004797D /* Page.swift */; };
 		A7550E7F239BDE3D0004797D /* SummaryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7E239BDE3D0004797D /* SummaryPage.swift */; };
 		A7550E81239BDE6D0004797D /* EditOverlayPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E80239BDE6D0004797D /* EditOverlayPage.swift */; };
+		A763FFC623CA9D9300D489EA /* PeopleServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763FFC523CA9D9300D489EA /* PeopleServiceFactory.swift */; };
 		A774361D239AB696008F53B5 /* ReceiptUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptUITests.swift */; };
 		A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4623B3991A0059EB71 /* ReceiptView.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
@@ -69,7 +72,7 @@
 		A797D6AF23C37752002D550F /* EditOverlayStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC987D23B69C5B003D8AE6 /* EditOverlayStrategy.swift */; };
 		A797D6B423C377B2002D550F /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
 		A797D6B523C377B2002D550F /* BillsDivider_Model.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A797D6B923C377EF002D550F /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */; };
+		A797D6B923C377EF002D550F /* EditOverlayViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5F238C805600D38BC8 /* EditOverlayViewFactory.swift */; };
 		A797D6BA23C379B8002D550F /* ReceiptViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76FF43523BD40F9000D584F /* ReceiptViewModelTests.swift */; };
 		A797D6BB23C379B8002D550F /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75443C023A9499800A8775E /* SettingsViewModelTests.swift */; };
 		A797D6BC23C379B8002D550F /* SummaryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */; };
@@ -185,6 +188,8 @@
 		A7385B5A239C696F00A41C09 /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
 		A7385B5C239C6A1B00A41C09 /* TabsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsUITests.swift; sourceTree = "<group>"; };
 		A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewModelTests.swift; sourceTree = "<group>"; };
+		A73E85FE23C939A000FAF4FA /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		A73E860023C94B5800FAF4FA /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		A754170623A05537008DB5F7 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A75443C023A9499800A8775E /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
 		A75443C223A94A0F00A8775E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -196,6 +201,7 @@
 		A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayStrategyDummy.swift; sourceTree = "<group>"; };
 		A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModeStrategyTests.swift; sourceTree = "<group>"; };
 		A75E802F23A17C8D00B549F9 /* AddingModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStrategy.swift; sourceTree = "<group>"; };
+		A763FFC523CA9D9300D489EA /* PeopleServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleServiceFactory.swift; sourceTree = "<group>"; };
 		A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModelTests.swift; sourceTree = "<group>"; };
 		A76FF43523BD40F9000D584F /* ReceiptViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewModelTests.swift; sourceTree = "<group>"; };
 		A7705B9523AD868F0073D8E8 /* PeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleService.swift; sourceTree = "<group>"; };
@@ -247,7 +253,7 @@
 		A7AC988923B6D788003D8AE6 /* CoreDataPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleService.swift; sourceTree = "<group>"; };
 		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
 		A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtensions.swift; sourceTree = "<group>"; };
-		A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		A7B7DE5F238C805600D38BC8 /* EditOverlayViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewFactory.swift; sourceTree = "<group>"; };
 		A7C50A9523C00F760088DF12 /* Person+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataTests.swift"; sourceTree = "<group>"; };
 		A7C50A9723C016760088DF12 /* ReceiptPosition+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReceiptPosition+CoreDataTests.swift"; sourceTree = "<group>"; };
 		A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFactory.swift; sourceTree = "<group>"; };
@@ -378,6 +384,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		A73E860223C955A900FAF4FA /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				A73E860023C94B5800FAF4FA /* TabItem.swift */,
+				A736A1A12369EB5D0096C2E1 /* TabsView.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
 		A754170523A0551D008DB5F7 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +444,14 @@
 			path = EditOverlayStrategy;
 			sourceTree = "<group>";
 		};
+		A763FFC323CA99AB00D489EA /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				A73E85FE23C939A000FAF4FA /* DependencyContainer.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
 		A774361B239AB696008F53B5 /* BillsDividerUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,11 +466,11 @@
 			isa = PBXGroup;
 			children = (
 				A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */,
-				A736A1A12369EB5D0096C2E1 /* TabsView.swift */,
 				A77D54C723819225003D7E9D /* EditOverlay */,
 				A77D54C6238191D2003D7E9D /* Receipt */,
 				A7873D2A23A8397F008C9552 /* Settings */,
 				A7F213AF238B410E0084B466 /* Summary */,
+				A73E860223C955A900FAF4FA /* Tabs */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -476,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				A7AC988323B69F48003D8AE6 /* EditOverlayView.swift */,
+				A7B7DE5F238C805600D38BC8 /* EditOverlayViewFactory.swift */,
 				A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams.swift */,
 				A77FAD212384B3F000B66C98 /* Sections */,
 			);
@@ -578,6 +602,7 @@
 				A7AC988923B6D788003D8AE6 /* CoreDataPeopleService.swift */,
 				A7F3D4FF23AFF9F100B9AD14 /* InMemoryPeopleService.swift */,
 				A7705B9523AD868F0073D8E8 /* PeopleService.swift */,
+				A763FFC523CA9D9300D489EA /* PeopleServiceFactory.swift */,
 			);
 			path = PeopleService;
 			sourceTree = "<group>";
@@ -699,7 +724,7 @@
 				A7FED241235CEF8B00CCD069 /* Info.plist */,
 				A7FED230235CEF8B00CCD069 /* AppDelegate.swift */,
 				A7FED232235CEF8B00CCD069 /* SceneDelegate.swift */,
-				A7B7DE5F238C805600D38BC8 /* ViewModelFactory.swift */,
+				A763FFC323CA99AB00D489EA /* Infrastructure */,
 				A736A19A2369DDE90096C2E1 /* Resources */,
 				A77936BD235CF66700EC64D0 /* Views */,
 			);
@@ -967,6 +992,7 @@
 				A797D65023C36605002D550F /* PositionsDivider.swift in Sources */,
 				A797D67323C36E42002D550F /* PeopleService.swift in Sources */,
 				A797D67423C36E4A002D550F /* InMemoryPeopleService.swift in Sources */,
+				A763FFC623CA9D9300D489EA /* PeopleServiceFactory.swift in Sources */,
 				A797D64C23C365C1002D550F /* Buyer.swift in Sources */,
 				A797D67923C36F79002D550F /* ReceiptPositionService.swift in Sources */,
 				A797D65323C36642002D550F /* DivisionResult.swift in Sources */,
@@ -1051,6 +1077,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7873D2C23A839C8008C9552 /* SettingsView.swift in Sources */,
+				A73E85FF23C939A000FAF4FA /* DependencyContainer.swift in Sources */,
 				A7AC988623B6A01A003D8AE6 /* BuyerSectionView.swift in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
 				A7AC988823B6A032003D8AE6 /* OwnerSectionView.swift in Sources */,
@@ -1063,7 +1090,8 @@
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
 				A7AC988423B69F48003D8AE6 /* EditOverlayView.swift in Sources */,
 				A7F213B2238B41310084B466 /* SummaryView.swift in Sources */,
-				A797D6B923C377EF002D550F /* ViewModelFactory.swift in Sources */,
+				A73E860123C94B5800FAF4FA /* TabItem.swift in Sources */,
+				A797D6B923C377EF002D550F /* EditOverlayViewFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

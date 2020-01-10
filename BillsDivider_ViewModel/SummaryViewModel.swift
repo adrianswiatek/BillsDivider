@@ -31,10 +31,10 @@ public class SummaryViewModel: ObservableObject {
     private var subscriptions: [AnyCancellable]
 
     public init(
-        receiptPositionService: ReceiptPositionService,
-        peopleService: PeopleService,
-        divider: PositionsDivider,
-        numberFormatter: NumberFormatter
+        _ receiptPositionService: ReceiptPositionService,
+        _ peopleService: PeopleService,
+        _ divider: PositionsDivider,
+        _ numberFormatter: NumberFormatter
     ) {
         self.receiptPositionService = receiptPositionService
         self.divider = divider

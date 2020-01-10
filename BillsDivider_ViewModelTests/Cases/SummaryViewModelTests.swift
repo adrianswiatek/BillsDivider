@@ -19,12 +19,7 @@ class SummaryViewModelTests: XCTestCase {
         super.setUp()
         peopleService = PeopleServiceFake()
         receiptPositionService = InMemoryReceiptPositionService(peopleService: peopleService)
-        sut = SummaryViewModel(
-            receiptPositionService: receiptPositionService,
-            peopleService: peopleService,
-            divider: .init(),
-            numberFormatter: numberFormatter
-        )
+        sut = SummaryViewModel(receiptPositionService, peopleService, .init(), numberFormatter)
         subscriptions = []
         peopleService.updatePeople(people)
     }

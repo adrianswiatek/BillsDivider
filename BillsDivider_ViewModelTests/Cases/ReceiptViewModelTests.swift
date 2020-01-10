@@ -16,11 +16,7 @@ class ReceiptViewModelTests: XCTestCase {
         super.setUp()
         peopleService = InMemoryPeopleService(maximumNumberOfPeople: 2)
         receiptPositionService = InMemoryReceiptPositionService(peopleService: peopleService)
-        sut = .init(
-            receiptPositionService: receiptPositionService,
-            peopleService: peopleService,
-            numberFormatter: numberFormatter
-        )
+        sut = .init(receiptPositionService, peopleService, numberFormatter)
     }
 
     override func tearDown() {
@@ -41,11 +37,7 @@ class ReceiptViewModelTests: XCTestCase {
         ]
         positions.forEach { receiptPositionService.insert($0) }
 
-        sut = .init(
-            receiptPositionService: receiptPositionService,
-            peopleService: peopleService,
-            numberFormatter: numberFormatter
-        )
+        sut = .init(receiptPositionService, peopleService, numberFormatter)
 
         XCTAssertEqual(sut.positions.count, 2)
         XCTAssertEqual(sut.positions[0], positions[1])

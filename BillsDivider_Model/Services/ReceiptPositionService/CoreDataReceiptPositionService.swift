@@ -12,7 +12,7 @@ public final class CoreDataReceiptPositionService: ReceiptPositionService {
     private let positionsDidUpdateSubject: PassthroughSubject<[ReceiptPosition], Never>
     private var subscriptions: [AnyCancellable]
 
-    public init(context: NSManagedObjectContext, peopleService: PeopleService) {
+    public init(_ context: NSManagedObjectContext, _ peopleService: PeopleService) {
         self.context = context
         self.peopleService = peopleService
         self.positionsDidUpdateSubject = .init()

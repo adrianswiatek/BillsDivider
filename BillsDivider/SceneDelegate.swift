@@ -6,12 +6,6 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
-    private var isUiTesting: Bool = false {
-        didSet {
-            UIView.setAnimationsEnabled(!isUiTesting)
-        }
-    }
-
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
@@ -19,52 +13,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = scene as? UIWindowScene else { return }
 
-        isUiTesting = CommandLine.arguments.contains("ui-testing")
+        let isUiTesting = CommandLine.arguments.contains("ui-testing")
+        let dependencyContainer = DependencyContainer(isUiTesting ? .testing : .production)
+        UIView.setAnimationsEnabled(!isUiTesting)
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UIHostingController(rootView: getRootView())
+        let rootView: AnyView = dependencyContainer.resolve(TabsView.self)
+        window.rootViewController = UIHostingController(rootView: rootView)
         self.window = window
         window.makeKeyAndVisible()
-    }
-
-    private func getRootView() -> some View {
-        let context: NSManagedObjectContext = getCoreDataStack().context
-        let peopleService: PeopleService = preparePeopleService(context)
-
-        let viewModelFactory = ViewModelFactory(
-            receiptPositionService: prepareReceiptPositionService(context, peopleService),
-            peopleService: peopleService,
-            divider: PositionsDivider(),
-            numberFormatter: .twoFractionDigitsNumberFormatter
-        )
-
-        return TabsView(viewModelFactory: viewModelFactory)
-    }
-
-    private func getCoreDataStack() -> CoreDataStack {
-        isUiTesting ? InMemoryCoreDataStack() : SqliteCoreDataStack()
-    }
-
-    private func prepareReceiptPositionService(
-        _ context: NSManagedObjectContext,
-        _ peopleService: PeopleService
-    ) -> ReceiptPositionService {
-        CoreDataReceiptPositionService(context: context, peopleService: peopleService)
-    }
-
-    private func preparePeopleService(_ context: NSManagedObjectContext) -> PeopleService {
-        let peopleService = CoreDataPeopleService(context: context, maximumNumberOfPeople: 2)
-        let numberOfPeople = peopleService.numberOfPeople()
-        let minimumNumberOfPeople = 2
-
-        let initialPeople: People = (numberOfPeople ..< minimumNumberOfPeople)
-            .map { .withGeneratedName(forNumber: $0 + 1) }
-            .asPeople
-
-        if initialPeople.any {
-            peopleService.updatePeople(initialPeople)
-        }
-
-        return peopleService
     }
 }

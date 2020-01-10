@@ -9,7 +9,7 @@ public final class SettingsViewModel: ObservableObject {
     private let peopleService: PeopleService
     private var subscriptions: [AnyCancellable]
 
-    public init(peopleService: PeopleService) {
+    public init(_ peopleService: PeopleService) {
         self.peopleService = peopleService
         self.people = peopleService.fetchPeople()
         self.peopleNames = []

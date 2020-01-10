@@ -24,7 +24,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
         peopleService = InMemoryPeopleService(maximumNumberOfPeople: 2)
         peopleService.updatePeople(people)
         context = InMemoryCoreDataStack().context
-        sut = CoreDataReceiptPositionService(context: context, peopleService: peopleService)
+        sut = CoreDataReceiptPositionService(context, peopleService)
         subscriptions = []
     }
 
