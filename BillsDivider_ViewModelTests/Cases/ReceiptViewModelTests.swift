@@ -72,6 +72,20 @@ class ReceiptViewModelTests: XCTestCase {
         XCTAssertEqual(sut.positions[0], position2)
     }
 
+    func testItemAdded_whenSubscribedPublisherEmitsAddedPositions_isSetToTrue() {
+        let addingPublisher = PassthroughSubject<ReceiptPosition, Never>()
+        let emptyPublisher = Empty<ReceiptPosition, Never>()
+        sut.subscribe(
+            addingPublisher: addingPublisher.eraseToAnyPublisher(),
+            editingPublisher: emptyPublisher.eraseToAnyPublisher()
+        )
+
+        let position = ReceiptPosition(amount: 1, buyer: .person(.withName("My name")), owner: .all)
+        addingPublisher.send(position)
+
+        XCTAssertTrue(sut.itemAdded)
+    }
+
     func test_whenSubscribedPublisherEmitsEditedPosition_positionIsUpdatedInPositionsList() {
         let firstPerson: Person = .withGeneratedName(forNumber: 1)
         let secondPerson: Person = .withGeneratedName(forNumber: 2)

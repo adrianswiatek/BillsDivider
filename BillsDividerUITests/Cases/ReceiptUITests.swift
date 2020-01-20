@@ -88,18 +88,18 @@ class ReceiptUITests: XCTestCase {
     }
 
     func testCanEditAmount() {
-        let receiptListPage = ReceiptPage(app)
+        let receiptPage = ReceiptPage(app)
 
-        receiptListPage
+        receiptPage
             .tapPlusButton()
             .tapPriceTextField()
             .typeIntoPriceTextField("1.00")
             .tapConfirmButton()
             .tapCloseButton()
 
-        XCTAssertEqual(receiptListPage.amountFromCell(atIndex: 0), "1.00")
+        XCTAssertEqual(receiptPage.amountFromCell(atIndex: 0), "1.00")
 
-        receiptListPage
+        receiptPage
             .longPressCell(atIndex: 0)
             .tapEditPositionButton()
             .tapPriceTextField()
@@ -107,6 +107,6 @@ class ReceiptUITests: XCTestCase {
             .typeIntoPriceTextField("0.00")
             .tapConfirmButton()
 
-        XCTAssertEqual(receiptListPage.amountFromCell(atIndex: 0), "10.00")
+        XCTAssertEqual(receiptPage.amountFromCell(atIndex: 0), "10.00")
     }
 }
