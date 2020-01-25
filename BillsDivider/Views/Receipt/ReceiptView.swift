@@ -31,7 +31,7 @@ struct ReceiptView: View {
                                 .background(
                                     Capsule(style: .continuous)
                                         .foregroundColor(self.viewModel.colorFor(position.buyer))
-                            )
+                                )
                                 .frame(width: self.columnWidth)
 
                             Text(position.owner.formatted)
@@ -41,7 +41,7 @@ struct ReceiptView: View {
                                 .background(
                                     Capsule(style: .continuous)
                                         .foregroundColor(self.viewModel.colorFor(position.owner))
-                            )
+                                )
                                 .frame(width: self.columnWidth)
                         }
                         .offset(x: -24, y: 0)
