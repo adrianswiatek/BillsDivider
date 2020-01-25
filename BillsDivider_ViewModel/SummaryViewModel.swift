@@ -3,10 +3,19 @@ import Combine
 import Foundation
 
 public class SummaryViewModel: ObservableObject {
-    @Published private var divisionResult: DivisionResult
+    private var divisionResult: DivisionResult
+    private var sumResult: SumResult
 
     public var leftSidedBuyer: Buyer
     public var rightSidedBuyer: Buyer
+
+    public var formattedSum: String {
+        numberFormatter.format(value: sumResult.amount)
+    }
+
+    public var formattedDebt: String {
+        numberFormatter.format(value: divisionResult.debtAmount)
+    }
 
     public var formattedDirection: String {
         switch divisionResult {
@@ -17,10 +26,6 @@ public class SummaryViewModel: ObservableObject {
         default:
             return "arrow.right"
         }
-    }
-
-    public var formattedDebt: String {
-        return numberFormatter.format(value: divisionResult.debtAmount)
     }
 
     private let receiptPositionService: ReceiptPositionService
@@ -44,6 +49,7 @@ public class SummaryViewModel: ObservableObject {
         self.subscriptions = []
 
         self.divisionResult = .noDebt
+        self.sumResult = .zero
         self.leftSidedBuyer = .person(.empty)
         self.rightSidedBuyer = .person(.empty)
 
@@ -56,6 +62,8 @@ public class SummaryViewModel: ObservableObject {
             .sink { [weak self] in
                 guard let self = self else { return }
                 self.divisionResult = self.divider.divide($0, between: self.people)
+                self.sumResult = .from(values: $0.map { $0.amount })
+                self.objectWillChange.send()
             }
             .store(in: &subscriptions)
     }

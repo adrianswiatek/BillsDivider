@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A70478C623A42DF6001AD82E /* EditOverlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */; };
+		A708403523DCEE5000C91DEC /* SumResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403423DCEE5000C91DEC /* SumResult.swift */; };
+		A708403723DCEEAB00C91DEC /* SumResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403623DCEEAB00C91DEC /* SumResultTests.swift */; };
 		A72B1A5923C2935100E09786 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
 		A72B1A6223C2935100E09786 /* BillsDivider_Model.h in Headers */ = {isa = PBXBuildFile; fileRef = A72B1A5223C2935100E09786 /* BillsDivider_Model.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A72B1A6523C2935100E09786 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
@@ -177,6 +179,8 @@
 
 /* Begin PBXFileReference section */
 		A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayUITests.swift; sourceTree = "<group>"; };
+		A708403423DCEE5000C91DEC /* SumResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResult.swift; sourceTree = "<group>"; };
+		A708403623DCEEAB00C91DEC /* SumResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResultTests.swift; sourceTree = "<group>"; };
 		A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BillsDivider_Model.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B1A5223C2935100E09786 /* BillsDivider_Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillsDivider_Model.h; sourceTree = "<group>"; };
 		A72B1A5323C2935100E09786 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -551,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				A797D65223C36642002D550F /* DivisionResult.swift */,
+				A708403423DCEE5000C91DEC /* SumResult.swift */,
 			);
 			path = ValueObjects;
 			sourceTree = "<group>";
@@ -592,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				A797D65923C36706002D550F /* DivisionResultTests.swift */,
+				A708403623DCEEAB00C91DEC /* SumResultTests.swift */,
 			);
 			path = ValueObjects;
 			sourceTree = "<group>";
@@ -998,6 +1004,7 @@
 				A797D65323C36642002D550F /* DivisionResult.swift in Sources */,
 				A797D67F23C3712B002D550F /* Person+CoreData.swift in Sources */,
 				A797D66623C36936002D550F /* InMemoryCoreDataStack.swift in Sources */,
+				A708403523DCEE5000C91DEC /* SumResult.swift in Sources */,
 				A797D64D23C365C1002D550F /* ReceiptPositions.swift in Sources */,
 				A797D66723C36936002D550F /* SqliteCoreDataStack.swift in Sources */,
 				A797D64B23C365C1002D550F /* Person.swift in Sources */,
@@ -1016,6 +1023,7 @@
 				A797D66223C3671C002D550F /* BuyerTests.swift in Sources */,
 				A797D68523C373AD002D550F /* ReceiptPosition+CoreDataTests.swift in Sources */,
 				A797D68423C373A9002D550F /* Person+CoreDataTests.swift in Sources */,
+				A708403723DCEEAB00C91DEC /* SumResultTests.swift in Sources */,
 				A797D67623C36EED002D550F /* InMemoryPeopleServiceTests.swift in Sources */,
 				A797D66123C3671C002D550F /* PersonTests.swift in Sources */,
 				A797D6CB23C3AA89002D550F /* PeopleTests.swift in Sources */,

@@ -104,7 +104,38 @@ class SummaryViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
-    func testFormattedDebt_whenDebtPositionInserted_shouldReturnFormattedValue() {
+    func testObject_whenPeopleSend_objectShouldChange() {
+        let expectation = self.expectation(description: "Position has been sent")
+
+        sut.objectWillChange
+            .dropFirst()
+            .sink { expectation.fulfill() }
+            .store(in: &subscriptions)
+
+        let people: People = .fromArray([
+            .withGeneratedName(forNumber: 1),
+            .withGeneratedName(forNumber: 2)
+        ])
+
+        peopleService.updatePeople(people)
+
+        wait(for: [expectation], timeout: 1)
+    }
+
+    func testFormattedSum_whenDebtPositionInserted_returnsFormattedValue() {
+        let expectation = self.expectation(description: "Position has been sent")
+
+        receiptPositionService.positionsDidUpdate
+            .dropFirst()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        receiptPositionService.insert(position(withAmount: 1))
+
+        wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(sut.formattedSum, numberFormatter.format(value: 1))
+    }
+
+    func testFormattedDebt_whenDebtPositionInserted_returnsFormattedValue() {
         let expectation = self.expectation(description: "Position has been sent")
 
         receiptPositionService.positionsDidUpdate
