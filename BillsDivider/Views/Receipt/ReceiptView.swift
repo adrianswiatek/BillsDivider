@@ -31,7 +31,7 @@ struct ReceiptView: View {
                                 .background(
                                     Capsule(style: .continuous)
                                         .foregroundColor(self.viewModel.colorFor(position.buyer))
-                                )
+                            )
                                 .frame(width: self.columnWidth)
 
                             Text(position.owner.formatted)
@@ -41,7 +41,7 @@ struct ReceiptView: View {
                                 .background(
                                     Capsule(style: .continuous)
                                         .foregroundColor(self.viewModel.colorFor(position.owner))
-                                )
+                            )
                                 .frame(width: self.columnWidth)
                         }
                         .offset(x: -24, y: 0)
@@ -80,7 +80,12 @@ struct ReceiptView: View {
             )
         }
         .sheet(isPresented: $editOverlayParams.show) {
-            self.createEditOverlayView()
+            ZStack {
+                self.createEditOverlayView()
+                self.itemAddedView()
+                    .opacity(self.viewModel.itemAdded ? 1 : 0)
+                    .animation(.easeInOut)
+            }
         }
         .actionSheet(isPresented: $presentingOptionsMenu) {
             ActionSheet(title: Text("Actions"), buttons: [
@@ -98,6 +103,18 @@ struct ReceiptView: View {
                 editingPublisher: $0.positionEdited
             )
         }
+    }
+
+    private func itemAddedView() -> some View {
+        Text("Item added")
+            .foregroundColor(.white)
+            .padding(.vertical, 4)
+            .padding(.horizontal, 12)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.init(.init(white: 0.5, alpha: 1)))
+            )
+            .offset(.init(width: 0, height: -UIScreen.main.bounds.height / 3))
     }
 }
 

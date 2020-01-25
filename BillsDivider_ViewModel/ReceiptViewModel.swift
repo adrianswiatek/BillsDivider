@@ -5,6 +5,7 @@ import SwiftUI
 
 public class ReceiptViewModel: ObservableObject {
     @Published public var positions: [ReceiptPosition]
+    @Published public var itemAdded: Bool
 
     public var ellipsisModeDisabled: Bool {
         positions.isEmpty
@@ -25,6 +26,7 @@ public class ReceiptViewModel: ObservableObject {
     ) {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
+        self.itemAdded = false
         self.people = .empty
         self.positions = []
         self.externalSubscriptions = []
@@ -32,6 +34,7 @@ public class ReceiptViewModel: ObservableObject {
 
         self.subscribe(to: receiptPositionService.positionsDidUpdate)
         self.subscribe(to: peopleService.peopleDidUpdate)
+        self.subscribe(to: $itemAdded.eraseToAnyPublisher())
     }
 
     public func subscribe(
@@ -41,11 +44,16 @@ public class ReceiptViewModel: ObservableObject {
         externalSubscriptions.removeAll()
 
         addingPublisher
-            .sink { [weak self] in self?.receiptPositionService.insert($0) }
+            .sink { [weak self] in
+                self?.receiptPositionService.insert($0)
+                self?.itemAdded = true
+            }
             .store(in: &externalSubscriptions)
 
         editingPublisher
-            .sink { [weak self] in self?.receiptPositionService.update($0) }
+            .sink { [weak self] in
+                self?.receiptPositionService.update($0)
+            }
             .store(in: &externalSubscriptions)
     }
 
@@ -87,6 +95,16 @@ public class ReceiptViewModel: ObservableObject {
     private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
         peopleDidUpdate
             .sink { [weak self] in self?.people = $0 }
+            .store(in: &internalSubscriptions)
+    }
+
+    private func subscribe(to itemAdded: AnyPublisher<Bool, Never>) {
+        itemAdded
+            .delay(for: .milliseconds(750), scheduler: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self = self, self.itemAdded else { return }
+                self.itemAdded = false
+            }
             .store(in: &internalSubscriptions)
     }
 }
