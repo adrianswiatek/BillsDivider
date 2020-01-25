@@ -29,6 +29,23 @@ struct SummaryView: View {
             Spacer()
 
             VStack {
+                Text("0.00")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+
+                Text("Spent totally")
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+                    .padding(.init(top: 4, leading: 32, bottom: 4, trailing: 32))
+                    .background(Color.red)
+                    .cornerRadius(8)
+                    .shadow(color: .gray, radius: 2, x: 0, y: 1)
+                    .padding(.top, 4)
+            }
+
+            Spacer()
+
+            VStack {
                 Text(viewModel.formattedDebt)
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -51,6 +68,7 @@ struct SummaryView: View {
             }
             .padding(.horizontal)
 
+            Spacer()
             Spacer()
         }
     }
