@@ -29,7 +29,7 @@ struct SummaryView: View {
             Spacer()
 
             VStack {
-                Text("0.00")
+                Text(viewModel.formattedSum)
                     .font(.largeTitle)
                     .fontWeight(.bold)
 
