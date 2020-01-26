@@ -84,7 +84,7 @@ struct ReceiptView: View {
                 self.createEditOverlayView()
                 self.itemAddedView()
                     .opacity(self.viewModel.itemAdded ? 1 : 0)
-                    .animation(.easeInOut)
+                    .animation(.easeInOut(duration: 0.3))
             }
         }
         .actionSheet(isPresented: $presentingOptionsMenu) {

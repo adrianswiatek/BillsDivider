@@ -100,7 +100,7 @@ public class ReceiptViewModel: ObservableObject {
 
     private func subscribe(to itemAdded: AnyPublisher<Bool, Never>) {
         itemAdded
-            .delay(for: .milliseconds(750), scheduler: DispatchQueue.main)
+            .delay(for: .milliseconds(500), scheduler: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self, self.itemAdded else { return }
                 self.itemAdded = false
