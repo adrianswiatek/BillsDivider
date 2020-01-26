@@ -15,6 +15,7 @@
 		A72B1A6523C2935100E09786 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
 		A72B1A6623C2935100E09786 /* BillsDivider_Model.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A72B1A7323C293C400E09786 /* NumberFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */; };
+		A7346B4423DE2F22000AA8F1 /* SettingsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7346B4323DE2F22000AA8F1 /* SettingsView2.swift */; };
 		A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */; };
 		A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736A1A12369EB5D0096C2E1 /* TabsView.swift */; };
 		A7385B5B239C696F00A41C09 /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5A239C696F00A41C09 /* TabBarPage.swift */; };
@@ -187,6 +188,7 @@
 		A72B1A5823C2935100E09786 /* BillsDivider_ModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillsDivider_ModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B1A6123C2935100E09786 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A732E903239FC47600B1D0B7 /* ReceiptPosition+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReceiptPosition+CoreData.swift"; sourceTree = "<group>"; };
+		A7346B4323DE2F22000AA8F1 /* SettingsView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView2.swift; sourceTree = "<group>"; };
 		A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptHeaderView.swift; sourceTree = "<group>"; };
 		A736A1A12369EB5D0096C2E1 /* TabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
 		A7385B5A239C696F00A41C09 /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				A7873D2B23A839C8008C9552 /* SettingsView.swift */,
+				A7346B4323DE2F22000AA8F1 /* SettingsView2.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1098,6 +1101,7 @@
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
 				A7AC988423B69F48003D8AE6 /* EditOverlayView.swift in Sources */,
 				A7F213B2238B41310084B466 /* SummaryView.swift in Sources */,
+				A7346B4423DE2F22000AA8F1 /* SettingsView2.swift in Sources */,
 				A73E860123C94B5800FAF4FA /* TabItem.swift in Sources */,
 				A797D6B923C377EF002D550F /* EditOverlayViewFactory.swift in Sources */,
 			);

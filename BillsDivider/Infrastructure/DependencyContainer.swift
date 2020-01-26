@@ -107,6 +107,10 @@ class DependencyContainer {
             as: AnyView(SettingsView(resolve(SettingsViewModel.self)))
         )
         register(
+            SettingsView2.self,
+            as: AnyView(SettingsView2(resolve(SettingsViewModel.self)))
+        )
+        register(
             TabsView.self,
             as: AnyView(configureTabsView())
         )
@@ -125,7 +129,7 @@ class DependencyContainer {
         .init(items: [
             TabItem(title: "Receipt", imageName: "list.dash", view: resolve(ReceiptView.self)),
             TabItem(title: "Summary", imageName: "doc.text", view: resolve(SummaryView.self)),
-            TabItem(title: "Settings", imageName: "hammer", view: resolve(SettingsView.self))
+            TabItem(title: "Settings", imageName: "hammer", view: resolve(SettingsView2.self))
         ])
     }
 }
