@@ -27,6 +27,7 @@
 		A7550E7F239BDE3D0004797D /* SummaryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E7E239BDE3D0004797D /* SummaryPage.swift */; };
 		A7550E81239BDE6D0004797D /* EditOverlayPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7550E80239BDE6D0004797D /* EditOverlayPage.swift */; };
 		A763FFC623CA9D9300D489EA /* PeopleServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A763FFC523CA9D9300D489EA /* PeopleServiceFactory.swift */; };
+		A76AF8C223E38A910064551D /* SettingsPersonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76AF8C123E38A910064551D /* SettingsPersonViewModel.swift */; };
 		A774361D239AB696008F53B5 /* ReceiptUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptUITests.swift */; };
 		A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4623B3991A0059EB71 /* ReceiptView.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
@@ -209,6 +210,7 @@
 		A75E802F23A17C8D00B549F9 /* AddingModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStrategy.swift; sourceTree = "<group>"; };
 		A763FFC523CA9D9300D489EA /* PeopleServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleServiceFactory.swift; sourceTree = "<group>"; };
 		A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModelTests.swift; sourceTree = "<group>"; };
+		A76AF8C123E38A910064551D /* SettingsPersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPersonViewModel.swift; sourceTree = "<group>"; };
 		A76FF43523BD40F9000D584F /* ReceiptViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewModelTests.swift; sourceTree = "<group>"; };
 		A7705B9523AD868F0073D8E8 /* PeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleService.swift; sourceTree = "<group>"; };
 		A7705B9723AD86E70073D8E8 /* InMemoryPeopleServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InMemoryPeopleServiceTests.swift; sourceTree = "<group>"; };
@@ -662,6 +664,7 @@
 				A75443C223A94A0F00A8775E /* SettingsViewModel.swift */,
 				A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */,
 				A734263723A1428100BAEFF0 /* EditOverlayViewModel */,
+				A76AF8C123E38A910064551D /* SettingsPersonViewModel.swift */,
 			);
 			path = BillsDivider_ViewModel;
 			sourceTree = "<group>";
@@ -1062,6 +1065,7 @@
 				A797D6AE23C37752002D550F /* EditingModeStrategy.swift in Sources */,
 				A797D6AC23C3774D002D550F /* EditOverlayViewModel.swift in Sources */,
 				A797D6AD23C37752002D550F /* AddingModeStrategy.swift in Sources */,
+				A76AF8C223E38A910064551D /* SettingsPersonViewModel.swift in Sources */,
 				A797D6A923C37714002D550F /* ReceiptViewModel.swift in Sources */,
 				A797D6AA23C37714002D550F /* SettingsViewModel.swift in Sources */,
 				A797D6AF23C37752002D550F /* EditOverlayStrategy.swift in Sources */,
