@@ -37,7 +37,7 @@ struct SettingsView2: View {
                                 self.viewModel.placeholder(for: person),
                                 text: self.$viewModel.peopleNames[self.viewModel.index(of: person)]
                             )
-                            .padding(.leading, 8)
+                                .padding(.leading, 8)
 
                             Button(action: {}) {
                                 Image(systemName: "chevron.down")
@@ -54,20 +54,30 @@ struct SettingsView2: View {
                     .padding(.vertical, -4)
 
                     if viewModel.canAddPerson() {
-                        HStack {
-                            Button(action: { self.viewModel.addPerson() }) {
-                                HStack {
-                                    Image(systemName: "plus")
-                                    Text("New person")
-                                }
-                            }
-                            .padding(.horizontal, 16)
-                            Spacer()
-                        }
+                        newPersonCell
+                            .padding(.vertical, 8)
                     }
                 }
             }
             .navigationBarTitle("Settings")
+        }
+    }
+
+    private var newPersonCell: some View {
+        VStack {
+            HStack {
+                Button(action: { self.viewModel.addPerson() }) {
+                    HStack {
+                        Image(systemName: "plus")
+                        Text("New person")
+                    }
+                }
+                .padding(.horizontal, 16)
+                Spacer()
+            }
+
+            Color("SettingsSeparator")
+                .frame(width: UIScreen.main.bounds.width - 32, height: 0.5)
         }
     }
 }
