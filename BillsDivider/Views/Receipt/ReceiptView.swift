@@ -78,6 +78,7 @@ struct ReceiptView: View {
                         .frame(width: 32, height: 32)
                 }
             )
+            .accessibility(identifier: "ReceiptView.receiptPositions")
         }
         .sheet(isPresented: $editOverlayParams.show) {
             ZStack {

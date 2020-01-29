@@ -16,7 +16,7 @@ class ReceiptPage: Page {
     }
 
     private var table: XCUIElement {
-        app.tables.element
+        app.otherElements["ReceiptView.receiptPositions"]
     }
 
     private var sheet: XCUIElement {
