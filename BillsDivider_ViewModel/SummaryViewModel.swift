@@ -1,6 +1,7 @@
 import BillsDivider_Model
 import Combine
 import Foundation
+import SwiftUI
 
 public class SummaryViewModel: ObservableObject {
     private var divisionResult: DivisionResult
@@ -55,6 +56,14 @@ public class SummaryViewModel: ObservableObject {
 
         self.subscribe(to: receiptPositionService.positionsDidUpdate)
         self.subscribe(to: peopleService.peopleDidUpdate)
+    }
+
+    public func name(for buyer: Buyer) -> String {
+        buyer.formatted
+    }
+
+    public func color(for buyer: Buyer) -> Color {
+        buyer.asPerson.colors.background.asColor
     }
 
     private func subscribe(to positionsDidUpdate: AnyPublisher<[ReceiptPosition], Never>) {

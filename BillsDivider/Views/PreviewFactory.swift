@@ -58,8 +58,4 @@ extension PreviewFactory {
     var settingsView: some View {
         dependencyContainer.resolve(SettingsView.self) as AnyView
     }
-
-    var settingsView2: some View {
-        dependencyContainer.resolve(SettingsView2.self) as AnyView
-    }
 }

@@ -17,7 +17,7 @@ class PersonPlusCoreDataTests: XCTestCase {
 
     func testAsPersonEntity_returnsPersonEntityWithGivenOrderNumber() {
         let uuid = UUID()
-        let person = Person(id: uuid, name: "My name", state: .default)
+        let person = Person(id: uuid, name: "My name", state: .default, colors: .default)
 
         let personEntity = person.asPersonEntity(orderNumber: 10, context: context)
 
@@ -33,6 +33,7 @@ class PersonPlusCoreDataTests: XCTestCase {
         personEntity.id = uuid
         personEntity.name = "My name"
         personEntity.state = Person.State.default.rawValue
+        personEntity.color = "red"
 
         let person = personEntity.asPerson()
 

@@ -40,6 +40,12 @@ public final class CoreDataPeopleService: PeopleService {
         peopleDidUpdateSubject.send(people)
     }
 
+    public func updatePerson(_ person: Person) {
+        let people = fetchPeople().updating(person)
+        updatePeople(people)
+        peopleDidUpdateSubject.send(people)
+    }
+
     private func fetchEntities() -> [PersonEntity] {
         let request = fetchRequest()
         request.sortDescriptors = [.init(keyPath: \PersonEntity.orderNumber, ascending: true)]

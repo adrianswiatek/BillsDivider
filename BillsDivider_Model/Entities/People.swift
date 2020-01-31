@@ -38,6 +38,17 @@ public struct People {
         .fromArray(people + [person])
     }
 
+    public func updating(_ person: Person) -> People {
+        guard let index = people.firstIndex(where: { $0.id == person.id }) else {
+            preconditionFailure("Given person does not exist on the list")
+        }
+
+        var mutablePeople = people
+        mutablePeople[index] = person
+
+        return .fromArray(mutablePeople)
+    }
+
     public func findBy(id: UUID) -> Person? {
         people.first { $0.id == id }
     }

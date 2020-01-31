@@ -89,7 +89,10 @@ class DependencyContainer {
         )
         register(
             SettingsViewModel.self,
-            as: SettingsViewModel(resolve(PeopleService.self))
+            as: SettingsViewModel(
+                resolve(PeopleService.self),
+                [.green, .blue, .purple, .pink, .red, .orange]
+            )
         )
     }
 
@@ -105,10 +108,6 @@ class DependencyContainer {
         register(
             SettingsView.self,
             as: AnyView(SettingsView(resolve(SettingsViewModel.self)))
-        )
-        register(
-            SettingsView2.self,
-            as: AnyView(SettingsView2(resolve(SettingsViewModel.self)))
         )
         register(
             TabsView.self,
@@ -129,7 +128,7 @@ class DependencyContainer {
         .init(items: [
             TabItem(title: "Receipt", imageName: "list.dash", view: resolve(ReceiptView.self)),
             TabItem(title: "Summary", imageName: "doc.text", view: resolve(SummaryView.self)),
-            TabItem(title: "Settings", imageName: "hammer", view: resolve(SettingsView2.self))
+            TabItem(title: "Settings", imageName: "hammer", view: resolve(SettingsView.self))
         ])
     }
 }
