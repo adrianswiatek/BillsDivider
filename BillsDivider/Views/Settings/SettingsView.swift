@@ -11,29 +11,18 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                HStack {
-                    Text("Number of people:")
-                    Spacer()
-                    Text(viewModel.formattedNumberOfPeople)
-                }
-                .font(.headline)
-                .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
+                numberOfPeople
+                    .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
 
                 Color("SettingsSeparator")
                     .frame(width: UIScreen.main.bounds.width - 32, height: 0.5)
 
-                HStack {
-                    Text("People:")
-                        .font(.headline)
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 8)
-                .padding(.bottom, 4)
+                people
+                    .padding(.init(top: 8, leading: 16, bottom: 4, trailing: 16))
 
                 VStack {
                     ForEach(viewModel.peopleViewModel) { person in
-                        self.personCell(for: person)
+                        self.cells(for: person)
                     }
                     .background(Color("SettingsPeopleCellBackground"))
 
@@ -48,29 +37,31 @@ struct SettingsView: View {
         .onDisappear(perform: { self.viewModel.reset() })
     }
 
-    private func personCell(for personViewModel: PersonViewModel) -> some View {
-        VStack {
-            HStack {
-                TextField(
-                    personViewModel.placeHolder,
-                    text: self.$viewModel.peopleViewModel[self.viewModel.index(of: personViewModel)].name
-                )
+    private var numberOfPeople: some View {
+        HStack {
+            Text("Number of people:")
+            Spacer()
+            Text(viewModel.formattedNumberOfPeople)
+        }
+        .font(.headline)
+    }
 
-                Button(action: {
-                    withAnimation(.easeOut) {
-                        personViewModel.hasDetailsOpened.toggle()
-                    }
-                }) {
-                    Image(systemName: "chevron.down")
-                        .rotationEffect(.degrees(personViewModel.hasDetailsOpened ? 180 : 0))
-                }
-                .frame(width: 44, height: 44)
-            }
-            .frame(height: 44)
-            .padding(.init(top: 0, leading: 24, bottom: personViewModel.hasDetailsOpened ? -8 : 0, trailing: 16))
+    private var people: some View {
+        HStack {
+            Text("People:")
+                .font(.headline)
+            Spacer()
+        }
+    }
+
+    private func cells(for personViewModel: PersonViewModel) -> some View {
+        VStack {
+            basicCell(for: personViewModel)
+                .frame(height: 44)
+                .padding(.init(top: 0, leading: 24, bottom: personViewModel.hasDetailsOpened ? -8 : 0, trailing: 16))
 
             if personViewModel.hasDetailsOpened {
-                personDetailsCell(for: personViewModel)
+                detailsCell(for: personViewModel)
                     .frame(height: 44)
                     .padding(.horizontal, 24)
                     .background(Color.white)
@@ -78,23 +69,47 @@ struct SettingsView: View {
         }
     }
 
-    private func personDetailsCell(for personViewModel: PersonViewModel) -> some View {
+    private func basicCell(for personViewModel: PersonViewModel) -> some View {
+        HStack {
+            TextField(
+                personViewModel.placeHolder,
+                text: self.$viewModel.peopleViewModel[self.viewModel.index(of: personViewModel)].name
+            )
+
+            Button(
+                action: {
+                    withAnimation(.easeOut) { personViewModel.hasDetailsOpened.toggle() }
+                },
+                label: {
+                    Image(systemName: "chevron.down")
+                        .rotationEffect(.degrees(personViewModel.hasDetailsOpened ? 180 : 0))
+                }
+            )
+            .frame(width: 44, height: 44)
+        }
+    }
+
+    private func detailsCell(for personViewModel: PersonViewModel) -> some View {
         HStack {
             Text("Color:")
                 .font(.system(size: 14))
             Spacer()
-            ForEach(self.viewModel.colors, id: \.hashValue) { color in
-                Button(action: { personViewModel.color = color }) {
-                    ZStack {
-                        Circle()
-                            .frame(width: 28, height: 28)
-                            .foregroundColor(color)
-                            .shadow(radius: 1)
+            colors(for: personViewModel)
+        }
+    }
 
-                        if personViewModel.color == color {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.white)
-                        }
+    private func colors(for personViewModel: PersonViewModel) -> some View {
+        ForEach(self.viewModel.colors, id: \.hashValue) { color in
+            Button(action: { personViewModel.color = color }) {
+                ZStack {
+                    Circle()
+                        .frame(width: 28, height: 28)
+                        .foregroundColor(color)
+                        .shadow(radius: 1)
+
+                    if personViewModel.color == color {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.white)
                     }
                 }
             }
