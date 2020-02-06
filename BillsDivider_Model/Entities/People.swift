@@ -39,14 +39,14 @@ public struct People {
     }
 
     public func updating(_ person: Person) -> People {
-        guard let index = people.firstIndex(where: { $0.id == person.id }) else {
-            preconditionFailure("Given person does not exist on the list")
+        if let index = people.firstIndex(where: { $0.id == person.id }) {
+            var mutablePeople = people
+            mutablePeople[index] = person
+
+            return .fromArray(mutablePeople)
         }
 
-        var mutablePeople = people
-        mutablePeople[index] = person
-
-        return .fromArray(mutablePeople)
+        return appending(person)
     }
 
     public func findBy(id: UUID) -> Person? {

@@ -14,6 +14,7 @@ class PeopleServiceFake: PeopleService {
     private var people: People
 
     var updatePeopleHasBeenCalled: Bool = false
+    var updatePersonHasBeenCalled: Bool = false
     var canAddPersonHasBeenCalled: Bool = true
     var canRemovePersonHasBeenCalled: Bool = false
 
@@ -36,6 +37,12 @@ class PeopleServiceFake: PeopleService {
         self.people = people
         peopleDidUpdateSubject.send(people)
         updatePeopleHasBeenCalled = true
+    }
+
+    func updatePerson(_ person: Person) {
+        people = people.updating(person)
+        peopleDidUpdateSubject.send(people)
+        updatePersonHasBeenCalled = true
     }
 
     func canAddPerson() -> Bool {

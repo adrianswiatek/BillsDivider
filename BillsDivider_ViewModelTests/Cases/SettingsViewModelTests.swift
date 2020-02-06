@@ -42,15 +42,15 @@ class SettingsViewModelTests: XCTestCase {
 //        XCTAssertEqual(sut.people[3].name, "4th person")
 //    }
 
-    func testAddPerson_addsEmptyPersonNameToPeopleNamesArray() {
-        whenPeopleAdded(1)
-        XCTAssertEqual(sut.peopleNames[0], "1st person")
-    }
+//    func testAddPerson_addsEmptyPersonNameToPeopleNamesArray() {
+//        whenPeopleAdded(1)
+//        XCTAssertEqual(sut.peopleNames[0], "1st person")
+//    }
 
-    func testAddPerson_withTwoPeople_addsTwoEmptyPersonNamesToPeopleNamesArray() {
-        whenPeopleAdded(2)
-        XCTAssertEqual(sut.peopleNames.count, 2)
-    }
+//    func testAddPerson_withTwoPeople_addsTwoEmptyPersonNamesToPeopleNamesArray() {
+//        whenPeopleAdded(2)
+//        XCTAssertEqual(sut.peopleNames.count, 2)
+//    }
 
     func testCanAddPerson_callsCanAddPersonOnPeopleService() {
         _ = sut.canAddPerson()

@@ -43,7 +43,6 @@ public final class CoreDataPeopleService: PeopleService {
     public func updatePerson(_ person: Person) {
         let people = fetchPeople().updating(person)
         updatePeople(people)
-        peopleDidUpdateSubject.send(people)
     }
 
     private func fetchEntities() -> [PersonEntity] {
