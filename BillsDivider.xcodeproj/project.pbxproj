@@ -35,6 +35,7 @@
 		A774361D239AB696008F53B5 /* ReceiptUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774361C239AB696008F53B5 /* ReceiptUITests.swift */; };
 		A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4623B3991A0059EB71 /* ReceiptView.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
+		A77FE85023F362D000354030 /* PersonViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE84F23F362D000354030 /* PersonViewModelTests.swift */; };
 		A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2E23A83C3D008C9552 /* SettingsPage.swift */; };
 		A797D64A23C365C1002D550F /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64623C365C1002D550F /* Owner.swift */; };
 		A797D64B23C365C1002D550F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64723C365C1002D550F /* Person.swift */; };
@@ -148,13 +149,6 @@
 			remoteGlobalIDString = A72B1A4F23C2935100E09786;
 			remoteInfo = BillsDivider_Model;
 		};
-		A797D6C423C37DED002D550F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7FED225235CEF8A00CCD069 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A7FED22C235CEF8A00CCD069;
-			remoteInfo = BillsDivider;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -235,6 +229,7 @@
 		A77ACA9823C11EB200F9335D /* CoreDataPeopleServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleServiceTests.swift; sourceTree = "<group>"; };
 		A77ACA9A23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionServiceTests.swift; sourceTree = "<group>"; };
 		A77D54CA23819255003D7E9D /* PriceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSectionView.swift; sourceTree = "<group>"; };
+		A77FE84F23F362D000354030 /* PersonViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModelTests.swift; sourceTree = "<group>"; };
 		A7873D2E23A83C3D008C9552 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataStack.swift; sourceTree = "<group>"; };
@@ -495,10 +490,10 @@
 		A7794C3C239D5C4B0001EB73 /* Cases */ = {
 			isa = PBXGroup;
 			children = (
-				A75E802923A17BF700B549F9 /* EditOverlayViewModel */,
 				A76FF43523BD40F9000D584F /* ReceiptViewModelTests.swift */,
-				A75443C023A9499800A8775E /* SettingsViewModelTests.swift */,
 				A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */,
+				A75E802923A17BF700B549F9 /* EditOverlayViewModel */,
+				A77FE84E23F362BA00354030 /* SettingsViewModel */,
 			);
 			path = Cases;
 			sourceTree = "<group>";
@@ -531,6 +526,15 @@
 				A77D54CA23819255003D7E9D /* PriceSectionView.swift */,
 			);
 			path = Sections;
+			sourceTree = "<group>";
+		};
+		A77FE84E23F362BA00354030 /* SettingsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A77FE84F23F362D000354030 /* PersonViewModelTests.swift */,
+				A75443C023A9499800A8775E /* SettingsViewModelTests.swift */,
+			);
+			path = SettingsViewModel;
 			sourceTree = "<group>";
 		};
 		A7873D2A23A8397F008C9552 /* Settings */ = {
@@ -831,7 +835,6 @@
 			);
 			dependencies = (
 				A72B1A5B23C2935100E09786 /* PBXTargetDependency */,
-				A797D6C523C37DED002D550F /* PBXTargetDependency */,
 			);
 			name = BillsDivider_ModelTests;
 			productName = BillsDivider_ModelTests;
@@ -1112,6 +1115,7 @@
 				A797D6BC23C379B8002D550F /* SummaryViewModelTests.swift in Sources */,
 				A797D6BD23C379BE002D550F /* EditOverlayViewModelTests.swift in Sources */,
 				A797D6BA23C379B8002D550F /* ReceiptViewModelTests.swift in Sources */,
+				A77FE85023F362D000354030 /* PersonViewModelTests.swift in Sources */,
 				A797D6BB23C379B8002D550F /* SettingsViewModelTests.swift in Sources */,
 				A797D6BF23C379C5002D550F /* EditingModeStrategyTests.swift in Sources */,
 				A797D6C123C37A50002D550F /* EditOverlayStrategyDummy.swift in Sources */,
@@ -1175,11 +1179,6 @@
 			isa = PBXTargetDependency;
 			target = A72B1A4F23C2935100E09786 /* BillsDivider_Model */;
 			targetProxy = A797D6B623C377B2002D550F /* PBXContainerItemProxy */;
-		};
-		A797D6C523C37DED002D550F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A7FED22C235CEF8A00CCD069 /* BillsDivider */;
-			targetProxy = A797D6C423C37DED002D550F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

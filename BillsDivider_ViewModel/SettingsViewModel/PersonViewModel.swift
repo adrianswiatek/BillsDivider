@@ -34,8 +34,8 @@ public final class PersonViewModel: ObservableObject {
 
     private func bind() {
         $name
-            .debounce(for: .seconds(0.33), scheduler: DispatchQueue.main)
             .dropFirst()
+            .debounce(for: .seconds(0.33), scheduler: DispatchQueue.main)
             .sink { [weak self] in self?.updateName(to: $0) }
             .store(in: &subscriptions)
 
