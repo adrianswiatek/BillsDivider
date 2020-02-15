@@ -20,7 +20,7 @@ struct SettingsView: View {
                 people
                     .padding(.init(top: 8, leading: 16, bottom: 4, trailing: 16))
 
-                VStack {
+                VStack(alignment: .center, spacing: 0) {
                     ForEach(viewModel.peopleViewModel) { person in
                         self.cells(for: person)
                     }
@@ -64,7 +64,7 @@ struct SettingsView: View {
                 detailsCell(for: personViewModel)
                     .frame(height: 44)
                     .padding(.horizontal, 24)
-                    .background(Color.white)
+                    .background(Color("SettingsPeopleDetailCellBackground"))
             }
         }
     }
