@@ -32,6 +32,10 @@ public final class PersonViewModel: ObservableObject {
         self.bind()
     }
 
+    public static func fromPerson(_ person: Person, withIndex index: Int) -> PersonViewModel {
+        .init(person: person, withIndex: index)
+    }
+
     private func bind() {
         $name
             .dropFirst()

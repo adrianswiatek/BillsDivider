@@ -25,32 +25,32 @@ class SettingsViewModelTests: XCTestCase {
         (0 ..< numberOfPeople).forEach { _ in sut.addPerson() }
     }
 
-//    func testAddPerson_adds3rdPersonAtTheVeryEndOfPeopleProperty() {
-//        whenPeopleAdded(2)
-//
-//        sut.addPerson()
-//
-//        XCTAssertEqual(sut.people[2].name, "3rd person")
-//    }
+    func testAddPerson_adds3rdPersonAtTheVeryEndOfPeopleViewModel() {
+        whenPeopleAdded(2)
 
-//    func testAddPerson_withTwoPeople_adds4thPersonAtTheVeryEndOfPeopleProperty() {
-//        whenPeopleAdded(2)
-//
-//        sut.addPerson()
-//        sut.addPerson()
-//
-//        XCTAssertEqual(sut.people[3].name, "4th person")
-//    }
+        sut.addPerson()
 
-//    func testAddPerson_addsEmptyPersonNameToPeopleNamesArray() {
-//        whenPeopleAdded(1)
-//        XCTAssertEqual(sut.peopleNames[0], "1st person")
-//    }
+        XCTAssertEqual(sut.peopleViewModel.last?.placeHolder, "3rd person")
+    }
 
-//    func testAddPerson_withTwoPeople_addsTwoEmptyPersonNamesToPeopleNamesArray() {
-//        whenPeopleAdded(2)
-//        XCTAssertEqual(sut.peopleNames.count, 2)
-//    }
+    func testAddPerson_withTwoPeople_adds4thPersonAtTheVeryEndOfPeopleViewModel() {
+        whenPeopleAdded(2)
+
+        sut.addPerson()
+        sut.addPerson()
+
+        XCTAssertEqual(sut.peopleViewModel.last?.placeHolder, "4th person")
+    }
+
+    func testAddPerson_adds1stPersonToPeopleViewModel() {
+        whenPeopleAdded(1)
+        XCTAssertEqual(sut.peopleViewModel.last?.placeHolder, "1st person")
+    }
+
+    func testAddPerson_withTwoPeople_addsTwoEmptyPersonNamesToPeopleViewModel() {
+        whenPeopleAdded(2)
+        XCTAssertEqual(sut.peopleViewModel.count, 2)
+    }
 
     func testCanAddPerson_callsCanAddPersonOnPeopleService() {
         _ = sut.canAddPerson()
@@ -62,43 +62,9 @@ class SettingsViewModelTests: XCTestCase {
         XCTAssertTrue(peopleService.canRemovePersonHasBeenCalled)
     }
 
-//    func testPlaceholderForPerson_whenNameIsSet_returnsEmptyString() {
-//        let person: Person = .withName("My name")
-//        XCTAssertEqual(sut.placeholder(for: person), "")
-//    }
-
-//    func testPlaceholderForPerson_whenNameIsGenerated_returnsProperName() {
-//        let person: Person = .withGeneratedName(forNumber: 1)
-//        XCTAssertEqual(sut.placeholder(for: person), "1st person")
-//    }
-
-//    func testNameForPerson_whenNameIsSet_returnsProperName() {
-//        let person: Person = .withName("My name")
-//        XCTAssertEqual(sut.name(for: person), "My name")
-//    }
-
-//    func testNameForPerson_whenNameIsGenerated_returnsEmptyString() {
-//        let person: Person = .withGeneratedName(forNumber: 1)
-//        XCTAssertEqual(sut.name(for: person), "")
-//    }
-
-//    func testIndexOfPerson_returnsIndexOfPerson() {
-//        whenPeopleAdded(5)
-//        let thirdPerson = sut.people[2]
-//        XCTAssertEqual(sut.index(of: thirdPerson), 2)
-//    }
-
-//    func testPeopleNames_whenUpdate_callsUpdatePeopleOnPeopleService() {
-//        whenPeopleAdded(1)
-//        let expectation = self.expectation(description: "update person")
-//        sut.$people
-//            .dropFirst(1)
-//            .sink { _ in expectation.fulfill() }
-//            .store(in: &subscriptions)
-//
-//        sut.peopleNames[0] = "My name"
-//
-//        wait(for: [expectation], timeout: 2)
-//        XCTAssertTrue(peopleService.updatePeopleHasBeenCalled)
-//    }
+    func testIndexOfPerson_returnsIndexOfPerson() {
+        whenPeopleAdded(5)
+        let thirdPerson = sut.peopleViewModel[2]
+        XCTAssertEqual(sut.index(of: thirdPerson), 2)
+    }
 }

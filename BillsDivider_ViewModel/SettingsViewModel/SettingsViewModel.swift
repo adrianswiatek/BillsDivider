@@ -38,7 +38,7 @@ public final class SettingsViewModel: ObservableObject {
     public func addPerson() {
         let nextPersonsIndex = peopleViewModel.count + 1
         let person: Person = .withGeneratedName(forNumber: nextPersonsIndex)
-        peopleViewModel.append(.init(person: person, withIndex: nextPersonsIndex))
+        peopleViewModel.append(.fromPerson(person, withIndex: nextPersonsIndex))
     }
 
     public func index(of personViewModel: PersonViewModel) -> Int {
