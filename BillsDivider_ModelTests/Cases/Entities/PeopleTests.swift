@@ -57,6 +57,17 @@ class PeopleTests: XCTestCase {
         XCTAssertEqual(people.asArray, [person1, person2, person3])
     }
 
+    func testUpdating_returnsPeopleWithUpdatedItems() {
+        let person1: Person = .withGeneratedName(forNumber: 1)
+        let person2: Person = .withGeneratedName(forNumber: 2)
+        let people: People = .fromArray([person1, person2])
+
+        let updatedPerson2 = person2.withUpdated(name: "Updated name")
+        let updatedPeople = people.updating(updatedPerson2)
+
+        XCTAssertEqual(updatedPeople, .fromArray([person1, updatedPerson2]))
+    }
+
     func testFirstIndexOfPerson_noPeople_returnsNil() {
         XCTAssertNil(People.empty.firstIndex(of: .withName("My name")))
     }

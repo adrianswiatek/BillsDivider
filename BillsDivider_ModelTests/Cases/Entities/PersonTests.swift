@@ -89,4 +89,11 @@ class PersonTests: XCTestCase {
         let updatedPerson: Person = originalPerson.withUpdated(name: "", andNumber: 1)
         XCTAssertEqual(updatedPerson.state, .generated)
     }
+
+    func testWithUpdatedColors_returnsPersonWithGivenColor() {
+        let originalPerson: Person = .withName("Original name")
+        let colors: PersonColors = .fromColor(.orange)
+        let updatedPerson: Person = originalPerson.withUpdatedColors(colors)
+        XCTAssertEqual(updatedPerson.colors, colors)
+    }
 }

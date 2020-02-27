@@ -9,6 +9,7 @@ public protocol PeopleService {
     func numberOfPeople() -> Int
     func fetchPeople() -> People
     func updatePeople(_ people: People)
+    func updatePerson(_ person: Person)
 
     func canAddPerson() -> Bool
     func canRemovePerson() -> Bool

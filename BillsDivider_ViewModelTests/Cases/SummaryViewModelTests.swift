@@ -147,4 +147,15 @@ class SummaryViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
         XCTAssertEqual(sut.formattedDebt, numberFormatter.format(value: 1))
     }
+
+    func testNameForBuyer_returnsFormattedBuyersName() {
+        let buyer: Buyer = .person(.withName("My name"))
+        XCTAssertEqual(sut.name(for: buyer), "My name")
+    }
+
+    func testColorForBuyer_returnsDefaultPersonColor() {
+        let buyer: Buyer = .person(.withName("My name"))
+        let defaultColor: PersonColors = .default
+        XCTAssertEqual(sut.color(for: buyer), defaultColor.background.asColor)
+    }
 }

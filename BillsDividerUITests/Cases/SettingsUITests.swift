@@ -17,7 +17,7 @@ class SettingsUITests: XCTestCase {
         super.tearDown()
     }
 
-    func testCanUpdatePepoleNames() {
+    func testCanUpdatePeopleNames() {
         let firstPersonName = "Geralt"
         let secondPersonName = "Yennefer"
 
@@ -59,5 +59,22 @@ class SettingsUITests: XCTestCase {
         XCTAssertEqual(editOverlayPage.labelForBuyerSegmentedControl(atIndex: 1), secondPersonName)
         XCTAssertEqual(editOverlayPage.labelForOwnerSegmentedControl(atIndex: 0), firstPersonName)
         XCTAssertEqual(editOverlayPage.labelForOwnerSegmentedControl(atIndex: 1), secondPersonName)
+    }
+
+    func testCanOpenAndCloseDetailsForEachPerson() {
+        let settingsPage = TabBarPage(app)
+            .tapSettingsButton()
+
+        XCTAssertFalse(settingsPage.isColorCellVisible)
+        settingsPage.tapFirstPersonChevronButton()
+        XCTAssertTrue(settingsPage.isColorCellVisible)
+        settingsPage.tapFirstPersonChevronButton()
+        XCTAssertFalse(settingsPage.isColorCellVisible)
+
+        XCTAssertFalse(settingsPage.isColorCellVisible)
+        settingsPage.tapSecondPersonChevronButton()
+        XCTAssertTrue(settingsPage.isColorCellVisible)
+        settingsPage.tapSecondPersonChevronButton()
+        XCTAssertFalse(settingsPage.isColorCellVisible)
     }
 }

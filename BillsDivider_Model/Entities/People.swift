@@ -38,6 +38,17 @@ public struct People {
         .fromArray(people + [person])
     }
 
+    public func updating(_ person: Person) -> People {
+        if let index = people.firstIndex(where: { $0.id == person.id }) {
+            var mutablePeople = people
+            mutablePeople[index] = person
+
+            return .fromArray(mutablePeople)
+        }
+
+        return appending(person)
+    }
+
     public func findBy(id: UUID) -> Person? {
         people.first { $0.id == id }
     }

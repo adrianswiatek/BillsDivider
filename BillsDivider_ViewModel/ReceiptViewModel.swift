@@ -75,15 +75,19 @@ public class ReceiptViewModel: ObservableObject {
     }
 
     public func colorFor(_ buyer: Buyer) -> Color {
-        buyer.asPerson == people.first ? .green : .blue
+        buyer.asPerson.colors.background.asColor
     }
 
     public func colorFor(_ owner: Owner) -> Color {
         if owner == .all {
-            return .purple
+            return .gray
         }
 
-        return owner.asPerson == people.first ? .green : .blue
+        guard let person = owner.asPerson else {
+            preconditionFailure("Owner is not a person")
+        }
+
+        return person.colors.background.asColor
     }
 
     private func subscribe(to receiptPositionDidUpdate: AnyPublisher<[ReceiptPosition], Never>) {

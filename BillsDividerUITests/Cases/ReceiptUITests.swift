@@ -67,6 +67,8 @@ class ReceiptUITests: XCTestCase {
     func testCanRemoveSingleItemFromContextMenu() {
         let receiptListPage = ReceiptPage(app)
 
+        XCTAssertEqual(receiptListPage.numberOfCells, 0)
+
         receiptListPage
             .tapPlusButton()
             .tapPriceTextField()

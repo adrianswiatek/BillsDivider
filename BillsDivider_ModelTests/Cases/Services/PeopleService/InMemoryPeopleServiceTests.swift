@@ -39,6 +39,69 @@ class InMemoryPeopleServiceTests: XCTestCase {
         XCTAssertEqual(sut.fetchPeople(), .empty)
     }
 
+    func testUpdatePerson_withPersonWhenNoPeopleExist_addsOnePerson() {
+        let person: Person = .withName("My name")
+
+        sut.updatePerson(person)
+
+        let people = sut.fetchPeople()
+        XCTAssertEqual(people, .fromPerson(person))
+    }
+
+    func testUpdatePerson_withPersonWhenPeopleExist_updatesThePerson() {
+        let person: Person = .withName("Original name")
+        sut.updatePerson(person)
+
+        let updatedPerson = person.withUpdated(name: "Updated name")
+        sut.updatePerson(updatedPerson)
+
+        let people = sut.fetchPeople()
+        XCTAssertEqual(people, .fromPerson(updatedPerson))
+    }
+
+    func testUpdatePerson_withPerson_sendsPeopleThroughPeopleDidUpdate() {
+        let person: Person = .withName("My name")
+        var result: People = .empty
+
+        let expectation = self.expectation(description: "People are sent")
+        sut.peopleDidUpdate
+            .dropFirst()
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        sut.updatePerson(person)
+
+        wait(for: [expectation], timeout: 0.3)
+        XCTAssertEqual(result, .fromPerson(person))
+    }
+
+    func testUpdatePerson_withPersonWhenPeopleExist_sendsUpdatedPeoplethroughPeopleDidUpdate() {
+        let person1: Person = .withGeneratedName(forNumber: 1)
+        let person2: Person = .withGeneratedName(forNumber: 2)
+        let people: People = .fromArray([person1, person2])
+        sut.updatePeople(people)
+
+        var result: People = .empty
+
+        let expectation = self.expectation(description: "People are sent")
+        sut.peopleDidUpdate
+            .dropFirst()
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        let updatedPerson = person2.withUpdated(name: "Updated name")
+        sut.updatePerson(updatedPerson)
+
+        wait(for: [expectation], timeout: 0.3)
+        XCTAssertEqual(result, .fromArray([person1, updatedPerson]))
+    }
+
     func testUpdatePeople_whenInitiallyEmptyArrayAndNewPeopleAdding_addsGivenPeople() {
         let person1: Person = .withGeneratedName(forNumber: 1)
         let person2: Person = .withGeneratedName(forNumber: 2)

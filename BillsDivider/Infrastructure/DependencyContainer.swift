@@ -89,7 +89,10 @@ class DependencyContainer {
         )
         register(
             SettingsViewModel.self,
-            as: SettingsViewModel(resolve(PeopleService.self))
+            as: SettingsViewModel(
+                resolve(PeopleService.self),
+                [.green, .blue, .purple, .pink, .red, .orange]
+            )
         )
     }
 

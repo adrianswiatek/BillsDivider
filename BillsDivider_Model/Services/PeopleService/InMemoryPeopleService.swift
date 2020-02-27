@@ -30,4 +30,9 @@ public final class InMemoryPeopleService: PeopleService {
         self.people = people
         self.peopleDidUpdateSubject.send(people)
     }
+
+    public func updatePerson(_ person: Person) {
+        people = people.updating(person)
+        peopleDidUpdateSubject.send(people)
+    }
 }

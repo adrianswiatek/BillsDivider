@@ -10,15 +10,19 @@ public struct Person: Equatable, Hashable, Identifiable {
     public let id: UUID
     public let name: String
     public let state: State
+    public let colors: PersonColors
 
-    private static var emptyUuid = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
-
-    public init(id: UUID = .init(), name: String, state: State = .default) {
-        if id == Self.emptyUuid, state != .empty {
+    public init(
+        id: UUID = .init(),
+        name: String,
+        state: State = .default,
+        colors: PersonColors = .default
+    ) {
+        if id == .empty, state != .empty {
             assertionFailure("If empty Id, State must be also empty")
         }
 
-        if id != Self.emptyUuid, state == .empty {
+        if id != .empty, state == .empty {
             assertionFailure("If empty State, Id must be also empty")
         }
 
@@ -29,6 +33,7 @@ public struct Person: Equatable, Hashable, Identifiable {
         self.id = id
         self.name = name
         self.state = state
+        self.colors = colors
     }
 
     private static var numberFormatter: NumberFormatter {
@@ -39,7 +44,7 @@ public struct Person: Equatable, Hashable, Identifiable {
         let id = state == .empty ? UUID() : self.id
 
         if !name.isEmpty {
-            return .init(id: id, name: name)
+            return .init(id: id, name: name, colors: colors)
         }
 
         guard let number = number else {
@@ -47,24 +52,28 @@ public struct Person: Equatable, Hashable, Identifiable {
         }
 
         let formattedNumber = Self.numberFormatter.format(value: number)
-        return .init(id: id, name: "\(formattedNumber) person", state: .generated)
+        return .init(id: id, name: "\(formattedNumber) person", state: .generated, colors: colors)
+    }
+
+    public func withUpdatedColors(_ colors: PersonColors) -> Person {
+        .init(id: id, name: name, state: state, colors: colors)
     }
 
     public static var empty: Person {
-        .init(id: Self.emptyUuid, name: "", state: .empty)
+        .init(id: .empty, name: "", state: .empty, colors: .default)
     }
 
     public static func withName(_ name: String) -> Person {
-        .init(name: name)
+        .init(name: name, colors: .default)
     }
 
     public static func withGeneratedName(forNumber number: Int) -> Person {
-        .init(name: "\(numberFormatter.format(value: number)) person", state: .generated)
+        .init(name: "\(numberFormatter.format(value: number)) person", state: .generated, colors: .default)
     }
 }
 
 extension Person: CustomDebugStringConvertible {
     public var debugDescription: String {
-        "\(Person.self)(id: \(id), name: \(name), state: \(state))"
+        "\(Person.self)(id: \(id), name: \(name), state: \(state), colors: \(colors))"
     }
 }
