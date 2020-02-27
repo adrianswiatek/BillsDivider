@@ -963,11 +963,11 @@
 			projectRoot = "";
 			targets = (
 				A7FED22C235CEF8A00CCD069 /* BillsDivider */,
+				A7743619239AB696008F53B5 /* BillsDividerUITests */,
 				A72B1A4F23C2935100E09786 /* BillsDivider_Model */,
 				A72B1A5723C2935100E09786 /* BillsDivider_ModelTests */,
 				A797D68A23C376FA002D550F /* BillsDivider_ViewModel */,
 				A797D69223C376FA002D550F /* BillsDivider_ViewModelTests */,
-				A7743619239AB696008F53B5 /* BillsDividerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1218,7 +1218,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1248,7 +1248,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1358,8 +1358,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "pl.aswiatek.BillsDivider-ViewModel";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1386,8 +1387,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "pl.aswiatek.BillsDivider-ViewModel";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

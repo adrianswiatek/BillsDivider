@@ -75,6 +75,7 @@ struct SettingsView: View {
                 personViewModel.placeHolder,
                 text: self.$viewModel.peopleViewModel[self.viewModel.index(of: personViewModel)].name
             )
+            .accessibility(identifier: "SettingsView.PersonsTextField")
 
             Button(
                 action: {
@@ -86,6 +87,7 @@ struct SettingsView: View {
                 }
             )
             .frame(width: 44, height: 44)
+            .accessibility(identifier: "SettingsView.ChevronButton")
         }
     }
 
@@ -93,6 +95,7 @@ struct SettingsView: View {
         HStack {
             Text("Color:")
                 .font(.system(size: 14))
+                .accessibility(identifier: "SettingsView.ColorText")
             Spacer()
             colors(for: personViewModel)
         }

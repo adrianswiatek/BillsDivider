@@ -8,11 +8,19 @@ class SettingsPage: Page {
     }
 
     private var firstPersonTextField: XCUIElement {
-        app.textFields.element(boundBy: 0)
+        app.textFields.matching(identifier: "SettingsView.PersonsTextField").element(boundBy: 0)
     }
 
     private var secondPersonTextField: XCUIElement {
-        app.textFields.element(boundBy: 1)
+        app.textFields.matching(identifier: "SettingsView.PersonsTextField").element(boundBy: 1)
+    }
+
+    private var firstPersonChevronButton: XCUIElement {
+        app.buttons.matching(identifier: "SettingsView.ChevronButton").element(boundBy: 0)
+    }
+
+    private var secondPersonChevronButton: XCUIElement {
+        app.buttons.matching(identifier: "SettingsView.ChevronButton").element(boundBy: 1)
     }
 
     private var returnKey: XCUIElement {
@@ -21,6 +29,10 @@ class SettingsPage: Page {
 
     var isVisible: Bool {
         app.staticTexts["Settings"].exists
+    }
+
+    var isColorCellVisible: Bool {
+        app.staticTexts["SettingsView.ColorText"].exists
     }
 
     @discardableResult func tapFirstPersonTextField() -> SettingsPage {
@@ -45,6 +57,16 @@ class SettingsPage: Page {
 
     @discardableResult func tapReturnKey() -> SettingsPage {
         returnKey.tap()
+        return self
+    }
+
+    @discardableResult func tapFirstPersonChevronButton() -> SettingsPage {
+        firstPersonChevronButton.tap()
+        return self
+    }
+
+    @discardableResult func tapSecondPersonChevronButton() -> SettingsPage {
+        secondPersonChevronButton.tap()
         return self
     }
 }
