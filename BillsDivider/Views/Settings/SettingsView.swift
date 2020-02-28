@@ -14,8 +14,7 @@ struct SettingsView: View {
                 numberOfPeople
                     .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
 
-                Color("SettingsSeparator")
-                    .frame(width: UIScreen.main.bounds.width - 32, height: 0.5)
+                Separator()
 
                 people
                     .padding(.init(top: 8, leading: 16, bottom: 4, trailing: 16))
@@ -133,8 +132,7 @@ struct SettingsView: View {
                 Spacer()
             }
 
-            Color("SettingsSeparator")
-                .frame(width: UIScreen.main.bounds.width - 32, height: 0.5)
+            Separator()
         }
     }
 }
