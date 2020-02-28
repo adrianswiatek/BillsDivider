@@ -14,70 +14,62 @@ struct SummaryView: View {
     }
 
     var body: some View {
-        VStack {
-            Text("Summary")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.top, 24)
-                .accessibility(identifier: "SummaryView.summaryText")
-
-            Rectangle()
-                .foregroundColor(.red)
-                .frame(width: screenSize.width / 1.75, height: 0.7)
-                .offset(x: 0, y: -16)
-
-            Spacer()
-
+        NavigationView {
             VStack {
-                Text(viewModel.formattedDebt)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .offset(x: 0, y: 16)
+                ScrollView {
+                    horizontalLine
 
-                HStack {
-                    generatePersonView(
-                        withLabel: viewModel.name(for: viewModel.leftSidedBuyer),
-                        andColor: viewModel.color(for: viewModel.leftSidedBuyer)
-                    )
-                    .accessibility(identifier: "SummaryView.firstPersonText")
+                    VStack {
+                        Text(viewModel.formattedDebt)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .offset(x: 0, y: 16)
 
-                    Spacer()
+                        HStack {
+                            generatePersonView(
+                                withLabel: viewModel.name(for: viewModel.leftSidedBuyer),
+                                andColor: viewModel.color(for: viewModel.leftSidedBuyer)
+                            )
+                                .accessibility(identifier: "SummaryView.firstPersonText")
 
-                    Image(systemName: viewModel.formattedDirection)
-                        .font(.largeTitle)
+                            Spacer()
 
-                    Spacer()
+                            Image(systemName: viewModel.formattedDirection)
+                                .font(.largeTitle)
 
-                    generatePersonView(
-                        withLabel: viewModel.name(for: viewModel.rightSidedBuyer),
-                        andColor: viewModel.color(for: viewModel.rightSidedBuyer)
-                    )
-                    .accessibility(identifier: "SummaryView.secondPersonText")
+                            Spacer()
+
+                            generatePersonView(
+                                withLabel: viewModel.name(for: viewModel.rightSidedBuyer),
+                                andColor: viewModel.color(for: viewModel.rightSidedBuyer)
+                            )
+                            .accessibility(identifier: "SummaryView.secondPersonText")
+                        }
+                    }
+                    .frame(height: UIScreen.main.bounds.height / 1.85)
+                    .padding(.horizontal)
                 }
-            }
-            .padding(.horizontal)
 
-            Spacer()
+                VStack {
+                    horizontalLine
 
-            VStack {
-                Rectangle()
-                    .frame(width: screenSize.width - 64, height: 1, alignment: .center)
+                    HStack {
+                        Text("Spent totally:")
+                            .font(.system(size: 18))
+                            .cornerRadius(8)
+                            .padding(.horizontal, 32)
 
-                HStack {
-                    Text("Spent totally:")
-                        .font(.system(size: 18))
-                        .cornerRadius(8)
-                        .padding(.horizontal, 32)
+                        Spacer()
 
-                    Spacer()
-
-                    Text(viewModel.formattedSum)
-                        .font(.system(size: 24))
-                        .fontWeight(.bold)
-                        .padding(.horizontal, 32)
+                        Text(viewModel.formattedSum)
+                            .font(.system(size: 24))
+                            .fontWeight(.bold)
+                            .padding(.horizontal, 32)
+                    }
                 }
+                .padding(.vertical, 32)
             }
-            .padding(.vertical, 32)
+            .navigationBarTitle("Summary")
         }
     }
 
@@ -93,6 +85,12 @@ struct SummaryView: View {
             .frame(width: 120)
             .shadow(color: .gray, radius: 2, x: 0, y: 1)
             .padding(.horizontal, 8)
+    }
+
+    private var horizontalLine: some View {
+        Rectangle()
+            .frame(width: screenSize.width - 32, height: 0.5, alignment: .center)
+            .foregroundColor(.gray)
     }
 }
 
