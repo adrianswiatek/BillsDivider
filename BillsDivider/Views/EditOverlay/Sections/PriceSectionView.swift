@@ -3,8 +3,8 @@ import SwiftUI
 struct PriceSectionView: View {
     @Binding private var priceText: String
 
-    private var pricePlaceHolderText: String
-    private var isPriceCorrect: Bool
+    private let pricePlaceHolderText: String
+    private let isPriceCorrect: Bool
 
     init(priceText: Binding<String>, pricePlaceHolderText: String, isPriceCorrect: Bool) {
         self._priceText = priceText

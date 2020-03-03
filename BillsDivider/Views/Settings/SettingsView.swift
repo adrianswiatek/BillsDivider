@@ -12,7 +12,7 @@ struct SettingsView: View {
         NavigationView {
             ScrollView {
                 Separator()
-
+                
 //                numberOfPeople
 //                    .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
 

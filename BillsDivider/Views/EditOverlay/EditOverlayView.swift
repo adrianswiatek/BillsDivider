@@ -17,6 +17,21 @@ struct EditOverlayView: View {
                         pricePlaceHolderText: viewModel.pricePlaceHolderText,
                         isPriceCorrect: viewModel.isPriceCorrect
                     )
+
+                    if viewModel.showDiscount {
+                        DiscountSectionView(showDiscount: $viewModel.showDiscount)
+                    } else {
+                        HStack {
+                            Button(action: { withAnimation { self.viewModel.showDiscount = true } }) {
+                                HStack {
+                                    Image(systemName: "plus.circle.fill")
+                                    Text("Add discount")
+                                }
+                                .font(.system(size: 14))
+                                .padding(.horizontal)
+                            }
+                        }
+                    }
                 }
 
                 Section {

@@ -9,6 +9,7 @@ public final class EditOverlayViewModel: ObservableObject {
     @Published public var owner: Owner
     @Published public var isPriceCorrect: Bool
     @Published public var canConfirm: Bool
+    @Published public var showDiscount: Bool
 
     @Published public var buyers: [Buyer]
     @Published public var owners: [Owner]
@@ -47,6 +48,7 @@ public final class EditOverlayViewModel: ObservableObject {
         self.owner = .all
         self.addAnother = false
         self.canConfirm = false
+        self.showDiscount = false
         self.isPriceCorrect = false
 
         self.buyers = []
