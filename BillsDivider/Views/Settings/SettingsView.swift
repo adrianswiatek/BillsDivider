@@ -11,10 +11,10 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                numberOfPeople
-                    .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
-
                 Separator()
+
+//                numberOfPeople
+//                    .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
 
                 people
                     .padding(.init(top: 8, leading: 16, bottom: 4, trailing: 16))
