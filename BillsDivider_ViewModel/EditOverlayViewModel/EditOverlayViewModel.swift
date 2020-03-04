@@ -5,14 +5,20 @@ import SwiftUI
 
 public final class EditOverlayViewModel: ObservableObject {
     @Published public var priceText: String
+    @Published public var isPriceCorrect: Bool
+
     @Published public var buyer: Buyer
     @Published public var owner: Owner
-    @Published public var isPriceCorrect: Bool
-    @Published public var canConfirm: Bool
-    @Published public var showDiscount: Bool
-
     @Published public var buyers: [Buyer]
     @Published public var owners: [Owner]
+
+    @Published public var showDiscount: Bool
+    @Published public var discountText: String
+    @Published public var isDiscountCorrect: Bool
+
+    @Published public var canConfirm: Bool
+
+    @Binding private var presenting: Bool
 
     public let pricePlaceHolderText: String
 
@@ -28,8 +34,6 @@ public final class EditOverlayViewModel: ObservableObject {
 
     var addAnother: Bool
 
-    @Binding private var presenting: Bool
-
     private let editOverlayStrategy: EditOverlayStrategy
     private var subscriptions: [AnyCancellable]
 
@@ -43,16 +47,22 @@ public final class EditOverlayViewModel: ObservableObject {
         self.editOverlayStrategy = editOverlayStrategy
 
         self.priceText = ""
-        self.pricePlaceHolderText = numberFormatter.format(value: 0)
+        self.isPriceCorrect = false
+
         self.buyer = .person(.empty)
         self.owner = .all
-        self.addAnother = false
-        self.canConfirm = false
-        self.showDiscount = false
-        self.isPriceCorrect = false
 
         self.buyers = []
         self.owners = []
+
+        self.showDiscount = false
+        self.discountText = ""
+        self.isDiscountCorrect = false
+
+        self.addAnother = false
+        self.canConfirm = false
+
+        self.pricePlaceHolderText = numberFormatter.format(value: 0)
 
         self.positionAdded = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
@@ -60,8 +70,10 @@ public final class EditOverlayViewModel: ObservableObject {
 
         self.editOverlayStrategy.set(viewModel: self)
 
-        self.subscribe(to: peopleService.peopleDidUpdate)
-        self.subscribe(to: $priceText.eraseToAnyPublisher())
+        self.subscribeToPeopleDidUpdate(peopleService.peopleDidUpdate)
+        self.subscribeToPriceText($priceText.eraseToAnyPublisher())
+        self.subscribeToDiscountText($discountText.eraseToAnyPublisher())
+        self.subscribeToShowDiscount($showDiscount.eraseToAnyPublisher())
     }
 
     public func confirmDidTap() {
@@ -77,7 +89,7 @@ public final class EditOverlayViewModel: ObservableObject {
         presenting = false
     }
 
-    private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
+    private func subscribeToPeopleDidUpdate(_ peopleDidUpdate: AnyPublisher<People, Never>) {
         peopleDidUpdate
             .sink { [weak self] in
                 guard let self = self else { return }
@@ -97,15 +109,51 @@ public final class EditOverlayViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func subscribe(to priceText: AnyPublisher<String, Never>) {
+    private func subscribeToPriceText(_ priceText: AnyPublisher<String, Never>) {
         priceText
             .sink { [weak self] in
                 guard let self = self else { return }
-                let parsedPrice = self.tryParsePrice($0)
-                self.isPriceCorrect = $0.isEmpty || parsedPrice != nil
-                self.canConfirm = !$0.isEmpty && self.isPriceCorrect && parsedPrice! > 0
+                self.isPriceCorrect = $0.isEmpty || self.tryParsePrice($0) != nil
+                self.canConfirm = self.validateIfCanConfirm()
             }
             .store(in: &subscriptions)
+    }
+
+    private func subscribeToDiscountText(_ discountText: AnyPublisher<String, Never>) {
+        discountText
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.isDiscountCorrect = $0.isEmpty || self.tryParsePrice($0) != nil
+                self.canConfirm = self.validateIfCanConfirm()
+            }
+        .store(in: &subscriptions)
+    }
+
+    private func subscribeToShowDiscount(_ showDiscount: AnyPublisher<Bool, Never>) {
+        showDiscount
+            .sink { [weak self] isDiscountShown in
+                guard let self = self else { return }
+                self.discountText = isDiscountShown ? "" : self.discountText
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func validateIfCanConfirm() -> Bool {
+        guard let parsedPrice = tryParsePrice(priceText) else { return false }
+
+        let priceValidationResult =
+            isPriceCorrect && !priceText.isEmpty && parsedPrice > 0
+
+        if !showDiscount {
+            return priceValidationResult
+        }
+
+        guard let parsedDiscount = tryParsePrice(discountText) else { return false }
+
+        let discountValidationResult =
+            parsedDiscount <= parsedPrice && isDiscountCorrect && !discountText.isEmpty && parsedDiscount > 0
+
+        return priceValidationResult && discountValidationResult
     }
 
     private func tryParsePrice(_ priceText: String) -> Decimal? {
