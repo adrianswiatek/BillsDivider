@@ -99,8 +99,18 @@ class EditOverlayViewModelTests: XCTestCase {
         XCTAssertTrue(sut.isPriceCorrect)
     }
 
+    func testPriceText_withZero_setsIsPriceCorrectToTrue() {
+        sut.priceText = "0"
+        XCTAssertTrue(sut.isPriceCorrect)
+    }
+
     func testPriceText_withEmptyString_setsCanConfirmToFalse() {
         sut.priceText = ""
+        XCTAssertFalse(sut.canConfirm)
+    }
+
+    func testPriceText_withZero_setsCanConfirmToFalse() {
+        sut.priceText = "0"
         XCTAssertFalse(sut.canConfirm)
     }
 

@@ -101,8 +101,9 @@ public final class EditOverlayViewModel: ObservableObject {
         priceText
             .sink { [weak self] in
                 guard let self = self else { return }
-                self.isPriceCorrect = $0.isEmpty || self.tryParsePrice($0) != nil
-                self.canConfirm = !$0.isEmpty && self.isPriceCorrect
+                let parsedPrice = self.tryParsePrice($0)
+                self.isPriceCorrect = $0.isEmpty || parsedPrice != nil
+                self.canConfirm = !$0.isEmpty && self.isPriceCorrect && parsedPrice! > 0
             }
             .store(in: &subscriptions)
     }
