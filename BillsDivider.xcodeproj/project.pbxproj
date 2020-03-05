@@ -93,6 +93,8 @@
 		A7AC988423B69F48003D8AE6 /* EditOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988323B69F48003D8AE6 /* EditOverlayView.swift */; };
 		A7AC988623B6A01A003D8AE6 /* BuyerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */; };
 		A7AC988823B6A032003D8AE6 /* OwnerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */; };
+		A7B7D9FB24119F8000625718 /* ValueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7D9FA24119F8000625718 /* ValueViewModel.swift */; };
+		A7B7D9FD2411A7DF00625718 /* DecimalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7D9FC2411A7DF00625718 /* DecimalParser.swift */; };
 		A7D0B398240F13D600821E93 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
 		A7D0B39C240F17A800821E93 /* DiscountSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D0B39B240F17A800821E93 /* DiscountSectionView.swift */; };
 		A7D3FC0723E6469B001C8392 /* BDColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3FC0423E64599001C8392 /* BDColorExtensions.swift */; };
@@ -251,6 +253,8 @@
 		A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerSectionView.swift; sourceTree = "<group>"; };
 		A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSectionView.swift; sourceTree = "<group>"; };
 		A7AC988923B6D788003D8AE6 /* CoreDataPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleService.swift; sourceTree = "<group>"; };
+		A7B7D9FA24119F8000625718 /* ValueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueViewModel.swift; sourceTree = "<group>"; };
+		A7B7D9FC2411A7DF00625718 /* DecimalParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalParser.swift; sourceTree = "<group>"; };
 		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
 		A7B7DE5C238C7B9B00D38BC8 /* NumberFormatterExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtensions.swift; sourceTree = "<group>"; };
 		A7B7DE5F238C805600D38BC8 /* EditOverlayViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewFactory.swift; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				A774B1DD23B57F97005A868E /* EditOverlayViewModel.swift */,
+				A7B7D9FA24119F8000625718 /* ValueViewModel.swift */,
 				A75E801E23A15D4F00B549F9 /* EditOverlayStrategy */,
 			);
 			path = EditOverlayViewModel;
@@ -563,6 +568,7 @@
 		A797D64E23C365EC002D550F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A7B7D9FC2411A7DF00625718 /* DecimalParser.swift */,
 				A797D64F23C36605002D550F /* PositionsDivider.swift */,
 				A754170523A0551D008DB5F7 /* CoreDataStack */,
 				A797D67223C36E2F002D550F /* PeopleService */,
@@ -1030,6 +1036,7 @@
 				A797D67E23C3712B002D550F /* ReceiptPosition+CoreData.swift in Sources */,
 				A797D67823C36F74002D550F /* InMemoryReceiptPositionService.swift in Sources */,
 				A797D67C23C370F1002D550F /* CoreDataPeopleService.swift in Sources */,
+				A7B7D9FD2411A7DF00625718 /* DecimalParser.swift in Sources */,
 				A797D6C923C395B5002D550F /* People.swift in Sources */,
 				A797D64A23C365C1002D550F /* Owner.swift in Sources */,
 				A797D68023C37157002D550F /* CoreDataReceiptPositionService.swift in Sources */,
@@ -1101,6 +1108,7 @@
 				A797D6AE23C37752002D550F /* EditingModeStrategy.swift in Sources */,
 				A797D6AC23C3774D002D550F /* EditOverlayViewModel.swift in Sources */,
 				A7D3FC0723E6469B001C8392 /* BDColorExtensions.swift in Sources */,
+				A7B7D9FB24119F8000625718 /* ValueViewModel.swift in Sources */,
 				A797D6AD23C37752002D550F /* AddingModeStrategy.swift in Sources */,
 				A76AF8C223E38A910064551D /* PersonViewModel.swift in Sources */,
 				A797D6A923C37714002D550F /* ReceiptViewModel.swift in Sources */,

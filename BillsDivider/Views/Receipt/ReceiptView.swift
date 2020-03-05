@@ -21,8 +21,16 @@ struct ReceiptView: View {
                 Section(header: ReceiptHeaderView(columnWidth)) {
                     ForEach(viewModel.positions) { position in
                         HStack {
-                            Text(self.viewModel.formatNumber(value: position.amount))
-                                .frame(width: self.columnWidth)
+                            HStack(spacing: 2) {
+                                Text(self.viewModel.formatNumber(value: position.amountWithDiscount))
+
+                                if position.hasDiscount {
+                                    Text("%")
+                                        .foregroundColor(.red)
+                                        .font(.system(size: 14))
+                                }
+                            }
+                            .frame(width: self.columnWidth)
 
                             Text(position.buyer.formatted)
                                 .multilineTextAlignment(.center)

@@ -2,17 +2,19 @@ import BillsDivider_ViewModel
 import SwiftUI
 
 struct DiscountSectionView: View {
-    @ObservedObject private var viewModel: EditOverlayViewModel
+    @ObservedObject private var viewModel: ValueViewModel
+    private var hideDiscount: () -> Void
 
-    init(_ viewModel: EditOverlayViewModel) {
+    init(viewModel: ValueViewModel, hideDiscount: @escaping () -> Void) {
         self.viewModel = viewModel
+        self.hideDiscount = hideDiscount
     }
 
     var body: some View {
         HStack {
             Button(
                 action: {
-                    withAnimation { self.viewModel.showDiscount.toggle() }
+                    withAnimation { self.hideDiscount() }
                 },
                 label: {
                     Image(systemName: "xmark.circle.fill")
@@ -20,26 +22,26 @@ struct DiscountSectionView: View {
                 }
             )
 
-            Text(viewModel.isDiscountCorrect ? "" : "Invalid discount")
+            Text(viewModel.isCorrect ? "" : "Invalid discount")
                 .font(.footnote)
                 .foregroundColor(.secondary)
 
             ZStack {
-                if !viewModel.discountText.isEmpty && viewModel.isDiscountCorrect {
+                if !viewModel.text.isEmpty && viewModel.isCorrect {
                     HStack {
                         Spacer()
                         Text("-")
                             .foregroundColor(.primary)
                             .font(.system(size: 28, weight: .light, design: .rounded))
-                        Text(viewModel.discountText.isEmpty ? viewModel.pricePlaceHolderText : viewModel.discountText)
+                        Text(viewModel.text.isEmpty ? viewModel.placeholder : viewModel.text)
                             .foregroundColor(.clear)
                     }
                 }
 
-                TextField(viewModel.pricePlaceHolderText, text: $viewModel.discountText)
+                TextField(viewModel.placeholder, text: $viewModel.text)
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
-                    .foregroundColor(viewModel.isDiscountCorrect ? .primary : .secondary)
+                    .foregroundColor(viewModel.isCorrect ? .primary : .secondary)
             }
             .font(.system(size: 28, weight: .medium, design: .rounded))
             .padding(.horizontal)
@@ -51,6 +53,5 @@ struct DiscountSectionView: View {
 struct DiscountSectionView_Previews: PreviewProvider {
     static var previews: some View {
         EmptyView()
-//        DiscountSectionView(showDiscount: .constant(true))
     }
 }

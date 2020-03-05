@@ -8,6 +8,11 @@ extension ReceiptPosition {
         entity.buyerId = buyer.asPerson.id
         entity.ownerId = owner.asPerson?.id
         entity.orderNumber = Int32(orderNumber)
+
+        if let discount = discount {
+            entity.discount = NSDecimalNumber(decimal: discount)
+        }
+
         return entity
     }
 }
@@ -21,7 +26,7 @@ extension ReceiptPositionEntity {
         else { return nil }
 
         let owner = getOwner(from: people)
-        return .init(id: id, amount: amount, buyer: buyer, owner: owner)
+        return .init(id: id, amount: amount, discount: discount?.decimalValue, buyer: buyer, owner: owner)
     }
 
     private func getBuyer(from people: People) -> Buyer? {

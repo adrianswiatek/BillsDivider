@@ -11,13 +11,16 @@ public struct PositionsDivider {
     private func divide(_ position: ReceiptPosition, between people: People) -> DivisionResult {
         guard canDivide(position) else { return .noDebt }
 
-        let amount = position.owner == .all ? position.amount / Decimal(people.count) : position.amount
         let debtor = getDebtors(for: position, from: people)[0]
-        return .debt(lender: position.buyer, debtor: debtor, amount: amount)
+        return .debt(lender: position.buyer, debtor: debtor, amount: amount(position, people))
+    }
+
+    private func amount(_ position: ReceiptPosition, _ people: People) -> Decimal {
+        position.owner == .all ? position.amountWithDiscount / Decimal(people.count) : position.amountWithDiscount
     }
 
     private func canDivide(_ position: ReceiptPosition) -> Bool {
-        position.amount != 0 && position.buyer.isNotEqualTo(position.owner)
+        position.amountWithDiscount != 0 && position.buyer.isNotEqualTo(position.owner)
     }
 
     private func getDebtors(for position: ReceiptPosition, from people: People) -> [Buyer] {

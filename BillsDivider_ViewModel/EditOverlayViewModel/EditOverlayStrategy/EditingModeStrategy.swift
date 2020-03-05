@@ -19,7 +19,13 @@ public struct EditingModeStrategy: EditOverlayStrategy {
     }
 
     public func set(viewModel: EditOverlayViewModel) {
-        viewModel.priceText = numberFormatter.format(value: receiptPosition.amount)
+        viewModel.price.text = numberFormatter.format(value: receiptPosition.amount)
+
+        if let discount = receiptPosition.discount {
+            viewModel.showDiscount = true
+            viewModel.discount.text = numberFormatter.format(value: discount)
+        }
+
         viewModel.addAnother = false
         viewModel.positionEdited = positionEditedSubject.eraseToAnyPublisher()
 
@@ -31,6 +37,7 @@ public struct EditingModeStrategy: EditOverlayStrategy {
         let position = ReceiptPosition(
             id: receiptPosition.id,
             amount: position.amount,
+            discount: position.discount,
             buyer: position.buyer,
             owner: position.owner
         )

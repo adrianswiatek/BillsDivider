@@ -2,24 +2,24 @@ import BillsDivider_ViewModel
 import SwiftUI
 
 struct PriceSectionView: View {
-    @ObservedObject private var viewModel: EditOverlayViewModel
+    @ObservedObject private var viewModel: ValueViewModel
 
-    init(_ viewModel: EditOverlayViewModel) {
+    init(viewModel: ValueViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
         HStack {
-            Text(viewModel.isPriceCorrect ? "" : "Invalid price")
+            Text(viewModel.isCorrect ? "" : "Invalid price")
                 .font(.footnote)
                 .foregroundColor(.secondary)
 
-            TextField(viewModel.pricePlaceHolderText, text: $viewModel.priceText)
+            TextField(viewModel.placeholder, text: $viewModel.text)
                 .multilineTextAlignment(.trailing)
                 .font(.system(size: 42, weight: .medium, design: .rounded))
                 .keyboardType(.decimalPad)
                 .padding(.horizontal)
-                .foregroundColor(viewModel.isPriceCorrect ? .primary : .secondary)
+                .foregroundColor(viewModel.isCorrect ? .primary : .secondary)
         }
         .padding(.init(top: 2, leading: 24, bottom: 2, trailing: 0))
     }

@@ -4,23 +4,21 @@ import Foundation
 import SwiftUI
 
 public final class EditOverlayViewModel: ObservableObject {
-    @Published public var priceText: String
-    @Published public var isPriceCorrect: Bool
-
-    @Published public var buyer: Buyer
-    @Published public var owner: Owner
-    @Published public var buyers: [Buyer]
-    @Published public var owners: [Owner]
+    @Published public var price: ValueViewModel
+    @Published public var discount: ValueViewModel
 
     @Published public var showDiscount: Bool
-    @Published public var discountText: String
-    @Published public var isDiscountCorrect: Bool
-
     @Published public var canConfirm: Bool
+
+    @Published public var buyer: Buyer
+    @Published public var buyers: [Buyer]
+
+    @Published public var owner: Owner
+    @Published public var owners: [Owner]
 
     @Binding private var presenting: Bool
 
-    public let pricePlaceHolderText: String
+    public let valuePlaceHolder: String
 
     public var positionAdded: AnyPublisher<ReceiptPosition, Never>
     public var positionEdited: AnyPublisher<ReceiptPosition, Never>
@@ -29,11 +27,12 @@ public final class EditOverlayViewModel: ObservableObject {
         editOverlayStrategy.pageName
     }
 
-    var getInitialBuyer: (() -> Buyer)?
-    var getInitialOwner: (() -> Owner)?
+    internal var getInitialBuyer: (() -> Buyer)?
+    internal var getInitialOwner: (() -> Owner)?
 
-    var addAnother: Bool
+    internal var addAnother: Bool
 
+    private let decimalParser: DecimalParser
     private let editOverlayStrategy: EditOverlayStrategy
     private var subscriptions: [AnyCancellable]
 
@@ -41,13 +40,15 @@ public final class EditOverlayViewModel: ObservableObject {
         presenting: Binding<Bool>,
         editOverlayStrategy: EditOverlayStrategy,
         peopleService: PeopleService,
+        decimalParser: DecimalParser,
         numberFormatter: NumberFormatter
     ) {
         self._presenting = presenting
         self.editOverlayStrategy = editOverlayStrategy
+        self.decimalParser = decimalParser
 
-        self.priceText = ""
-        self.isPriceCorrect = false
+        self.price = ValueViewModel(decimalParser: decimalParser)
+        self.discount = ValueViewModel(decimalParser: decimalParser)
 
         self.buyer = .person(.empty)
         self.owner = .all
@@ -56,13 +57,10 @@ public final class EditOverlayViewModel: ObservableObject {
         self.owners = []
 
         self.showDiscount = false
-        self.discountText = ""
-        self.isDiscountCorrect = false
-
         self.addAnother = false
         self.canConfirm = false
 
-        self.pricePlaceHolderText = numberFormatter.format(value: 0)
+        self.valuePlaceHolder = numberFormatter.format(value: 0)
 
         self.positionAdded = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
@@ -70,10 +68,8 @@ public final class EditOverlayViewModel: ObservableObject {
 
         self.editOverlayStrategy.set(viewModel: self)
 
-        self.subscribeToPeopleDidUpdate(peopleService.peopleDidUpdate)
-        self.subscribeToPriceText($priceText.eraseToAnyPublisher())
-        self.subscribeToDiscountText($discountText.eraseToAnyPublisher())
-        self.subscribeToShowDiscount($showDiscount.eraseToAnyPublisher())
+        self.subscribe(to: peopleService.peopleDidUpdate)
+        self.subscribeToPrices()
     }
 
     public func confirmDidTap() {
@@ -81,7 +77,7 @@ public final class EditOverlayViewModel: ObservableObject {
             preconditionFailure("Unable to create Receipt Position.")
         }
 
-        addAnother ? priceText.removeAll() : dismiss()
+        if !addAnother { dismiss() }
         editOverlayStrategy.confirmDidTap(with: receiptPosition, in: self)
     }
 
@@ -89,7 +85,7 @@ public final class EditOverlayViewModel: ObservableObject {
         presenting = false
     }
 
-    private func subscribeToPeopleDidUpdate(_ peopleDidUpdate: AnyPublisher<People, Never>) {
+    private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
         peopleDidUpdate
             .sink { [weak self] in
                 guard let self = self else { return }
@@ -109,83 +105,29 @@ public final class EditOverlayViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func subscribeToPriceText(_ priceText: AnyPublisher<String, Never>) {
-        priceText
-            .sink { [weak self] in
-                guard let self = self else { return }
-                self.isPriceCorrect = $0.isEmpty || self.tryParsePrice($0) != nil
-                self.canConfirm = self.validateIfCanConfirm()
+    private func subscribeToPrices() {
+        Publishers.CombineLatest3(price.value, discount.value, $showDiscount)
+            .map { price, discount, showDiscount in
+                guard let price = price, price > 0 else { return false }
+                guard showDiscount else { return true }
+                guard let discount = discount else { return false}
+                return discount > 0 && discount <= price
             }
+            .assign(to: \.canConfirm, on: self)
             .store(in: &subscriptions)
-    }
-
-    private func subscribeToDiscountText(_ discountText: AnyPublisher<String, Never>) {
-        discountText
-            .sink { [weak self] in
-                guard let self = self else { return }
-                self.isDiscountCorrect = $0.isEmpty || self.tryParsePrice($0) != nil
-                self.canConfirm = self.validateIfCanConfirm()
-            }
-        .store(in: &subscriptions)
-    }
-
-    private func subscribeToShowDiscount(_ showDiscount: AnyPublisher<Bool, Never>) {
-        showDiscount
-            .sink { [weak self] isDiscountShown in
-                guard let self = self else { return }
-                self.discountText = isDiscountShown ? "" : self.discountText
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func validateIfCanConfirm() -> Bool {
-        guard let parsedPrice = tryParsePrice(priceText) else { return false }
-
-        let priceValidationResult =
-            isPriceCorrect && !priceText.isEmpty && parsedPrice > 0
-
-        if !showDiscount {
-            return priceValidationResult
-        }
-
-        guard let parsedDiscount = tryParsePrice(discountText) else { return false }
-
-        let discountValidationResult =
-            parsedDiscount <= parsedPrice && isDiscountCorrect && !discountText.isEmpty && parsedDiscount > 0
-
-        return priceValidationResult && discountValidationResult
-    }
-
-    private func tryParsePrice(_ priceText: String) -> Decimal? {
-        func hasMoreThanTwoDigitsAfterDot(_ priceText: String) -> Bool {
-            if let indexOfDot = priceText.firstIndex(of: "."), priceText[indexOfDot...].count > 3 {
-                return true
-            }
-            return false
-        }
-
-        func hasMoreThanFiveDigitsBeforeDot(_ priceText: String) -> Bool {
-            if let indexOfDot = priceText.firstIndex(of: ".") {
-                return priceText[..<indexOfDot].count > 5
-            }
-            return priceText.count > 5
-        }
-
-        var priceText = priceText
-        priceText = priceText.replacingOccurrences(of: ",", with: ".")
-
-        if hasMoreThanTwoDigitsAfterDot(priceText) || hasMoreThanFiveDigitsBeforeDot(priceText) {
-            return nil
-        }
-
-        return Decimal(string: priceText)
     }
 
     private func tryCreateReceiptPosition() -> ReceiptPosition? {
-        guard let price = tryParsePrice(priceText) else {
-            return nil
+        if case .success(let price) = decimalParser.parse(price.text) {
+            return ReceiptPosition(amount: price, discount: discountValue(), buyer: buyer, owner: owner)
         }
+        return nil
+    }
 
-        return ReceiptPosition(amount: price, buyer: buyer, owner: owner)
+    private func discountValue() -> Decimal? {
+        if showDiscount, case .success(let discount) = decimalParser.parse(discount.text) {
+            return discount
+        }
+        return nil
     }
 }

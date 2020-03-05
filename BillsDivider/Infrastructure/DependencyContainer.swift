@@ -53,15 +53,29 @@ class DependencyContainer {
     private func registerServices() {
         register(
             PeopleService.self,
-            as: PeopleServiceFactory.create(resolve(NSManagedObjectContext.self))
+            as: PeopleServiceFactory.create(
+                resolve(NSManagedObjectContext.self)
+            )
         )
+        
         register(
             ReceiptPositionService.self,
-            as: CoreDataReceiptPositionService(resolve(NSManagedObjectContext.self), resolve(PeopleService.self))
+            as: CoreDataReceiptPositionService(
+                resolve(NSManagedObjectContext.self),
+                resolve(PeopleService.self)
+            )
+        )
+        register(
+            DecimalParser.self,
+            as: DecimalParser()
         )
         register(
             EditOverlayViewFactory.self,
-            as: EditOverlayViewFactory(resolve(PeopleService.self), resolve(NumberFormatter.self))
+            as: EditOverlayViewFactory(
+                resolve(PeopleService.self),
+                resolve(DecimalParser.self),
+                resolve(NumberFormatter.self)
+            )
         )
         register(
             PositionsDivider.self,

@@ -12,10 +12,13 @@ struct EditOverlayView: View {
         NavigationView {
             Form {
                 Section(header: Text("Price")) {
-                    PriceSectionView(viewModel)
+                    PriceSectionView(viewModel: viewModel.price)
 
                     if viewModel.showDiscount {
-                        DiscountSectionView(viewModel)
+                        DiscountSectionView(
+                            viewModel: viewModel.discount,
+                            hideDiscount: { self.viewModel.showDiscount.toggle() }
+                        )
                     } else {
                         HStack {
                             Button(action: { withAnimation { self.viewModel.showDiscount = true } }) {

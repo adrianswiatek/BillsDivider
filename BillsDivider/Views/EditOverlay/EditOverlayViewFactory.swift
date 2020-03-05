@@ -4,10 +4,12 @@ import SwiftUI
 
 final class EditOverlayViewFactory {
     private let peopleService: PeopleService
+    private let decimalParser: DecimalParser
     private let numberFormatter: NumberFormatter
 
-    init(_ peopleService: PeopleService, _ numberFormatter: NumberFormatter) {
+    init(_ peopleService: PeopleService, _ decimalParser: DecimalParser, _ numberFormatter: NumberFormatter) {
         self.peopleService = peopleService
+        self.decimalParser = decimalParser
         self.numberFormatter = numberFormatter
     }
 
@@ -25,6 +27,7 @@ final class EditOverlayViewFactory {
             presenting: presentingParams.show,
             editOverlayStrategy: editOverlayStrategy(presentingParams.wrappedValue),
             peopleService: peopleService,
+            decimalParser: decimalParser,
             numberFormatter: numberFormatter
         )
     }

@@ -36,6 +36,7 @@ extension PreviewFactory {
             presenting: .constant(true),
             editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
             peopleService: dependencyContainer.resolve(PeopleService.self),
+            decimalParser: dependencyContainer.resolve(DecimalParser.self),
             numberFormatter: dependencyContainer.resolve(NumberFormatter.self)
         )
         return BuyerSectionView(viewModel)
@@ -46,6 +47,7 @@ extension PreviewFactory {
             presenting: .constant(true),
             editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
             peopleService: dependencyContainer.resolve(PeopleService.self),
+            decimalParser: dependencyContainer.resolve(DecimalParser.self),
             numberFormatter: dependencyContainer.resolve(NumberFormatter.self)
         )
         return OwnerSectionView(viewModel)
