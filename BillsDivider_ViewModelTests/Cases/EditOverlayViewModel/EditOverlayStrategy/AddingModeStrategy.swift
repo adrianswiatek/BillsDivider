@@ -38,6 +38,7 @@ class AddingModeStrategyTests: XCTestCase {
             presenting: .constant(true),
             editOverlayStrategy: sut,
             peopleService: peopleService,
+            decimalParser: DecimalParser(),
             numberFormatter: numberFormatter
         )
         peopleService.updatePeople(people)
@@ -55,7 +56,7 @@ class AddingModeStrategyTests: XCTestCase {
     func testSetViewModel_setsPriceTextOnGivenViewModel() {
         let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
-        XCTAssertEqual(viewModel.priceText, "")
+        XCTAssertEqual(viewModel.price.text, "")
     }
 
     func testSetViewModel_setsAddAnotherOnGivenViewModel() {

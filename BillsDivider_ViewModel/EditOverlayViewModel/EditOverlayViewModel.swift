@@ -18,7 +18,7 @@ public final class EditOverlayViewModel: ObservableObject {
 
     @Binding private var presenting: Bool
 
-    public let valuePlaceHolder: String
+    public var keyboardHeight: CGFloat
 
     public var positionAdded: AnyPublisher<ReceiptPosition, Never>
     public var positionEdited: AnyPublisher<ReceiptPosition, Never>
@@ -47,8 +47,8 @@ public final class EditOverlayViewModel: ObservableObject {
         self.editOverlayStrategy = editOverlayStrategy
         self.decimalParser = decimalParser
 
-        self.price = ValueViewModel(decimalParser: decimalParser)
-        self.discount = ValueViewModel(decimalParser: decimalParser)
+        self.price = ValueViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
+        self.discount = ValueViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
 
         self.buyer = .person(.empty)
         self.owner = .all
@@ -60,7 +60,7 @@ public final class EditOverlayViewModel: ObservableObject {
         self.addAnother = false
         self.canConfirm = false
 
-        self.valuePlaceHolder = numberFormatter.format(value: 0)
+        self.keyboardHeight = 0
 
         self.positionAdded = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
@@ -68,6 +68,7 @@ public final class EditOverlayViewModel: ObservableObject {
 
         self.editOverlayStrategy.set(viewModel: self)
 
+        self.observeKeyboard()
         self.subscribe(to: peopleService.peopleDidUpdate)
         self.subscribeToPrices()
     }
@@ -83,6 +84,21 @@ public final class EditOverlayViewModel: ObservableObject {
 
     public func dismiss() {
         presenting = false
+    }
+
+    private func observeKeyboard() {
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardDidShowNotification)
+            .map { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect }
+            .map { $0?.height ?? 0 }
+            .assign(to: \.keyboardHeight, on: self)
+            .store(in: &subscriptions)
+
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardDidHideNotification)
+            .map { _ in 0 }
+            .assign(to: \.keyboardHeight, on: self)
+            .store(in: &subscriptions)
     }
 
     private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {

@@ -60,7 +60,7 @@ public final class CoreDataReceiptPositionService: ReceiptPositionService {
         var positions = fetchPositions()
         removeAllEntities()
 
-        positions.removeAll { $0 == position }
+        positions.removeAll { $0.id == position.id }
 
         insert(positions)
         save()

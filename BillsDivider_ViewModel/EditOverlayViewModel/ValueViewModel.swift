@@ -3,9 +3,9 @@ import Combine
 
 public final class ValueViewModel: ObservableObject {
     @Published public var text: String
-    
-    public var isCorrect: Bool
+
     public let placeholder: String
+    public var isCorrect: Bool
 
     public var value: AnyPublisher<Decimal?, Never> {
         $text.map(toDecimal).eraseToAnyPublisher()
@@ -14,10 +14,10 @@ public final class ValueViewModel: ObservableObject {
     private var subscriptions: [AnyCancellable]
     private let decimalParser: DecimalParser
 
-    public init(decimalParser: DecimalParser) {
+    public init(decimalParser: DecimalParser, numberFormatter: NumberFormatter) {
         self.decimalParser = decimalParser
         self.text = ""
-        self.placeholder = "0.00"
+        self.placeholder = numberFormatter.format(value: 0)
         self.isCorrect = false
         self.subscriptions = []
 

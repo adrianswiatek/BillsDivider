@@ -37,6 +37,9 @@ public struct ReceiptPosition: Identifiable {
 
 extension ReceiptPosition: Equatable {
     public static func ==(lhs: Self, rhs: Self) -> Bool {
-        lhs.amount == rhs.amount && lhs.buyer == rhs.buyer && lhs.owner == rhs.owner
+        lhs.amount == rhs.amount &&
+        lhs.discount == rhs.discount &&
+        lhs.buyer == rhs.buyer &&
+        lhs.owner == rhs.owner
     }
 }
