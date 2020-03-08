@@ -96,9 +96,12 @@
 		A7B7D9FB24119F8000625718 /* ValueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7D9FA24119F8000625718 /* ValueViewModel.swift */; };
 		A7B7D9FD2411A7DF00625718 /* DecimalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7D9FC2411A7DF00625718 /* DecimalParser.swift */; };
 		A7D0B398240F13D600821E93 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
-		A7D0B39C240F17A800821E93 /* DiscountSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D0B39B240F17A800821E93 /* DiscountSectionView.swift */; };
+		A7D0B39C240F17A800821E93 /* DiscountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D0B39B240F17A800821E93 /* DiscountTextField.swift */; };
 		A7D3FC0723E6469B001C8392 /* BDColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3FC0423E64599001C8392 /* BDColorExtensions.swift */; };
 		A7DCA29C24150F380084985A /* EditOverlayView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DCA29B24150F380084985A /* EditOverlayView2.swift */; };
+		A7E100AC241594A7004FAFE0 /* SectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E100AB241594A7004FAFE0 /* SectionLabel.swift */; };
+		A7E100AE24159628004FAFE0 /* DiscountPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E100AD24159628004FAFE0 /* DiscountPopover.swift */; };
+		A7E100B0241598A5004FAFE0 /* EditOverlayDiscountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E100AF241598A5004FAFE0 /* EditOverlayDiscountViewModel.swift */; };
 		A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */; };
 		A7EB145E23C2581600894F99 /* SettingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB145D23C2581600894F99 /* SettingsUITests.swift */; };
 		A7F213B2238B41310084B466 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F213B1238B41310084B466 /* SummaryView.swift */; };
@@ -261,9 +264,12 @@
 		A7B7DE5F238C805600D38BC8 /* EditOverlayViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewFactory.swift; sourceTree = "<group>"; };
 		A7C50A9523C00F760088DF12 /* Person+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataTests.swift"; sourceTree = "<group>"; };
 		A7C50A9723C016760088DF12 /* ReceiptPosition+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReceiptPosition+CoreDataTests.swift"; sourceTree = "<group>"; };
-		A7D0B39B240F17A800821E93 /* DiscountSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountSectionView.swift; sourceTree = "<group>"; };
+		A7D0B39B240F17A800821E93 /* DiscountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountTextField.swift; sourceTree = "<group>"; };
 		A7D3FC0423E64599001C8392 /* BDColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDColorExtensions.swift; sourceTree = "<group>"; };
 		A7DCA29B24150F380084985A /* EditOverlayView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayView2.swift; sourceTree = "<group>"; };
+		A7E100AB241594A7004FAFE0 /* SectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLabel.swift; sourceTree = "<group>"; };
+		A7E100AD24159628004FAFE0 /* DiscountPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountPopover.swift; sourceTree = "<group>"; };
+		A7E100AF241598A5004FAFE0 /* EditOverlayDiscountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayDiscountViewModel.swift; sourceTree = "<group>"; };
 		A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFactory.swift; sourceTree = "<group>"; };
 		A7EB145D23C2581600894F99 /* SettingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUITests.swift; sourceTree = "<group>"; };
 		A7F213B1238B41310084B466 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
@@ -378,6 +384,7 @@
 		A734263723A1428100BAEFF0 /* EditOverlayViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A7E100AF241598A5004FAFE0 /* EditOverlayDiscountViewModel.swift */,
 				A774B1DD23B57F97005A868E /* EditOverlayViewModel.swift */,
 				A7B7D9FA24119F8000625718 /* ValueViewModel.swift */,
 				A75E801E23A15D4F00B549F9 /* EditOverlayStrategy */,
@@ -514,20 +521,21 @@
 				A7DCA29B24150F380084985A /* EditOverlayView2.swift */,
 				A7B7DE5F238C805600D38BC8 /* EditOverlayViewFactory.swift */,
 				A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams.swift */,
-				A77FAD212384B3F000B66C98 /* Sections */,
+				A77FAD212384B3F000B66C98 /* Controls */,
 			);
 			path = EditOverlay;
 			sourceTree = "<group>";
 		};
-		A77FAD212384B3F000B66C98 /* Sections */ = {
+		A77FAD212384B3F000B66C98 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				A7E100B12415A77B004FAFE0 /* Discount */,
 				A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */,
-				A7D0B39B240F17A800821E93 /* DiscountSectionView.swift */,
 				A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */,
 				A77D54CA23819255003D7E9D /* PriceSectionView.swift */,
+				A7E100AB241594A7004FAFE0 /* SectionLabel.swift */,
 			);
-			path = Sections;
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		A77FE84E23F362BA00354030 /* SettingsViewModel */ = {
@@ -728,6 +736,15 @@
 				A7D3FC0423E64599001C8392 /* BDColorExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A7E100B12415A77B004FAFE0 /* Discount */ = {
+			isa = PBXGroup;
+			children = (
+				A7E100AD24159628004FAFE0 /* DiscountPopover.swift */,
+				A7D0B39B240F17A800821E93 /* DiscountTextField.swift */,
+			);
+			path = Discount;
 			sourceTree = "<group>";
 		};
 		A7F213AF238B410E0084B466 /* Summary */ = {
@@ -1114,6 +1131,7 @@
 				A7B7D9FB24119F8000625718 /* ValueViewModel.swift in Sources */,
 				A797D6AD23C37752002D550F /* AddingModeStrategy.swift in Sources */,
 				A76AF8C223E38A910064551D /* PersonViewModel.swift in Sources */,
+				A7E100B0241598A5004FAFE0 /* EditOverlayDiscountViewModel.swift in Sources */,
 				A797D6A923C37714002D550F /* ReceiptViewModel.swift in Sources */,
 				A797D6AA23C37714002D550F /* SettingsViewModel.swift in Sources */,
 				A797D6AF23C37752002D550F /* EditOverlayStrategy.swift in Sources */,
@@ -1147,9 +1165,10 @@
 				A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */,
 				A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */,
 				A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */,
-				A7D0B39C240F17A800821E93 /* DiscountSectionView.swift in Sources */,
+				A7D0B39C240F17A800821E93 /* DiscountTextField.swift in Sources */,
 				A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */,
 				A7FE5D08240893A3001FFFCD /* Separator.swift in Sources */,
+				A7E100AC241594A7004FAFE0 /* SectionLabel.swift in Sources */,
 				A7A3336D23B3BD9300DBA26E /* EditOverlayViewParams.swift in Sources */,
 				A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */,
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
@@ -1158,6 +1177,7 @@
 				A7DCA29C24150F380084985A /* EditOverlayView2.swift in Sources */,
 				A7346B4423DE2F22000AA8F1 /* SettingsView.swift in Sources */,
 				A73E860123C94B5800FAF4FA /* TabItem.swift in Sources */,
+				A7E100AE24159628004FAFE0 /* DiscountPopover.swift in Sources */,
 				A797D6B923C377EF002D550F /* EditOverlayViewFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

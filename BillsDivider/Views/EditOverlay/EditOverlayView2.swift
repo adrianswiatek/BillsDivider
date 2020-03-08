@@ -9,67 +9,61 @@ struct EditOverlayView2: View {
     }
 
     var body: some View {
-        NavigationView{
-            ScrollView {
-                VStack(alignment: .trailing) {
-                    sectionLabel(withTitle: "Price")
-
-                    PriceSectionView(viewModel: viewModel.price)
-                        .border(Color.secondary, width: 0.5)
-                        .background(Color("ControlsBackground"))
-
-                    Button(action: {}) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                            Text("Add discount")
+        ZStack {
+            NavigationView {
+                ScrollView {
+                    controls
+                    .navigationBarTitle(Text(viewModel.pageName), displayMode: .inline)
+                    .navigationBarItems(
+                        trailing: Button(action: viewModel.dismiss) {
+                            Image(systemName: "xmark")
+                                .frame(width: 32, height: 32)
                         }
-                        .font(.system(size: 14))
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                    }
-
-                    sectionLabel(withTitle: "Buyer")
-
-                    BuyerSectionView(viewModel)
-                        .background(Color("ControlsBackground"))
-
-                    sectionLabel(withTitle: "Owner")
-
-                    OwnerSectionView(viewModel)
-                        .background(Color("ControlsBackground"))
-
-                    Separator()
-                        .padding(.trailing, 16)
-                        .padding(.vertical, 8)
-
-                    confirmButton
-
-                    Spacer()
+                    )
                 }
-                .navigationBarTitle(Text(viewModel.pageName), displayMode: .inline)
-                .navigationBarItems(
-                    trailing: Button(action: viewModel.dismiss) {
-                        Image(systemName: "xmark")
-                            .frame(width: 32, height: 32)
-                    }
-                )
+                .background(Color("SettingsPeopleCellBackground"))
             }
-            .background(Color("SettingsPeopleCellBackground"))
+
+            DiscountPopover(viewModel: viewModel.discount)
+                .opacity(viewModel.presentingDiscountPopover ? 1 : 0)
+                .animation(.easeInOut(duration: 0.25))
         }
     }
 
-    private func sectionLabel(withTitle title: String) -> some View {
-        HStack {
-            Text(title)
-                .foregroundColor(.secondary)
-                .font(.system(size: 14))
-                .padding(.horizontal, 12)
-                .padding(.top, 4)
-                .padding(.bottom, 2)
+    private var controls: some View {
+        VStack(alignment: .trailing) {
+            SectionLabel(withTitle: "Price")
+            PriceSectionView(viewModel: viewModel.price)
+                .border(Color.secondary, width: 0.5)
+
+            addDiscountButton
+
+            SectionLabel(withTitle: "Buyer")
+            BuyerSectionView(viewModel)
+
+            SectionLabel(withTitle: "Owner")
+            OwnerSectionView(viewModel)
+
+            Separator()
+                .padding(.trailing, 16)
+                .padding(.vertical, 4)
+
+            confirmButton
 
             Spacer()
         }
-        .padding(.bottom, -12)
+    }
+
+    private var addDiscountButton: some View {
+        Button(action: { self.viewModel.discountButtonDidTap() }) {
+            HStack {
+                Image(systemName: "plus.circle.fill")
+                Text("Add discount")
+            }
+            .font(.system(size: 14))
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+        }
     }
 
     private var confirmButton: some View {
@@ -85,9 +79,9 @@ struct EditOverlayView2: View {
                 RoundedRectangle(cornerRadius: 8, style: .circular)
                     .stroke(lineWidth: 0.75)
             )
-                .background(Color("ControlsBackground"))
-                .cornerRadius(8)
-                .padding(.horizontal, 16)
+            .background(Color("ControlsBackground"))
+            .cornerRadius(8)
+            .padding(.horizontal, 16)
         }
         .disabled(!viewModel.canConfirm)
         .accessibility(identifier: "EditOverlayView.confirmButton")

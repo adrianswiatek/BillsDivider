@@ -5,7 +5,9 @@ import SwiftUI
 
 public final class EditOverlayViewModel: ObservableObject {
     @Published public var price: ValueViewModel
-    @Published public var discount: ValueViewModel
+    @Published public var discount: EditOverlayDiscountViewModel
+
+    @Published public var presentingDiscountPopover: Bool
 
     @Published public var showDiscount: Bool
     @Published public var canConfirm: Bool
@@ -17,8 +19,6 @@ public final class EditOverlayViewModel: ObservableObject {
     @Published public var owners: [Owner]
 
     @Binding private var presenting: Bool
-
-    public var keyboardHeight: CGFloat
 
     public var positionAdded: AnyPublisher<ReceiptPosition, Never>
     public var positionEdited: AnyPublisher<ReceiptPosition, Never>
@@ -44,11 +44,12 @@ public final class EditOverlayViewModel: ObservableObject {
         numberFormatter: NumberFormatter
     ) {
         self._presenting = presenting
+        self.presentingDiscountPopover = false
         self.editOverlayStrategy = editOverlayStrategy
         self.decimalParser = decimalParser
 
         self.price = ValueViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
-        self.discount = ValueViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
+        self.discount = .init(decimalParser: decimalParser, numberFormatter: numberFormatter)
 
         self.buyer = .person(.empty)
         self.owner = .all
@@ -60,16 +61,14 @@ public final class EditOverlayViewModel: ObservableObject {
         self.addAnother = false
         self.canConfirm = false
 
-        self.keyboardHeight = 0
-
         self.positionAdded = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.subscriptions = []
 
         self.editOverlayStrategy.set(viewModel: self)
 
-        self.observeKeyboard()
         self.subscribe(to: peopleService.peopleDidUpdate)
+        self.subscribe(to: discount.didDismiss)
         self.subscribeToPrices()
     }
 
@@ -86,19 +85,8 @@ public final class EditOverlayViewModel: ObservableObject {
         presenting = false
     }
 
-    private func observeKeyboard() {
-        NotificationCenter.default
-            .publisher(for: UIResponder.keyboardDidShowNotification)
-            .map { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect }
-            .map { $0?.height ?? 0 }
-            .assign(to: \.keyboardHeight, on: self)
-            .store(in: &subscriptions)
-
-        NotificationCenter.default
-            .publisher(for: UIResponder.keyboardDidHideNotification)
-            .map { _ in 0 }
-            .assign(to: \.keyboardHeight, on: self)
-            .store(in: &subscriptions)
+    public func discountButtonDidTap() {
+        presentingDiscountPopover = true
     }
 
     private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
@@ -121,6 +109,12 @@ public final class EditOverlayViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    private func subscribe(to didDismiss: AnyPublisher<Decimal?, Never>) {
+        didDismiss
+            .sink { [weak self] _ in self?.presentingDiscountPopover = false }
+            .store(in: &subscriptions)
+    }
+
     private func subscribeToPrices() {
         Publishers.CombineLatest3(price.value, discount.value, $showDiscount)
             .map { price, discount, showDiscount in
@@ -135,14 +129,12 @@ public final class EditOverlayViewModel: ObservableObject {
 
     private func tryCreateReceiptPosition() -> ReceiptPosition? {
         if case .success(let price) = decimalParser.parse(price.text) {
-            return ReceiptPosition(amount: price, discount: discountValue(), buyer: buyer, owner: owner)
-        }
-        return nil
-    }
-
-    private func discountValue() -> Decimal? {
-        if showDiscount, case .success(let discount) = decimalParser.parse(discount.text) {
-            return discount
+            return ReceiptPosition(
+                amount: price,
+                discount: decimalParser.tryParse(discount.text),
+                buyer: buyer,
+                owner: owner
+            )
         }
         return nil
     }

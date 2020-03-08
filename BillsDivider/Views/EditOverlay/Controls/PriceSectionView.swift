@@ -22,6 +22,7 @@ struct PriceSectionView: View {
                 .foregroundColor(viewModel.isCorrect ? .primary : .secondary)
         }
         .padding(.init(top: 4, leading: 24, bottom: 4, trailing: 0))
+        .background(Color("ControlsBackground"))
     }
 }
 

@@ -16,10 +16,10 @@ struct EditOverlayView: View {
                         PriceSectionView(viewModel: viewModel.price)
 
                         if viewModel.showDiscount {
-                            DiscountSectionView(
-                                viewModel: viewModel.discount,
-                                hideDiscount: { self.viewModel.showDiscount.toggle() }
-                            )
+//                            DiscountSectionView(
+//                                viewModel: viewModel.discount,
+//                                hideDiscount: { self.viewModel.showDiscount.toggle() }
+//                            )
                         } else {
                             HStack {
                                 Button(action: { withAnimation { self.viewModel.showDiscount = true } }) {
