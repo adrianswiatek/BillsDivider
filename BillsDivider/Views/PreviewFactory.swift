@@ -31,6 +31,11 @@ extension PreviewFactory {
         return viewFactory.create(presentingParams: .constant(.shownAdding()), configure: { _ in })
     }
 
+    var editOverlayView2: some View {
+        let viewFactory: EditOverlayViewFactory = dependencyContainer.resolve(EditOverlayViewFactory.self)
+        return viewFactory.create2(presentingParams: .constant(.shownAdding()), configure: { _ in })
+    }
+
     var buyerSectionView: some View {
         let viewModel = EditOverlayViewModel(
             presenting: .constant(true),

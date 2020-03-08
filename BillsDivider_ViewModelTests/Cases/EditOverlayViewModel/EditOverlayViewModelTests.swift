@@ -34,7 +34,7 @@ class EditOverlayViewModelTests: XCTestCase {
     }
 
     func testInit_pricePlaceHolderText_returnsFormattedZero() {
-        XCTAssertEqual(sut.valuePlaceHolder, numberFormatter.format(value: 0))
+        XCTAssertEqual(sut.price.placeholder, numberFormatter.format(value: 0))
     }
 
     func testDismiss_setsPresentingToFalse() {

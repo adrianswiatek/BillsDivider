@@ -52,11 +52,6 @@ struct EditOverlayView: View {
                         .accessibility(identifier: "EditOverlayView.confirmButton")
                     }
                 }
-
-                Rectangle()
-                    .foregroundColor(Color.clear)
-                    .background(Color.clear)
-                    .frame(height: viewModel.keyboardHeight)
             }
             .navigationBarTitle(Text(viewModel.pageName), displayMode: .inline)
             .navigationBarItems(
@@ -69,7 +64,7 @@ struct EditOverlayView: View {
     }
 }
 
-struct EditOverlayView2_Previews: PreviewProvider {
+struct EditOverlayView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewFactory().editOverlayView
     }

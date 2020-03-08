@@ -22,6 +22,15 @@ final class EditOverlayViewFactory {
         return EditOverlayView(viewModel)
     }
 
+    func create2(
+        presentingParams: Binding<EditOverlayViewParams>,
+        configure: (EditOverlayViewModel) -> Void
+    ) -> EditOverlayView2 {
+        let viewModel = self.viewModel(presentingParams)
+        configure(viewModel)
+        return EditOverlayView2(viewModel)
+    }
+
     private func viewModel(_ presentingParams: Binding<EditOverlayViewParams>) -> EditOverlayViewModel {
         .init(
             presenting: presentingParams.show,

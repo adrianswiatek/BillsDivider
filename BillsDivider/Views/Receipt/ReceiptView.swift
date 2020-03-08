@@ -106,7 +106,7 @@ struct ReceiptView: View {
 
     private func createEditOverlayView() -> some View {
         editOverlayParams.providePosition(viewModel.positions.first)
-        return editOverlayViewFactory.create(presentingParams: $editOverlayParams) {
+        return editOverlayViewFactory.create2(presentingParams: $editOverlayParams) {
             viewModel.subscribe(
                 addingPublisher: $0.positionAdded,
                 editingPublisher: $0.positionEdited

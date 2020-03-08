@@ -113,7 +113,9 @@ class DependencyContainer {
     private func registerViews() {
         register(
             ReceiptView.self,
-            as: AnyView(ReceiptView(resolve(ReceiptViewModel.self), resolve(EditOverlayViewFactory.self)))
+            as: AnyView(
+                ReceiptView(resolve(ReceiptViewModel.self), resolve(EditOverlayViewFactory.self))
+            )
         )
         register(
             SummaryView.self,
