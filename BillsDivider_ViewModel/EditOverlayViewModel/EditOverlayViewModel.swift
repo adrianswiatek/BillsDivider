@@ -88,8 +88,12 @@ public final class EditOverlayViewModel: ObservableObject {
         presenting = false
     }
 
-    public func discountButtonDidTap() {
+    public func addDiscountButtonDidTap() {
         presentingDiscountPopover = true
+    }
+
+    public func removeDiscountButtonDidTap() {
+        hasDiscount = false
     }
 
     private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {

@@ -42,12 +42,20 @@ public final class DiscountPopoverViewModel: ObservableObject {
     }
 
     public func confirm() {
-        didDismissSubject.send(value != nil ? "- \(numberFormatter.format(value: value!))" : "")
+        if let value = value {
+            dismissWithValue("- \(numberFormatter.format(value: value))")
+        } else {
+            dismissWithValue("")
+        }
     }
 
     public func dismiss() {
+        dismissWithValue("")
+    }
+
+    private func dismissWithValue(_ value: String) {
+        didDismissSubject.send(value)
         text = ""
-        didDismissSubject.send("")
     }
 
     private func bind() {

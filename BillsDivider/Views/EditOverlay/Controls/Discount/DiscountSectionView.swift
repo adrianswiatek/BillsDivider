@@ -9,28 +9,44 @@ struct DiscountSectionView: View {
     }
 
     var body: some View {
-        VStack {
+        Group {
             if viewModel.hasDiscount {
-                SectionLabel(withTitle: "Discount")
-                
-                HStack {
-                    Spacer()
-                    Text(viewModel.discount)
-                        .font(.system(size: 32))
-                        .bold()
-                        .padding(.horizontal)
-                }
+                discountSection
             } else {
-                Button(action: { self.viewModel.discountButtonDidTap() }) {
-                    HStack {
-                        Image(systemName: "plus.circle.fill")
-                        Text("Add discount")
-                    }
-                    .font(.system(size: 14))
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                }
+                addDiscountButton
             }
+        }
+    }
+
+    private var discountSection: some View {
+        VStack {
+            SectionLabel(withTitle: "Discount")
+
+            HStack {
+                Button(action: { self.viewModel.removeDiscountButtonDidTap() }) {
+                    Image(systemName: "xmark.circle.fill")
+                }
+                .padding(.horizontal)
+
+                Spacer()
+                Text(viewModel.discount)
+                    .font(.system(size: 32))
+                    .bold()
+                    .opacity(0.65)
+                    .padding(.horizontal)
+            }
+        }
+    }
+
+    private var addDiscountButton: some View {
+        Button(action: { self.viewModel.addDiscountButtonDidTap() }) {
+            HStack {
+                Image(systemName: "plus.circle.fill")
+                Text("Add discount")
+            }
+            .font(.system(size: 14))
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
         }
     }
 }
