@@ -5,18 +5,19 @@ import SwiftUI
 
 public final class EditOverlayViewModel: ObservableObject {
     @Published public var price: ValueViewModel
-    @Published public var discount: EditOverlayDiscountViewModel
+    @Published public var discountPopoverViewModel: DiscountPopoverViewModel
 
     @Published public var presentingDiscountPopover: Bool
-
-    @Published public var showDiscount: Bool
-    @Published public var canConfirm: Bool
+    @Published public var discount: String
+    @Published public var hasDiscount: Bool
 
     @Published public var buyer: Buyer
     @Published public var buyers: [Buyer]
 
     @Published public var owner: Owner
     @Published public var owners: [Owner]
+
+    @Published public var canConfirm: Bool
 
     @Binding private var presenting: Bool
 
@@ -49,7 +50,10 @@ public final class EditOverlayViewModel: ObservableObject {
         self.decimalParser = decimalParser
 
         self.price = ValueViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
-        self.discount = .init(decimalParser: decimalParser, numberFormatter: numberFormatter)
+
+        self.discountPopoverViewModel = .init(decimalParser: decimalParser, numberFormatter: numberFormatter)
+        self.discount = ""
+        self.hasDiscount = false
 
         self.buyer = .person(.empty)
         self.owner = .all
@@ -57,7 +61,6 @@ public final class EditOverlayViewModel: ObservableObject {
         self.buyers = []
         self.owners = []
 
-        self.showDiscount = false
         self.addAnother = false
         self.canConfirm = false
 
@@ -68,7 +71,7 @@ public final class EditOverlayViewModel: ObservableObject {
         self.editOverlayStrategy.set(viewModel: self)
 
         self.subscribe(to: peopleService.peopleDidUpdate)
-        self.subscribe(to: discount.didDismiss)
+        self.subscribe(to: discountPopoverViewModel.didDismissPublisher)
         self.subscribeToPrices()
     }
 
@@ -109,14 +112,19 @@ public final class EditOverlayViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func subscribe(to didDismiss: AnyPublisher<Decimal?, Never>) {
+    private func subscribe(to didDismiss: AnyPublisher<String, Never>) {
         didDismiss
-            .sink { [weak self] _ in self?.presentingDiscountPopover = false }
+            .sink { [weak self] formattedDiscount in
+                guard let self = self else { return }
+                self.presentingDiscountPopover = false
+                self.hasDiscount = !formattedDiscount.isEmpty
+                self.discount = formattedDiscount
+            }
             .store(in: &subscriptions)
     }
 
     private func subscribeToPrices() {
-        Publishers.CombineLatest3(price.value, discount.value, $showDiscount)
+        Publishers.CombineLatest3(price.value, discountPopoverViewModel.valuePublisher, $hasDiscount)
             .map { price, discount, showDiscount in
                 guard let price = price, price > 0 else { return false }
                 guard showDiscount else { return true }
@@ -131,7 +139,7 @@ public final class EditOverlayViewModel: ObservableObject {
         if case .success(let price) = decimalParser.parse(price.text) {
             return ReceiptPosition(
                 amount: price,
-                discount: decimalParser.tryParse(discount.text),
+                discount: decimalParser.tryParse(discountPopoverViewModel.text),
                 buyer: buyer,
                 owner: owner
             )

@@ -9,16 +9,20 @@ struct BuyerSectionView: View {
     }
 
     var body: some View {
-        Picker(selection: $viewModel.buyer, label: EmptyView()) {
-            ForEach(viewModel.buyers, id: \.self) {
-                Text($0.formatted).tag($0.formatted)
+        VStack {
+            SectionLabel(withTitle: "Buyer")
+            
+            Picker(selection: $viewModel.buyer, label: EmptyView()) {
+                ForEach(viewModel.buyers, id: \.self) {
+                    Text($0.formatted).tag($0.formatted)
+                }
             }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal, 16)
+            .padding(.vertical, 4)
+            .background(Color("SettingsPeopleCellBackground"))
+            .accessibility(identifier: "BuyerSectionView.segmentedControl")
         }
-        .pickerStyle(SegmentedPickerStyle())
-        .padding(.horizontal, 16)
-        .padding(.vertical, 4)
-        .background(Color("SettingsPeopleCellBackground"))
-        .accessibility(identifier: "BuyerSectionView.segmentedControl")
     }
 }
 

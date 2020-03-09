@@ -1,21 +1,21 @@
 import BillsDivider_ViewModel
 import SwiftUI
 
-struct DiscountSectionView: View {
-    @ObservedObject private var viewModel: EditOverlayDiscountViewModel
+struct DiscountTextFieldView: View {
+    @ObservedObject private var viewModel: DiscountPopoverViewModel
 
-    init(viewModel: EditOverlayDiscountViewModel) {
+    init(viewModel: DiscountPopoverViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
         HStack {
-            Text(viewModel.isCorrect ? "" : "Invalid discount")
+            Text(viewModel.validationMessage)
                 .font(.footnote)
                 .foregroundColor(.secondary)
 
             ZStack {
-                if !viewModel.text.isEmpty && viewModel.isCorrect {
+                if !viewModel.text.isEmpty && viewModel.isValid {
                     HStack {
                         Spacer()
                         Text("-")
@@ -29,7 +29,7 @@ struct DiscountSectionView: View {
                 TextField(viewModel.placeholder, text: $viewModel.text)
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
-                    .foregroundColor(viewModel.isCorrect ? .primary : .secondary)
+                    .foregroundColor(viewModel.isValid ? .primary : .secondary)
             }
             .font(.system(size: 42, weight: .medium, design: .rounded))
         }
@@ -39,7 +39,7 @@ struct DiscountSectionView: View {
     }
 }
 
-struct DiscountSectionView_Previews: PreviewProvider {
+struct DiscountTextFieldView_Previews: PreviewProvider {
     static var previews: some View {
         EmptyView()
     }

@@ -22,8 +22,8 @@ public struct EditingModeStrategy: EditOverlayStrategy {
         viewModel.price.text = numberFormatter.format(value: receiptPosition.amount)
 
         if let discount = receiptPosition.discount {
-            viewModel.showDiscount = true
-            viewModel.discount.text = numberFormatter.format(value: discount)
+            viewModel.hasDiscount = true
+            viewModel.discount = numberFormatter.format(value: discount)
         }
 
         viewModel.addAnother = false

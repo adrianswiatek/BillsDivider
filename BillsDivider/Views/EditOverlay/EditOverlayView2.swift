@@ -24,7 +24,7 @@ struct EditOverlayView2: View {
                 .background(Color("SettingsPeopleCellBackground"))
             }
 
-            DiscountPopover(viewModel: viewModel.discount)
+            DiscountPopoverView(viewModel: viewModel.discountPopoverViewModel)
                 .opacity(viewModel.presentingDiscountPopover ? 1 : 0)
                 .animation(.easeInOut(duration: 0.25))
         }
@@ -36,12 +36,8 @@ struct EditOverlayView2: View {
             PriceSectionView(viewModel: viewModel.price)
                 .border(Color.secondary, width: 0.5)
 
-            addDiscountButton
-
-            SectionLabel(withTitle: "Buyer")
+            DiscountSectionView(viewModel)
             BuyerSectionView(viewModel)
-
-            SectionLabel(withTitle: "Owner")
             OwnerSectionView(viewModel)
 
             Separator()
@@ -54,18 +50,6 @@ struct EditOverlayView2: View {
         }
     }
 
-    private var addDiscountButton: some View {
-        Button(action: { self.viewModel.discountButtonDidTap() }) {
-            HStack {
-                Image(systemName: "plus.circle.fill")
-                Text("Add discount")
-            }
-            .font(.system(size: 14))
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
-        }
-    }
-
     private var confirmButton: some View {
         Button(action: { self.viewModel.confirmDidTap() }) {
             HStack {
@@ -73,14 +57,14 @@ struct EditOverlayView2: View {
                 Text("Confirm")
             }
             .font(.system(size: 14))
-            .padding(.horizontal, 12)
-            .padding(.vertical, 10)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
             .overlay(
-                RoundedRectangle(cornerRadius: 8, style: .circular)
-                    .stroke(lineWidth: 0.75)
+                RoundedRectangle(cornerRadius: 10, style: .circular)
+                    .stroke(lineWidth: 1)
             )
             .background(Color("ControlsBackground"))
-            .cornerRadius(8)
+            .cornerRadius(10)
             .padding(.horizontal, 16)
         }
         .disabled(!viewModel.canConfirm)

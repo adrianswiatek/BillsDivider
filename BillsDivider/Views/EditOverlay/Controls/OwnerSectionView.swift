@@ -9,16 +9,20 @@ struct OwnerSectionView: View {
     }
 
     var body: some View {
-        Picker(selection: $viewModel.owner, label: EmptyView()) {
-            ForEach(viewModel.owners, id: \.self) {
-                Text($0.formatted).tag($0.formatted)
+        VStack {
+            SectionLabel(withTitle: "Owner")
+            
+            Picker(selection: $viewModel.owner, label: EmptyView()) {
+                ForEach(viewModel.owners, id: \.self) {
+                    Text($0.formatted).tag($0.formatted)
+                }
             }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal, 16)
+            .padding(.vertical, 4)
+            .background(Color("SettingsPeopleCellBackground"))
+            .accessibility(identifier: "OwnerSectionView.segmentedControl")
         }
-        .pickerStyle(SegmentedPickerStyle())
-        .padding(.horizontal, 16)
-        .padding(.vertical, 4)
-        .background(Color("SettingsPeopleCellBackground"))
-        .accessibility(identifier: "OwnerSectionView.segmentedControl")
     }
 }
 

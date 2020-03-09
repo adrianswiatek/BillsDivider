@@ -15,23 +15,23 @@ struct EditOverlayView: View {
                     Section {
                         PriceSectionView(viewModel: viewModel.price)
 
-                        if viewModel.showDiscount {
+//                        if viewModel.hasDiscount {
 //                            DiscountSectionView(
 //                                viewModel: viewModel.discount,
 //                                hideDiscount: { self.viewModel.showDiscount.toggle() }
 //                            )
-                        } else {
-                            HStack {
-                                Button(action: { withAnimation { self.viewModel.showDiscount = true } }) {
-                                    HStack {
-                                        Image(systemName: "plus.circle.fill")
-                                        Text("Add discount")
-                                    }
-                                    .font(.system(size: 14))
-                                    .padding(.horizontal)
-                                }
-                            }
-                        }
+//                        } else {
+//                            HStack {
+//                                Button(action: { withAnimation { self.viewModel.canShowDiscount = true } }) {
+//                                    HStack {
+//                                        Image(systemName: "plus.circle.fill")
+//                                        Text("Add discount")
+//                                    }
+//                                    .font(.system(size: 14))
+//                                    .padding(.horizontal)
+//                                }
+//                            }
+//                        }
                     }
 
                     Section {

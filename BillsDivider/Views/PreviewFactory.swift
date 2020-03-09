@@ -36,6 +36,11 @@ extension PreviewFactory {
         return viewFactory.create2(presentingParams: .constant(.shownAdding()), configure: { _ in })
     }
 
+    var discountPopoverView: some View {
+        let viewModel: EditOverlayViewModel = dependencyContainer.resolve(EditOverlayViewModel.self)
+        return DiscountPopoverView(viewModel: viewModel.discountPopoverViewModel)
+    }
+
     var buyerSectionView: some View {
         let viewModel = EditOverlayViewModel(
             presenting: .constant(true),
