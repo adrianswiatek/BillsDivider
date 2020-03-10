@@ -13,12 +13,11 @@ struct SectionLabel: View {
                 .foregroundColor(.secondary)
                 .font(.system(size: 14))
                 .padding(.horizontal, 12)
-                .padding(.top, 4)
-                .padding(.bottom, 2)
+                .padding(.vertical, 2)
 
             Spacer()
         }
-        .padding(.bottom, -12)
+        .padding(.bottom, -8)
     }
 }
 

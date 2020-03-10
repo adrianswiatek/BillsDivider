@@ -1,6 +1,5 @@
 import BillsDivider_Model
 import Combine
-import SwiftUI
 
 public final class DiscountPopoverViewModel: ObservableObject {
     @Published public var text: String
@@ -68,9 +67,20 @@ public final class DiscountPopoverViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         $text
-            .map { [weak self] in $0.isEmpty || self?.decimalParser.tryParse($0) != nil }
-            .map { $0 ? "" : "Invalid value" }
+            .map(toValidationMessage)
             .assign(to: \.validationMessage, on: self)
             .store(in: &subscriptions)
+    }
+
+    private func toValidationMessage(_ text: String) -> String {
+        !isFilled(text) || canBeParsed(text) ? "" : "Invalid value"
+    }
+
+    private func isFilled(_ text: String) -> Bool {
+        !text.isEmpty
+    }
+
+    private func canBeParsed(_ text: String) -> Bool {
+        decimalParser.tryParse(text) != nil
     }
 }

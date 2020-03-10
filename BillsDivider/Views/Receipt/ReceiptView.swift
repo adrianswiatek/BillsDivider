@@ -22,13 +22,14 @@ struct ReceiptView: View {
                     ForEach(viewModel.positions) { position in
                         HStack {
                             HStack(spacing: 2) {
-                                Text(self.viewModel.formatNumber(value: position.amountWithDiscount))
-
                                 if position.hasDiscount {
                                     Text("%")
                                         .foregroundColor(.red)
-                                        .font(.system(size: 14))
+                                        .font(.system(size: 12))
+                                        .padding(.trailing, 1)
                                 }
+
+                                Text(self.viewModel.formatNumber(value: position.amountWithDiscount))
                             }
                             .frame(width: self.columnWidth)
 
@@ -106,7 +107,7 @@ struct ReceiptView: View {
 
     private func createEditOverlayView() -> some View {
         editOverlayParams.providePosition(viewModel.positions.first)
-        return editOverlayViewFactory.create2(presentingParams: $editOverlayParams) {
+        return editOverlayViewFactory.create(presentingParams: $editOverlayParams) {
             viewModel.subscribe(
                 addingPublisher: $0.positionAdded,
                 editingPublisher: $0.positionEdited

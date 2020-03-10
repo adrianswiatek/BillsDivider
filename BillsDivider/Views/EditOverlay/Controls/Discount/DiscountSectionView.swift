@@ -2,9 +2,9 @@ import BillsDivider_ViewModel
 import SwiftUI
 
 struct DiscountSectionView: View {
-    @ObservedObject private var viewModel: EditOverlayViewModel
+    @ObservedObject private var viewModel: DiscountViewModel
 
-    init(_ viewModel: EditOverlayViewModel) {
+    init(_ viewModel: DiscountViewModel) {
         self.viewModel = viewModel
     }
 
@@ -23,13 +23,13 @@ struct DiscountSectionView: View {
             SectionLabel(withTitle: "Discount")
 
             HStack {
-                Button(action: { self.viewModel.removeDiscountButtonDidTap() }) {
+                Button(action: { self.viewModel.removeDiscount() }) {
                     Image(systemName: "xmark.circle.fill")
                 }
                 .padding(.horizontal)
 
                 Spacer()
-                Text("- \(viewModel.discount)")
+                Text("- \(viewModel.text)")
                     .font(.system(size: 32))
                     .bold()
                     .opacity(0.65)
@@ -39,7 +39,7 @@ struct DiscountSectionView: View {
     }
 
     private var addDiscountButton: some View {
-        Button(action: { self.viewModel.addDiscountButtonDidTap() }) {
+        Button(action: { self.viewModel.showDiscountPopover() }) {
             HStack {
                 Image(systemName: "plus.circle.fill")
                 Text("Add discount")

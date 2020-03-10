@@ -31,36 +31,23 @@ extension PreviewFactory {
         return viewFactory.create(presentingParams: .constant(.shownAdding()), configure: { _ in })
     }
 
-    var editOverlayView2: some View {
-        let viewFactory: EditOverlayViewFactory = dependencyContainer.resolve(EditOverlayViewFactory.self)
-        return viewFactory.create2(presentingParams: .constant(.shownAdding()), configure: { _ in })
-    }
-
     var discountPopoverView: some View {
         let viewModel: EditOverlayViewModel = dependencyContainer.resolve(EditOverlayViewModel.self)
         return DiscountPopoverView(viewModel: viewModel.discountPopoverViewModel)
     }
 
     var buyerSectionView: some View {
-        let viewModel = EditOverlayViewModel(
-            presenting: .constant(true),
-            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
-            peopleService: dependencyContainer.resolve(PeopleService.self),
-            decimalParser: dependencyContainer.resolve(DecimalParser.self),
-            numberFormatter: dependencyContainer.resolve(NumberFormatter.self)
-        )
-        return BuyerSectionView(viewModel)
+        let viewModelFactory: EditOverlayViewModelFactory =
+            dependencyContainer.resolve(EditOverlayViewModelFactory.self)
+
+        return BuyerSectionView(viewModelFactory.create(with: .constant(.shownAdding())))
     }
 
     var ownerSectionView: some View {
-        let viewModel = EditOverlayViewModel(
-            presenting: .constant(true),
-            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
-            peopleService: dependencyContainer.resolve(PeopleService.self),
-            decimalParser: dependencyContainer.resolve(DecimalParser.self),
-            numberFormatter: dependencyContainer.resolve(NumberFormatter.self)
-        )
-        return OwnerSectionView(viewModel)
+        let viewModelFactory: EditOverlayViewModelFactory =
+            dependencyContainer.resolve(EditOverlayViewModelFactory.self)
+
+        return OwnerSectionView(viewModelFactory.create(with: .constant(.shownAdding())))
     }
 
     var summaryView: some View {

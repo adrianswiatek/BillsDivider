@@ -19,11 +19,10 @@ public struct EditingModeStrategy: EditOverlayStrategy {
     }
 
     public func set(viewModel: EditOverlayViewModel) {
-        viewModel.price.text = numberFormatter.format(value: receiptPosition.amount)
+        viewModel.priceViewModel.text = numberFormatter.format(value: receiptPosition.amount)
 
         if let discount = receiptPosition.discount {
-            viewModel.hasDiscount = true
-            viewModel.discount = numberFormatter.format(value: discount)
+            viewModel.discountViewModel.text = numberFormatter.format(value: discount)
         }
 
         viewModel.addAnother = false

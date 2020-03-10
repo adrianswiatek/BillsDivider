@@ -17,7 +17,7 @@ public struct AddingModeStrategy: EditOverlayStrategy {
     }
 
     public func set(viewModel: EditOverlayViewModel) {
-        viewModel.price.text = ""
+        viewModel.priceViewModel.text = ""
         viewModel.addAnother = true
         viewModel.positionAdded = positionAddedSubject.eraseToAnyPublisher()
 

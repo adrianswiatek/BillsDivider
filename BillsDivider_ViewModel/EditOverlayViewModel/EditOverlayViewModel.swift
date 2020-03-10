@@ -4,13 +4,9 @@ import Foundation
 import SwiftUI
 
 public final class EditOverlayViewModel: ObservableObject {
+    @Published public var priceViewModel: PriceViewModel
+    @Published public var discountViewModel: DiscountViewModel
     @Published public var discountPopoverViewModel: DiscountPopoverViewModel
-
-    @Published public var price: PriceViewModel
-
-    @Published public var presentingDiscountPopover: Bool
-    @Published public var discount: String
-    @Published public var hasDiscount: Bool
 
     @Published public var buyer: Buyer
     @Published public var buyers: [Buyer]
@@ -19,6 +15,7 @@ public final class EditOverlayViewModel: ObservableObject {
     @Published public var owners: [Owner]
 
     @Published public var canConfirm: Bool
+    @Published public var confirmValidationMessage: String
 
     @Binding private var presenting: Bool
 
@@ -40,21 +37,19 @@ public final class EditOverlayViewModel: ObservableObject {
 
     public init(
         presenting: Binding<Bool>,
+        priceViewModel: PriceViewModel,
+        discountViewModel: DiscountViewModel,
+        discountPopoverViewModel: DiscountPopoverViewModel,
         editOverlayStrategy: EditOverlayStrategy,
         peopleService: PeopleService,
-        decimalParser: DecimalParser,
-        numberFormatter: NumberFormatter
+        decimalParser: DecimalParser
     ) {
         self._presenting = presenting
-        self.presentingDiscountPopover = false
         self.editOverlayStrategy = editOverlayStrategy
+        self.priceViewModel = priceViewModel
+        self.discountViewModel = discountViewModel
+        self.discountPopoverViewModel = discountPopoverViewModel
         self.decimalParser = decimalParser
-
-        self.price = PriceViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
-
-        self.discountPopoverViewModel = .init(decimalParser: decimalParser, numberFormatter: numberFormatter)
-        self.discount = ""
-        self.hasDiscount = false
 
         self.buyer = .person(.empty)
         self.owner = .all
@@ -64,6 +59,7 @@ public final class EditOverlayViewModel: ObservableObject {
 
         self.addAnother = false
         self.canConfirm = false
+        self.confirmValidationMessage = ""
 
         self.positionAdded = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
@@ -72,7 +68,7 @@ public final class EditOverlayViewModel: ObservableObject {
         self.editOverlayStrategy.set(viewModel: self)
 
         self.subscribe(to: peopleService.peopleDidUpdate)
-        self.subscribe(to: discountPopoverViewModel.didDismissPublisher)
+        self.subscribe(to: discountViewModel.$presenting.eraseToAnyPublisher())
         self.subscribeToPrices()
     }
 
@@ -87,14 +83,6 @@ public final class EditOverlayViewModel: ObservableObject {
 
     public func dismiss() {
         presenting = false
-    }
-
-    public func addDiscountButtonDidTap() {
-        presentingDiscountPopover = true
-    }
-
-    public func removeDiscountButtonDidTap() {
-        hasDiscount = false
     }
 
     private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
@@ -117,30 +105,37 @@ public final class EditOverlayViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func subscribe(to didDismiss: AnyPublisher<String, Never>) {
-        didDismiss
-            .sink { [weak self] formattedDiscount in
-                guard let self = self else { return }
-                self.presentingDiscountPopover = false
-                self.hasDiscount = !formattedDiscount.isEmpty
-                self.discount = formattedDiscount
-            }
+    private func subscribe(to presentingDiscountPopover: AnyPublisher<Bool, Never>) {
+        presentingDiscountPopover
+            .sink { [weak self] _ in self?.objectWillChange.send() }
             .store(in: &subscriptions)
     }
 
     private func subscribeToPrices() {
-        price.valuePublisher
-            .map { price in price != nil && price! > 0 }
+        Publishers.CombineLatest(priceViewModel.valuePublisher, discountViewModel.valuePublisher)
+            .map { price, discount in
+                guard let price = price, price > 0 else { return false }
+                guard let discount = discount else { return true }
+                return price >= discount
+            }
             .assign(to: \.canConfirm, on: self)
+            .store(in: &subscriptions)
+
+        Publishers.CombineLatest(priceViewModel.valuePublisher, discountViewModel.valuePublisher)
+            .map { price, discount in
+                guard let price = price, let discount = discount else { return "" }
+                return price >= discount ? "" : "Discount is greater than Price"
+            }
+            .assign(to: \.confirmValidationMessage, on: self)
             .store(in: &subscriptions)
     }
 
     private func tryCreateReceiptPosition() -> ReceiptPosition? {
-        guard let price = decimalParser.tryParse(price.text) else {
+        guard let price = decimalParser.tryParse(priceViewModel.text) else {
             return nil
         }
 
-        let discount = decimalParser.tryParse(self.discount)
+        let discount = decimalParser.tryParse(self.discountViewModel.text)
         return ReceiptPosition(amount: price, discount: discount, buyer: buyer, owner: owner)
     }
 }
