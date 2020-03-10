@@ -4,8 +4,9 @@ import Foundation
 import SwiftUI
 
 public final class EditOverlayViewModel: ObservableObject {
-    @Published public var price: ValueViewModel
     @Published public var discountPopoverViewModel: DiscountPopoverViewModel
+
+    @Published public var price: PriceViewModel
 
     @Published public var presentingDiscountPopover: Bool
     @Published public var discount: String
@@ -49,7 +50,7 @@ public final class EditOverlayViewModel: ObservableObject {
         self.editOverlayStrategy = editOverlayStrategy
         self.decimalParser = decimalParser
 
-        self.price = ValueViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
+        self.price = PriceViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
 
         self.discountPopoverViewModel = .init(decimalParser: decimalParser, numberFormatter: numberFormatter)
         self.discount = ""
@@ -128,26 +129,18 @@ public final class EditOverlayViewModel: ObservableObject {
     }
 
     private func subscribeToPrices() {
-        Publishers.CombineLatest3(price.value, discountPopoverViewModel.valuePublisher, $hasDiscount)
-            .map { price, discount, showDiscount in
-                guard let price = price, price > 0 else { return false }
-                guard showDiscount else { return true }
-                guard let discount = discount else { return false}
-                return discount > 0 && discount <= price
-            }
+        price.valuePublisher
+            .map { price in price != nil && price! > 0 }
             .assign(to: \.canConfirm, on: self)
             .store(in: &subscriptions)
     }
 
     private func tryCreateReceiptPosition() -> ReceiptPosition? {
-        if case .success(let price) = decimalParser.parse(price.text) {
-            return ReceiptPosition(
-                amount: price,
-                discount: decimalParser.tryParse(discountPopoverViewModel.text),
-                buyer: buyer,
-                owner: owner
-            )
+        guard let price = decimalParser.tryParse(price.text) else {
+            return nil
         }
-        return nil
+
+        let discount = decimalParser.tryParse(self.discount)
+        return ReceiptPosition(amount: price, discount: discount, buyer: buyer, owner: owner)
     }
 }

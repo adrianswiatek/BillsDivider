@@ -29,7 +29,7 @@ struct DiscountSectionView: View {
                 .padding(.horizontal)
 
                 Spacer()
-                Text(viewModel.discount)
+                Text("- \(viewModel.discount)")
                     .font(.system(size: 32))
                     .bold()
                     .opacity(0.65)
