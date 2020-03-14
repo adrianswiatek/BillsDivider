@@ -38,7 +38,7 @@ public final class PriceViewModel: ObservableObject {
         $text
             .map { [weak self] in $0.isEmpty || self?.decimalParser.tryParse($0) != nil }
             .map { $0 ? "" : "Invalid value" }
-            .assign(to: \.validationMessage, on: self)
+            .sink { [weak self] in self?.validationMessage = $0 }
             .store(in: &subscriptions)
     }
 }
