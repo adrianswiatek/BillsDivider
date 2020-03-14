@@ -4,7 +4,7 @@ import SwiftUI
 struct PriceSectionView: View {
     @ObservedObject private var viewModel: PriceViewModel
 
-    init(viewModel: PriceViewModel) {
+    init(_ viewModel: PriceViewModel) {
         self.viewModel = viewModel
     }
 
@@ -28,6 +28,6 @@ struct PriceSectionView: View {
 
 struct PriceSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
+        PreviewFactory().priceSectionView
     }
 }

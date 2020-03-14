@@ -54,6 +54,6 @@ struct DiscountSectionView: View {
 
 struct DiscountSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
+        PreviewFactory().discountSectionView
     }
 }

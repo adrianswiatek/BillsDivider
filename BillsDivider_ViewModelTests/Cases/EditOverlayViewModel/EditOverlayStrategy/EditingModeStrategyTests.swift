@@ -26,12 +26,28 @@ class EditingModeStrategyTests: XCTestCase {
     }
 
     private var viewModel: EditOverlayViewModel {
-        EditOverlayViewModel(
+        let decimalParser = DecimalParser()
+        let discountPopoverViewModel = DiscountPopoverViewModel(
+            decimalParser: decimalParser,
+            numberFormatter: numberFormatter
+        )
+        let discountViewModel = DiscountViewModel(
+            discountPopoverViewModel: discountPopoverViewModel,
+            decimalParser: decimalParser
+        )
+        let priceViewModel = PriceViewModel(
+            decimalParser: decimalParser,
+            numberFormatter: numberFormatter
+        )
+
+        return EditOverlayViewModel(
             presenting: .constant(true),
+            priceViewModel: priceViewModel,
+            discountViewModel: discountViewModel,
+            discountPopoverViewModel: discountPopoverViewModel,
             editOverlayStrategy: sut,
             peopleService: PeopleServiceFake(),
-            decimalParser: DecimalParser(),
-            numberFormatter: numberFormatter
+            decimalParser: DecimalParser()
         )
     }
 

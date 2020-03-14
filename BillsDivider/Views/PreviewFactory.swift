@@ -31,9 +31,24 @@ extension PreviewFactory {
         return viewFactory.create(presentingParams: .constant(.shownAdding()), configure: { _ in })
     }
 
+    var priceSectionView: some View {
+        let viewModel: PriceViewModel = dependencyContainer.resolve(PriceViewModel.self)
+        return PriceSectionView(viewModel)
+    }
+
     var discountPopoverView: some View {
         let viewModel: EditOverlayViewModel = dependencyContainer.resolve(EditOverlayViewModel.self)
-        return DiscountPopoverView(viewModel: viewModel.discountPopoverViewModel)
+        return DiscountPopoverView(viewModel.discountPopoverViewModel)
+    }
+
+    var discountSectionView: some View {
+        let viewModel: DiscountViewModel = dependencyContainer.resolve(DiscountViewModel.self)
+        return DiscountSectionView(viewModel)
+    }
+
+    var discountTextFieldView: some View {
+        let viewModel: DiscountPopoverViewModel = dependencyContainer.resolve(DiscountPopoverViewModel.self)
+        return DiscountTextFieldView(viewModel)
     }
 
     var buyerSectionView: some View {

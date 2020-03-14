@@ -4,7 +4,7 @@ import SwiftUI
 struct DiscountTextFieldView: View {
     @ObservedObject private var viewModel: DiscountPopoverViewModel
 
-    init(viewModel: DiscountPopoverViewModel) {
+    init(_ viewModel: DiscountPopoverViewModel) {
         self.viewModel = viewModel
     }
 
@@ -41,6 +41,6 @@ struct DiscountTextFieldView: View {
 
 struct DiscountTextFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
+        PreviewFactory().discountTextFieldView
     }
 }

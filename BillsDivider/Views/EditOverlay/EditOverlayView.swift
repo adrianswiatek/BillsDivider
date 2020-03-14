@@ -24,7 +24,7 @@ struct EditOverlayView: View {
                 .background(Color("SettingsPeopleCellBackground"))
             }
 
-            DiscountPopoverView(viewModel: viewModel.discountPopoverViewModel)
+            DiscountPopoverView(viewModel.discountPopoverViewModel)
                 .opacity(viewModel.discountViewModel.presenting ? 1 : 0)
                 .animation(.easeInOut(duration: 0.25))
         }
@@ -35,7 +35,7 @@ struct EditOverlayView: View {
             SectionLabel(withTitle: "Price")
                 .padding(.top, 8)
             
-            PriceSectionView(viewModel: viewModel.priceViewModel)
+            PriceSectionView(viewModel.priceViewModel)
                 .border(Color.secondary, width: 0.5)
 
             DiscountSectionView(viewModel.discountViewModel)

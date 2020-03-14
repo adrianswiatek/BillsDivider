@@ -4,7 +4,7 @@ import SwiftUI
 struct DiscountPopoverView: View {
     @ObservedObject private var viewModel: DiscountPopoverViewModel
 
-    init(viewModel: DiscountPopoverViewModel) {
+    init(_ viewModel: DiscountPopoverViewModel) {
         self.viewModel = viewModel
     }
 
@@ -15,7 +15,7 @@ struct DiscountPopoverView: View {
             VStack {
                 headerView
 
-                DiscountTextFieldView(viewModel: viewModel)
+                DiscountTextFieldView(viewModel)
                     .animation(.none)
 
                 footerView
