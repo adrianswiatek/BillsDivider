@@ -9,13 +9,14 @@ struct DiscountSectionView: View {
     }
 
     var body: some View {
-        Group {
+        VStack {
             if viewModel.hasDiscount {
                 discountSection
             } else {
                 addDiscountButton
             }
         }
+        .animation(.easeInOut)
     }
 
     private var discountSection: some View {
