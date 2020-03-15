@@ -37,6 +37,7 @@
 		A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4623B3991A0059EB71 /* ReceiptView.swift */; };
 		A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D54CA23819255003D7E9D /* PriceSectionView.swift */; };
 		A77FE85023F362D000354030 /* PersonViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE84F23F362D000354030 /* PersonViewModelTests.swift */; };
+		A7820836241EE1B200E4DB1C /* PriceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7820835241EE1B200E4DB1C /* PriceViewModelTests.swift */; };
 		A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2E23A83C3D008C9552 /* SettingsPage.swift */; };
 		A797D64A23C365C1002D550F /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64623C365C1002D550F /* Owner.swift */; };
 		A797D64B23C365C1002D550F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64723C365C1002D550F /* Person.swift */; };
@@ -229,6 +230,7 @@
 		A77ACA9A23C1309800F9335D /* InMemoryReceiptPositionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryReceiptPositionServiceTests.swift; sourceTree = "<group>"; };
 		A77D54CA23819255003D7E9D /* PriceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceSectionView.swift; sourceTree = "<group>"; };
 		A77FE84F23F362D000354030 /* PersonViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModelTests.swift; sourceTree = "<group>"; };
+		A7820835241EE1B200E4DB1C /* PriceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewModelTests.swift; sourceTree = "<group>"; };
 		A7873D2E23A83C3D008C9552 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataStack.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 			isa = PBXGroup;
 			children = (
 				A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */,
+				A7820835241EE1B200E4DB1C /* PriceViewModelTests.swift */,
 				A75E802A23A17C0E00B549F9 /* EditOverlayStrategy */,
 			);
 			path = EditOverlayViewModel;
@@ -1151,6 +1154,7 @@
 			files = (
 				A797D6BC23C379B8002D550F /* SummaryViewModelTests.swift in Sources */,
 				A797D6BD23C379BE002D550F /* EditOverlayViewModelTests.swift in Sources */,
+				A7820836241EE1B200E4DB1C /* PriceViewModelTests.swift in Sources */,
 				A797D6BA23C379B8002D550F /* ReceiptViewModelTests.swift in Sources */,
 				A77FE85023F362D000354030 /* PersonViewModelTests.swift in Sources */,
 				A797D6BB23C379B8002D550F /* SettingsViewModelTests.swift in Sources */,
