@@ -84,7 +84,7 @@
 		A797D6BB23C379B8002D550F /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75443C023A9499800A8775E /* SettingsViewModelTests.swift */; };
 		A797D6BC23C379B8002D550F /* SummaryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */; };
 		A797D6BD23C379BE002D550F /* EditOverlayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */; };
-		A797D6BE23C379C5002D550F /* AddingModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802F23A17C8D00B549F9 /* AddingModeStrategy.swift */; };
+		A797D6BE23C379C5002D550F /* AddingModeStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802F23A17C8D00B549F9 /* AddingModeStrategyTests.swift */; };
 		A797D6BF23C379C5002D550F /* EditingModeStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */; };
 		A797D6C123C37A50002D550F /* EditOverlayStrategyDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */; };
 		A797D6C223C37AE0002D550F /* PeopleServiceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9B23AD9C530073D8E8 /* PeopleServiceFake.swift */; };
@@ -208,7 +208,7 @@
 		A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataReceiptPositionServiceTests.swift; sourceTree = "<group>"; };
 		A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayStrategyDummy.swift; sourceTree = "<group>"; };
 		A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModeStrategyTests.swift; sourceTree = "<group>"; };
-		A75E802F23A17C8D00B549F9 /* AddingModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStrategy.swift; sourceTree = "<group>"; };
+		A75E802F23A17C8D00B549F9 /* AddingModeStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStrategyTests.swift; sourceTree = "<group>"; };
 		A763FFC523CA9D9300D489EA /* PeopleServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleServiceFactory.swift; sourceTree = "<group>"; };
 		A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModelTests.swift; sourceTree = "<group>"; };
 		A76AF8C123E38A910064551D /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
@@ -461,7 +461,7 @@
 		A75E802A23A17C0E00B549F9 /* EditOverlayStrategy */ = {
 			isa = PBXGroup;
 			children = (
-				A75E802F23A17C8D00B549F9 /* AddingModeStrategy.swift */,
+				A75E802F23A17C8D00B549F9 /* AddingModeStrategyTests.swift */,
 				A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */,
 			);
 			path = EditOverlayStrategy;
@@ -1156,7 +1156,7 @@
 				A797D6BB23C379B8002D550F /* SettingsViewModelTests.swift in Sources */,
 				A797D6BF23C379C5002D550F /* EditingModeStrategyTests.swift in Sources */,
 				A797D6C123C37A50002D550F /* EditOverlayStrategyDummy.swift in Sources */,
-				A797D6BE23C379C5002D550F /* AddingModeStrategy.swift in Sources */,
+				A797D6BE23C379C5002D550F /* AddingModeStrategyTests.swift in Sources */,
 				A797D6C223C37AE0002D550F /* PeopleServiceFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

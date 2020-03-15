@@ -62,7 +62,7 @@ class EditingModeStrategyTests: XCTestCase {
     func testSetViewModel_setsPriceTextOnGivenViewModel() {
         let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
-        XCTAssertEqual(viewModel.price.text, numberFormatter.format(value: 1))
+        XCTAssertEqual(viewModel.priceViewModel.text, numberFormatter.format(value: 1))
     }
 
     func testSetViewModel_setsAddAnotherOnGivenViewModel() {

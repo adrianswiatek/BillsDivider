@@ -6,6 +6,10 @@ import XCTest
 class AddingModeStrategyTests: XCTestCase {
     private var sut: AddingModeStrategy!
     private var position: ReceiptPosition!
+    private var viewModel: EditOverlayViewModel!
+    private var priceViewModel: PriceViewModel!
+    private var discountViewModel: DiscountViewModel!
+    private var discountPopoverViewModel: DiscountPopoverViewModel!
 
     private var people: People!
 
@@ -13,36 +17,49 @@ class AddingModeStrategyTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+
         people = .fromArray([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
-        position = ReceiptPosition(amount: 1, buyer: .person(people[0]), owner: .person(people[1]))
-        sut = AddingModeStrategy(receiptPosition: position)
+        position = .init(amount: 1, buyer: .person(people[0]), owner: .person(people[1]))
+        sut = .init(receiptPosition: position)
+        prepareViewModels()
         subscriptions = []
     }
 
     override func tearDown() {
         subscriptions = nil
+        cleanViewModels()
         sut = nil
         position = nil
         people = nil
         super.tearDown()
     }
 
-    private var numberFormatter: NumberFormatter {
-        .twoFractionDigitsNumberFormatter
-    }
-
-    private var viewModel: EditOverlayViewModel {
+    private func prepareViewModels() {
+        let decimalParser = DecimalParser()
+        let numberFormatter = NumberFormatter.twoFractionDigitsNumberFormatter
         let peopleService = PeopleServiceFake()
 
-        let viewModel = EditOverlayViewModel(
+        discountPopoverViewModel = .init(decimalParser: decimalParser, numberFormatter: numberFormatter)
+        discountViewModel = .init(discountPopoverViewModel: discountPopoverViewModel, decimalParser: decimalParser)
+        priceViewModel = .init(decimalParser: decimalParser, numberFormatter: numberFormatter)
+        viewModel = .init(
             presenting: .constant(true),
+            priceViewModel: priceViewModel,
+            discountViewModel: discountViewModel,
+            discountPopoverViewModel: discountPopoverViewModel,
             editOverlayStrategy: sut,
             peopleService: peopleService,
-            decimalParser: DecimalParser(),
-            numberFormatter: numberFormatter
+            decimalParser: decimalParser
         )
-        peopleService.updatePeople(people)
-        return viewModel
+
+        peopleService.updatePeople(.fromArray([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)]))
+    }
+
+    private func cleanViewModels() {
+        viewModel = nil
+        priceViewModel = nil
+        discountViewModel = nil
+        discountPopoverViewModel = nil
     }
 
     func testPageName_returnsEditPosition() {
@@ -54,46 +71,38 @@ class AddingModeStrategyTests: XCTestCase {
     }
 
     func testSetViewModel_setsPriceTextOnGivenViewModel() {
-        let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
-        XCTAssertEqual(viewModel.price.text, "")
+        XCTAssertEqual(priceViewModel.text, "")
     }
 
     func testSetViewModel_setsAddAnotherOnGivenViewModel() {
-        let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
         XCTAssertEqual(viewModel.addAnother, true)
     }
 
     func testSetViewModel_withReceiptPosition_setsGetInitialBuyerToReceiptPositionsBuyer() {
-        let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
         XCTAssertEqual(viewModel.getInitialBuyer?(), position.buyer)
     }
 
     func testSetViewModel_withEmptyReceiptPosition_setsGetInitialBuyerToFirstBuyer() {
         sut = AddingModeStrategy(receiptPosition: .empty)
-        let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
         XCTAssertEqual(viewModel.getInitialBuyer?(), viewModel.buyers[0])
     }
 
     func testSetViewModel_withReceiptPosition_setsGetInitialOwnerToReceiptPositionOwner() {
-        let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
         XCTAssertEqual(viewModel.getInitialOwner?(), position.owner)
     }
 
     func testSetViewModel_withEmptyReceiptPosition_setsGetInitialOwnerToAll() {
         sut = AddingModeStrategy(receiptPosition: .empty)
-        let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
         XCTAssertEqual(viewModel.getInitialOwner?(), .all)
     }
 
     func testConfirmDidTap_sendsGivenPositionThroughPositionAdded() {
-        let viewModel = self.viewModel
-
         let expectation = self.expectation(description: "Receipt position is added.")
         var result: ReceiptPosition?
         viewModel.positionAdded
