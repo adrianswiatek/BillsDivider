@@ -68,7 +68,7 @@ public final class EditOverlayViewModel: ObservableObject {
         self.editOverlayStrategy.set(viewModel: self)
 
         self.subscribe(to: peopleService.peopleDidUpdate)
-        self.subscribe(to: discountViewModel.$presenting.eraseToAnyPublisher())
+        self.subscribe(to: discountViewModel.$presentingPopover.eraseToAnyPublisher())
         self.subscribeToPrices()
     }
 

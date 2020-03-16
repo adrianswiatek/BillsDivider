@@ -81,6 +81,7 @@ class PriceViewModelTests: XCTestCase {
         var result: Decimal? = nil
 
         sut.valuePublisher
+            .dropFirst()
             .sink {
                 result = $0
                 expectation.fulfill()

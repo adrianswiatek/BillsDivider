@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A70478C623A42DF6001AD82E /* EditOverlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */; };
+		A706C36124202C2800F50D8A /* DiscountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A706C36024202C2800F50D8A /* DiscountViewModelTests.swift */; };
 		A708403523DCEE5000C91DEC /* SumResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403423DCEE5000C91DEC /* SumResult.swift */; };
 		A708403723DCEEAB00C91DEC /* SumResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403623DCEEAB00C91DEC /* SumResultTests.swift */; };
 		A716602D23E639DF005329F6 /* UUIDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A716602C23E639DF005329F6 /* UUIDExtensions.swift */; };
@@ -178,6 +179,7 @@
 
 /* Begin PBXFileReference section */
 		A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayUITests.swift; sourceTree = "<group>"; };
+		A706C36024202C2800F50D8A /* DiscountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountViewModelTests.swift; sourceTree = "<group>"; };
 		A708403423DCEE5000C91DEC /* SumResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResult.swift; sourceTree = "<group>"; };
 		A708403623DCEEAB00C91DEC /* SumResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResultTests.swift; sourceTree = "<group>"; };
 		A716602C23E639DF005329F6 /* UUIDExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDExtensions.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */,
 				A7820835241EE1B200E4DB1C /* PriceViewModelTests.swift */,
 				A75E802A23A17C0E00B549F9 /* EditOverlayStrategy */,
+				A706C36024202C2800F50D8A /* DiscountViewModelTests.swift */,
 			);
 			path = EditOverlayViewModel;
 			sourceTree = "<group>";
@@ -1160,6 +1163,7 @@
 				A797D6BB23C379B8002D550F /* SettingsViewModelTests.swift in Sources */,
 				A797D6BF23C379C5002D550F /* EditingModeStrategyTests.swift in Sources */,
 				A797D6C123C37A50002D550F /* EditOverlayStrategyDummy.swift in Sources */,
+				A706C36124202C2800F50D8A /* DiscountViewModelTests.swift in Sources */,
 				A797D6BE23C379C5002D550F /* AddingModeStrategyTests.swift in Sources */,
 				A797D6C223C37AE0002D550F /* PeopleServiceFake.swift in Sources */,
 			);

@@ -25,7 +25,7 @@ struct EditOverlayView: View {
             }
 
             DiscountPopoverView(viewModel.discountPopoverViewModel)
-                .opacity(viewModel.discountViewModel.presenting ? 1 : 0)
+                .opacity(viewModel.discountViewModel.presentingPopover ? 1 : 0)
                 .animation(.easeInOut(duration: 0.25))
         }
     }
