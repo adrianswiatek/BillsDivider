@@ -3,33 +3,34 @@ import BillsDivider_Model
 import Combine
 import XCTest
 
-class PriceViewModelTests: XCTestCase {
-    private var sut: PriceViewModel!
-    private var numberFormatter: NumberFormatter!
+class DiscountPopoverViewModelTests: XCTestCase {
+    private var sut: DiscountPopoverViewModel!
     private var decimalParser: DecimalParser!
+    private var numberFormatter: NumberFormatter!
+
     private var subscriptions: [AnyCancellable]!
 
     override func setUp() {
         super.setUp()
-        subscriptions = []
         decimalParser = DecimalParser()
         numberFormatter = .twoFractionDigitsNumberFormatter
-        sut = PriceViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
+        sut = DiscountPopoverViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
+        subscriptions = []
     }
 
     override func tearDown() {
+        subscriptions = nil
         sut = nil
         numberFormatter = nil
         decimalParser = nil
-        subscriptions = nil
         super.tearDown()
     }
 
-    func testPlaceholder_returnsFormattedZero() {
-        XCTAssertEqual(sut.placeholder, numberFormatter.format(value: 0))
+    func testText_whenInit_isSetToEmptyString() {
+        XCTAssertEqual(sut.text, "")
     }
 
-    func testIsValid_whenInit_returnsFalse() {
+    func testIsValid_whenInit_isSetToFalse() {
         XCTAssertFalse(sut.isValid)
     }
 
@@ -72,61 +73,41 @@ class PriceViewModelTests: XCTestCase {
         XCTAssertEqual(sut.validationMessage, "Invalid value")
     }
 
-    func testText_whenInit_returnsEmptyString() {
+    func testPlaceholder_whenInit_isSetFormattedZero() {
+        XCTAssertEqual(sut.placeholder, numberFormatter.format(value: 0))
+    }
+
+    func testConfirm_whenCalled_setsTextToEmptyString() {
+        sut.confirm()
         XCTAssertEqual(sut.text, "")
     }
 
-    func testValuePublisher_whenTextIsSetToEmptyString_sendsNil() {
-        let expectation = self.expectation(description: "Value has been sent")
-        var result: Decimal? = nil
+    func testConfirm_whenCalled_sendsDidDismiss() {
+        let expectation = self.expectation(description: "Value has been send")
 
-        sut.valuePublisher
-            .dropFirst()
-            .sink {
-                result = $0
-                expectation.fulfill()
-            }
+        sut.didDismissPublisher
+            .sink { _ in expectation.fulfill() }
             .store(in: &subscriptions)
 
-        sut.text = ""
+        sut.confirm()
 
         waitForExpectations(timeout: 0.3)
-        XCTAssertNil(result)
     }
 
-    func testValuePublisher_whenTextIsSetToOne_sendsOne() {
-        let expectation = self.expectation(description: "Value has been sent")
-        var result: Decimal? = nil
-
-        sut.valuePublisher
-            .dropFirst()
-            .sink {
-                result = $0
-                expectation.fulfill()
-            }
-            .store(in: &subscriptions)
-
-        sut.text = "1"
-
-        waitForExpectations(timeout: 0.3)
-        XCTAssertEqual(result, 1)
+    func testClose_whenCalled_setsTextToEmptyString() {
+        sut.dismiss()
+        XCTAssertEqual(sut.text, "")
     }
 
-    func testValuePublisher_whenTextIsSetToLetter_sendsNil() {
-        let expectation = self.expectation(description: "Value has been sent")
-        var result: Decimal? = nil
+    func testClose_whenCalled_sendsDidDismiss() {
+        let expectation = self.expectation(description: "Value has been send")
 
-        sut.valuePublisher
-            .dropFirst()
-            .sink {
-                result = $0
-                expectation.fulfill()
-            }
+        sut.didDismissPublisher
+            .sink { _ in expectation.fulfill() }
             .store(in: &subscriptions)
 
-        sut.text = "a"
+        sut.dismiss()
 
         waitForExpectations(timeout: 0.3)
-        XCTAssertNil(result)
     }
 }
