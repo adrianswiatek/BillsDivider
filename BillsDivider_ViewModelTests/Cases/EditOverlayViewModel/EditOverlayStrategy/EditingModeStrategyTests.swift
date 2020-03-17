@@ -10,7 +10,7 @@ class EditingModeStrategyTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        position = ReceiptPosition(amount: 1, buyer: .person(.withName("My name")), owner: .all)
+        position = ReceiptPosition(amount: 1, discount: 1, buyer: .person(.withName("My name")), owner: .all)
         sut = EditingModeStrategy(receiptPosition: position, numberFormatter: numberFormatter)
         subscriptions = []
     }
@@ -81,6 +81,12 @@ class EditingModeStrategyTests: XCTestCase {
         let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
         XCTAssertEqual(viewModel.getInitialOwner?(), position.owner)
+    }
+
+    func testSetViewModel_whenDiscountProvided_setsDiscount() {
+        let viewModel = self.viewModel
+        sut.set(viewModel: viewModel)
+        XCTAssertEqual(viewModel.discountViewModel.text, numberFormatter.format(value: 1))
     }
 
     func testConfirmDidTap_sendsGivenPositionThroughPositionEdited() {
