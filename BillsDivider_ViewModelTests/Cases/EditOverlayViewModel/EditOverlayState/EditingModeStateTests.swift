@@ -3,15 +3,15 @@
 import Combine
 import XCTest
 
-class EditingModeStrategyTests: XCTestCase {
-    private var sut: EditingModeStrategy!
+class EditingModeStateTests: XCTestCase {
+    private var sut: EditingModeState!
     private var position: ReceiptPosition!
     private var subscriptions: [AnyCancellable]!
 
     override func setUp() {
         super.setUp()
         position = ReceiptPosition(amount: 1, discount: 1, buyer: .person(.withName("My name")), owner: .all)
-        sut = EditingModeStrategy(receiptPosition: position, numberFormatter: numberFormatter)
+        sut = EditingModeState(receiptPosition: position, numberFormatter: numberFormatter)
         subscriptions = []
     }
 
@@ -45,7 +45,7 @@ class EditingModeStrategyTests: XCTestCase {
             priceViewModel: priceViewModel,
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
-            editOverlayStrategy: sut,
+            editOverlayState: sut,
             peopleService: PeopleServiceFake(),
             decimalParser: DecimalParser()
         )

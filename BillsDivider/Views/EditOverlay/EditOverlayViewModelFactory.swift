@@ -25,7 +25,7 @@ internal final class EditOverlayViewModelFactory {
             priceViewModel: priceViewModel,
             discountViewModel: discountViewModel(popoverViewModel),
             discountPopoverViewModel: popoverViewModel,
-            editOverlayStrategy: editOverlayStrategy(presentingParams.wrappedValue),
+            editOverlayState: editOverlayState(presentingParams.wrappedValue),
             peopleService: peopleService,
             decimalParser: decimalParser
         )
@@ -43,9 +43,9 @@ internal final class EditOverlayViewModelFactory {
         DiscountPopoverViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
     }
 
-    private func editOverlayStrategy(_ params: EditOverlayViewParams) -> EditOverlayStrategy {
+    private func editOverlayState(_ params: EditOverlayViewParams) -> EditOverlayState {
         params.mode == .adding
-            ? AddingModeStrategy(receiptPosition: params.position)
-            : EditingModeStrategy(receiptPosition: params.position, numberFormatter: numberFormatter)
+            ? AddingModeState(receiptPosition: params.position)
+            : EditingModeState(receiptPosition: params.position, numberFormatter: numberFormatter)
     }
 }

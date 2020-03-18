@@ -32,7 +32,7 @@ class EditOverlayViewModelTests: XCTestCase {
             priceViewModel: priceViewModel,
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
-            editOverlayStrategy: EditOverlayStrategyDummy(),
+            editOverlayState: EditOverlayStateDummy(),
             peopleService: peopleService,
             decimalParser: decimalParser
         )
@@ -62,7 +62,7 @@ class EditOverlayViewModelTests: XCTestCase {
             priceViewModel: priceViewModel,
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
-            editOverlayStrategy: EditOverlayStrategyDummy(),
+            editOverlayState: EditOverlayStateDummy(),
             peopleService: peopleService,
             decimalParser: decimalParser
         )
@@ -77,7 +77,7 @@ class EditOverlayViewModelTests: XCTestCase {
             priceViewModel: priceViewModel,
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
-            editOverlayStrategy: EditOverlayStrategyDummy(),
+            editOverlayState: EditOverlayStateDummy(),
             peopleService: peopleService,
             decimalParser: decimalParser
         )
@@ -98,7 +98,7 @@ class EditOverlayViewModelTests: XCTestCase {
             priceViewModel: priceViewModel,
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
-            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
+            editOverlayState: AddingModeState(receiptPosition: .empty),
             peopleService: peopleService,
             decimalParser: decimalParser
         )

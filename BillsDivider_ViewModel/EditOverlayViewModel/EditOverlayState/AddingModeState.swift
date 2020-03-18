@@ -2,7 +2,7 @@ import BillsDivider_Model
 import Combine
 import Foundation
 
-public struct AddingModeStrategy: EditOverlayStrategy {
+public struct AddingModeState: EditOverlayState {
     public let receiptPosition: ReceiptPosition
 
     public var pageName: String {

@@ -3,8 +3,8 @@
 import Combine
 import XCTest
 
-class AddingModeStrategyTests: XCTestCase {
-    private var sut: AddingModeStrategy!
+class AddingModeStateTests: XCTestCase {
+    private var sut: AddingModeState!
     private var position: ReceiptPosition!
     private var viewModel: EditOverlayViewModel!
     private var priceViewModel: PriceViewModel!
@@ -47,7 +47,7 @@ class AddingModeStrategyTests: XCTestCase {
             priceViewModel: priceViewModel,
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
-            editOverlayStrategy: sut,
+            editOverlayState: sut,
             peopleService: peopleService,
             decimalParser: decimalParser
         )
@@ -86,7 +86,7 @@ class AddingModeStrategyTests: XCTestCase {
     }
 
     func testSetViewModel_withEmptyReceiptPosition_setsGetInitialBuyerToFirstBuyer() {
-        sut = AddingModeStrategy(receiptPosition: .empty)
+        sut = AddingModeState(receiptPosition: .empty)
         sut.set(viewModel: viewModel)
         XCTAssertEqual(viewModel.getInitialBuyer?(), viewModel.buyers[0])
     }
@@ -97,7 +97,7 @@ class AddingModeStrategyTests: XCTestCase {
     }
 
     func testSetViewModel_withEmptyReceiptPosition_setsGetInitialOwnerToAll() {
-        sut = AddingModeStrategy(receiptPosition: .empty)
+        sut = AddingModeState(receiptPosition: .empty)
         sut.set(viewModel: viewModel)
         XCTAssertEqual(viewModel.getInitialOwner?(), .all)
     }

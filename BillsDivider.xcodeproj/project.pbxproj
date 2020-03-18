@@ -79,17 +79,17 @@
 		A797D6A923C37714002D550F /* ReceiptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7788B4423B398DD0059EB71 /* ReceiptViewModel.swift */; };
 		A797D6AA23C37714002D550F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75443C223A94A0F00A8775E /* SettingsViewModel.swift */; };
 		A797D6AC23C3774D002D550F /* EditOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A774B1DD23B57F97005A868E /* EditOverlayViewModel.swift */; };
-		A797D6AD23C37752002D550F /* AddingModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC987F23B69C81003D8AE6 /* AddingModeStrategy.swift */; };
-		A797D6AE23C37752002D550F /* EditingModeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988123B69CDB003D8AE6 /* EditingModeStrategy.swift */; };
-		A797D6AF23C37752002D550F /* EditOverlayStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC987D23B69C5B003D8AE6 /* EditOverlayStrategy.swift */; };
+		A797D6AD23C37752002D550F /* AddingModeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC987F23B69C81003D8AE6 /* AddingModeState.swift */; };
+		A797D6AE23C37752002D550F /* EditingModeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988123B69CDB003D8AE6 /* EditingModeState.swift */; };
+		A797D6AF23C37752002D550F /* EditOverlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC987D23B69C5B003D8AE6 /* EditOverlayState.swift */; };
 		A797D6B923C377EF002D550F /* EditOverlayViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7DE5F238C805600D38BC8 /* EditOverlayViewFactory.swift */; };
 		A797D6BA23C379B8002D550F /* ReceiptViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76FF43523BD40F9000D584F /* ReceiptViewModelTests.swift */; };
 		A797D6BB23C379B8002D550F /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75443C023A9499800A8775E /* SettingsViewModelTests.swift */; };
 		A797D6BC23C379B8002D550F /* SummaryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */; };
 		A797D6BD23C379BE002D550F /* EditOverlayViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */; };
-		A797D6BE23C379C5002D550F /* AddingModeStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802F23A17C8D00B549F9 /* AddingModeStrategyTests.swift */; };
-		A797D6BF23C379C5002D550F /* EditingModeStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */; };
-		A797D6C123C37A50002D550F /* EditOverlayStrategyDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */; };
+		A797D6BE23C379C5002D550F /* AddingModeStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802F23A17C8D00B549F9 /* AddingModeStateTests.swift */; };
+		A797D6BF23C379C5002D550F /* EditingModeStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802C23A17C2900B549F9 /* EditingModeStateTests.swift */; };
+		A797D6C123C37A50002D550F /* EditOverlayStateDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75E802723A1773D00B549F9 /* EditOverlayStateDummy.swift */; };
 		A797D6C223C37AE0002D550F /* PeopleServiceFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7705B9B23AD9C530073D8E8 /* PeopleServiceFake.swift */; };
 		A797D6C923C395B5002D550F /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D6C823C395B5002D550F /* People.swift */; };
 		A797D6CB23C3AA89002D550F /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D6CA23C3AA89002D550F /* PeopleTests.swift */; };
@@ -211,9 +211,9 @@
 		A7550E7E239BDE3D0004797D /* SummaryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPage.swift; sourceTree = "<group>"; };
 		A7550E80239BDE6D0004797D /* EditOverlayPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayPage.swift; sourceTree = "<group>"; };
 		A75B79C4239EE4B000C740BB /* CoreDataReceiptPositionServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataReceiptPositionServiceTests.swift; sourceTree = "<group>"; };
-		A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayStrategyDummy.swift; sourceTree = "<group>"; };
-		A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModeStrategyTests.swift; sourceTree = "<group>"; };
-		A75E802F23A17C8D00B549F9 /* AddingModeStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStrategyTests.swift; sourceTree = "<group>"; };
+		A75E802723A1773D00B549F9 /* EditOverlayStateDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayStateDummy.swift; sourceTree = "<group>"; };
+		A75E802C23A17C2900B549F9 /* EditingModeStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModeStateTests.swift; sourceTree = "<group>"; };
+		A75E802F23A17C8D00B549F9 /* AddingModeStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStateTests.swift; sourceTree = "<group>"; };
 		A763FFC523CA9D9300D489EA /* PeopleServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleServiceFactory.swift; sourceTree = "<group>"; };
 		A76A31A72399CFB80025B850 /* SummaryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModelTests.swift; sourceTree = "<group>"; };
 		A76AF8C123E38A910064551D /* PersonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewModel.swift; sourceTree = "<group>"; };
@@ -259,9 +259,9 @@
 		A797D6CA23C3AA89002D550F /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewParams.swift; sourceTree = "<group>"; };
 		A7A4189823B819CC00436CBE /* Person+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreData.swift"; sourceTree = "<group>"; };
-		A7AC987D23B69C5B003D8AE6 /* EditOverlayStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayStrategy.swift; sourceTree = "<group>"; };
-		A7AC987F23B69C81003D8AE6 /* AddingModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeStrategy.swift; sourceTree = "<group>"; };
-		A7AC988123B69CDB003D8AE6 /* EditingModeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModeStrategy.swift; sourceTree = "<group>"; };
+		A7AC987D23B69C5B003D8AE6 /* EditOverlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayState.swift; sourceTree = "<group>"; };
+		A7AC987F23B69C81003D8AE6 /* AddingModeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeState.swift; sourceTree = "<group>"; };
+		A7AC988123B69CDB003D8AE6 /* EditingModeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModeState.swift; sourceTree = "<group>"; };
 		A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerSectionView.swift; sourceTree = "<group>"; };
 		A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSectionView.swift; sourceTree = "<group>"; };
 		A7AC988923B6D788003D8AE6 /* CoreDataPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleService.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 				A7E40967241718BC0001CD55 /* DiscountViewModel.swift */,
 				A774B1DD23B57F97005A868E /* EditOverlayViewModel.swift */,
 				A7E4096524170D820001CD55 /* PriceViewModel.swift */,
-				A75E801E23A15D4F00B549F9 /* EditOverlayStrategy */,
+				A75E801E23A15D4F00B549F9 /* EditOverlayState */,
 			);
 			path = EditOverlayViewModel;
 			sourceTree = "<group>";
@@ -445,14 +445,14 @@
 			path = PageObjects;
 			sourceTree = "<group>";
 		};
-		A75E801E23A15D4F00B549F9 /* EditOverlayStrategy */ = {
+		A75E801E23A15D4F00B549F9 /* EditOverlayState */ = {
 			isa = PBXGroup;
 			children = (
-				A7AC987F23B69C81003D8AE6 /* AddingModeStrategy.swift */,
-				A7AC988123B69CDB003D8AE6 /* EditingModeStrategy.swift */,
-				A7AC987D23B69C5B003D8AE6 /* EditOverlayStrategy.swift */,
+				A7AC987F23B69C81003D8AE6 /* AddingModeState.swift */,
+				A7AC988123B69CDB003D8AE6 /* EditingModeState.swift */,
+				A7AC987D23B69C5B003D8AE6 /* EditOverlayState.swift */,
 			);
-			path = EditOverlayStrategy;
+			path = EditOverlayState;
 			sourceTree = "<group>";
 		};
 		A75E802923A17BF700B549F9 /* EditOverlayViewModel */ = {
@@ -462,18 +462,18 @@
 				A706C36024202C2800F50D8A /* DiscountViewModelTests.swift */,
 				A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */,
 				A7820835241EE1B200E4DB1C /* PriceViewModelTests.swift */,
-				A75E802A23A17C0E00B549F9 /* EditOverlayStrategy */,
+				A75E802A23A17C0E00B549F9 /* EditOverlayState */,
 			);
 			path = EditOverlayViewModel;
 			sourceTree = "<group>";
 		};
-		A75E802A23A17C0E00B549F9 /* EditOverlayStrategy */ = {
+		A75E802A23A17C0E00B549F9 /* EditOverlayState */ = {
 			isa = PBXGroup;
 			children = (
-				A75E802F23A17C8D00B549F9 /* AddingModeStrategyTests.swift */,
-				A75E802C23A17C2900B549F9 /* EditingModeStrategyTests.swift */,
+				A75E802F23A17C8D00B549F9 /* AddingModeStateTests.swift */,
+				A75E802C23A17C2900B549F9 /* EditingModeStateTests.swift */,
 			);
-			path = EditOverlayStrategy;
+			path = EditOverlayState;
 			sourceTree = "<group>";
 		};
 		A763FFC323CA99AB00D489EA /* Infrastructure */ = {
@@ -738,7 +738,7 @@
 		A797D6C023C37A47002D550F /* Doubles */ = {
 			isa = PBXGroup;
 			children = (
-				A75E802723A1773D00B549F9 /* EditOverlayStrategyDummy.swift */,
+				A75E802723A1773D00B549F9 /* EditOverlayStateDummy.swift */,
 				A7705B9B23AD9C530073D8E8 /* PeopleServiceFake.swift */,
 			);
 			path = Doubles;
@@ -1141,15 +1141,15 @@
 			files = (
 				A7E4096624170D820001CD55 /* PriceViewModel.swift in Sources */,
 				A797D6A823C37714002D550F /* SummaryViewModel.swift in Sources */,
-				A797D6AE23C37752002D550F /* EditingModeStrategy.swift in Sources */,
+				A797D6AE23C37752002D550F /* EditingModeState.swift in Sources */,
 				A797D6AC23C3774D002D550F /* EditOverlayViewModel.swift in Sources */,
 				A7D3FC0723E6469B001C8392 /* BDColorExtensions.swift in Sources */,
-				A797D6AD23C37752002D550F /* AddingModeStrategy.swift in Sources */,
+				A797D6AD23C37752002D550F /* AddingModeState.swift in Sources */,
 				A76AF8C223E38A910064551D /* PersonViewModel.swift in Sources */,
 				A7E100B0241598A5004FAFE0 /* DiscountPopoverViewModel.swift in Sources */,
 				A797D6A923C37714002D550F /* ReceiptViewModel.swift in Sources */,
 				A797D6AA23C37714002D550F /* SettingsViewModel.swift in Sources */,
-				A797D6AF23C37752002D550F /* EditOverlayStrategy.swift in Sources */,
+				A797D6AF23C37752002D550F /* EditOverlayState.swift in Sources */,
 				A7E40968241718BC0001CD55 /* DiscountViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1164,11 +1164,11 @@
 				A797D6BA23C379B8002D550F /* ReceiptViewModelTests.swift in Sources */,
 				A77FE85023F362D000354030 /* PersonViewModelTests.swift in Sources */,
 				A797D6BB23C379B8002D550F /* SettingsViewModelTests.swift in Sources */,
-				A797D6BF23C379C5002D550F /* EditingModeStrategyTests.swift in Sources */,
-				A797D6C123C37A50002D550F /* EditOverlayStrategyDummy.swift in Sources */,
+				A797D6BF23C379C5002D550F /* EditingModeStateTests.swift in Sources */,
+				A797D6C123C37A50002D550F /* EditOverlayStateDummy.swift in Sources */,
 				A706C36124202C2800F50D8A /* DiscountViewModelTests.swift in Sources */,
 				A706C363242042DB00F50D8A /* DiscountPopoverViewModelTests.swift in Sources */,
-				A797D6BE23C379C5002D550F /* AddingModeStrategyTests.swift in Sources */,
+				A797D6BE23C379C5002D550F /* AddingModeStateTests.swift in Sources */,
 				A797D6C223C37AE0002D550F /* PeopleServiceFake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
