@@ -641,10 +641,10 @@
 		A797D65723C366B9002D550F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A719DC912422E296008795DB /* DeciamlParserTests.swift */,
 				A797D65B23C3670C002D550F /* PositionsDividerTests.swift */,
 				A797D67523C36ED7002D550F /* PeopleService */,
 				A797D67A23C3705A002D550F /* ReceiptPositionService */,
-				A719DC912422E296008795DB /* DeciamlParserTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
