@@ -13,6 +13,7 @@
 		A708403523DCEE5000C91DEC /* SumResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403423DCEE5000C91DEC /* SumResult.swift */; };
 		A708403723DCEEAB00C91DEC /* SumResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403623DCEEAB00C91DEC /* SumResultTests.swift */; };
 		A716602D23E639DF005329F6 /* UUIDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A716602C23E639DF005329F6 /* UUIDExtensions.swift */; };
+		A719DC922422E296008795DB /* DeciamlParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719DC912422E296008795DB /* DeciamlParserTests.swift */; };
 		A72B1A5923C2935100E09786 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
 		A72B1A6223C2935100E09786 /* BillsDivider_Model.h in Headers */ = {isa = PBXBuildFile; fileRef = A72B1A5223C2935100E09786 /* BillsDivider_Model.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A72B1A6523C2935100E09786 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
@@ -185,6 +186,7 @@
 		A708403423DCEE5000C91DEC /* SumResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResult.swift; sourceTree = "<group>"; };
 		A708403623DCEEAB00C91DEC /* SumResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResultTests.swift; sourceTree = "<group>"; };
 		A716602C23E639DF005329F6 /* UUIDExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDExtensions.swift; sourceTree = "<group>"; };
+		A719DC912422E296008795DB /* DeciamlParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeciamlParserTests.swift; sourceTree = "<group>"; };
 		A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BillsDivider_Model.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B1A5223C2935100E09786 /* BillsDivider_Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillsDivider_Model.h; sourceTree = "<group>"; };
 		A72B1A5323C2935100E09786 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -642,6 +644,7 @@
 				A797D65B23C3670C002D550F /* PositionsDividerTests.swift */,
 				A797D67523C36ED7002D550F /* PeopleService */,
 				A797D67A23C3705A002D550F /* ReceiptPositionService */,
+				A719DC912422E296008795DB /* DeciamlParserTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1102,6 +1105,7 @@
 			files = (
 				A797D66323C3671C002D550F /* OwnerTests.swift in Sources */,
 				A797D67B23C37081002D550F /* InMemoryReceiptPositionServiceTests.swift in Sources */,
+				A719DC922422E296008795DB /* DeciamlParserTests.swift in Sources */,
 				A797D65C23C3670C002D550F /* PositionsDividerTests.swift in Sources */,
 				A797D66223C3671C002D550F /* BuyerTests.swift in Sources */,
 				A797D68523C373AD002D550F /* ReceiptPosition+CoreDataTests.swift in Sources */,
