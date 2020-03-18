@@ -4,11 +4,9 @@ import Foundation
 import SwiftUI
 
 public final class EditOverlayViewModel: ObservableObject {
-    @Published public var price: ValueViewModel
-    @Published public var discount: ValueViewModel
-
-    @Published public var showDiscount: Bool
-    @Published public var canConfirm: Bool
+    @Published public var priceViewModel: PriceViewModel
+    @Published public var discountViewModel: DiscountViewModel
+    @Published public var discountPopoverViewModel: DiscountPopoverViewModel
 
     @Published public var buyer: Buyer
     @Published public var buyers: [Buyer]
@@ -16,15 +14,18 @@ public final class EditOverlayViewModel: ObservableObject {
     @Published public var owner: Owner
     @Published public var owners: [Owner]
 
-    @Binding private var presenting: Bool
+    @Published public var canConfirm: Bool
+    @Published public var confirmValidationMessage: String
 
-    public var keyboardHeight: CGFloat
+    @Published public var keyboardHeight: CGFloat
+
+    @Binding private var presenting: Bool
 
     public var positionAdded: AnyPublisher<ReceiptPosition, Never>
     public var positionEdited: AnyPublisher<ReceiptPosition, Never>
 
     public var pageName: String {
-        editOverlayStrategy.pageName
+        editOverlayState.pageName
     }
 
     internal var getInitialBuyer: (() -> Buyer)?
@@ -33,22 +34,24 @@ public final class EditOverlayViewModel: ObservableObject {
     internal var addAnother: Bool
 
     private let decimalParser: DecimalParser
-    private let editOverlayStrategy: EditOverlayStrategy
+    private let editOverlayState: EditOverlayState
     private var subscriptions: [AnyCancellable]
 
     public init(
         presenting: Binding<Bool>,
-        editOverlayStrategy: EditOverlayStrategy,
+        priceViewModel: PriceViewModel,
+        discountViewModel: DiscountViewModel,
+        discountPopoverViewModel: DiscountPopoverViewModel,
+        editOverlayState: EditOverlayState,
         peopleService: PeopleService,
-        decimalParser: DecimalParser,
-        numberFormatter: NumberFormatter
+        decimalParser: DecimalParser
     ) {
         self._presenting = presenting
-        self.editOverlayStrategy = editOverlayStrategy
+        self.editOverlayState = editOverlayState
+        self.priceViewModel = priceViewModel
+        self.discountViewModel = discountViewModel
+        self.discountPopoverViewModel = discountPopoverViewModel
         self.decimalParser = decimalParser
-
-        self.price = ValueViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
-        self.discount = ValueViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
 
         self.buyer = .person(.empty)
         self.owner = .all
@@ -56,21 +59,23 @@ public final class EditOverlayViewModel: ObservableObject {
         self.buyers = []
         self.owners = []
 
-        self.showDiscount = false
         self.addAnother = false
         self.canConfirm = false
-
-        self.keyboardHeight = 0
+        self.confirmValidationMessage = ""
 
         self.positionAdded = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
+
+        self.keyboardHeight = 0
+
         self.subscriptions = []
 
-        self.editOverlayStrategy.set(viewModel: self)
+        self.editOverlayState.set(viewModel: self)
 
-        self.observeKeyboard()
         self.subscribe(to: peopleService.peopleDidUpdate)
+        self.subscribe(to: discountViewModel.$presentingPopover.eraseToAnyPublisher())
         self.subscribeToPrices()
+        self.subscribeToKeyboard()
     }
 
     public func confirmDidTap() {
@@ -79,26 +84,11 @@ public final class EditOverlayViewModel: ObservableObject {
         }
 
         if !addAnother { dismiss() }
-        editOverlayStrategy.confirmDidTap(with: receiptPosition, in: self)
+        editOverlayState.confirmDidTap(with: receiptPosition, in: self)
     }
 
     public func dismiss() {
         presenting = false
-    }
-
-    private func observeKeyboard() {
-        NotificationCenter.default
-            .publisher(for: UIResponder.keyboardDidShowNotification)
-            .map { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect }
-            .map { $0?.height ?? 0 }
-            .assign(to: \.keyboardHeight, on: self)
-            .store(in: &subscriptions)
-
-        NotificationCenter.default
-            .publisher(for: UIResponder.keyboardDidHideNotification)
-            .map { _ in 0 }
-            .assign(to: \.keyboardHeight, on: self)
-            .store(in: &subscriptions)
     }
 
     private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
@@ -121,29 +111,50 @@ public final class EditOverlayViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    private func subscribe(to presentingDiscountPopover: AnyPublisher<Bool, Never>) {
+        presentingDiscountPopover
+            .sink { [weak self] _ in self?.objectWillChange.send() }
+            .store(in: &subscriptions)
+    }
+
     private func subscribeToPrices() {
-        Publishers.CombineLatest3(price.value, discount.value, $showDiscount)
-            .map { price, discount, showDiscount in
+        Publishers.CombineLatest(priceViewModel.valuePublisher, discountViewModel.valuePublisher)
+            .map { price, discount in
                 guard let price = price, price > 0 else { return false }
-                guard showDiscount else { return true }
-                guard let discount = discount else { return false}
-                return discount > 0 && discount <= price
+                guard let discount = discount else { return true }
+                return price >= discount
             }
             .assign(to: \.canConfirm, on: self)
+            .store(in: &subscriptions)
+
+        Publishers.CombineLatest(priceViewModel.valuePublisher, discountViewModel.valuePublisher)
+            .map { price, discount in
+                guard let price = price, let discount = discount else { return "" }
+                return price >= discount ? "" : "Discount is greater than Price"
+            }
+            .assign(to: \.confirmValidationMessage, on: self)
             .store(in: &subscriptions)
     }
 
     private func tryCreateReceiptPosition() -> ReceiptPosition? {
-        if case .success(let price) = decimalParser.parse(price.text) {
-            return ReceiptPosition(amount: price, discount: discountValue(), buyer: buyer, owner: owner)
+        guard let price = decimalParser.tryParse(priceViewModel.text) else {
+            return nil
         }
-        return nil
+
+        let discount = decimalParser.tryParse(self.discountViewModel.text)
+        return ReceiptPosition(amount: price, discount: discount, buyer: buyer, owner: owner)
     }
 
-    private func discountValue() -> Decimal? {
-        if showDiscount, case .success(let discount) = decimalParser.parse(discount.text) {
-            return discount
-        }
-        return nil
+    private func subscribeToKeyboard() {
+        NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)
+            .sink { [weak self] in
+                let keyboardRect = $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+                self?.keyboardHeight = keyboardRect?.height ?? 0
+            }
+            .store(in: &subscriptions)
+
+        NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)
+            .sink { [weak self] _ in self?.keyboardHeight = 0 }
+            .store(in: &subscriptions)
     }
 }

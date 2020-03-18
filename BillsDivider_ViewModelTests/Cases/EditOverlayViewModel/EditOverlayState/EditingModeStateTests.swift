@@ -3,15 +3,15 @@
 import Combine
 import XCTest
 
-class EditingModeStrategyTests: XCTestCase {
-    private var sut: EditingModeStrategy!
+class EditingModeStateTests: XCTestCase {
+    private var sut: EditingModeState!
     private var position: ReceiptPosition!
     private var subscriptions: [AnyCancellable]!
 
     override func setUp() {
         super.setUp()
-        position = ReceiptPosition(amount: 1, buyer: .person(.withName("My name")), owner: .all)
-        sut = EditingModeStrategy(receiptPosition: position, numberFormatter: numberFormatter)
+        position = ReceiptPosition(amount: 1, discount: 1, buyer: .person(.withName("My name")), owner: .all)
+        sut = EditingModeState(receiptPosition: position, numberFormatter: numberFormatter)
         subscriptions = []
     }
 
@@ -26,12 +26,28 @@ class EditingModeStrategyTests: XCTestCase {
     }
 
     private var viewModel: EditOverlayViewModel {
-        EditOverlayViewModel(
-            presenting: .constant(true),
-            editOverlayStrategy: sut,
-            peopleService: PeopleServiceFake(),
-            decimalParser: DecimalParser(),
+        let decimalParser = DecimalParser()
+        let discountPopoverViewModel = DiscountPopoverViewModel(
+            decimalParser: decimalParser,
             numberFormatter: numberFormatter
+        )
+        let discountViewModel = DiscountViewModel(
+            discountPopoverViewModel: discountPopoverViewModel,
+            decimalParser: decimalParser
+        )
+        let priceViewModel = PriceViewModel(
+            decimalParser: decimalParser,
+            numberFormatter: numberFormatter
+        )
+
+        return EditOverlayViewModel(
+            presenting: .constant(true),
+            priceViewModel: priceViewModel,
+            discountViewModel: discountViewModel,
+            discountPopoverViewModel: discountPopoverViewModel,
+            editOverlayState: sut,
+            peopleService: PeopleServiceFake(),
+            decimalParser: DecimalParser()
         )
     }
 
@@ -46,7 +62,7 @@ class EditingModeStrategyTests: XCTestCase {
     func testSetViewModel_setsPriceTextOnGivenViewModel() {
         let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
-        XCTAssertEqual(viewModel.price.text, numberFormatter.format(value: 1))
+        XCTAssertEqual(viewModel.priceViewModel.text, numberFormatter.format(value: 1))
     }
 
     func testSetViewModel_setsAddAnotherOnGivenViewModel() {
@@ -65,6 +81,12 @@ class EditingModeStrategyTests: XCTestCase {
         let viewModel = self.viewModel
         sut.set(viewModel: viewModel)
         XCTAssertEqual(viewModel.getInitialOwner?(), position.owner)
+    }
+
+    func testSetViewModel_whenDiscountProvided_setsDiscount() {
+        let viewModel = self.viewModel
+        sut.set(viewModel: viewModel)
+        XCTAssertEqual(viewModel.discountViewModel.text, numberFormatter.format(value: 1))
     }
 
     func testConfirmDidTap_sendsGivenPositionThroughPositionEdited() {

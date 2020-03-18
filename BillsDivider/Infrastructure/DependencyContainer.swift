@@ -57,7 +57,6 @@ class DependencyContainer {
                 resolve(NSManagedObjectContext.self)
             )
         )
-        
         register(
             ReceiptPositionService.self,
             as: CoreDataReceiptPositionService(
@@ -70,16 +69,22 @@ class DependencyContainer {
             as: DecimalParser()
         )
         register(
-            EditOverlayViewFactory.self,
-            as: EditOverlayViewFactory(
-                resolve(PeopleService.self),
-                resolve(DecimalParser.self),
-                resolve(NumberFormatter.self)
+            PositionsDivider.self,
+            as: PositionsDivider()
+        )
+        register(
+            EditOverlayViewModelFactory.self,
+            as: EditOverlayViewModelFactory(
+                peopleService: resolve(PeopleService.self),
+                decimalParser: resolve(DecimalParser.self),
+                numberFormatter: resolve(NumberFormatter.self)
             )
         )
         register(
-            PositionsDivider.self,
-            as: PositionsDivider()
+            EditOverlayViewFactory.self,
+            as: EditOverlayViewFactory(
+                viewModelFactory: resolve(EditOverlayViewModelFactory.self)
+            )
         )
     }
 
@@ -108,12 +113,35 @@ class DependencyContainer {
                 [.green, .blue, .purple, .pink, .red, .orange]
             )
         )
+        register(
+            PriceViewModel.self,
+            as: PriceViewModel(
+                decimalParser: resolve(DecimalParser.self),
+                numberFormatter: resolve(NumberFormatter.self)
+            )
+        )
+        register(
+            DiscountPopoverViewModel.self,
+            as: DiscountPopoverViewModel(
+                decimalParser: resolve(DecimalParser.self),
+                numberFormatter: resolve(NumberFormatter.self)
+            )
+        )
+        register(
+            DiscountViewModel.self,
+            as: DiscountViewModel(
+                discountPopoverViewModel: resolve(DiscountPopoverViewModel.self),
+                decimalParser: resolve(DecimalParser.self)
+            )
+        )
     }
 
     private func registerViews() {
         register(
             ReceiptView.self,
-            as: AnyView(ReceiptView(resolve(ReceiptViewModel.self), resolve(EditOverlayViewFactory.self)))
+            as: AnyView(
+                ReceiptView(resolve(ReceiptViewModel.self), resolve(EditOverlayViewFactory.self))
+            )
         )
         register(
             SummaryView.self,

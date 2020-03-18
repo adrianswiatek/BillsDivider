@@ -22,13 +22,14 @@ struct ReceiptView: View {
                     ForEach(viewModel.positions) { position in
                         HStack {
                             HStack(spacing: 2) {
-                                Text(self.viewModel.formatNumber(value: position.amountWithDiscount))
-
                                 if position.hasDiscount {
                                     Text("%")
                                         .foregroundColor(.red)
-                                        .font(.system(size: 14))
+                                        .font(.system(size: 12))
+                                        .padding(.trailing, 1)
                                 }
+
+                                Text(self.viewModel.formatNumber(value: position.amountWithDiscount))
                             }
                             .frame(width: self.columnWidth)
 

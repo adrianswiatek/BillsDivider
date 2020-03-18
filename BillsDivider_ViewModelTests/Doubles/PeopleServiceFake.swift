@@ -1,4 +1,3 @@
-@testable import BillsDivider
 @testable import BillsDivider_Model
 import Combine
 

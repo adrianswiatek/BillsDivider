@@ -9,20 +9,18 @@ struct BuyerSectionView: View {
     }
 
     var body: some View {
-        HStack {
-            Text("Buyer")
-                .foregroundColor(Color(white: 0.6))
-                .font(.footnote)
-
-            Spacer()
-
+        VStack {
+            SectionLabel(withTitle: "Buyer")
+            
             Picker(selection: $viewModel.buyer, label: EmptyView()) {
                 ForEach(viewModel.buyers, id: \.self) {
                     Text($0.formatted).tag($0.formatted)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-            .frame(width: UIScreen.main.bounds.width * 0.7)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 4)
+            .background(Color("SettingsPeopleCellBackground"))
             .accessibility(identifier: "BuyerSectionView.segmentedControl")
         }
     }

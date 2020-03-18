@@ -7,6 +7,12 @@ import XCTest
 class EditOverlayViewModelTests: XCTestCase {
     private var sut: EditOverlayViewModel!
     private var peopleService: PeopleService!
+    private var viewModel: EditOverlayViewModel!
+    private var priceViewModel: PriceViewModel!
+    private var discountViewModel: DiscountViewModel!
+    private var discountPopoverViewModel: DiscountPopoverViewModel!
+    private var decimalParser: DecimalParser!
+
     private var subscriptions: [AnyCancellable]!
 
     private var numberFormatter: NumberFormatter {
@@ -15,13 +21,20 @@ class EditOverlayViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+
+        decimalParser = DecimalParser()
         peopleService = PeopleServiceFake()
+        discountPopoverViewModel = .init(decimalParser: decimalParser, numberFormatter: numberFormatter)
+        discountViewModel = .init(discountPopoverViewModel: discountPopoverViewModel, decimalParser: decimalParser)
+        priceViewModel = .init(decimalParser: decimalParser, numberFormatter: numberFormatter)
         sut = EditOverlayViewModel(
             presenting: .constant(true),
-            editOverlayStrategy: EditOverlayStrategyDummy(),
+            priceViewModel: priceViewModel,
+            discountViewModel: discountViewModel,
+            discountPopoverViewModel: discountPopoverViewModel,
+            editOverlayState: EditOverlayStateDummy(),
             peopleService: peopleService,
-            decimalParser: DecimalParser(),
-            numberFormatter: numberFormatter
+            decimalParser: decimalParser
         )
         subscriptions = []
     }
@@ -29,46 +42,46 @@ class EditOverlayViewModelTests: XCTestCase {
     override func tearDown() {
         subscriptions = nil
         sut = nil
+        priceViewModel = nil
+        discountViewModel = nil
+        discountPopoverViewModel = nil
         peopleService = nil
+        decimalParser = nil
+
         super.tearDown()
     }
 
     func testInit_pricePlaceHolderText_returnsFormattedZero() {
-        XCTAssertEqual(sut.valuePlaceHolder, numberFormatter.format(value: 0))
+        XCTAssertEqual(sut.priceViewModel.placeholder, numberFormatter.format(value: 0))
     }
 
     func testDismiss_setsPresentingToFalse() {
         var presenting: Bool = true
         sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
-            editOverlayStrategy: EditOverlayStrategyDummy(),
+            priceViewModel: priceViewModel,
+            discountViewModel: discountViewModel,
+            discountPopoverViewModel: discountPopoverViewModel,
+            editOverlayState: EditOverlayStateDummy(),
             peopleService: peopleService,
-            decimalParser: DecimalParser(),
-            numberFormatter: numberFormatter
+            decimalParser: decimalParser
         )
         sut.dismiss()
         XCTAssertFalse(presenting)
-    }
-
-    func testConfirmDidTap_whenAddAnotherIsEnabled_clearPriceText() {
-        sut.price.text = "123"
-        sut.addAnother = true
-
-        sut.confirmDidTap()
-
-        XCTAssertEqual(sut.price.text, "")
     }
 
     func testConfirmDidTap_whenAddAnotherIsDisabled_setsPresentingToFalse() {
         var presenting: Bool = true
         sut = EditOverlayViewModel(
             presenting: Binding<Bool>(get: { presenting }, set: { presenting = $0 }),
-            editOverlayStrategy: EditOverlayStrategyDummy(),
+            priceViewModel: priceViewModel,
+            discountViewModel: discountViewModel,
+            discountPopoverViewModel: discountPopoverViewModel,
+            editOverlayState: EditOverlayStateDummy(),
             peopleService: peopleService,
-            decimalParser: DecimalParser(),
-            numberFormatter: numberFormatter
+            decimalParser: decimalParser
         )
-        sut.price.text = "123"
+        sut.priceViewModel.text = "123"
         sut.addAnother = false
 
         sut.confirmDidTap()
@@ -82,13 +95,15 @@ class EditOverlayViewModelTests: XCTestCase {
         var actualPosition: ReceiptPosition?
         sut = EditOverlayViewModel(
             presenting: .constant(true),
-            editOverlayStrategy: AddingModeStrategy(receiptPosition: .empty),
+            priceViewModel: priceViewModel,
+            discountViewModel: discountViewModel,
+            discountPopoverViewModel: discountPopoverViewModel,
+            editOverlayState: AddingModeState(receiptPosition: .empty),
             peopleService: peopleService,
-            decimalParser: DecimalParser(),
-            numberFormatter: numberFormatter
+            decimalParser: decimalParser
         )
         sut.positionAdded.sink { actualPosition = $0 }.store(in: &subscriptions)
-        sut.price.text = "123.00"
+        sut.priceViewModel.text = "123.00"
         sut.buyer = .person(firstPerson)
         sut.owner = .person(secondPerson)
 
@@ -98,62 +113,62 @@ class EditOverlayViewModelTests: XCTestCase {
         XCTAssertEqual(actualPosition, expectedPosition)
     }
 
-    func testPriceText_withEmptyString_setsIsPriceCorrectToTrue() {
-        sut.price.text = ""
-        XCTAssertTrue(sut.price.isCorrect)
+    func testPriceText_withEmptyString_setsIsPriceCorrectToFalse() {
+        sut.priceViewModel.text = ""
+        XCTAssertFalse(sut.priceViewModel.isValid)
     }
 
-    func testPriceText_withZero_setsIsPriceCorrectToTrue() {
-        sut.price.text = "0"
-        XCTAssertTrue(sut.price.isCorrect)
+    func testPriceText_withZero_setsIsPriceCorrectToFalse() {
+        sut.priceViewModel.text = "0"
+        XCTAssertFalse(sut.priceViewModel.isValid)
     }
 
     func testPriceText_withEmptyString_setsCanConfirmToFalse() {
-        sut.price.text = ""
+        sut.priceViewModel.text = ""
         XCTAssertFalse(sut.canConfirm)
     }
 
     func testPriceText_withZero_setsCanConfirmToFalse() {
-        sut.price.text = "0"
+        sut.priceViewModel.text = "0"
         XCTAssertFalse(sut.canConfirm)
     }
 
     func testPriceText_withInvalidString_setsIsPriceCorrectToFalse() {
-        sut.price.text = "invalid string"
-        XCTAssertFalse(sut.price.isCorrect)
+        sut.priceViewModel.text = "invalid string"
+        XCTAssertFalse(sut.priceViewModel.isValid)
     }
 
     func testPriceText_withoutFractionDigits_setsIsPriceCorrectToTrue() {
-        sut.price.text = "1"
-        XCTAssertTrue(sut.price.isCorrect)
+        sut.priceViewModel.text = "1"
+        XCTAssertTrue(sut.priceViewModel.isValid)
 
-        sut.price.text = "1."
-        XCTAssertTrue(sut.price.isCorrect)
+        sut.priceViewModel.text = "1."
+        XCTAssertTrue(sut.priceViewModel.isValid)
     }
 
     func testPriceText_withTwoFractionDigits_setsIsPriceCorrectToTrue() {
-        sut.price.text = ".99"
-        XCTAssertTrue(sut.price.isCorrect)
+        sut.priceViewModel.text = ".99"
+        XCTAssertTrue(sut.priceViewModel.isValid)
     }
 
     func testPriceText_withThreeFractionDigits_setsIsPriceCorrectToFalse() {
-        sut.price.text = ".999"
-        XCTAssertFalse(sut.price.isCorrect)
+        sut.priceViewModel.text = ".999"
+        XCTAssertFalse(sut.priceViewModel.isValid)
     }
 
     func testPriceText_withFiveIntegerDigits_setsIsPriceCorrectToTrue() {
-        sut.price.text = "12345"
-        XCTAssertTrue(sut.price.isCorrect)
+        sut.priceViewModel.text = "12345"
+        XCTAssertTrue(sut.priceViewModel.isValid)
 
-        sut.price.text = "12345.67"
-        XCTAssertTrue(sut.price.isCorrect)
+        sut.priceViewModel.text = "12345.67"
+        XCTAssertTrue(sut.priceViewModel.isValid)
     }
 
     func testPriceText_withSixIntegerDigits_setsIsPriceCorrectToFalse() {
-        sut.price.text = "123456"
-        XCTAssertFalse(sut.price.isCorrect)
+        sut.priceViewModel.text = "123456"
+        XCTAssertFalse(sut.priceViewModel.isValid)
 
-        sut.price.text = "123456.78"
-        XCTAssertFalse(sut.price.isCorrect)
+        sut.priceViewModel.text = "123456.78"
+        XCTAssertFalse(sut.priceViewModel.isValid)
     }
 }

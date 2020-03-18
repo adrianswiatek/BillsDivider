@@ -1,7 +1,7 @@
 @testable import BillsDivider_Model
 @testable import BillsDivider_ViewModel
 
-class EditOverlayStrategyDummy: EditOverlayStrategy {
+class EditOverlayStateDummy: EditOverlayState {
     let receiptPosition: ReceiptPosition = .empty
     let pageName: String = ""
     let showAddAnother: Bool = false
