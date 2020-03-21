@@ -202,6 +202,28 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
         XCTAssertEqual(result, [positions[1]])
     }
 
+    func testRemovePosition_whenTwoIdenticalPositionsPersisted_sendsPositionThroughPositionsDidUpdate() {
+        let positions: [ReceiptPosition] = [
+            .init(amount: 1, buyer: .person(firstPerson), owner: .all),
+            .init(amount: 1, buyer: .person(firstPerson), owner: .all)
+        ]
+        positions.forEach { sut.insert($0) }
+
+        var result: [ReceiptPosition]?
+        let expectation = self.expectation(description: "Receipt Positions are sent")
+        sut.positionsDidUpdate
+            .sink {
+                result = $0
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        sut.remove(positions[0])
+
+        wait(for: [expectation], timeout: 0.3)
+        XCTAssertEqual(result, [positions[1]])
+    }
+
     func testRemoveAllPositions_oneItemPersisted_deletesOneItem() {
         sut.insert(.init(amount: 1, buyer: .person(.empty), owner: .all))
         sut.removeAllPositions()

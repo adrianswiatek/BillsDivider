@@ -71,7 +71,7 @@ public class SummaryViewModel: ObservableObject {
             .sink { [weak self] in
                 guard let self = self else { return }
                 self.divisionResult = self.divider.divide($0, between: self.people)
-                self.sumResult = .from(values: $0.map { $0.amount })
+                self.sumResult = .from(values: $0.map { $0.amountWithDiscount })
                 self.objectWillChange.send()
             }
             .store(in: &subscriptions)

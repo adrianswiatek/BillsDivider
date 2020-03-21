@@ -2,7 +2,7 @@ import BillsDivider_Model
 import Combine
 import Foundation
 
-public struct EditingModeStrategy: EditOverlayStrategy {
+public struct EditingModeState: EditOverlayState {
     public let receiptPosition: ReceiptPosition
 
     public var pageName: String {
@@ -19,7 +19,12 @@ public struct EditingModeStrategy: EditOverlayStrategy {
     }
 
     public func set(viewModel: EditOverlayViewModel) {
-        viewModel.priceText = numberFormatter.format(value: receiptPosition.amount)
+        viewModel.priceViewModel.text = numberFormatter.format(value: receiptPosition.amount)
+
+        if let discount = receiptPosition.discount {
+            viewModel.discountViewModel.text = numberFormatter.format(value: discount)
+        }
+
         viewModel.addAnother = false
         viewModel.positionEdited = positionEditedSubject.eraseToAnyPublisher()
 
@@ -31,6 +36,7 @@ public struct EditingModeStrategy: EditOverlayStrategy {
         let position = ReceiptPosition(
             id: receiptPosition.id,
             amount: position.amount,
+            discount: position.discount,
             buyer: position.buyer,
             owner: position.owner
         )

@@ -14,6 +14,26 @@ class ReceiptPositionTests: XCTestCase {
         XCTAssertEqual(ReceiptPosition.empty.owner, .all)
     }
 
+    func testAmountWithDiscount_whenNoDiscount_returnsAmount() {
+        let position = ReceiptPosition(amount: 1, buyer: .person(.empty), owner: .all)
+        XCTAssertEqual(position.amountWithDiscount, position.amount)
+    }
+
+    func testAmountWithDiscount_whenDiscountApplied_returnsAmountMinusDicount() {
+        let position = ReceiptPosition(amount: 1, discount: 0.25, buyer: .person(.empty), owner: .all)
+        XCTAssertEqual(position.amountWithDiscount, position.amount - 0.25)
+    }
+
+    func testHasDiscount_whenNoDiscount_returnsFalse() {
+        let position = ReceiptPosition(amount: 1, buyer: .person(.empty), owner: .all)
+        XCTAssertFalse(position.hasDiscount)
+    }
+
+    func testHasDiscount_whenDiscountApplied_returnsTrue() {
+        let position = ReceiptPosition(amount: 1, discount: 0.25, buyer: .person(.empty), owner: .all)
+        XCTAssertTrue(position.hasDiscount)
+    }
+
     func testEquals_twoTheSamePositions_returnsTrue() {
         let position: ReceiptPosition = .init(amount: 1, buyer: .person(.empty), owner: .all)
         XCTAssertTrue(position == position)
@@ -43,6 +63,13 @@ class ReceiptPositionTests: XCTestCase {
         let person = Person.withName("My name")
         let position1 = ReceiptPosition(amount: 1, buyer: .person(person), owner: .person(person))
         let position2 = ReceiptPosition(amount: 1, buyer: .person(person), owner: .all)
+        XCTAssertFalse(position1 == position2)
+    }
+
+    func testEquals_twoPositionsWithDifferentDiscount_returnsFalse() {
+        let person = Person.withName("My name")
+        let position1 = ReceiptPosition(amount: 1, discount: 1, buyer: .person(person), owner: .person(person))
+        let position2 = ReceiptPosition(amount: 1, discount: 2, buyer: .person(person), owner: .person(person))
         XCTAssertFalse(position1 == position2)
     }
 }

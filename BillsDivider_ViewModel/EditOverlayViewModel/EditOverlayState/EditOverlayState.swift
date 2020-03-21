@@ -1,7 +1,7 @@
 import BillsDivider_Model
 import Combine
 
-public protocol EditOverlayStrategy {
+public protocol EditOverlayState {
     var receiptPosition: ReceiptPosition { get }
     var pageName: String { get }
 
