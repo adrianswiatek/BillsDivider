@@ -9,7 +9,7 @@ struct OwnerSectionView: View {
     }
 
     var body: some View {
-        VStack {
+        HStack {
             SectionLabel(withTitle: "Owner")
             
             Picker(selection: $viewModel.owner, label: EmptyView()) {
@@ -18,8 +18,7 @@ struct OwnerSectionView: View {
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-            .padding(.horizontal, 16)
-            .padding(.vertical, 4)
+            .padding(.trailing, 16)
             .background(Color("SettingsPeopleCellBackground"))
             .accessibility(identifier: "OwnerSectionView.segmentedControl")
         }

@@ -10,19 +10,31 @@ struct PriceSectionView: View {
 
     var body: some View {
         HStack {
-            Text(viewModel.validationMessage)
-                .font(.footnote)
-                .foregroundColor(.secondary)
+            SectionLabel(withTitle: "Price")
 
-            TextField(viewModel.placeholder, text: $viewModel.text)
-                .multilineTextAlignment(.trailing)
-                .font(.system(size: 42, weight: .medium, design: .rounded))
-                .keyboardType(.decimalPad)
-                .padding(.horizontal)
-                .foregroundColor(viewModel.isValid ? .primary : .secondary)
+            HStack {
+                Text(viewModel.validationMessage)
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal)
+
+                TextField(viewModel.placeholder, text: $viewModel.text)
+                    .multilineTextAlignment(.trailing)
+                    .font(.system(size: 42, weight: .bold, design: .rounded))
+                    .keyboardType(.decimalPad)
+                    .padding(.horizontal)
+                    .foregroundColor(viewModel.isValid ? .primary : .secondary)
+            }
+            .padding(.vertical, 3)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10, style: .circular)
+                    .stroke(lineWidth: 1)
+                    .foregroundColor(.secondary)
+            )
+            .background(Color("ControlsBackground"))
+            .cornerRadius(10)
+            .padding(.trailing, 16)
         }
-        .padding(.init(top: 4, leading: 24, bottom: 4, trailing: 0))
-        .background(Color("ControlsBackground"))
     }
 }
 

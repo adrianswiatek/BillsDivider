@@ -20,8 +20,8 @@ struct DiscountSectionView: View {
     }
 
     private var discountSection: some View {
-        VStack {
-            SectionLabel(withTitle: "Discount")
+        HStack {
+            SectionLabel(withTitle: "Disc.")
 
             HStack {
                 Button(action: { self.viewModel.removeDiscount() }) {
@@ -34,8 +34,9 @@ struct DiscountSectionView: View {
                     .font(.system(size: 32))
                     .bold()
                     .opacity(0.65)
-                    .padding(.horizontal)
+                    .padding(.trailing)
             }
+            .padding(.trailing)
         }
     }
 
@@ -46,8 +47,8 @@ struct DiscountSectionView: View {
                 Text("Add discount")
             }
             .font(.system(size: 14))
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
+            .padding(.trailing, 24)
+            .padding(.vertical, 12)
         }
     }
 }
