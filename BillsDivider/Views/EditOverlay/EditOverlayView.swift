@@ -32,11 +32,8 @@ struct EditOverlayView: View {
 
     private var controls: some View {
         VStack(alignment: .trailing) {
-            SectionLabel(withTitle: "Price")
-                .padding(.top, 8)
-            
             PriceSectionView(viewModel.priceViewModel)
-                .border(Color.secondary, width: 0.5)
+                .padding(.top, 16)
 
             DiscountSectionView(viewModel.discountViewModel)
             BuyerSectionView(viewModel)

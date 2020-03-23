@@ -9,7 +9,7 @@ struct BuyerSectionView: View {
     }
 
     var body: some View {
-        VStack {
+        HStack {
             SectionLabel(withTitle: "Buyer")
             
             Picker(selection: $viewModel.buyer, label: EmptyView()) {
@@ -18,8 +18,7 @@ struct BuyerSectionView: View {
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-            .padding(.horizontal, 16)
-            .padding(.vertical, 4)
+            .padding(.trailing, 16)
             .background(Color("SettingsPeopleCellBackground"))
             .accessibility(identifier: "BuyerSectionView.segmentedControl")
         }

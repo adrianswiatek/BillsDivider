@@ -8,16 +8,12 @@ struct SectionLabel: View {
     }
 
     var body: some View {
-        HStack {
-            Text(title)
-                .foregroundColor(.secondary)
-                .font(.system(size: 14))
-                .padding(.horizontal, 12)
-                .padding(.vertical, 2)
-
-            Spacer()
-        }
-        .padding(.bottom, -8)
+        Text(title)
+            .multilineTextAlignment(.leading)
+            .foregroundColor(.secondary)
+            .font(.system(size: 14))
+            .padding(.leading, 12)
+            .frame(width: 56)
     }
 }
 
