@@ -5,10 +5,8 @@ import SwiftUI
 
 struct PreviewFactory {
     private let dependencyContainer: DependencyContainer
-    private let receiptListColumnWidth: CGFloat
 
     init() {
-        receiptListColumnWidth = UIScreen.main.bounds.width / 3
         dependencyContainer = DependencyContainer(.testing)
     }
 }
@@ -23,7 +21,7 @@ extension PreviewFactory {
     }
 
     var receiptHeaderView: some View {
-        ReceiptHeaderView(receiptListColumnWidth)
+        ReceiptHeaderView()
     }
 
     var editOverlayView: some View {

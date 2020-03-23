@@ -1,3 +1,4 @@
+import BillsDivider_Model
 import BillsDivider_ViewModel
 import SwiftUI
 
@@ -18,76 +19,43 @@ struct ReceiptView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: ReceiptHeaderView(columnWidth)) {
+                Section(header: ReceiptHeaderView()) {
                     ForEach(viewModel.positions) { position in
-                        HStack {
-                            HStack(spacing: 2) {
-                                if position.hasDiscount {
-                                    Text("%")
-                                        .foregroundColor(.red)
-                                        .font(.system(size: 12))
-                                        .padding(.trailing, 1)
+                            self.row(forPosition: position)
+                                .contextMenu {
+                                    Button(action: { self.editOverlayParams = .shownEditing(position) }) {
+                                        Text("Edit position")
+                                        Image(systemName: "pencil")
+                                    }
+                                    Button(action: { self.viewModel.removePosition(position) }) {
+                                        Text("Delete position")
+                                        Image(systemName: "trash")
+                                    }
                                 }
-
-                                Text(self.viewModel.formatNumber(value: position.amountWithDiscount))
-                            }
-                            .frame(width: self.columnWidth)
-
-                            Text(position.buyer.formatted)
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.white)
-                                .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
-                                .background(
-                                    Capsule(style: .continuous)
-                                        .foregroundColor(self.viewModel.colorFor(position.buyer))
-                                )
-                                .frame(width: self.columnWidth)
-
-                            Text(position.owner.formatted)
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.white)
-                                .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
-                                .background(
-                                    Capsule(style: .continuous)
-                                        .foregroundColor(self.viewModel.colorFor(position.owner))
-                                )
-                                .frame(width: self.columnWidth)
                         }
-                        .offset(x: -24, y: 0)
-                        .contextMenu {
-                            Button(action: { self.editOverlayParams = .shownEditing(position) }) {
-                                Text("Edit position")
-                                Image(systemName: "pencil")
-                            }
-                            Button(action: { self.viewModel.removePosition(position) }) {
-                                Text("Delete position")
-                                Image(systemName: "trash")
+                        .onDelete {
+                            guard let index = $0.first else { return }
+
+                            withAnimation {
+                                self.viewModel.removePosition(at: index)
                             }
                         }
                     }
-                    .onDelete {
-                        guard let index = $0.first else { return }
-
-                        withAnimation {
-                            self.viewModel.removePosition(at: index)
-                        }
+                }
+                .navigationBarTitle(Text(""), displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button(action: { self.presentingOptionsMenu = true }) {
+                        Image(systemName: "ellipsis")
+                            .frame(width: 32, height: 32)
+                            .rotationEffect(.degrees(90))
                     }
-                }
-            }
-            .navigationBarTitle(Text(""), displayMode: .inline)
-            .navigationBarItems(
-                leading: Button(action: { self.presentingOptionsMenu = true }) {
-                    Image(systemName: "ellipsis")
-                        .frame(width: 32, height: 32)
-                        .rotationEffect(.degrees(90))
-                }
-                .disabled(viewModel.ellipsisModeDisabled),
-                trailing: Button(action: { self.editOverlayParams = .shownAdding() }) {
-                    Image(systemName: "plus")
-                        .frame(width: 32, height: 32)
-                }
-            )
-            .accessibility(identifier: "ReceiptView.receiptPositions")
+                    .disabled(viewModel.ellipsisModeDisabled),
+                    trailing: Button(action: { self.editOverlayParams = .shownAdding() }) {
+                        Image(systemName: "plus")
+                            .frame(width: 32, height: 32)
+                    }
+                )
+                .accessibility(identifier: "ReceiptView.receiptPositions")
         }
         .sheet(isPresented: $editOverlayParams.show) {
             ZStack {
@@ -103,6 +71,44 @@ struct ReceiptView: View {
                 .cancel()
             ])
         }
+    }
+
+    private func row(forPosition position: ReceiptPosition) -> some View {
+        HStack {
+            HStack(spacing: 4) {
+                if position.hasDiscount {
+                    DiscountSign()
+                        .font(.system(size: 12))
+                }
+
+                Text(self.viewModel.formatNumber(value: position.amountWithDiscount))
+                    .font(.system(size: 22))
+                    .bold()
+            }
+
+            Spacer()
+
+            personsCapsule(name: position.buyer.formatted, color: viewModel.colorFor(position.buyer))
+
+            Text("|")
+                .foregroundColor(.secondary)
+                .padding(.horizontal, -4)
+
+            personsCapsule(name: position.owner.formatted, color: viewModel.colorFor(position.owner))
+        }
+        .padding(.horizontal, 4)
+    }
+
+    private func personsCapsule(name: String, color: Color) -> some View {
+        Text(name)
+            .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
+            .background(
+                Capsule(style: .continuous)
+                    .foregroundColor(color)
+
+            )
+            .lineLimit(1)
+            .foregroundColor(.white)
     }
 
     private func createEditOverlayView() -> some View {
