@@ -1,26 +1,24 @@
 import SwiftUI
 
 struct ReceiptHeaderView: View {
-    private let columnWidth: CGFloat
-
-    init(_ columnWidth: CGFloat) {
-        self.columnWidth = columnWidth
-    }
-
     var body: some View {
         HStack {
-            Text("Amount")
+            Text("Value")
                 .fontWeight(.bold)
-                .frame(width: columnWidth)
+
+            Spacer()
 
             Text("Buyer")
                 .fontWeight(.bold)
-                .frame(width: columnWidth)
+
+            Text("|")
+                .fontWeight(.light)
 
             Text("Owner")
                 .fontWeight(.bold)
-                .frame(width: columnWidth)
         }
+        .font(.system(size: 14))
+        .padding(.horizontal, 4)
     }
 }
 

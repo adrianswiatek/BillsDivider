@@ -36,10 +36,8 @@ struct DiscountPopoverView: View {
 
     private var headerView: some View {
         HStack {
-            Text("%")
+            DiscountSign()
                 .font(.system(size: 14))
-                .foregroundColor(.red)
-                .bold()
 
             Text("Discount")
                 .bold()
