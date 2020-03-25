@@ -59,16 +59,16 @@ public final class DiscountPopoverViewModel: ObservableObject {
     private func bind() {
         valuePublisher
             .map { $0 != nil && $0! > 0 }
-            .assign(to: \.isValid, on: self)
+            .sink { [weak self] in self?.isValid = $0 }
             .store(in: &subscriptions)
 
         valuePublisher
-            .assign(to: \.value, on: self)
+            .sink { [weak self] in self?.value = $0 }
             .store(in: &subscriptions)
 
         $text
             .map(toValidationMessage)
-            .assign(to: \.validationMessage, on: self)
+            .sink { [weak self] in self?.validationMessage = $0 }
             .store(in: &subscriptions)
     }
 
