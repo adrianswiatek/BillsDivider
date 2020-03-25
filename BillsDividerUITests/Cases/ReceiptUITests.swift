@@ -74,7 +74,6 @@ class ReceiptUITests: XCTestCase {
             .tapPriceTextField()
             .typeIntoPriceTextField("1")
             .tapConfirmButton()
-            .tapPriceTextField()
             .typeIntoPriceTextField("2")
             .tapConfirmButton()
             .tapCloseButton()
@@ -110,5 +109,22 @@ class ReceiptUITests: XCTestCase {
             .tapConfirmButton()
 
         XCTAssertEqual(receiptPage.amountFromCell(atIndex: 0), "10.00")
+    }
+
+    func testWhenDiscountAddedTotalValueIsDecreased() {
+        let receiptPage = ReceiptPage(app)
+
+        receiptPage
+            .tapPlusButton()
+            .tapPriceTextField()
+            .typeIntoPriceTextField("2.00")
+            .tapAddDiscountButton()
+            .tapDiscountTextField()
+            .typeIntoDiscountTextField("1.00")
+            .tapOkButton()
+            .tapConfirmButton()
+            .tapCloseButton()
+
+        XCTAssertEqual(receiptPage.amountFromCell(atIndex: 0), "1.00")
     }
 }

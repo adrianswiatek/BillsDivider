@@ -21,7 +21,19 @@ class EditOverlayPage: Page {
     }
 
     private var priceTextField: XCUIElement {
-        app.textFields.element
+        app.textFields["EditOverlayView.priceTextField"]
+    }
+
+    private var addDiscountButton: XCUIElement {
+        app.buttons["EditOverlayView.addDiscountButton"]
+    }
+
+    private var removeDiscountButton: XCUIElement {
+        app.buttons["EditOverlayView.removeDiscountButton"]
+    }
+
+    private var discountStaticText: XCUIElement {
+        app.staticTexts["EditOverlayView.discountStaticText"]
     }
 
     private var buyerSegmentedControl: XCUIElement {
@@ -48,6 +60,10 @@ class EditOverlayPage: Page {
         }
     }
 
+    var discountText: String {
+        discountStaticText.label
+    }
+
     @discardableResult func tapConfirmButton() -> EditOverlayPage {
         confirmButton.tap()
         return self
@@ -70,6 +86,16 @@ class EditOverlayPage: Page {
 
     @discardableResult func deletePriceTextFieldCharacter(count: Int = 1) -> EditOverlayPage {
         priceTextField.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: count))
+        return self
+    }
+
+    @discardableResult func tapAddDiscountButton() -> DiscountPopoverPage {
+        addDiscountButton.tap()
+        return DiscountPopoverPage(app)
+    }
+
+    @discardableResult func tapRemoveDiscountButton() -> EditOverlayPage {
+        removeDiscountButton.tap()
         return self
     }
 

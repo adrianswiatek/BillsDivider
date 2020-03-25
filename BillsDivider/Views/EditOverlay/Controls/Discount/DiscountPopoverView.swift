@@ -55,6 +55,7 @@ struct DiscountPopoverView: View {
                     .frame(maxWidth: .infinity, maxHeight: 44)
             }
             .padding(.trailing, -4)
+            .accessibility(identifier: "DiscountPopover.discardButton")
 
             Button(action: { self.viewModel.confirm() }) {
                 Text("OK")
@@ -63,6 +64,7 @@ struct DiscountPopoverView: View {
             }
             .disabled(!viewModel.isValid)
             .padding(.leading, -4)
+            .accessibility(identifier: "DiscountPopover.okButton")
         }
         .background(Color("SettingsPeopleCellBackground"))
     }

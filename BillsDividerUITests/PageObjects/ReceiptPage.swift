@@ -84,7 +84,7 @@ class ReceiptPage: Page {
     }
 
     func amountFromCell(atIndex index: Int) -> String {
-        table.cells.element(boundBy: index).staticTexts.element(boundBy: 0).label
+        table.cells.element(boundBy: index).staticTexts["ReceiptView.ValueStaticText"].label
     }
 
     func buyerLabelFromCell(atIndex index: Int) -> String {
@@ -92,6 +92,6 @@ class ReceiptPage: Page {
     }
 
     func ownerLabelFromCell(atIndex index: Int) -> String {
-        table.cells.element(boundBy: index).staticTexts.element(boundBy: 2).label
+        table.cells.element(boundBy: index).staticTexts.element(boundBy: 3).label
     }
 }

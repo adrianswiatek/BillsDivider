@@ -24,6 +24,7 @@ struct PriceSectionView: View {
                     .keyboardType(.decimalPad)
                     .padding(.horizontal)
                     .foregroundColor(viewModel.isValid ? .primary : .secondary)
+                    .accessibility(identifier: "EditOverlayView.priceTextField")
             }
             .padding(.vertical, 3)
             .overlay(

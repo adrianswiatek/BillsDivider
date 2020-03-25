@@ -84,6 +84,7 @@ struct ReceiptView: View {
                 Text(self.viewModel.formatNumber(value: position.amountWithDiscount))
                     .font(.system(size: 22))
                     .bold()
+                    .accessibility(identifier: "ReceiptView.ValueStaticText")
             }
 
             Spacer()

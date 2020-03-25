@@ -28,6 +28,7 @@ struct DiscountSectionView: View {
                     Image(systemName: "xmark.circle.fill")
                 }
                 .padding(.horizontal)
+                .accessibility(identifier: "EditOverlayView.removeDiscountButton")
 
                 Spacer()
                 Text("- \(viewModel.text)")
@@ -35,6 +36,7 @@ struct DiscountSectionView: View {
                     .bold()
                     .opacity(0.65)
                     .padding(.trailing)
+                    .accessibility(identifier: "EditOverlayView.discountStaticText")
             }
             .padding(.trailing)
         }
@@ -50,6 +52,7 @@ struct DiscountSectionView: View {
             .padding(.trailing, 24)
             .padding(.vertical, 12)
         }
+        .accessibility(identifier: "EditOverlayView.addDiscountButton")
     }
 }
 

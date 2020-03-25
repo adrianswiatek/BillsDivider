@@ -30,6 +30,7 @@ struct DiscountTextFieldView: View {
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
                     .foregroundColor(viewModel.isValid ? .primary : .secondary)
+                    .accessibility(identifier: "DiscountPopover.discountTextField")
             }
             .font(.system(size: 42, weight: .medium, design: .rounded))
         }

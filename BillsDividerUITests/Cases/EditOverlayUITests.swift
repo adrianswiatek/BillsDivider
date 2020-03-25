@@ -29,4 +29,18 @@ class EditOverlayUITests: XCTestCase {
         XCTAssertEqual(editOverlayPage.selectedIndexOfBuyerSegmentedControl, 1)
         XCTAssertEqual(editOverlayPage.selectedIndexOfOwnerSegmentedControl, 0)
     }
+
+    func testCanAddAndRemoveDiscount() {
+        let editOverlayPage = ReceiptPage(app)
+            .tapPlusButton()
+            .tapAddDiscountButton()
+            .tapDiscountTextField()
+            .typeIntoDiscountTextField("1")
+            .tapOkButton()
+
+        XCTAssertEqual(editOverlayPage.discountText, "- 1.00")
+
+        editOverlayPage
+            .tapRemoveDiscountButton()
+    }
 }
