@@ -1,10 +1,11 @@
+import BillsDivider_Model
 import BillsDivider_ViewModel
 import SwiftUI
 
 struct BuyerSectionView: View {
-    @ObservedObject private var viewModel: EditOverlayViewModel
+    @ObservedObject private var viewModel: BuyerViewModel
 
-    init(_ viewModel: EditOverlayViewModel) {
+    init(_ viewModel: BuyerViewModel) {
         self.viewModel = viewModel
     }
 

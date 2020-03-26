@@ -2,9 +2,9 @@ import BillsDivider_ViewModel
 import SwiftUI
 
 struct OwnerSectionView: View {
-    @ObservedObject private var viewModel: EditOverlayViewModel
+    @ObservedObject var viewModel: OwnerViewModel
 
-    init(_ viewModel: EditOverlayViewModel) {
+    init(_ viewModel: OwnerViewModel) {
         self.viewModel = viewModel
     }
 

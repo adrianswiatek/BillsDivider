@@ -53,14 +53,20 @@ extension PreviewFactory {
         let viewModelFactory: EditOverlayViewModelFactory =
             dependencyContainer.resolve(EditOverlayViewModelFactory.self)
 
-        return BuyerSectionView(viewModelFactory.create(with: .constant(.shownAdding())))
+        let viewModel: EditOverlayViewModel =
+            viewModelFactory.create(with: .constant(.shownAdding()))
+
+        return BuyerSectionView(viewModel.buyerViewModel)
     }
 
     var ownerSectionView: some View {
         let viewModelFactory: EditOverlayViewModelFactory =
             dependencyContainer.resolve(EditOverlayViewModelFactory.self)
 
-        return OwnerSectionView(viewModelFactory.create(with: .constant(.shownAdding())))
+        let viewModel: EditOverlayViewModel =
+            viewModelFactory.create(with: .constant(.shownAdding()))
+
+        return OwnerSectionView(viewModel.ownerViewModel)
     }
 
     var summaryView: some View {

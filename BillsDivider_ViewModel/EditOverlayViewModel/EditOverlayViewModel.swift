@@ -8,16 +8,11 @@ public final class EditOverlayViewModel: ObservableObject {
     @Published public var discountViewModel: DiscountViewModel
     @Published public var discountPopoverViewModel: DiscountPopoverViewModel
 
-    @Published public var buyer: Buyer
-    @Published public var buyers: [Buyer]
-
-    @Published public var owner: Owner
-    @Published public var owners: [Owner]
+    @Published public var buyerViewModel: BuyerViewModel
+    @Published public var ownerViewModel: OwnerViewModel
 
     @Published public var canConfirm: Bool
     @Published public var confirmValidationMessage: String
-
-    @Published public var keyboardHeight: CGFloat
 
     @Binding private var presenting: Bool
 
@@ -27,9 +22,6 @@ public final class EditOverlayViewModel: ObservableObject {
     public var pageName: String {
         editOverlayState.pageName
     }
-
-    internal var getInitialBuyer: (() -> Buyer)?
-    internal var getInitialOwner: (() -> Owner)?
 
     internal var addAnother: Bool
 
@@ -43,7 +35,8 @@ public final class EditOverlayViewModel: ObservableObject {
         discountViewModel: DiscountViewModel,
         discountPopoverViewModel: DiscountPopoverViewModel,
         editOverlayState: EditOverlayState,
-        peopleService: PeopleService,
+        buyerViewModel: BuyerViewModel,
+        ownerViewModel: OwnerViewModel,
         decimalParser: DecimalParser
     ) {
         self._presenting = presenting
@@ -53,11 +46,8 @@ public final class EditOverlayViewModel: ObservableObject {
         self.discountPopoverViewModel = discountPopoverViewModel
         self.decimalParser = decimalParser
 
-        self.buyer = .person(.empty)
-        self.owner = .all
-
-        self.buyers = []
-        self.owners = []
+        self.buyerViewModel = buyerViewModel
+        self.ownerViewModel = ownerViewModel
 
         self.addAnother = false
         self.canConfirm = false
@@ -66,16 +56,12 @@ public final class EditOverlayViewModel: ObservableObject {
         self.positionAdded = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
         self.positionEdited = Empty<ReceiptPosition, Never>().eraseToAnyPublisher()
 
-        self.keyboardHeight = 0
-
         self.subscriptions = []
 
         self.editOverlayState.set(viewModel: self)
 
-        self.subscribe(to: peopleService.peopleDidUpdate)
         self.subscribe(to: discountViewModel.$presentingPopover.eraseToAnyPublisher())
         self.subscribeToPrices()
-        self.subscribeToKeyboard()
     }
 
     public func confirmDidTap() {
@@ -91,24 +77,9 @@ public final class EditOverlayViewModel: ObservableObject {
         presenting = false
     }
 
-    private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
-        peopleDidUpdate
-            .sink { [weak self] in
-                guard let self = self else { return }
-                precondition($0.count >= 2, "There must be at least 2 people.")
-
-                self.buyers = $0.map { Buyer.person($0) }
-                self.owners = $0.map { Owner.person($0) } + [.all]
-
-                if let initialBuyer = self.getInitialBuyer?() {
-                    self.buyer = initialBuyer
-                }
-
-                if let initialOwner = self.getInitialOwner?() {
-                    self.owner = initialOwner
-                }
-            }
-            .store(in: &subscriptions)
+    internal func set(buyer: Buyer, owner: Owner) {
+        buyerViewModel.buyer = buyer
+        ownerViewModel.owner = owner
     }
 
     private func subscribe(to presentingDiscountPopover: AnyPublisher<Bool, Never>) {
@@ -141,20 +112,11 @@ public final class EditOverlayViewModel: ObservableObject {
             return nil
         }
 
-        let discount = decimalParser.tryParse(self.discountViewModel.text)
-        return ReceiptPosition(amount: price, discount: discount, buyer: buyer, owner: owner)
-    }
-
-    private func subscribeToKeyboard() {
-        NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)
-            .sink { [weak self] in
-                let keyboardRect = $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
-                self?.keyboardHeight = keyboardRect?.height ?? 0
-            }
-            .store(in: &subscriptions)
-
-        NotificationCenter.default.publisher(for: UIResponder.keyboardDidHideNotification)
-            .sink { [weak self] _ in self?.keyboardHeight = 0 }
-            .store(in: &subscriptions)
+        return ReceiptPosition(
+            amount: price,
+            discount: decimalParser.tryParse(discountViewModel.text),
+            buyer: buyerViewModel.buyer,
+            owner: ownerViewModel.owner
+        )
     }
 }

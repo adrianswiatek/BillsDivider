@@ -26,7 +26,8 @@ internal final class EditOverlayViewModelFactory {
             discountViewModel: discountViewModel(popoverViewModel),
             discountPopoverViewModel: popoverViewModel,
             editOverlayState: editOverlayState(presentingParams.wrappedValue),
-            peopleService: peopleService,
+            buyerViewModel: buyerViewModel,
+            ownerViewModel: ownerViewModel,
             decimalParser: decimalParser
         )
     }
@@ -47,5 +48,13 @@ internal final class EditOverlayViewModelFactory {
         params.mode == .adding
             ? AddingModeState(receiptPosition: params.position)
             : EditingModeState(receiptPosition: params.position, numberFormatter: numberFormatter)
+    }
+
+    private var buyerViewModel: BuyerViewModel {
+        BuyerViewModel(peopleService: peopleService)
+    }
+
+    private var ownerViewModel: OwnerViewModel {
+        OwnerViewModel(peopleService: peopleService)
     }
 }

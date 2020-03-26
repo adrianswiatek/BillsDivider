@@ -36,8 +36,8 @@ struct EditOverlayView: View {
                 .padding(.top, 16)
 
             DiscountSectionView(viewModel.discountViewModel)
-            BuyerSectionView(viewModel)
-            OwnerSectionView(viewModel)
+            BuyerSectionView(viewModel.buyerViewModel)
+            OwnerSectionView(viewModel.ownerViewModel)
 
             Separator()
                 .padding(.trailing, 16)
