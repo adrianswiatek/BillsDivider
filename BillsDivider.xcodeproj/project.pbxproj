@@ -109,6 +109,7 @@
 		A7E100B0241598A5004FAFE0 /* DiscountPopoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E100AF241598A5004FAFE0 /* DiscountPopoverViewModel.swift */; };
 		A7E2D8EE242D4FDE005F0EBB /* BuyerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2D8ED242D4FDE005F0EBB /* BuyerViewModel.swift */; };
 		A7E2D8F0242D4FE5005F0EBB /* OwnerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2D8EF242D4FE5005F0EBB /* OwnerViewModel.swift */; };
+		A7E2D8F2242D5D4F005F0EBB /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E2D8F1242D5D4F005F0EBB /* ConfirmButton.swift */; };
 		A7E4096624170D820001CD55 /* PriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E4096524170D820001CD55 /* PriceViewModel.swift */; };
 		A7E40968241718BC0001CD55 /* DiscountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E40967241718BC0001CD55 /* DiscountViewModel.swift */; };
 		A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */; };
@@ -287,6 +288,7 @@
 		A7E100AF241598A5004FAFE0 /* DiscountPopoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountPopoverViewModel.swift; sourceTree = "<group>"; };
 		A7E2D8ED242D4FDE005F0EBB /* BuyerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerViewModel.swift; sourceTree = "<group>"; };
 		A7E2D8EF242D4FE5005F0EBB /* OwnerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerViewModel.swift; sourceTree = "<group>"; };
+		A7E2D8F1242D5D4F005F0EBB /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
 		A7E4096524170D820001CD55 /* PriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewModel.swift; sourceTree = "<group>"; };
 		A7E40967241718BC0001CD55 /* DiscountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountViewModel.swift; sourceTree = "<group>"; };
 		A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFactory.swift; sourceTree = "<group>"; };
@@ -777,6 +779,7 @@
 			isa = PBXGroup;
 			children = (
 				A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */,
+				A7E2D8F1242D5D4F005F0EBB /* ConfirmButton.swift */,
 				A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */,
 				A7E100AB241594A7004FAFE0 /* SectionLabel.swift */,
 			);
@@ -1220,6 +1223,7 @@
 				A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */,
 				A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */,
 				A7C8E14324296EAA00AA616F /* DiscountSign.swift in Sources */,
+				A7E2D8F2242D5D4F005F0EBB /* ConfirmButton.swift in Sources */,
 				A77D54CB23819255003D7E9D /* PriceSectionView.swift in Sources */,
 				A7D0B39C240F17A800821E93 /* DiscountTextFieldView.swift in Sources */,
 				A736A1982369DAFF0096C2E1 /* ReceiptHeaderView.swift in Sources */,
