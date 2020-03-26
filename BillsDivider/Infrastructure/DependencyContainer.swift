@@ -86,6 +86,20 @@ class DependencyContainer {
                 viewModelFactory: resolve(EditOverlayViewModelFactory.self)
             )
         )
+        register(
+            ReductionOverlayViewModelFactory.self,
+            as: ReductionOverlayViewModelFactory(
+                peopleService: resolve(PeopleService.self),
+                decimalParser: resolve(DecimalParser.self),
+                numberFormatter: resolve(NumberFormatter.self)
+            )
+        )
+        register(
+            ReductionOverlayViewFactory.self,
+            as: ReductionOverlayViewFactory(
+                viewModelFactory: resolve(ReductionOverlayViewModelFactory.self)
+            )
+        )
     }
 
     private func registerViewModels() {
@@ -140,7 +154,11 @@ class DependencyContainer {
         register(
             ReceiptView.self,
             as: AnyView(
-                ReceiptView(resolve(ReceiptViewModel.self), resolve(EditOverlayViewFactory.self))
+                ReceiptView(
+                    resolve(ReceiptViewModel.self),
+                    resolve(EditOverlayViewFactory.self),
+                    resolve(ReductionOverlayViewFactory.self)
+                )
             )
         )
         register(

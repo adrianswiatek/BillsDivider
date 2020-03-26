@@ -7,13 +7,19 @@ struct ReceiptView: View {
     
     @State private var editOverlayParams: EditOverlayViewParams = .hidden
     @State private var presentingOptionsMenu: Bool = false
+    @State private var presentingReductionOverlay: Bool = false
     
     private let editOverlayViewFactory: EditOverlayViewFactory
-    private let columnWidth: CGFloat = UIScreen.main.bounds.width / 3
+    private let reductionOverlayViewFactory: ReductionOverlayViewFactory
     
-    init(_ viewModel: ReceiptViewModel, _ editOverlayViewFactory: EditOverlayViewFactory) {
+    init(
+        _ viewModel: ReceiptViewModel,
+        _ editOverlayViewFactory: EditOverlayViewFactory,
+        _ reductionOverlayViewFactory: ReductionOverlayViewFactory
+    ) {
         self.viewModel = viewModel
         self.editOverlayViewFactory = editOverlayViewFactory
+        self.reductionOverlayViewFactory = reductionOverlayViewFactory
     }
     
     var body: some View {
@@ -50,10 +56,14 @@ struct ReceiptView: View {
                         .rotationEffect(.degrees(90))
                 }
                 .disabled(viewModel.ellipsisModeDisabled),
-                trailing: Button(action: { self.editOverlayParams = .shownAdding() }) {
+                trailing: Button(action: { self.presentingReductionOverlay = true }) {
                     Image(systemName: "plus")
                         .frame(width: 32, height: 32)
                 }
+//                trailing: Button(action: { self.editOverlayParams = .shownAdding() }) {
+//                    Image(systemName: "plus")
+//                        .frame(width: 32, height: 32)
+//                }
             )
             .accessibility(identifier: "ReceiptView.receiptPositions")
         }
@@ -64,6 +74,9 @@ struct ReceiptView: View {
                     .opacity(self.viewModel.itemAdded ? 1 : 0)
                     .animation(.easeInOut(duration: 0.3))
             }
+        }
+        .sheet(isPresented: $presentingReductionOverlay) {
+            self.createReductionOverlayView()
         }
         .actionSheet(isPresented: $presentingOptionsMenu) {
             ActionSheet(title: Text("Actions"), buttons: [
@@ -122,6 +135,12 @@ struct ReceiptView: View {
         }
     }
 
+    private func createReductionOverlayView() -> some View {
+        reductionOverlayViewFactory.create(presenting: $presentingReductionOverlay) {
+            viewModel.subscribe(reducingPublisher: $0.reductionAdded)
+        }
+    }
+
     private func itemAddedView() -> some View {
         Text("Item added")
             .foregroundColor(.white)
@@ -130,7 +149,7 @@ struct ReceiptView: View {
             .background(
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.init(.init(white: 0.5, alpha: 1)))
-        )
+            )
             .offset(.init(width: 0, height: -UIScreen.main.bounds.height / 3))
     }
 }

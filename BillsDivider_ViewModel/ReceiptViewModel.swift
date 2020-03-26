@@ -16,7 +16,8 @@ public class ReceiptViewModel: ObservableObject {
 
     private var people: People
 
-    private var externalSubscriptions: [AnyCancellable]
+    private var positionsSubscriptions: [AnyCancellable]
+    private var reductionsSubscriptions: [AnyCancellable]
     private var internalSubscriptions: [AnyCancellable]
 
     public init(
@@ -29,7 +30,8 @@ public class ReceiptViewModel: ObservableObject {
         self.itemAdded = false
         self.people = .empty
         self.positions = []
-        self.externalSubscriptions = []
+        self.positionsSubscriptions = []
+        self.reductionsSubscriptions = []
         self.internalSubscriptions = []
 
         self.subscribe(to: receiptPositionService.positionsDidUpdate)
@@ -41,20 +43,31 @@ public class ReceiptViewModel: ObservableObject {
         addingPublisher: AnyPublisher<ReceiptPosition, Never>,
         editingPublisher: AnyPublisher<ReceiptPosition, Never>
     ) {
-        externalSubscriptions.removeAll()
+        positionsSubscriptions.removeAll()
 
         addingPublisher
             .sink { [weak self] in
                 self?.receiptPositionService.insert($0)
                 self?.itemAdded = true
             }
-            .store(in: &externalSubscriptions)
+            .store(in: &positionsSubscriptions)
 
         editingPublisher
             .sink { [weak self] in
                 self?.receiptPositionService.update($0)
             }
-            .store(in: &externalSubscriptions)
+            .store(in: &positionsSubscriptions)
+    }
+
+    public func subscribe(reducingPublisher: AnyPublisher<ReceiptPosition, Never>) {
+        reductionsSubscriptions.removeAll()
+
+        reducingPublisher
+            .sink { [weak self] in
+                self?.receiptPositionService.insert($0)
+                self?.itemAdded = true
+            }
+            .store(in: &positionsSubscriptions)
     }
 
     public func removePosition(at index: Int) {

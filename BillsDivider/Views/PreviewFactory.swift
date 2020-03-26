@@ -40,8 +40,8 @@ extension PreviewFactory {
     }
 
     var discountSectionView: some View {
-        let viewModel: DiscountViewModel = dependencyContainer.resolve(DiscountViewModel.self)
-        return DiscountSectionView(viewModel)
+        let viewModel: EditOverlayViewModel = dependencyContainer.resolve(EditOverlayViewModel.self)
+        return DiscountSectionView(viewModel.discountViewModel)
     }
 
     var discountTextFieldView: some View {
@@ -67,6 +67,11 @@ extension PreviewFactory {
             viewModelFactory.create(with: .constant(.shownAdding()))
 
         return OwnerSectionView(viewModel.ownerViewModel)
+    }
+
+    var reductionSectionView: some View {
+        let viewModel: PriceViewModel = dependencyContainer.resolve(PriceViewModel.self)
+        return ReductionSectionView(viewModel)
     }
 
     var summaryView: some View {

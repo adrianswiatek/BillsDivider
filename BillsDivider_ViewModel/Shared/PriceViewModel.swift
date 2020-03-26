@@ -21,7 +21,7 @@ public final class PriceViewModel: ObservableObject {
 
         self.text = ""
         self.isValid = false
-        self.validationMessage = ""
+        self.validationMessage = " "
 
         self.placeholder = numberFormatter.format(value: 0)
         self.subscriptions = []
@@ -37,7 +37,7 @@ public final class PriceViewModel: ObservableObject {
 
         $text
             .map { [weak self] in $0.isEmpty || self?.decimalParser.tryParse($0) != nil }
-            .map { $0 ? "" : "Invalid value" }
+            .map { $0 ? " " : "Invalid value" }
             .sink { [weak self] in self?.validationMessage = $0 }
             .store(in: &subscriptions)
     }
