@@ -16,7 +16,6 @@ struct TabsView: View {
                 }
             }
         }
-        .edgesIgnoringSafeArea(.top)
     }
 }
 
