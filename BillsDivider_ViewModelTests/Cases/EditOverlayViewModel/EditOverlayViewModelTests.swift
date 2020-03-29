@@ -33,7 +33,8 @@ class EditOverlayViewModelTests: XCTestCase {
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
             editOverlayState: EditOverlayStateDummy(),
-            peopleService: peopleService,
+            buyerViewModel: BuyerViewModel(peopleService: peopleService),
+            ownerViewModel: OwnerViewModel(peopleService: peopleService),
             decimalParser: decimalParser
         )
         subscriptions = []
@@ -63,7 +64,8 @@ class EditOverlayViewModelTests: XCTestCase {
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
             editOverlayState: EditOverlayStateDummy(),
-            peopleService: peopleService,
+            buyerViewModel: BuyerViewModel(peopleService: peopleService),
+            ownerViewModel: OwnerViewModel(peopleService: peopleService),
             decimalParser: decimalParser
         )
         sut.dismiss()
@@ -78,7 +80,8 @@ class EditOverlayViewModelTests: XCTestCase {
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
             editOverlayState: EditOverlayStateDummy(),
-            peopleService: peopleService,
+            buyerViewModel: BuyerViewModel(peopleService: peopleService),
+            ownerViewModel: OwnerViewModel(peopleService: peopleService),
             decimalParser: decimalParser
         )
         sut.priceViewModel.text = "123"
@@ -99,13 +102,14 @@ class EditOverlayViewModelTests: XCTestCase {
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
             editOverlayState: AddingModeState(receiptPosition: .empty),
-            peopleService: peopleService,
+            buyerViewModel: BuyerViewModel(peopleService: peopleService),
+            ownerViewModel: OwnerViewModel(peopleService: peopleService),
             decimalParser: decimalParser
         )
         sut.positionAdded.sink { actualPosition = $0 }.store(in: &subscriptions)
         sut.priceViewModel.text = "123.00"
-        sut.buyer = .person(firstPerson)
-        sut.owner = .person(secondPerson)
+        sut.buyerViewModel.buyer = .person(firstPerson)
+        sut.ownerViewModel.owner = .person(secondPerson)
 
         sut.confirmDidTap()
 

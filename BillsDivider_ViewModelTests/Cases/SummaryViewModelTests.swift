@@ -66,6 +66,32 @@ class SummaryViewModelTests: XCTestCase {
         XCTAssertEqual(sut.formattedDirection, "equal")
     }
 
+    func testFormattedDirection_whenDebtDivisionResultWithZeroAmount_returnsEqual() {
+        let expectation = self.expectation(description: "Position has been sent")
+
+        receiptPositionService.positionsDidUpdate
+            .dropFirst()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        receiptPositionService.insert(.init(amount: 0, buyer: .person(people[0]), owner: .person(people[1])))
+
+        wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(sut.formattedDirection, "equal")
+    }
+
+    func testFormattedDirection_whenDebtDivisionResultWithNegativeAmount_returnsEqual() {
+        let expectation = self.expectation(description: "Position has been sent")
+
+        receiptPositionService.positionsDidUpdate
+            .dropFirst()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        receiptPositionService.insert(.init(amount: -1, buyer: .person(people[0]), owner: .person(people[1])))
+
+        wait(for: [expectation], timeout: 1)
+        XCTAssertEqual(sut.formattedDirection, "equal")
+    }
+
     func testFormattedDirection_whenDebtDivisionResultAndLenderAsLeftSidedBuyer_returnsArrowLeft() {
         let expectation = self.expectation(description: "Position has been sent")
 
