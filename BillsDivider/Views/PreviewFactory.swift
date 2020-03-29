@@ -26,7 +26,7 @@ extension PreviewFactory {
 
     var editOverlayView: some View {
         let viewFactory: EditOverlayViewFactory = dependencyContainer.resolve(EditOverlayViewFactory.self)
-        return viewFactory.create(presentingParams: .constant(.shownAdding()), configure: { _ in })
+        return viewFactory.create(presenting: .constant(true), parameters: .adding, configure: { _ in })
     }
 
     var priceSectionView: some View {
@@ -52,20 +52,14 @@ extension PreviewFactory {
     var buyerSectionView: some View {
         let viewModelFactory: EditOverlayViewModelFactory =
             dependencyContainer.resolve(EditOverlayViewModelFactory.self)
-
-        let viewModel: EditOverlayViewModel =
-            viewModelFactory.create(with: .constant(.shownAdding()))
-
+        let viewModel: EditOverlayViewModel = viewModelFactory.create(.constant(true), .adding)
         return BuyerSectionView(viewModel.buyerViewModel)
     }
 
     var ownerSectionView: some View {
         let viewModelFactory: EditOverlayViewModelFactory =
             dependencyContainer.resolve(EditOverlayViewModelFactory.self)
-
-        let viewModel: EditOverlayViewModel =
-            viewModelFactory.create(with: .constant(.shownAdding()))
-
+        let viewModel: EditOverlayViewModel = viewModelFactory.create(.constant(true), .adding)
         return OwnerSectionView(viewModel.ownerViewModel)
     }
 

@@ -1,13 +1,11 @@
 import BillsDivider_Model
 
 struct EditOverlayViewParams {
-    var show: Bool
     let mode: EditOverlayViewMode
 
     private(set) var position: ReceiptPosition
 
-    private init(show: Bool, mode: EditOverlayViewMode, position: ReceiptPosition?) {
-        self.show = show
+    private init(mode: EditOverlayViewMode, position: ReceiptPosition?) {
         self.mode = mode
         self.position = position ?? .empty
     }
@@ -17,16 +15,12 @@ struct EditOverlayViewParams {
         self.position = position ?? .empty
     }
 
-    static var hidden: EditOverlayViewParams {
-        .init(show: false, mode: .adding, position: nil)
+    static var adding: EditOverlayViewParams {
+        .init(mode: .adding, position: nil)
     }
 
-    static func shownAdding() -> EditOverlayViewParams {
-        .init(show: true, mode: .adding, position: nil)
-    }
-
-    static func shownEditing(_ position: ReceiptPosition) -> EditOverlayViewParams {
-        .init(show: true, mode: .editing, position: position)
+    static func editing(withPosition position: ReceiptPosition) -> EditOverlayViewParams {
+        .init(mode: .editing, position: position)
     }
 }
 

@@ -17,15 +17,18 @@ internal final class EditOverlayViewModelFactory {
         self.numberFormatter = numberFormatter
     }
 
-    internal func create(with presentingParams: Binding<EditOverlayViewParams>) -> EditOverlayViewModel {
+    internal func create(
+        _ presenting: Binding<Bool>,
+        _ parameters: EditOverlayViewParams
+    ) -> EditOverlayViewModel {
         let popoverViewModel = discountPopoverViewModel
 
         return EditOverlayViewModel(
-            presenting: presentingParams.show,
+            presenting: presenting,
             priceViewModel: priceViewModel,
             discountViewModel: discountViewModel(popoverViewModel),
             discountPopoverViewModel: popoverViewModel,
-            editOverlayState: editOverlayState(presentingParams.wrappedValue),
+            editOverlayState: editOverlayState(parameters),
             buyerViewModel: buyerViewModel,
             ownerViewModel: ownerViewModel,
             decimalParser: decimalParser
@@ -44,10 +47,10 @@ internal final class EditOverlayViewModelFactory {
         DiscountPopoverViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter)
     }
 
-    private func editOverlayState(_ params: EditOverlayViewParams) -> EditOverlayState {
-        params.mode == .adding
-            ? AddingModeState(receiptPosition: params.position)
-            : EditingModeState(receiptPosition: params.position, numberFormatter: numberFormatter)
+    private func editOverlayState(_ parameters: EditOverlayViewParams) -> EditOverlayState {
+        parameters.mode == .adding
+            ? AddingModeState(receiptPosition: parameters.position)
+            : EditingModeState(receiptPosition: parameters.position, numberFormatter: numberFormatter)
     }
 
     private var buyerViewModel: BuyerViewModel {

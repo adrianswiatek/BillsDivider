@@ -3,15 +3,23 @@ import BillsDivider_ViewModel
 import SwiftUI
 
 struct ReceiptView: View {
+    private enum OverlayViewType {
+        case unset
+        case position(params: EditOverlayViewParams)
+        case reduction
+    }
+
     @ObservedObject private var viewModel: ReceiptViewModel
-    
-    @State private var editOverlayParams: EditOverlayViewParams = .hidden
+
+    @State private var overlayViewType: OverlayViewType = .unset
+    @State private var editOverlayParams: EditOverlayViewParams = .adding
+
+    @State private var presentingOverlay: Bool = false
     @State private var presentingOptionsMenu: Bool = false
-    @State private var presentingReductionOverlay: Bool = false
     
     private let editOverlayViewFactory: EditOverlayViewFactory
     private let reductionOverlayViewFactory: ReductionOverlayViewFactory
-    
+
     init(
         _ viewModel: ReceiptViewModel,
         _ editOverlayViewFactory: EditOverlayViewFactory,
@@ -21,68 +29,76 @@ struct ReceiptView: View {
         self.editOverlayViewFactory = editOverlayViewFactory
         self.reductionOverlayViewFactory = reductionOverlayViewFactory
     }
-    
+
     var body: some View {
         NavigationView {
-            List {
-                Section(header: ReceiptHeaderView()) {
-                    ForEach(viewModel.positions) { position in
-                        self.row(forPosition: position)
-                            .contextMenu {
-                                Button(action: { self.editOverlayParams = .shownEditing(position) }) {
-                                    Text("Edit position")
-                                    Image(systemName: "pencil")
-                                }
-                                Button(action: { self.viewModel.removePosition(position) }) {
-                                    Text("Delete position")
-                                    Image(systemName: "trash")
-                                }
+            ZStack(alignment: .bottomTrailing) {
+                List {
+                    Section(header: ReceiptHeaderView()) {
+                        ForEach(viewModel.positions) { position in
+                            self.row(forPosition: position)
+                                .contextMenu {
+                                    Button(action: { self.editOverlayParams = .editing(withPosition: position) }) {
+                                        Text("Edit position")
+                                        Image(systemName: "pencil")
+                                    }
+                                    Button(action: { self.viewModel.removePosition(position) }) {
+                                        Text("Delete position")
+                                        Image(systemName: "trash")
+                                    }
+                            }
                         }
-                    }
-                    .onDelete {
-                        guard let index = $0.first else { return }
+                        .onDelete {
+                            guard let index = $0.first else { return }
 
-                        withAnimation {
-                            self.viewModel.removePosition(at: index)
+                            withAnimation {
+                                self.viewModel.removePosition(at: index)
+                            }
                         }
                     }
                 }
+                .accessibility(identifier: "ReceiptView.receiptPositions")
+
+                ReceiptActionButtons(
+                    isEllipsisButtonEnabled: !viewModel.ellipsisModeDisabled,
+                    onEllipsisButtonTapped: { self.presentingOptionsMenu = true },
+                    onMinusButtonTapped: {
+                        self.overlayViewType = .reduction
+                        self.presentingOverlay = true
+                    },
+                    onPlusButtonTapped: {
+                        self.overlayViewType = .position(params: .adding)
+                        self.presentingOverlay = true
+                    }
+                )
+                .padding(.init(top: 0, leading: 0, bottom: 20, trailing: 16))
             }
-            .navigationBarTitle(Text(""), displayMode: .inline)
-            .navigationBarItems(
-                leading: Button(action: { self.presentingOptionsMenu = true }) {
-                    Image(systemName: "ellipsis")
-                        .frame(width: 32, height: 32)
-                        .rotationEffect(.degrees(90))
-                }
-                .disabled(viewModel.ellipsisModeDisabled),
-                trailing: Button(action: { self.presentingReductionOverlay = true }) {
-                    Image(systemName: "plus")
-                        .frame(width: 32, height: 32)
-                }
-//                trailing: Button(action: { self.editOverlayParams = .shownAdding() }) {
-//                    Image(systemName: "plus")
-//                        .frame(width: 32, height: 32)
-//                }
-            )
-            .accessibility(identifier: "ReceiptView.receiptPositions")
+            .navigationBarTitle(Text("Receipt"), displayMode: .large)
+            .sheet(isPresented: $presentingOverlay) {
+                self.overlayView
+            }
+            .actionSheet(isPresented: $presentingOptionsMenu) {
+                ActionSheet(title: Text("Actions"), buttons: [
+                    .destructive(Text("Delete all"), action: { self.viewModel.removeAllPositions() }),
+                    .cancel()
+                ])
+            }
         }
-        .sheet(isPresented: $editOverlayParams.show) {
-            ZStack {
-                self.createEditOverlayView()
-                self.itemAddedView()
-                    .opacity(self.viewModel.itemAdded ? 1 : 0)
+    }
+
+    private var overlayView: some View {
+        switch overlayViewType {
+        case .reduction:
+            return AnyView(createReductionOverlayView())
+        case .position:
+            return AnyView(ZStack {
+                createEditOverlayView()
+                itemAddedView()
+                    .opacity(viewModel.itemAdded ? 1 : 0)
                     .animation(.easeInOut(duration: 0.3))
-            }
-        }
-        .sheet(isPresented: $presentingReductionOverlay) {
-            self.createReductionOverlayView()
-        }
-        .actionSheet(isPresented: $presentingOptionsMenu) {
-            ActionSheet(title: Text("Actions"), buttons: [
-                .destructive(Text("Delete all"), action: { self.viewModel.removeAllPositions() }),
-                .cancel()
-            ])
+            })
+        default:
+            preconditionFailure("Unsupported OverlayViewType.")
         }
     }
 
@@ -119,15 +135,24 @@ struct ReceiptView: View {
             .background(
                 Capsule(style: .continuous)
                     .foregroundColor(color)
-
             )
             .lineLimit(1)
             .foregroundColor(.white)
     }
 
+//    private func createEditOverlayView() -> some View {
+//        editOverlayParams.providePosition(viewModel.positions.first)
+//        return editOverlayViewFactory.create(presentingParams: $editOverlayParams) {
+//            viewModel.subscribe(
+//                addingPublisher: $0.positionAdded,
+//                editingPublisher: $0.positionEdited
+//            )
+//        }
+//    }
+
     private func createEditOverlayView() -> some View {
         editOverlayParams.providePosition(viewModel.positions.first)
-        return editOverlayViewFactory.create(presentingParams: $editOverlayParams) {
+        return editOverlayViewFactory.create(presenting: $presentingOverlay, parameters: editOverlayParams) {
             viewModel.subscribe(
                 addingPublisher: $0.positionAdded,
                 editingPublisher: $0.positionEdited
@@ -136,7 +161,7 @@ struct ReceiptView: View {
     }
 
     private func createReductionOverlayView() -> some View {
-        reductionOverlayViewFactory.create(presenting: $presentingReductionOverlay) {
+        reductionOverlayViewFactory.create(presenting: $presentingOverlay) {
             viewModel.subscribe(reducingPublisher: $0.reductionAdded)
         }
     }
