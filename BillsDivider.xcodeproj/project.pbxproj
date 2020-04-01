@@ -101,6 +101,7 @@
 		A7A3336D23B3BD9300DBA26E /* EditOverlayViewParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A3336C23B3BD9300DBA26E /* EditOverlayViewParams.swift */; };
 		A7AC988623B6A01A003D8AE6 /* BuyerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */; };
 		A7AC988823B6A032003D8AE6 /* OwnerSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */; };
+		A7B6D9D5243536A6002F8EB9 /* ReceiptPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B6D9D4243536A6002F8EB9 /* ReceiptPersonView.swift */; };
 		A7B7C50F24313EAD00B4CB1E /* ReceiptActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7C50E24313EAD00B4CB1E /* ReceiptActionButtons.swift */; };
 		A7B7D9FD2411A7DF00625718 /* DecimalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7D9FC2411A7DF00625718 /* DecimalParser.swift */; };
 		A7B9BB4F242C16A9008E6722 /* DiscountPopoverPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B9BB4E242C16A9008E6722 /* DiscountPopoverPage.swift */; };
@@ -283,6 +284,7 @@
 		A7AC988523B6A01A003D8AE6 /* BuyerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerSectionView.swift; sourceTree = "<group>"; };
 		A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerSectionView.swift; sourceTree = "<group>"; };
 		A7AC988923B6D788003D8AE6 /* CoreDataPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleService.swift; sourceTree = "<group>"; };
+		A7B6D9D4243536A6002F8EB9 /* ReceiptPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptPersonView.swift; sourceTree = "<group>"; };
 		A7B7C50E24313EAD00B4CB1E /* ReceiptActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptActionButtons.swift; sourceTree = "<group>"; };
 		A7B7D9FC2411A7DF00625718 /* DecimalParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalParser.swift; sourceTree = "<group>"; };
 		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 				A7B7C50E24313EAD00B4CB1E /* ReceiptActionButtons.swift */,
 				A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */,
 				A7788B4623B3991A0059EB71 /* ReceiptView.swift */,
+				A7B6D9D4243536A6002F8EB9 /* ReceiptPersonView.swift */,
 			);
 			path = Receipt;
 			sourceTree = "<group>";
@@ -1256,6 +1259,7 @@
 				A7FE5D08240893A3001FFFCD /* Separator.swift in Sources */,
 				A7E2D8F5242D5FB9005F0EBB /* ReductionOverlayView.swift in Sources */,
 				A7B7C50F24313EAD00B4CB1E /* ReceiptActionButtons.swift in Sources */,
+				A7B6D9D5243536A6002F8EB9 /* ReceiptPersonView.swift in Sources */,
 				A7E100AC241594A7004FAFE0 /* SectionLabel.swift in Sources */,
 				A7A3336D23B3BD9300DBA26E /* EditOverlayViewParams.swift in Sources */,
 				A736A1A22369EB5D0096C2E1 /* TabsView.swift in Sources */,

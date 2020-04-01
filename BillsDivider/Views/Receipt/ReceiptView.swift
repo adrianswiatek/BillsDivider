@@ -118,37 +118,16 @@ struct ReceiptView: View {
 
             Spacer()
 
-            personsCapsule(name: position.buyer.formatted, color: viewModel.colorFor(position.buyer))
+            ReceiptPersonView(name: position.buyer.formatted, color: viewModel.colorFor(position.buyer))
 
             Text("|")
                 .foregroundColor(.secondary)
                 .padding(.horizontal, -4)
 
-            personsCapsule(name: position.owner.formatted, color: viewModel.colorFor(position.owner))
+            ReceiptPersonView(name: position.owner.formatted, color: viewModel.colorFor(position.owner))
         }
         .padding(.horizontal, 4)
     }
-
-    private func personsCapsule(name: String, color: Color) -> some View {
-        Text(name)
-            .padding(.init(top: 1, leading: 8, bottom: 2, trailing: 8))
-            .background(
-                Capsule(style: .continuous)
-                    .foregroundColor(color)
-            )
-            .lineLimit(1)
-            .foregroundColor(.white)
-    }
-
-//    private func createEditOverlayView() -> some View {
-//        editOverlayParams.providePosition(viewModel.positions.first)
-//        return editOverlayViewFactory.create(presentingParams: $editOverlayParams) {
-//            viewModel.subscribe(
-//                addingPublisher: $0.positionAdded,
-//                editingPublisher: $0.positionEdited
-//            )
-//        }
-//    }
 
     private func createEditOverlayView() -> some View {
         editOverlayParams.providePosition(viewModel.positions.first)
