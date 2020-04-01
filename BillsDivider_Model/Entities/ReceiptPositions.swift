@@ -18,6 +18,10 @@ public struct ReceiptPosition: Identifiable {
         discount != nil
     }
 
+    public var isReduction: Bool {
+        amount < 0
+    }
+
     public static var empty: ReceiptPosition {
         .init(amount: 0, buyer: .person(.empty), owner: .all)
     }

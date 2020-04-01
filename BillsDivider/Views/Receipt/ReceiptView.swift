@@ -5,15 +5,13 @@ import SwiftUI
 struct ReceiptView: View {
     private enum OverlayViewType {
         case unset
-        case position(params: EditOverlayViewParams)
+        case position(_ params: EditOverlayViewParams)
         case reduction
     }
 
     @ObservedObject private var viewModel: ReceiptViewModel
 
     @State private var overlayViewType: OverlayViewType = .unset
-    @State private var editOverlayParams: EditOverlayViewParams = .adding
-
     @State private var presentingOverlay: Bool = false
     @State private var presentingOptionsMenu: Bool = false
     
@@ -38,12 +36,18 @@ struct ReceiptView: View {
                         ForEach(viewModel.positions) { position in
                             self.row(forPosition: position)
                                 .contextMenu {
-                                    Button(action: { self.editOverlayParams = .editing(withPosition: position) }) {
-                                        Text("Edit position")
-                                        Image(systemName: "pencil")
+                                    if !position.isReduction {
+                                        Button(action: {
+                                            self.overlayViewType = .position(.editing(withPosition: position))
+                                            self.presentingOverlay = true
+                                        }) {
+                                            Text("Edit position")
+                                            Image(systemName: "pencil")
+                                        }
                                     }
+
                                     Button(action: { self.viewModel.removePosition(position) }) {
-                                        Text("Delete position")
+                                        Text("Delete \(position.isReduction ? "reduction" : "position")")
                                         Image(systemName: "trash")
                                     }
                             }
@@ -67,7 +71,7 @@ struct ReceiptView: View {
                         self.presentingOverlay = true
                     },
                     onPlusButtonTapped: {
-                        self.overlayViewType = .position(params: .adding)
+                        self.overlayViewType = .position(.adding)
                         self.presentingOverlay = true
                     }
                 )
@@ -90,9 +94,9 @@ struct ReceiptView: View {
         switch overlayViewType {
         case .reduction:
             return AnyView(createReductionOverlayView())
-        case .position:
+        case .position(let parameters):
             return AnyView(ZStack {
-                createEditOverlayView()
+                createEditOverlayView(withParameters: parameters)
                 itemAddedView()
                     .opacity(viewModel.itemAdded ? 1 : 0)
                     .animation(.easeInOut(duration: 0.3))
@@ -129,20 +133,19 @@ struct ReceiptView: View {
         .padding(.horizontal, 4)
     }
 
-    private func createEditOverlayView() -> some View {
-        editOverlayParams.providePosition(viewModel.positions.first)
-        return editOverlayViewFactory.create(presenting: $presentingOverlay, parameters: editOverlayParams) {
-            viewModel.subscribe(
-                addingPublisher: $0.positionAdded,
-                editingPublisher: $0.positionEdited
-            )
-        }
+    private func createEditOverlayView(withParameters parameters: EditOverlayViewParams) -> some View {
+        editOverlayViewFactory.create(
+            presenting: $presentingOverlay,
+            parameters: parameters.withProvidedPosition(viewModel.positions.first),
+            configure: { viewModel.subscribe(addingPublisher: $0.positionAdded, editingPublisher: $0.positionEdited) }
+        )
     }
 
     private func createReductionOverlayView() -> some View {
-        reductionOverlayViewFactory.create(presenting: $presentingOverlay) {
-            viewModel.subscribe(reducingPublisher: $0.reductionAdded)
-        }
+        reductionOverlayViewFactory.create(
+            presenting: $presentingOverlay,
+            configure: { viewModel.subscribe(reducingPublisher: $0.reductionAdded) }
+        )
     }
 
     private func itemAddedView() -> some View {

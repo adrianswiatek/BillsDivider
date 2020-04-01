@@ -46,6 +46,7 @@
 		A7836D71242ED5130009B7DB /* ReductionOverlayViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7836D70242ED5130009B7DB /* ReductionOverlayViewModelFactory.swift */; };
 		A783CA1B242FF360006700FC /* ReductionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CA1A242FF360006700FC /* ReductionViewModel.swift */; };
 		A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2E23A83C3D008C9552 /* SettingsPage.swift */; };
+		A7932A7A24369BDA00C39C17 /* ReceiptActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7932A7924369BDA00C39C17 /* ReceiptActionButtonStyle.swift */; };
 		A797D64A23C365C1002D550F /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64623C365C1002D550F /* Owner.swift */; };
 		A797D64B23C365C1002D550F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64723C365C1002D550F /* Person.swift */; };
 		A797D64C23C365C1002D550F /* Buyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64823C365C1002D550F /* Buyer.swift */; };
@@ -257,6 +258,7 @@
 		A7873D2E23A83C3D008C9552 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataStack.swift; sourceTree = "<group>"; };
+		A7932A7924369BDA00C39C17 /* ReceiptActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptActionButtonStyle.swift; sourceTree = "<group>"; };
 		A797D64623C365C1002D550F /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		A797D64723C365C1002D550F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		A797D64823C365C1002D550F /* Buyer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buyer.swift; sourceTree = "<group>"; };
@@ -551,7 +553,7 @@
 		A77D54C6238191D2003D7E9D /* Receipt */ = {
 			isa = PBXGroup;
 			children = (
-				A7B7C50E24313EAD00B4CB1E /* ReceiptActionButtons.swift */,
+				A7932A7824369BC400C39C17 /* ActionButtons */,
 				A736A1972369DAFF0096C2E1 /* ReceiptHeaderView.swift */,
 				A7788B4623B3991A0059EB71 /* ReceiptView.swift */,
 				A7B6D9D4243536A6002F8EB9 /* ReceiptPersonView.swift */,
@@ -615,6 +617,15 @@
 				A75443C223A94A0F00A8775E /* SettingsViewModel.swift */,
 			);
 			path = SettingsViewModel;
+			sourceTree = "<group>";
+		};
+		A7932A7824369BC400C39C17 /* ActionButtons */ = {
+			isa = PBXGroup;
+			children = (
+				A7B7C50E24313EAD00B4CB1E /* ReceiptActionButtons.swift */,
+				A7932A7924369BDA00C39C17 /* ReceiptActionButtonStyle.swift */,
+			);
+			path = ActionButtons;
 			sourceTree = "<group>";
 		};
 		A797D64523C365A4002D550F /* Entities */ = {
@@ -1241,6 +1252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7932A7A24369BDA00C39C17 /* ReceiptActionButtonStyle.swift in Sources */,
 				A73E85FF23C939A000FAF4FA /* DependencyContainer.swift in Sources */,
 				A7AC988623B6A01A003D8AE6 /* BuyerSectionView.swift in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
