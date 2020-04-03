@@ -93,17 +93,23 @@ class EditOverlayViewModelTests: XCTestCase {
     }
 
     func testConfirmDidTap_withProperAmount_respectivePositionAddedIsSent() {
+        let buyerViewModel = BuyerViewModel(peopleService: peopleService)
+        let ownerViewModel = OwnerViewModel(peopleService: peopleService)
+
         let firstPerson: Person = .withGeneratedName(forNumber: 1)
         let secondPerson: Person = .withGeneratedName(forNumber: 2)
+        peopleService.updatePeople(.fromArray([firstPerson, secondPerson]))
+
         var actualPosition: ReceiptPosition?
+
         sut = EditOverlayViewModel(
             presenting: .constant(true),
             priceViewModel: priceViewModel,
             discountViewModel: discountViewModel,
             discountPopoverViewModel: discountPopoverViewModel,
             editOverlayState: AddingModeState(receiptPosition: .empty),
-            buyerViewModel: BuyerViewModel(peopleService: peopleService),
-            ownerViewModel: OwnerViewModel(peopleService: peopleService),
+            buyerViewModel: buyerViewModel,
+            ownerViewModel: ownerViewModel,
             decimalParser: decimalParser
         )
         sut.positionAdded.sink { actualPosition = $0 }.store(in: &subscriptions)
