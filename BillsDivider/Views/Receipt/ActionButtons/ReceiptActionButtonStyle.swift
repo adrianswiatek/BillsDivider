@@ -8,11 +8,12 @@ struct ReceiptActionButtonStyle: ButtonStyle {
                 Circle()
                     .fill(Color("ActionButtonBackground"))
                     .shadow(
-                        color: .secondary,
-                        radius: 3,
-                        x: configuration.isPressed ? -0.5 : 2,
-                        y: configuration.isPressed ? -0.5 : 2
+                        color: Color("ActionButtonShadow"),
+                        radius: configuration.isPressed ? 2 : 3,
+                        x: configuration.isPressed ? 1 : 2,
+                        y: configuration.isPressed ? 1 : 2
                     )
+                    .animation(.none)
             )
             .transformEffect(.init(
                 scaleX: configuration.isPressed ? 0.95 : 1,
