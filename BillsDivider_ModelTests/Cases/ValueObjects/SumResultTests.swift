@@ -31,4 +31,9 @@ class SumResultTests: XCTestCase {
         let sut: SumResult = .from(values: [1, 2])
         XCTAssertEqual(sut, .value(amount: 3))
     }
+
+    func testFrom_withOneNegativeValue_returnsSumResultAsZero() {
+        let sut: SumResult = .from(values: [-1])
+        XCTAssertEqual(sut, .zero)
+    }
 }

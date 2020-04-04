@@ -52,19 +52,23 @@ public struct PositionsDivider {
     ) -> DivisionResult {
         if left.lender == right.lender {
             let totalAmount = left.amount + right.amount
-            return .debt(lender: left.lender, debtor: left.debtor, amount: totalAmount)
+            return divisionResult(lender: left.lender, debtor: left.debtor, amount: totalAmount)
         }
 
         if left.amount > right.amount {
             let totalAmount = left.amount - right.amount
-            return .debt(lender: left.lender, debtor: right.lender, amount: totalAmount)
+            return divisionResult(lender: left.lender, debtor: right.lender, amount: totalAmount)
         }
 
         if left.amount < right.amount {
             let totalAmount = right.amount - left.amount
-            return .debt(lender: right.lender, debtor: left.lender, amount: totalAmount)
+            return divisionResult(lender: right.lender, debtor: left.lender, amount: totalAmount)
         }
 
         return .noDebt
+    }
+
+    private func divisionResult(lender: Buyer, debtor: Buyer, amount: Decimal) -> DivisionResult {
+        amount != 0 ? .debt(lender: lender, debtor: debtor, amount: amount) : .noDebt
     }
 }

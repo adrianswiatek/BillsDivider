@@ -21,13 +21,10 @@ public struct AddingModeState: EditOverlayState {
         viewModel.addAnother = true
         viewModel.positionAdded = positionAddedSubject.eraseToAnyPublisher()
 
-        viewModel.getInitialBuyer = {
-            self.receiptPosition != .empty ? self.receiptPosition.buyer : viewModel.buyers[0]
-        }
-
-        viewModel.getInitialOwner = {
-            self.receiptPosition != .empty ? self.receiptPosition.owner : .all
-        }
+        viewModel.set(
+            buyer: receiptPosition != .empty ? receiptPosition.buyer : viewModel.buyerViewModel.buyers[0],
+            owner: receiptPosition != .empty ? receiptPosition.owner : .all
+        )
     }
 
     public func confirmDidTap(with position: ReceiptPosition, in viewModel: EditOverlayViewModel) {

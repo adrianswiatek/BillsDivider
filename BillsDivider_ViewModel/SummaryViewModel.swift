@@ -3,7 +3,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-public class SummaryViewModel: ObservableObject {
+public final class SummaryViewModel: ObservableObject {
     private var divisionResult: DivisionResult
     private var sumResult: SumResult
 
@@ -21,6 +21,8 @@ public class SummaryViewModel: ObservableObject {
     public var formattedDirection: String {
         switch divisionResult {
         case .noDebt:
+            return "equal"
+        case .debt(_, _, let amount) where amount <= 0:
             return "equal"
         case .debt(let lender, _, _) where lender == leftSidedBuyer:
             return "arrow.left"

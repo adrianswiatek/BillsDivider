@@ -36,8 +36,8 @@ struct EditOverlayView: View {
                 .padding(.top, 16)
 
             DiscountSectionView(viewModel.discountViewModel)
-            BuyerSectionView(viewModel)
-            OwnerSectionView(viewModel)
+            BuyerSectionView(viewModel.buyerViewModel)
+            OwnerSectionView(viewModel.ownerViewModel)
 
             Separator()
                 .padding(.trailing, 16)
@@ -62,24 +62,7 @@ struct EditOverlayView: View {
     }
 
     private var confirmButton: some View {
-        Button(action: { self.viewModel.confirmDidTap() }) {
-            HStack {
-                Image(systemName: "checkmark.circle.fill")
-                Text("Confirm")
-            }
-            .font(.system(size: 14))
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10, style: .circular)
-                    .stroke(lineWidth: 1)
-            )
-            .background(Color("ControlsBackground"))
-            .cornerRadius(10)
-            .padding(.horizontal, 16)
-        }
-        .disabled(!viewModel.canConfirm)
-        .accessibility(identifier: "EditOverlayView.confirmButton")
+        ConfirmButton(canConfirm: viewModel.canConfirm, confirmDidTap: viewModel.confirmDidTap)
     }
 }
 

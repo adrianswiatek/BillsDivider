@@ -27,9 +27,7 @@ public struct EditingModeState: EditOverlayState {
 
         viewModel.addAnother = false
         viewModel.positionEdited = positionEditedSubject.eraseToAnyPublisher()
-
-        viewModel.getInitialBuyer = { self.receiptPosition.buyer }
-        viewModel.getInitialOwner = { self.receiptPosition.owner }
+        viewModel.set(buyer: receiptPosition.buyer, owner: receiptPosition.owner)
     }
 
     public func confirmDidTap(with position: ReceiptPosition, in viewModel: EditOverlayViewModel) {

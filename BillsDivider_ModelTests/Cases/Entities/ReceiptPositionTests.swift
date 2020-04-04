@@ -24,6 +24,21 @@ class ReceiptPositionTests: XCTestCase {
         XCTAssertEqual(position.amountWithDiscount, position.amount - 0.25)
     }
 
+    func testIsReduction_amountIsGreaterThanZero_returnsFalse() {
+        let position = ReceiptPosition(amount: 1, buyer: .person(.withGeneratedName(forNumber: 1)), owner: .all)
+        XCTAssertFalse(position.isReduction)
+    }
+
+    func testIsReduction_amountIsEqualToZero_returnsFalse() {
+        let position = ReceiptPosition(amount: 0, buyer: .person(.withGeneratedName(forNumber: 1)), owner: .all)
+        XCTAssertFalse(position.isReduction)
+    }
+
+    func testIsReduction_amountIsLessThanZero_returnsTrue() {
+        let position = ReceiptPosition(amount: -1, buyer: .person(.withGeneratedName(forNumber: 1)), owner: .all)
+        XCTAssertTrue(position.isReduction)
+    }
+
     func testHasDiscount_whenNoDiscount_returnsFalse() {
         let position = ReceiptPosition(amount: 1, buyer: .person(.empty), owner: .all)
         XCTAssertFalse(position.hasDiscount)

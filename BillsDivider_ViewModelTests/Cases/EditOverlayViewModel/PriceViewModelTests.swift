@@ -54,17 +54,17 @@ class PriceViewModelTests: XCTestCase {
     }
 
     func testValidationMessage_whenInit_returnsEmptyString() {
-        XCTAssertEqual(sut.validationMessage, "")
+        XCTAssertEqual(sut.validationMessage, " ")
     }
 
     func testValidationMessage_whenTextIsSetToEmptyString_returnsEmptyString() {
         sut.text = ""
-        XCTAssertEqual(sut.validationMessage, "")
+        XCTAssertEqual(sut.validationMessage, " ")
     }
 
     func testValidationMessage_whenTextIsSetToOne_returnsEmptyString() {
         sut.text = "1"
-        XCTAssertEqual(sut.validationMessage, "")
+        XCTAssertEqual(sut.validationMessage, " ")
     }
 
     func testValidationMessage_whenTextIsSetToLetter_returnsInvalidValueMessage() {

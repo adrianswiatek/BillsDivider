@@ -26,7 +26,7 @@ extension PreviewFactory {
 
     var editOverlayView: some View {
         let viewFactory: EditOverlayViewFactory = dependencyContainer.resolve(EditOverlayViewFactory.self)
-        return viewFactory.create(presentingParams: .constant(.shownAdding()), configure: { _ in })
+        return viewFactory.create(presenting: .constant(true), parameters: .adding, configure: { _ in })
     }
 
     var priceSectionView: some View {
@@ -40,8 +40,8 @@ extension PreviewFactory {
     }
 
     var discountSectionView: some View {
-        let viewModel: DiscountViewModel = dependencyContainer.resolve(DiscountViewModel.self)
-        return DiscountSectionView(viewModel)
+        let viewModel: EditOverlayViewModel = dependencyContainer.resolve(EditOverlayViewModel.self)
+        return DiscountSectionView(viewModel.discountViewModel)
     }
 
     var discountTextFieldView: some View {
@@ -52,15 +52,20 @@ extension PreviewFactory {
     var buyerSectionView: some View {
         let viewModelFactory: EditOverlayViewModelFactory =
             dependencyContainer.resolve(EditOverlayViewModelFactory.self)
-
-        return BuyerSectionView(viewModelFactory.create(with: .constant(.shownAdding())))
+        let viewModel: EditOverlayViewModel = viewModelFactory.create(.constant(true), .adding)
+        return BuyerSectionView(viewModel.buyerViewModel)
     }
 
     var ownerSectionView: some View {
         let viewModelFactory: EditOverlayViewModelFactory =
             dependencyContainer.resolve(EditOverlayViewModelFactory.self)
+        let viewModel: EditOverlayViewModel = viewModelFactory.create(.constant(true), .adding)
+        return OwnerSectionView(viewModel.ownerViewModel)
+    }
 
-        return OwnerSectionView(viewModelFactory.create(with: .constant(.shownAdding())))
+    var reductionSectionView: some View {
+        let viewModel: PriceViewModel = dependencyContainer.resolve(PriceViewModel.self)
+        return ReductionSectionView(viewModel)
     }
 
     var summaryView: some View {

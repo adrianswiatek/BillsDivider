@@ -34,7 +34,7 @@ class ReceiptUITests: XCTestCase {
         XCTAssertEqual(receiptPage.numberOfCells, 2)
 
         receiptPage
-            .tapEllipsisButton()
+            .tapMinusButton()
             .tapDeleteAllButton()
 
         XCTAssertEqual(receiptPage.numberOfCells, 0)
@@ -103,9 +103,9 @@ class ReceiptUITests: XCTestCase {
         receiptPage
             .longPressCell(atIndex: 0)
             .tapEditPositionButton()
-            .tapPriceTextField()
-            .deletePriceTextFieldCharacter(count: 3)
-            .typeIntoPriceTextField("0.00")
+            .doubleTapPriceTextField()
+            .deletePriceTextFieldCharacter()
+            .typeIntoPriceTextField("10.00")
             .tapConfirmButton()
 
         XCTAssertEqual(receiptPage.amountFromCell(atIndex: 0), "10.00")

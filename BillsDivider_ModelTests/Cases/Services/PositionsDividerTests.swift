@@ -244,4 +244,28 @@ class PositionsDividerTests: XCTestCase {
         let result = sut.divide(positions, between: people)
         XCTAssertEqual(result, .debt(lender: .person(secondPerson), debtor: .person(firstPerson), amount: 0.5))
     }
+
+    func testDivider_oneDebtItemWithNegativeAmount_returnsDebtResult() {
+        let position = ReceiptPosition(amount: -1, buyer: .person(firstPerson), owner: .all)
+        let result = sut.divide([position], between: people)
+        XCTAssertEqual(result, .debt(lender: .person(firstPerson), debtor: .person(secondPerson), amount: -0.5))
+    }
+
+    func testDivider_twoDebtItemsWithNegativeAmounts_returnsDebtResult() {
+        let positions: [ReceiptPosition] = [
+            .init(amount: -1, buyer: .person(firstPerson), owner: .all),
+            .init(amount: -2, buyer: .person(firstPerson), owner: .all)
+        ]
+        let result = sut.divide(positions, between: people)
+        XCTAssertEqual(result, .debt(lender: .person(firstPerson), debtor: .person(secondPerson), amount: -1.5))
+    }
+
+    func testDivider_twoDebtItemsWithEqualNegativeAndPositiveAmounts_returnsNoDebtResult() {
+        let positions: [ReceiptPosition] = [
+            .init(amount: 1, buyer: .person(firstPerson), owner: .all),
+            .init(amount: -1, buyer: .person(firstPerson), owner: .all)
+        ]
+        let result = sut.divide(positions, between: people)
+        XCTAssertEqual(result, .noDebt)
+    }
 }

@@ -6,7 +6,7 @@ public enum DivisionResult {
 
     public var debtAmount: Decimal {
         if case let .debt(_, _, amount) = self {
-            return amount
+            return amount > 0 ? amount : 0
         }
         return 0
     }
@@ -17,10 +17,10 @@ extension DivisionResult: Equatable {
         switch (lhs, rhs) {
         case (.noDebt, .noDebt):
             return true
-        case (.noDebt, .debt), (.debt, .noDebt):
-            return false
         case let (.debt(leftLender, leftDebtor, leftAmount), .debt(rightLender, rightDebtor, rightAmount)):
             return leftLender == rightLender && leftDebtor == rightDebtor && leftAmount == rightAmount
+        default:
+            return false
         }
     }
 }

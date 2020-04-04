@@ -7,6 +7,8 @@ public class ReceiptViewModel: ObservableObject {
     @Published public var positions: [ReceiptPosition]
     @Published public var itemAdded: Bool
 
+    public let canShowNavigationBarItems: Bool
+
     public var ellipsisModeDisabled: Bool {
         positions.isEmpty
     }
@@ -16,20 +18,24 @@ public class ReceiptViewModel: ObservableObject {
 
     private var people: People
 
-    private var externalSubscriptions: [AnyCancellable]
+    private var positionsSubscriptions: [AnyCancellable]
+    private var reductionsSubscriptions: [AnyCancellable]
     private var internalSubscriptions: [AnyCancellable]
 
     public init(
         _ receiptPositionService: ReceiptPositionService,
         _ peopleService: PeopleService,
-        _ numberFormatter: NumberFormatter
+        _ numberFormatter: NumberFormatter,
+        _ canShowNavigationBarItems: Bool = false
     ) {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
+        self.canShowNavigationBarItems = canShowNavigationBarItems
         self.itemAdded = false
         self.people = .empty
         self.positions = []
-        self.externalSubscriptions = []
+        self.positionsSubscriptions = []
+        self.reductionsSubscriptions = []
         self.internalSubscriptions = []
 
         self.subscribe(to: receiptPositionService.positionsDidUpdate)
@@ -41,20 +47,31 @@ public class ReceiptViewModel: ObservableObject {
         addingPublisher: AnyPublisher<ReceiptPosition, Never>,
         editingPublisher: AnyPublisher<ReceiptPosition, Never>
     ) {
-        externalSubscriptions.removeAll()
+        positionsSubscriptions.removeAll()
 
         addingPublisher
             .sink { [weak self] in
                 self?.receiptPositionService.insert($0)
                 self?.itemAdded = true
             }
-            .store(in: &externalSubscriptions)
+            .store(in: &positionsSubscriptions)
 
         editingPublisher
             .sink { [weak self] in
                 self?.receiptPositionService.update($0)
             }
-            .store(in: &externalSubscriptions)
+            .store(in: &positionsSubscriptions)
+    }
+
+    public func subscribe(reducingPublisher: AnyPublisher<ReceiptPosition, Never>) {
+        reductionsSubscriptions.removeAll()
+
+        reducingPublisher
+            .sink { [weak self] in
+                self?.receiptPositionService.insert($0)
+                self?.itemAdded = true
+            }
+            .store(in: &positionsSubscriptions)
     }
 
     public func removePosition(at index: Int) {
