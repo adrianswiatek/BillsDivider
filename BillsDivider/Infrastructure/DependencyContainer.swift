@@ -108,7 +108,8 @@ class DependencyContainer {
             as: ReceiptViewModel(
                 resolve(ReceiptPositionService.self),
                 resolve(PeopleService.self),
-                resolve(NumberFormatter.self)
+                resolve(NumberFormatter.self),
+                configuration == .testing
             )
         )
         register(

@@ -61,12 +61,12 @@ class SettingsPage: Page {
     }
 
     @discardableResult func tapFirstPersonChevronButton() -> SettingsPage {
-        firstPersonChevronButton.tap()
+        firstPersonChevronButton.tapWithDelay()
         return self
     }
 
     @discardableResult func tapSecondPersonChevronButton() -> SettingsPage {
-        secondPersonChevronButton.tap()
+        secondPersonChevronButton.tapWithDelay()
         return self
     }
 }

@@ -3,21 +3,21 @@ import SwiftUI
 struct ReceiptActionButtons: View {
     @State private var presentingActionButtonMenu: Bool = false
 
-    private let isEllipsisButtonEnabled: Bool
+    private let isMinusButtonEnabled: Bool
 
-    private let onEllipsisButtonTapped: () -> Void
     private let onMinusButtonTapped: () -> Void
+    private let onPlusSlashMinusButtonTapped: () -> Void
     private let onPlusButtonTapped: () -> Void
 
     init(
-        isEllipsisButtonEnabled: Bool,
-        onEllipsisButtonTapped: @escaping () -> Void,
+        isMinusButtonEnabled: Bool,
         onMinusButtonTapped: @escaping () -> Void,
+        onPlusSlashMinusButtonTapped: @escaping () -> Void,
         onPlusButtonTapped: @escaping () -> Void
     ) {
-        self.isEllipsisButtonEnabled = isEllipsisButtonEnabled
-        self.onEllipsisButtonTapped = onEllipsisButtonTapped
+        self.isMinusButtonEnabled = isMinusButtonEnabled
         self.onMinusButtonTapped = onMinusButtonTapped
+        self.onPlusSlashMinusButtonTapped = onPlusSlashMinusButtonTapped
         self.onPlusButtonTapped = onPlusButtonTapped
     }
 
@@ -40,22 +40,22 @@ struct ReceiptActionButtons: View {
     private var minusButton: some View {
         Button(action: {
             self.presentingActionButtonMenu = false
-            self.onEllipsisButtonTapped()
+            self.onMinusButtonTapped()
         }) {
             image(withName: "minus")
         }
         .offset(x: presentingActionButtonMenu ? -72 : 0, y: 0)
         .opacity(presentingActionButtonMenu
-            ? isEllipsisButtonEnabled ? 1 : 0.5
+            ? isMinusButtonEnabled ? 1 : 0.5
             : 0
         )
-        .disabled(!isEllipsisButtonEnabled)
+        .disabled(!isMinusButtonEnabled)
     }
 
     private var plusSlashMinusButton: some View {
         Button(action: {
             self.presentingActionButtonMenu = false
-            self.onMinusButtonTapped()
+            self.onPlusSlashMinusButtonTapped()
         }) {
             image(withName: "plus.slash.minus")
         }
@@ -91,9 +91,9 @@ struct ReceiptActionButtons: View {
 struct ReceiptActionButtons_Previews: PreviewProvider {
     static var previews: some View {
         ReceiptActionButtons(
-            isEllipsisButtonEnabled: true,
-            onEllipsisButtonTapped: {},
+            isMinusButtonEnabled: true,
             onMinusButtonTapped: {},
+            onPlusSlashMinusButtonTapped: {},
             onPlusButtonTapped: {}
         )
     }

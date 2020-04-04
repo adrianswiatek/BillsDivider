@@ -24,7 +24,7 @@ class DiscountPopoverPage: Page {
     }
 
     @discardableResult func tapDiscountTextField() -> DiscountPopoverPage {
-        discountTextField.tap()
+        discountTextField.tapWithDelay()
         return self
     }
 
@@ -34,12 +34,12 @@ class DiscountPopoverPage: Page {
     }
 
     @discardableResult func tapOkButton() -> EditOverlayPage {
-        okButton.tap()
+        okButton.tapWithDelay()
         return EditOverlayPage(app)
     }
 
     @discardableResult func tapDiscardButton() -> EditOverlayPage {
-        discardButton.tap()
+        discardButton.tapWithDelay()
         return EditOverlayPage(app)
     }
 }

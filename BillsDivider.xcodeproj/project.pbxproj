@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A70478C623A42DF6001AD82E /* EditOverlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */; };
+		A705D76E243925A700A241C5 /* XCUIElementExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705D76D243925A700A241C5 /* XCUIElementExtensions.swift */; };
 		A706C36124202C2800F50D8A /* DiscountViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A706C36024202C2800F50D8A /* DiscountViewModelTests.swift */; };
 		A706C363242042DB00F50D8A /* DiscountPopoverViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A706C362242042DB00F50D8A /* DiscountPopoverViewModelTests.swift */; };
 		A708403523DCEE5000C91DEC /* SumResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403423DCEE5000C91DEC /* SumResult.swift */; };
@@ -195,6 +196,7 @@
 
 /* Begin PBXFileReference section */
 		A70478C523A42DF6001AD82E /* EditOverlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayUITests.swift; sourceTree = "<group>"; };
+		A705D76D243925A700A241C5 /* XCUIElementExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElementExtensions.swift; sourceTree = "<group>"; };
 		A706C36024202C2800F50D8A /* DiscountViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountViewModelTests.swift; sourceTree = "<group>"; };
 		A706C362242042DB00F50D8A /* DiscountPopoverViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountPopoverViewModelTests.swift; sourceTree = "<group>"; };
 		A708403423DCEE5000C91DEC /* SumResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResult.swift; sourceTree = "<group>"; };
@@ -376,6 +378,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A705D76C2439259400A241C5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A705D76D243925A700A241C5 /* XCUIElementExtensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		A72B1A5123C2935100E09786 /* BillsDivider_Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +529,7 @@
 			children = (
 				A774361E239AB696008F53B5 /* Info.plist */,
 				A734263423A140CB00BAEFF0 /* Cases */,
+				A705D76C2439259400A241C5 /* Helpers */,
 				A7550E79239BD7A50004797D /* PageObjects */,
 			);
 			path = BillsDividerUITests;
@@ -1201,6 +1212,7 @@
 				A7B9BB4F242C16A9008E6722 /* DiscountPopoverPage.swift in Sources */,
 				A70478C623A42DF6001AD82E /* EditOverlayUITests.swift in Sources */,
 				A7550E7D239BD8050004797D /* Page.swift in Sources */,
+				A705D76E243925A700A241C5 /* XCUIElementExtensions.swift in Sources */,
 				A7550E81239BDE6D0004797D /* EditOverlayPage.swift in Sources */,
 				A7550E7F239BDE3D0004797D /* SummaryPage.swift in Sources */,
 			);

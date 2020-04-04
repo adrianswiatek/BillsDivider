@@ -64,9 +64,9 @@ struct ReceiptView: View {
                 .accessibility(identifier: "ReceiptView.receiptPositions")
 
                 ReceiptActionButtons(
-                    isEllipsisButtonEnabled: !viewModel.ellipsisModeDisabled,
-                    onEllipsisButtonTapped: { self.presentingOptionsMenu = true },
-                    onMinusButtonTapped: {
+                    isMinusButtonEnabled: !viewModel.ellipsisModeDisabled,
+                    onMinusButtonTapped: { self.presentingOptionsMenu = true },
+                    onPlusSlashMinusButtonTapped: {
                         self.overlayViewType = .reduction
                         self.presentingOverlay = true
                     },
@@ -87,6 +87,7 @@ struct ReceiptView: View {
                     .cancel()
                 ])
             }
+            .navigationBarItems(leading: leadingNavigationBarItem, trailing: trailingNavigationBarItem)
         }
     }
 
@@ -158,6 +159,29 @@ struct ReceiptView: View {
                     .foregroundColor(.init(.init(white: 0.5, alpha: 1)))
             )
             .offset(.init(width: 0, height: -UIScreen.main.bounds.height / 3))
+    }
+
+    private var leadingNavigationBarItem: some View {
+        guard viewModel.canShowNavigationBarItems else {
+            return AnyView(EmptyView())
+        }
+
+        return AnyView(Button(action: { self.presentingOptionsMenu = true }) {
+            Image(systemName: "minus")
+        })
+    }
+
+    private var trailingNavigationBarItem: some View {
+        guard viewModel.canShowNavigationBarItems else {
+            return AnyView(EmptyView())
+        }
+
+        return AnyView(Button(action: {
+            self.overlayViewType = .position(.adding)
+            self.presentingOverlay = true
+        }) {
+            Image(systemName: "plus")
+        })
     }
 }
 

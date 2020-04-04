@@ -11,8 +11,8 @@ class ReceiptPage: Page {
         app.navigationBars.buttons["plus"]
     }
 
-    private var ellipsisButton: XCUIElement {
-        app.navigationBars.buttons["ellipsis"]
+    private var minusButton: XCUIElement {
+        app.navigationBars.buttons["minus"]
     }
 
     private var table: XCUIElement {
@@ -36,7 +36,7 @@ class ReceiptPage: Page {
     }
 
     var isVisible: Bool {
-        plusButton.exists && ellipsisButton.exists
+        plusButton.exists && minusButton.exists
     }
 
     var numberOfCells: Int {
@@ -48,8 +48,8 @@ class ReceiptPage: Page {
         return EditOverlayPage(app)
     }
 
-    @discardableResult func tapEllipsisButton() -> ReceiptPage {
-        ellipsisButton.tap()
+    @discardableResult func tapMinusButton() -> ReceiptPage {
+        minusButton.tap()
         return self
     }
 

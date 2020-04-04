@@ -65,7 +65,7 @@ class EditOverlayPage: Page {
     }
 
     @discardableResult func tapConfirmButton() -> EditOverlayPage {
-        confirmButton.tap()
+        confirmButton.tapWithDelay()
         return self
     }
 
@@ -75,12 +75,17 @@ class EditOverlayPage: Page {
     }
 
     @discardableResult func tapPriceTextField() -> EditOverlayPage {
-        priceTextField.tap()
+        priceTextField.tapWithDelay()
+        return self
+    }
+
+    @discardableResult func doubleTapPriceTextField() -> EditOverlayPage {
+        priceTextField.doubleTap()
         return self
     }
 
     @discardableResult func typeIntoPriceTextField(_ text: String) -> EditOverlayPage {
-        priceTextField.typeText(text)
+        priceTextField.typeTextWithDelay(text)
         return self
     }
 

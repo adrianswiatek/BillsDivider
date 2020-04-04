@@ -7,6 +7,8 @@ public class ReceiptViewModel: ObservableObject {
     @Published public var positions: [ReceiptPosition]
     @Published public var itemAdded: Bool
 
+    public let canShowNavigationBarItems: Bool
+
     public var ellipsisModeDisabled: Bool {
         positions.isEmpty
     }
@@ -23,10 +25,12 @@ public class ReceiptViewModel: ObservableObject {
     public init(
         _ receiptPositionService: ReceiptPositionService,
         _ peopleService: PeopleService,
-        _ numberFormatter: NumberFormatter
+        _ numberFormatter: NumberFormatter,
+        _ canShowNavigationBarItems: Bool = false
     ) {
         self.receiptPositionService = receiptPositionService
         self.numberFormatter = numberFormatter
+        self.canShowNavigationBarItems = canShowNavigationBarItems
         self.itemAdded = false
         self.people = .empty
         self.positions = []
