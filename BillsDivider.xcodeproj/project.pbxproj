@@ -45,7 +45,6 @@
 		A7836D6D242EC8040009B7DB /* ReductionOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7836D6C242EC8040009B7DB /* ReductionOverlayViewModel.swift */; };
 		A7836D6F242ED3C60009B7DB /* ReductionOverlayViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7836D6E242ED3C60009B7DB /* ReductionOverlayViewFactory.swift */; };
 		A7836D71242ED5130009B7DB /* ReductionOverlayViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7836D70242ED5130009B7DB /* ReductionOverlayViewModelFactory.swift */; };
-		A783CA1B242FF360006700FC /* ReductionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A783CA1A242FF360006700FC /* ReductionViewModel.swift */; };
 		A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2E23A83C3D008C9552 /* SettingsPage.swift */; };
 		A7932A7A24369BDA00C39C17 /* ReceiptActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7932A7924369BDA00C39C17 /* ReceiptActionButtonStyle.swift */; };
 		A797D64A23C365C1002D550F /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64623C365C1002D550F /* Owner.swift */; };
@@ -256,7 +255,6 @@
 		A7836D6C242EC8040009B7DB /* ReductionOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReductionOverlayViewModel.swift; sourceTree = "<group>"; };
 		A7836D6E242ED3C60009B7DB /* ReductionOverlayViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReductionOverlayViewFactory.swift; sourceTree = "<group>"; };
 		A7836D70242ED5130009B7DB /* ReductionOverlayViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReductionOverlayViewModelFactory.swift; sourceTree = "<group>"; };
-		A783CA1A242FF360006700FC /* ReductionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReductionViewModel.swift; sourceTree = "<group>"; };
 		A7873D2E23A83C3D008C9552 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataStack.swift; sourceTree = "<group>"; };
@@ -608,7 +606,6 @@
 			isa = PBXGroup;
 			children = (
 				A7836D6C242EC8040009B7DB /* ReductionOverlayViewModel.swift */,
-				A783CA1A242FF360006700FC /* ReductionViewModel.swift */,
 			);
 			path = ReductionOverlayViewModel;
 			sourceTree = "<group>";
@@ -1234,7 +1231,6 @@
 				A7836D6D242EC8040009B7DB /* ReductionOverlayViewModel.swift in Sources */,
 				A7E100B0241598A5004FAFE0 /* DiscountPopoverViewModel.swift in Sources */,
 				A797D6A923C37714002D550F /* ReceiptViewModel.swift in Sources */,
-				A783CA1B242FF360006700FC /* ReductionViewModel.swift in Sources */,
 				A797D6AA23C37714002D550F /* SettingsViewModel.swift in Sources */,
 				A797D6AF23C37752002D550F /* EditOverlayState.swift in Sources */,
 				A7E40968241718BC0001CD55 /* DiscountViewModel.swift in Sources */,

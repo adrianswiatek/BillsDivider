@@ -67,7 +67,7 @@ public final class DiscountPopoverViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         $text
-            .map(toValidationMessage)
+            .map { [weak self] in self?.toValidationMessage($0) ?? "" }
             .sink { [weak self] in self?.validationMessage = $0 }
             .store(in: &subscriptions)
     }

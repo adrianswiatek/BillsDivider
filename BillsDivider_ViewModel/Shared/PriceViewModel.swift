@@ -32,7 +32,7 @@ public final class PriceViewModel: ObservableObject {
     private func bind() {
         valuePublisher
             .map { $0 != nil && $0! > 0 }
-            .assign(to: \.isValid, on: self)
+            .sink { [weak self] in self?.isValid = $0 }
             .store(in: &subscriptions)
 
         $text
