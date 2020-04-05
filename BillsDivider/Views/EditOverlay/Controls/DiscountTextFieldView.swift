@@ -26,11 +26,8 @@ struct DiscountTextFieldView: View {
                     }
                 }
 
-                TextField(viewModel.placeholder, text: $viewModel.text)
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.decimalPad)
-                    .foregroundColor(viewModel.isValid ? .primary : .secondary)
-                    .accessibility(identifier: "DiscountPopover.discountTextField")
+                DiscountPopoverTextField(viewModel)
+                    .frame(height: 56)
             }
             .font(.system(size: 42, weight: .medium, design: .rounded))
         }

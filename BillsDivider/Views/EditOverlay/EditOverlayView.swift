@@ -24,9 +24,9 @@ struct EditOverlayView: View {
                 .background(Color("SettingsPeopleCellBackground"))
             }
 
-            DiscountPopoverView(viewModel.discountPopoverViewModel)
-                .opacity(viewModel.discountViewModel.presentingPopover ? 1 : 0)
-                .animation(.easeInOut(duration: 0.25))
+            if viewModel.discountViewModel.presentingPopover {
+                DiscountPopoverView(viewModel.discountPopoverViewModel)
+            }
         }
     }
 
