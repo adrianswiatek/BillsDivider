@@ -18,13 +18,14 @@ struct PriceSectionView: View {
                     .foregroundColor(.secondary)
                     .padding(.horizontal)
 
-                TextField(viewModel.placeholder, text: $viewModel.text)
-                    .multilineTextAlignment(.trailing)
-                    .font(.system(size: 42, weight: .bold, design: .rounded))
-                    .keyboardType(.decimalPad)
-                    .padding(.horizontal)
-                    .foregroundColor(viewModel.isValid ? .primary : .secondary)
-                    .accessibility(identifier: "EditOverlayView.priceTextField")
+
+                FirstResponderTextField(
+                    text: $viewModel.text,
+                    isValid: viewModel.isValid,
+                    placeholder: viewModel.placeholder,
+                    accessibilityIdentifier: "EditOverlayView.priceTextField"
+                )
+                .padding(.horizontal)
             }
             .padding(.vertical, 3)
             .overlay(
