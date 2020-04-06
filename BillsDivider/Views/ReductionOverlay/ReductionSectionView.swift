@@ -27,11 +27,12 @@ struct ReductionSectionView: View {
                     }
                 }
 
-                TextField(viewModel.placeholder, text: $viewModel.text)
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.decimalPad)
-                    .foregroundColor(viewModel.isValid ? .primary : .secondary)
-                    .accessibility(identifier: "EditOverlayView.priceTextField")
+                FirstResponderTextField(
+                    text: $viewModel.text,
+                    isValid: viewModel.isValid,
+                    placeholder: viewModel.placeholder,
+                    accessibilityIdentifier: "EditOverlayView.priceTextField"
+                )
             }
             .font(.system(size: 42, weight: .bold, design: .rounded))
             .padding(.horizontal)

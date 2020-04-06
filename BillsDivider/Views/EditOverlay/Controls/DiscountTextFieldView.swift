@@ -29,7 +29,8 @@ struct DiscountTextFieldView: View {
                 FirstResponderTextField(
                     text: $viewModel.text,
                     isValid: viewModel.isValid,
-                    placeholder: viewModel.placeholder
+                    placeholder: viewModel.placeholder,
+                    accessibilityIdentifier: "DiscountPopover.discountTextField"
                 )
                 .frame(height: 56)
             }
