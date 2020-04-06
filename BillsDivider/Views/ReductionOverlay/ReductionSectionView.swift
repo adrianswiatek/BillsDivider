@@ -27,7 +27,7 @@ struct ReductionSectionView: View {
                     }
                 }
 
-                FirstResponderTextField(
+                PriceTextField(
                     text: $viewModel.text,
                     isValid: viewModel.isValid,
                     placeholder: viewModel.placeholder,

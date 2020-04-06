@@ -18,8 +18,7 @@ struct PriceSectionView: View {
                     .foregroundColor(.secondary)
                     .padding(.horizontal)
 
-
-                FirstResponderTextField(
+                PriceTextField(
                     text: $viewModel.text,
                     isValid: viewModel.isValid,
                     placeholder: viewModel.placeholder,
