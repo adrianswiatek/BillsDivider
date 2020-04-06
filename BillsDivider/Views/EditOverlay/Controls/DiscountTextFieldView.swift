@@ -26,8 +26,12 @@ struct DiscountTextFieldView: View {
                     }
                 }
 
-                DiscountPopoverTextField(viewModel)
-                    .frame(height: 56)
+                FirstResponderTextField(
+                    text: $viewModel.text,
+                    isValid: viewModel.isValid,
+                    placeholder: viewModel.placeholder
+                )
+                .frame(height: 56)
             }
             .font(.system(size: 42, weight: .medium, design: .rounded))
         }

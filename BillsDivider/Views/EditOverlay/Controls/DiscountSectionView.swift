@@ -43,7 +43,11 @@ struct DiscountSectionView: View {
     }
 
     private var addDiscountButton: some View {
-        Button(action: { self.viewModel.showDiscountPopover() }) {
+        Button(action: {
+            withAnimation(.easeInOut) {
+                self.viewModel.showDiscountPopover()
+            }
+        }) {
             HStack {
                 Image(systemName: "plus.circle.fill")
                 Text("Add discount")
