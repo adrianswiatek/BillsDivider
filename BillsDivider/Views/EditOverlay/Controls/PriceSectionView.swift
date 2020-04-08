@@ -14,25 +14,18 @@ struct PriceSectionView: View {
         HStack {
             SectionLabel(withTitle: "Price")
 
-            HStack {
-                Text(viewModel.validationMessage)
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal)
-
-                priceTextFieldFactory
-                    .create(text: $viewModel.text, accessilibityIdentifier: "EditOverlayView.priceTextField")
-                    .padding(.horizontal)
-            }
-            .padding(.vertical, 3)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10, style: .circular)
-                    .stroke(lineWidth: 1)
-                    .foregroundColor(.secondary)
-            )
-            .background(Color("ControlsBackground"))
-            .cornerRadius(10)
-            .padding(.trailing, 16)
+            priceTextFieldFactory
+                .create(text: $viewModel.text, accessilibityIdentifier: "EditOverlayView.priceTextField")
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10, style: .circular)
+                        .stroke(lineWidth: 1)
+                        .foregroundColor(.secondary)
+                )
+                .background(Color("ControlsBackground"))
+                .cornerRadius(10)
+                .padding(.trailing, 16)
         }
     }
 }

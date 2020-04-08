@@ -11,30 +11,23 @@ struct ReductionSectionView: View {
     }
 
     var body: some View {
-        HStack {
-            Text(viewModel.validationMessage)
-                .font(.footnote)
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
-
-            ZStack {
-                if !viewModel.text.isEmpty && viewModel.isValid {
-                    HStack {
-                        Spacer()
-                        Text("-")
-                            .foregroundColor(.primary)
-                            .font(.system(size: 42, weight: .light, design: .rounded))
-                        Text(viewModel.text.isEmpty ? viewModel.placeholder : viewModel.text)
-                            .foregroundColor(.clear)
-                    }
+        ZStack {
+            if !viewModel.text.isEmpty && viewModel.isValid {
+                HStack {
+                    Spacer()
+                    Text("-")
+                        .foregroundColor(.primary)
+                        .font(.system(size: 42, weight: .light, design: .rounded))
+                    Text(viewModel.text)
+                        .foregroundColor(.clear)
                 }
-
-                priceTextFieldFactory
-                    .create(text: $viewModel.text, accessilibityIdentifier: "EditOverlayView.priceTextField")
             }
-            .font(.system(size: 42, weight: .bold, design: .rounded))
-            .padding(.horizontal)
+
+            priceTextFieldFactory
+                .create(text: $viewModel.text, accessilibityIdentifier: "EditOverlayView.priceTextField")
         }
+        .font(.system(size: 42, weight: .bold, design: .rounded))
+        .padding(.horizontal)
         .padding(.vertical, 3)
         .overlay(
             RoundedRectangle(cornerRadius: 10, style: .circular)
