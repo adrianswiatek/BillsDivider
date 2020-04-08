@@ -5,9 +5,6 @@ public final class DiscountPopoverViewModel: ObservableObject {
     @Published public var text: String
 
     @Published public private(set) var isValid: Bool
-    @Published public private(set) var validationMessage: String
-
-    public let placeholder: String
 
     public var valuePublisher: AnyPublisher<Decimal?, Never> {
         $text.map(decimalParser.tryParse).eraseToAnyPublisher()
@@ -30,9 +27,7 @@ public final class DiscountPopoverViewModel: ObservableObject {
 
         self.text = ""
         self.isValid = false
-        self.validationMessage = ""
 
-        self.placeholder = numberFormatter.format(value: 0)
         self.didDismissSubject = .init()
         self.subscriptions = []
 
@@ -65,22 +60,5 @@ public final class DiscountPopoverViewModel: ObservableObject {
         valuePublisher
             .sink { [weak self] in self?.value = $0 }
             .store(in: &subscriptions)
-
-        $text
-            .map { [weak self] in self?.toValidationMessage($0) ?? "" }
-            .sink { [weak self] in self?.validationMessage = $0 }
-            .store(in: &subscriptions)
-    }
-
-    private func toValidationMessage(_ text: String) -> String {
-        !isFilled(text) || canBeParsed(text) ? "" : "Invalid value"
-    }
-
-    private func isFilled(_ text: String) -> Bool {
-        !text.isEmpty
-    }
-
-    private func canBeParsed(_ text: String) -> Bool {
-        decimalParser.tryParse(text) != nil
     }
 }
