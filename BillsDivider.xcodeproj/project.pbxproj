@@ -14,7 +14,7 @@
 		A708403523DCEE5000C91DEC /* SumResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403423DCEE5000C91DEC /* SumResult.swift */; };
 		A708403723DCEEAB00C91DEC /* SumResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403623DCEEAB00C91DEC /* SumResultTests.swift */; };
 		A716602D23E639DF005329F6 /* UUIDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A716602C23E639DF005329F6 /* UUIDExtensions.swift */; };
-		A719DC922422E296008795DB /* DeciamlParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719DC912422E296008795DB /* DeciamlParserTests.swift */; };
+		A719DC922422E296008795DB /* DecimalParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719DC912422E296008795DB /* DecimalParserTests.swift */; };
 		A72B1A5923C2935100E09786 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
 		A72B1A6223C2935100E09786 /* BillsDivider_Model.h in Headers */ = {isa = PBXBuildFile; fileRef = A72B1A5223C2935100E09786 /* BillsDivider_Model.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A72B1A6523C2935100E09786 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
@@ -46,6 +46,7 @@
 		A7836D6F242ED3C60009B7DB /* ReductionOverlayViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7836D6E242ED3C60009B7DB /* ReductionOverlayViewFactory.swift */; };
 		A7836D71242ED5130009B7DB /* ReductionOverlayViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7836D70242ED5130009B7DB /* ReductionOverlayViewModelFactory.swift */; };
 		A7873D2F23A83C3D008C9552 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7873D2E23A83C3D008C9552 /* SettingsPage.swift */; };
+		A7913A7C243A6B5B0029C683 /* PriceTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7913A7B243A6B5B0029C683 /* PriceTextField.swift */; };
 		A7932A7A24369BDA00C39C17 /* ReceiptActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7932A7924369BDA00C39C17 /* ReceiptActionButtonStyle.swift */; };
 		A797D64A23C365C1002D550F /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64623C365C1002D550F /* Owner.swift */; };
 		A797D64B23C365C1002D550F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D64723C365C1002D550F /* Person.swift */; };
@@ -201,7 +202,7 @@
 		A708403423DCEE5000C91DEC /* SumResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResult.swift; sourceTree = "<group>"; };
 		A708403623DCEEAB00C91DEC /* SumResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResultTests.swift; sourceTree = "<group>"; };
 		A716602C23E639DF005329F6 /* UUIDExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDExtensions.swift; sourceTree = "<group>"; };
-		A719DC912422E296008795DB /* DeciamlParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeciamlParserTests.swift; sourceTree = "<group>"; };
+		A719DC912422E296008795DB /* DecimalParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalParserTests.swift; sourceTree = "<group>"; };
 		A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BillsDivider_Model.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72B1A5223C2935100E09786 /* BillsDivider_Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BillsDivider_Model.h; sourceTree = "<group>"; };
 		A72B1A5323C2935100E09786 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -258,6 +259,7 @@
 		A7873D2E23A83C3D008C9552 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		A78B1B8D239EB12F006A1B91 /* SqliteCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteCoreDataStack.swift; sourceTree = "<group>"; };
 		A78B1B8F239EB14C006A1B91 /* InMemoryCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryCoreDataStack.swift; sourceTree = "<group>"; };
+		A7913A7B243A6B5B0029C683 /* PriceTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTextField.swift; sourceTree = "<group>"; };
 		A7932A7924369BDA00C39C17 /* ReceiptActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptActionButtonStyle.swift; sourceTree = "<group>"; };
 		A797D64623C365C1002D550F /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
 		A797D64723C365C1002D550F /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -697,7 +699,7 @@
 		A797D65723C366B9002D550F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A719DC912422E296008795DB /* DeciamlParserTests.swift */,
+				A719DC912422E296008795DB /* DecimalParserTests.swift */,
 				A797D65B23C3670C002D550F /* PositionsDividerTests.swift */,
 				A797D67523C36ED7002D550F /* PeopleService */,
 				A797D67A23C3705A002D550F /* ReceiptPositionService */,
@@ -805,6 +807,14 @@
 			path = Doubles;
 			sourceTree = "<group>";
 		};
+		A7C7384C243BC66D0020CBB6 /* UIViewRepresentable */ = {
+			isa = PBXGroup;
+			children = (
+				A7913A7B243A6B5B0029C683 /* PriceTextField.swift */,
+			);
+			path = UIViewRepresentable;
+			sourceTree = "<group>";
+		};
 		A7D3FC0623E645D3001C8392 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -822,6 +832,7 @@
 				A7AC988723B6A032003D8AE6 /* OwnerSectionView.swift */,
 				A7E100AB241594A7004FAFE0 /* SectionLabel.swift */,
 				A7FE5D07240893A3001FFFCD /* Separator.swift */,
+				A7C7384C243BC66D0020CBB6 /* UIViewRepresentable */,
 			);
 			path = SharedControls;
 			sourceTree = "<group>";
@@ -1179,7 +1190,7 @@
 			files = (
 				A797D66323C3671C002D550F /* OwnerTests.swift in Sources */,
 				A797D67B23C37081002D550F /* InMemoryReceiptPositionServiceTests.swift in Sources */,
-				A719DC922422E296008795DB /* DeciamlParserTests.swift in Sources */,
+				A719DC922422E296008795DB /* DecimalParserTests.swift in Sources */,
 				A797D65C23C3670C002D550F /* PositionsDividerTests.swift in Sources */,
 				A797D66223C3671C002D550F /* BuyerTests.swift in Sources */,
 				A797D68523C373AD002D550F /* ReceiptPosition+CoreDataTests.swift in Sources */,
@@ -1262,6 +1273,7 @@
 			files = (
 				A7932A7A24369BDA00C39C17 /* ReceiptActionButtonStyle.swift in Sources */,
 				A73E85FF23C939A000FAF4FA /* DependencyContainer.swift in Sources */,
+				A7913A7C243A6B5B0029C683 /* PriceTextField.swift in Sources */,
 				A7AC988623B6A01A003D8AE6 /* BuyerSectionView.swift in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
 				A7AC988823B6A032003D8AE6 /* OwnerSectionView.swift in Sources */,

@@ -4,9 +4,11 @@ import SwiftUI
 
 internal final class ReductionOverlayViewFactory {
     private let viewModelFactory: ReductionOverlayViewModelFactory
+    private let priceTextFieldFactory: PriceTextFieldFactory
 
-    internal init(viewModelFactory: ReductionOverlayViewModelFactory) {
+    internal init(viewModelFactory: ReductionOverlayViewModelFactory, priceTextFieldFactory: PriceTextFieldFactory) {
         self.viewModelFactory = viewModelFactory
+        self.priceTextFieldFactory = priceTextFieldFactory
     }
 
     internal func create(
@@ -15,6 +17,6 @@ internal final class ReductionOverlayViewFactory {
     ) -> ReductionOverlayView {
         let viewModel = viewModelFactory.create(with: presenting)
         configure(viewModel)
-        return ReductionOverlayView(viewModel)
+        return ReductionOverlayView(viewModel, priceTextFieldFactory)
     }
 }

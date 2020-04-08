@@ -3,38 +3,29 @@ import SwiftUI
 
 struct PriceSectionView: View {
     @ObservedObject private var viewModel: PriceViewModel
+    private let priceTextFieldFactory: PriceTextFieldFactory
 
-    init(_ viewModel: PriceViewModel) {
+    init(_ viewModel: PriceViewModel, _ priceTextFieldFactory: PriceTextFieldFactory) {
         self.viewModel = viewModel
+        self.priceTextFieldFactory = priceTextFieldFactory
     }
 
     var body: some View {
         HStack {
             SectionLabel(withTitle: "Price")
 
-            HStack {
-                Text(viewModel.validationMessage)
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal)
-
-                TextField(viewModel.placeholder, text: $viewModel.text)
-                    .multilineTextAlignment(.trailing)
-                    .font(.system(size: 42, weight: .bold, design: .rounded))
-                    .keyboardType(.decimalPad)
-                    .padding(.horizontal)
-                    .foregroundColor(viewModel.isValid ? .primary : .secondary)
-                    .accessibility(identifier: "EditOverlayView.priceTextField")
-            }
-            .padding(.vertical, 3)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10, style: .circular)
-                    .stroke(lineWidth: 1)
-                    .foregroundColor(.secondary)
-            )
-            .background(Color("ControlsBackground"))
-            .cornerRadius(10)
-            .padding(.trailing, 16)
+            priceTextFieldFactory
+                .create(text: $viewModel.text, accessilibityIdentifier: "EditOverlayView.priceTextField")
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10, style: .circular)
+                        .stroke(lineWidth: 1)
+                        .foregroundColor(.secondary)
+                )
+                .background(Color("ControlsBackground"))
+                .cornerRadius(10)
+                .padding(.trailing, 16)
         }
     }
 }

@@ -3,37 +3,31 @@ import SwiftUI
 
 struct DiscountTextFieldView: View {
     @ObservedObject private var viewModel: DiscountPopoverViewModel
+    private let priceTextFieldFactory: PriceTextFieldFactory
 
-    init(_ viewModel: DiscountPopoverViewModel) {
+    init(_ viewModel: DiscountPopoverViewModel, _ priceTextFieldFactory: PriceTextFieldFactory) {
         self.viewModel = viewModel
+        self.priceTextFieldFactory = priceTextFieldFactory
     }
 
     var body: some View {
-        HStack {
-            Text(viewModel.validationMessage)
-                .font(.footnote)
-                .foregroundColor(.secondary)
-
-            ZStack {
-                if !viewModel.text.isEmpty && viewModel.isValid {
-                    HStack {
-                        Spacer()
-                        Text("-")
-                            .foregroundColor(.primary)
-                            .font(.system(size: 42, weight: .light, design: .rounded))
-                        Text(viewModel.text.isEmpty ? viewModel.placeholder : viewModel.text)
-                            .foregroundColor(.clear)
-                    }
+        ZStack {
+            if !viewModel.text.isEmpty && viewModel.isValid {
+                HStack {
+                    Spacer()
+                    Text("-")
+                        .foregroundColor(.primary)
+                        .font(.system(size: 42, weight: .light, design: .rounded))
+                    Text(viewModel.text)
+                        .foregroundColor(.clear)
                 }
-
-                TextField(viewModel.placeholder, text: $viewModel.text)
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.decimalPad)
-                    .foregroundColor(viewModel.isValid ? .primary : .secondary)
-                    .accessibility(identifier: "DiscountPopover.discountTextField")
             }
-            .font(.system(size: 42, weight: .medium, design: .rounded))
+
+            priceTextFieldFactory
+                .create(text: $viewModel.text, accessilibityIdentifier: "DiscountPopover.discountTextField")
+                .frame(height: 56)
         }
+        .font(.system(size: 42, weight: .medium, design: .rounded))
         .padding(.init(top: 4, leading: 16, bottom: 4, trailing: 16))
         .background(Color("ControlsBackground"))
         .padding(.vertical, -8)

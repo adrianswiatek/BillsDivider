@@ -1,7 +1,7 @@
 import BillsDivider_Model
 import XCTest
 
-class DeciamlParserTests: XCTestCase {
+class DecimalParserTests: XCTestCase {
     private var sut: DecimalParser!
 
     override func setUp() {
@@ -43,9 +43,15 @@ class DeciamlParserTests: XCTestCase {
         XCTAssertEqual(actual, expected)
     }
 
-    func testParse_whenValueHasMoreThanFiveDigitsBeforeDow_returnsResultWithExceededMaximumValueError() {
+    func testParse_whenValueHasMoreThanOneDot_returnsResultWithWrongFormatError() {
+        let expected = Result<Decimal, DecimalParser.DecimalParseError>.failure(.wrongFormat)
+        let actual = sut.parse("1..2")
+        XCTAssertEqual(actual, expected)
+    }
+
+    func testParse_whenValueHasMoreThanSevenDigitsBeforeDow_returnsResultWithExceededMaximumValueError() {
         let expected = Result<Decimal, DecimalParser.DecimalParseError>.failure(.exceededMaximumValue)
-        let actual = sut.parse("123456.12")
+        let actual = sut.parse("12345678.12")
         XCTAssertEqual(actual, expected)
     }
 }
