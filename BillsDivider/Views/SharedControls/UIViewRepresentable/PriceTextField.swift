@@ -7,10 +7,12 @@ struct PriceTextField: UIViewRepresentable {
     final class Coordinator: NSObject, UITextFieldDelegate {
         var text: Binding<String>
         var didBecomeFirstResponder: Bool
+        let decimalParser: DecimalParser
 
-        init(_ text: Binding<String>) {
+        init(_ text: Binding<String>, _ decimalParser: DecimalParser) {
             self.text = text
             self.didBecomeFirstResponder = false
+            self.decimalParser = decimalParser
         }
 
         func textFieldDidChangeSelection(_ textField: UITextField) {
@@ -22,9 +24,12 @@ struct PriceTextField: UIViewRepresentable {
             shouldChangeCharactersIn range: NSRange,
             replacementString string: String
         ) -> Bool {
-            let text = (textField.text ?? "") + string
-            let decimalParser = DecimalParser()
-            return decimalParser.tryParse(text) != nil
+            guard var text = textField.text, let range = Range<String.Index>(range, in: text) else {
+                return true
+            }
+
+            text.replaceSubrange(range, with: string)
+            return text.isEmpty || decimalParser.tryParse(text) != nil
         }
     }
 
@@ -47,7 +52,7 @@ struct PriceTextField: UIViewRepresentable {
     }
 
     func makeCoordinator() -> PriceTextField.Coordinator {
-        Coordinator($text)
+        Coordinator($text, decimalParser)
     }
 
     func makeUIView(context: UIViewRepresentableContext<PriceTextField>) -> UITextField {
