@@ -3,7 +3,6 @@ import Combine
 
 public final class DiscountPopoverViewModel: ObservableObject {
     @Published public var text: String
-
     @Published public private(set) var isValid: Bool
 
     public var valuePublisher: AnyPublisher<Decimal?, Never> {

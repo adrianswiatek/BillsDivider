@@ -43,6 +43,12 @@ class DeciamlParserTests: XCTestCase {
         XCTAssertEqual(actual, expected)
     }
 
+    func testParse_whenValueHasMoreThanOneDot_returnsResultWithWrongFormatError() {
+        let expected = Result<Decimal, DecimalParser.DecimalParseError>.failure(.wrongFormat)
+        let actual = sut.parse("1..2")
+        XCTAssertEqual(actual, expected)
+    }
+
     func testParse_whenValueHasMoreThanFiveDigitsBeforeDow_returnsResultWithExceededMaximumValueError() {
         let expected = Result<Decimal, DecimalParser.DecimalParseError>.failure(.exceededMaximumValue)
         let actual = sut.parse("123456.12")
