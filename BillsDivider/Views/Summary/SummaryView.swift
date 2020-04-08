@@ -56,15 +56,13 @@ struct SummaryView: View {
                     HStack {
                         Text("Spent totally:")
                             .font(.system(size: 18))
-                            .cornerRadius(8)
-                            .padding(.horizontal, 32)
+                            .padding(.leading, 32)
 
                         Spacer()
 
                         Text(viewModel.formattedSum)
-                            .font(.system(size: 24))
-                            .fontWeight(.bold)
-                            .padding(.horizontal, 32)
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
+                            .padding(.trailing, 32)
                     }
                 }
                 .padding(.vertical, 32)
