@@ -3,9 +3,11 @@ import SwiftUI
 
 struct ReductionOverlayView: View {
     @ObservedObject private var viewModel: ReductionOverlayViewModel
+    private let priceTextFieldFactory: PriceTextFieldFactory
 
-    init(_ viewModel: ReductionOverlayViewModel) {
+    init(_ viewModel: ReductionOverlayViewModel, _ priceTextFieldFactory: PriceTextFieldFactory) {
         self.viewModel = viewModel
+        self.priceTextFieldFactory = priceTextFieldFactory
     }
 
     var body: some View {
@@ -13,7 +15,7 @@ struct ReductionOverlayView: View {
             NavigationView {
                 ScrollView {
                     VStack(alignment: .trailing) {
-                        ReductionSectionView(viewModel.priceViewModel)
+                        ReductionSectionView(viewModel.priceViewModel, priceTextFieldFactory)
                             .padding(.top, 16)
 
                         BuyerSectionView(viewModel.buyerViewModel)

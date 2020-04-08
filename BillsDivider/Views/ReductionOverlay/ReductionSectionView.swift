@@ -3,9 +3,11 @@ import SwiftUI
 
 struct ReductionSectionView: View {
     @ObservedObject private var viewModel: PriceViewModel
+    private let priceTextFieldFactory: PriceTextFieldFactory
 
-    init(_ viewModel: PriceViewModel) {
+    init(_ viewModel: PriceViewModel, _ priceTextFieldFactory: PriceTextFieldFactory) {
         self.viewModel = viewModel
+        self.priceTextFieldFactory = priceTextFieldFactory
     }
 
     var body: some View {
@@ -27,12 +29,8 @@ struct ReductionSectionView: View {
                     }
                 }
 
-                PriceTextField(
-                    text: $viewModel.text,
-                    isValid: viewModel.isValid,
-                    placeholder: viewModel.placeholder,
-                    accessibilityIdentifier: "EditOverlayView.priceTextField"
-                )
+                priceTextFieldFactory
+                    .create(text: $viewModel.text, accessilibityIdentifier: "EditOverlayView.priceTextField")
             }
             .font(.system(size: 42, weight: .bold, design: .rounded))
             .padding(.horizontal)

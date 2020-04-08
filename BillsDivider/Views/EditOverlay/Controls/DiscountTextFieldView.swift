@@ -3,9 +3,11 @@ import SwiftUI
 
 struct DiscountTextFieldView: View {
     @ObservedObject private var viewModel: DiscountPopoverViewModel
+    private let priceTextFieldFactory: PriceTextFieldFactory
 
-    init(_ viewModel: DiscountPopoverViewModel) {
+    init(_ viewModel: DiscountPopoverViewModel, _ priceTextFieldFactory: PriceTextFieldFactory) {
         self.viewModel = viewModel
+        self.priceTextFieldFactory = priceTextFieldFactory
     }
 
     var body: some View {
@@ -26,13 +28,9 @@ struct DiscountTextFieldView: View {
                     }
                 }
 
-                PriceTextField(
-                    text: $viewModel.text,
-                    isValid: viewModel.isValid,
-                    placeholder: viewModel.placeholder,
-                    accessibilityIdentifier: "DiscountPopover.discountTextField"
-                )
-                .frame(height: 56)
+                priceTextFieldFactory
+                    .create(text: $viewModel.text, accessilibityIdentifier: "DiscountPopover.discountTextField")
+                    .frame(height: 56)
             }
             .font(.system(size: 42, weight: .medium, design: .rounded))
         }
