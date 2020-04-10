@@ -17,11 +17,7 @@ public final class DecimalParser {
             return .failure(.wrongFormat)
         }
 
-        if hasMoreThanOneDot(value) {
-            return .failure(.wrongFormat)
-        }
-
-        if hasMoreThanSeverDigitsBeforeDot(value) {
+        if hasMoreThanFiveDigitsBeforeDot(value) {
             return .failure(.exceededMaximumValue)
         }
 
@@ -55,17 +51,10 @@ public final class DecimalParser {
         return false
     }
 
-    private func hasMoreThanOneDot(_ value: String) -> Bool {
-        if let firstIndexOfDot = value.firstIndex(of: "."), let lastIndexOfDot = value.lastIndex(of: ".") {
-            return firstIndexOfDot != lastIndexOfDot
-        }
-        return false
-    }
-
-    private func hasMoreThanSeverDigitsBeforeDot(_ value: String) -> Bool {
+    private func hasMoreThanFiveDigitsBeforeDot(_ value: String) -> Bool {
         if let indexOfDot = value.firstIndex(of: ".") {
-            return value[..<indexOfDot].count > 7
+            return value[..<indexOfDot].count > 5
         }
-        return value.count > 7
+        return value.count > 5
     }
 }

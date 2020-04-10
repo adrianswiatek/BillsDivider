@@ -3,11 +3,9 @@ import SwiftUI
 
 internal final class EditOverlayViewFactory {
     private let viewModelFactory: EditOverlayViewModelFactory
-    private let priceTextFieldFactory: PriceTextFieldFactory
 
-    internal init(viewModelFactory: EditOverlayViewModelFactory, priceTextFieldFactory: PriceTextFieldFactory) {
+    internal init(viewModelFactory: EditOverlayViewModelFactory) {
         self.viewModelFactory = viewModelFactory
-        self.priceTextFieldFactory = priceTextFieldFactory
     }
 
     internal func create(
@@ -17,6 +15,6 @@ internal final class EditOverlayViewFactory {
     ) -> EditOverlayView {
         let viewModel = viewModelFactory.create(presenting, parameters)
         configure(viewModel)
-        return EditOverlayView(viewModel, priceTextFieldFactory)
+        return EditOverlayView(viewModel)
     }
 }

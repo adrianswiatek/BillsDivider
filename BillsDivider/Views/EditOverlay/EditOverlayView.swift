@@ -3,11 +3,9 @@ import SwiftUI
 
 struct EditOverlayView: View {
     @ObservedObject private var viewModel: EditOverlayViewModel
-    private let priceTextFieldFactory: PriceTextFieldFactory
 
-    init(_ viewModel: EditOverlayViewModel, _ priceTextFieldFactory: PriceTextFieldFactory) {
+    init(_ viewModel: EditOverlayViewModel) {
         self.viewModel = viewModel
-        self.priceTextFieldFactory = priceTextFieldFactory
     }
 
     var body: some View {
@@ -26,15 +24,15 @@ struct EditOverlayView: View {
                 .background(Color("SettingsPeopleCellBackground"))
             }
 
-            if viewModel.discountViewModel.presentingPopover {
-                DiscountPopoverView(viewModel.discountPopoverViewModel, priceTextFieldFactory)
-            }
+            DiscountPopoverView(viewModel.discountPopoverViewModel)
+                .opacity(viewModel.discountViewModel.presentingPopover ? 1 : 0)
+                .animation(.easeInOut(duration: 0.25))
         }
     }
 
     private var controls: some View {
         VStack(alignment: .trailing) {
-            PriceSectionView(viewModel.priceViewModel, priceTextFieldFactory)
+            PriceSectionView(viewModel.priceViewModel)
                 .padding(.top, 16)
 
             DiscountSectionView(viewModel.discountViewModel)

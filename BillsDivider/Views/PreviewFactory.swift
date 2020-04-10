@@ -31,14 +31,12 @@ extension PreviewFactory {
 
     var priceSectionView: some View {
         let viewModel: PriceViewModel = dependencyContainer.resolve(PriceViewModel.self)
-        let priceTextFieldFactory: PriceTextFieldFactory = dependencyContainer.resolve(PriceTextFieldFactory.self)
-        return PriceSectionView(viewModel, priceTextFieldFactory)
+        return PriceSectionView(viewModel)
     }
 
     var discountPopoverView: some View {
         let viewModel: EditOverlayViewModel = dependencyContainer.resolve(EditOverlayViewModel.self)
-        let priceTextFieldFactory: PriceTextFieldFactory = dependencyContainer.resolve(PriceTextFieldFactory.self)
-        return DiscountPopoverView(viewModel.discountPopoverViewModel, priceTextFieldFactory)
+        return DiscountPopoverView(viewModel.discountPopoverViewModel)
     }
 
     var discountSectionView: some View {
@@ -48,8 +46,7 @@ extension PreviewFactory {
 
     var discountTextFieldView: some View {
         let viewModel: DiscountPopoverViewModel = dependencyContainer.resolve(DiscountPopoverViewModel.self)
-        let priceTextFieldFactory: PriceTextFieldFactory = dependencyContainer.resolve(PriceTextFieldFactory.self)
-        return DiscountTextFieldView(viewModel, priceTextFieldFactory)
+        return DiscountTextFieldView(viewModel)
     }
 
     var buyerSectionView: some View {
@@ -68,8 +65,7 @@ extension PreviewFactory {
 
     var reductionSectionView: some View {
         let viewModel: PriceViewModel = dependencyContainer.resolve(PriceViewModel.self)
-        let priceTextFieldFactory: PriceTextFieldFactory = dependencyContainer.resolve(PriceTextFieldFactory.self)
-        return ReductionSectionView(viewModel, priceTextFieldFactory)
+        return ReductionSectionView(viewModel)
     }
 
     var summaryView: some View {

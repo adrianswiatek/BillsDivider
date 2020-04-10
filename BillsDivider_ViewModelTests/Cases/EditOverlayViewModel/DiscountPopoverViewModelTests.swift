@@ -54,6 +54,29 @@ class DiscountPopoverViewModelTests: XCTestCase {
         XCTAssertFalse(sut.isValid)
     }
 
+    func testValidationMessage_whenInit_returnsEmptyString() {
+        XCTAssertEqual(sut.validationMessage, "")
+    }
+
+    func testValidationMessage_whenTextIsSetToEmptyString_returnsEmptyString() {
+        sut.text = ""
+        XCTAssertEqual(sut.validationMessage, "")
+    }
+
+    func testValidationMessage_whenTextIsSetToOne_returnsEmptyString() {
+        sut.text = "1"
+        XCTAssertEqual(sut.validationMessage, "")
+    }
+
+    func testValidationMessage_whenTextIsSetToLetter_returnsInvalidValueMessage() {
+        sut.text = "a"
+        XCTAssertEqual(sut.validationMessage, "Invalid value")
+    }
+
+    func testPlaceholder_whenInit_isSetFormattedZero() {
+        XCTAssertEqual(sut.placeholder, numberFormatter.format(value: 0))
+    }
+
     func testConfirm_whenCalled_setsTextToEmptyString() {
         sut.confirm()
         XCTAssertEqual(sut.text, "")

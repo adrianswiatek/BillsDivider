@@ -73,13 +73,6 @@ class DependencyContainer {
             as: PositionsDivider()
         )
         register(
-            PriceTextFieldFactory.self,
-            as: PriceTextFieldFactory(
-                decimalParser: resolve(DecimalParser.self),
-                numberFormatter: resolve(NumberFormatter.self)
-            )
-        )
-        register(
             EditOverlayViewModelFactory.self,
             as: EditOverlayViewModelFactory(
                 peopleService: resolve(PeopleService.self),
@@ -90,8 +83,7 @@ class DependencyContainer {
         register(
             EditOverlayViewFactory.self,
             as: EditOverlayViewFactory(
-                viewModelFactory: resolve(EditOverlayViewModelFactory.self),
-                priceTextFieldFactory: resolve(PriceTextFieldFactory.self)
+                viewModelFactory: resolve(EditOverlayViewModelFactory.self)
             )
         )
         register(
@@ -105,8 +97,7 @@ class DependencyContainer {
         register(
             ReductionOverlayViewFactory.self,
             as: ReductionOverlayViewFactory(
-                viewModelFactory: resolve(ReductionOverlayViewModelFactory.self),
-                priceTextFieldFactory: resolve(PriceTextFieldFactory.self)
+                viewModelFactory: resolve(ReductionOverlayViewModelFactory.self)
             )
         )
     }
