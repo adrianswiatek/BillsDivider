@@ -95,7 +95,7 @@ public final class EditOverlayViewModel: ObservableObject {
                 guard let discount = discount else { return true }
                 return price >= discount
             }
-            .assign(to: \.canConfirm, on: self)
+            .sink { [weak self] in self?.canConfirm = $0 }
             .store(in: &subscriptions)
 
         Publishers.CombineLatest(priceViewModel.valuePublisher, discountViewModel.valuePublisher)
@@ -103,7 +103,7 @@ public final class EditOverlayViewModel: ObservableObject {
                 guard let price = price, let discount = discount else { return "" }
                 return price >= discount ? "" : "Discount is greater than Price"
             }
-            .assign(to: \.confirmValidationMessage, on: self)
+            .sink { [weak self] in self?.confirmValidationMessage = $0 }
             .store(in: &subscriptions)
     }
 
