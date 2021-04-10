@@ -45,13 +45,13 @@ class SummaryViewModelTests: XCTestCase {
     func testInit_leftSidedBuyerSetToFirstPerson() {
         let people: People = .fromArray([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
         peopleService.updatePeople(people)
-        XCTAssertEqual(sut.leftSidedBuyer.formatted, people[0].name)
+        XCTAssertEqual(sut.buyerAtTheTop.formatted, people[0].name)
     }
 
     func testInit_rightSidedBuyerSetToSecondPerson() {
         let people: People = .fromArray([.withGeneratedName(forNumber: 1), .withGeneratedName(forNumber: 2)])
         peopleService.updatePeople(people)
-        XCTAssertEqual(sut.rightSidedBuyer.formatted, people[1].name)
+        XCTAssertEqual(sut.buyerAtTheBottom.formatted, people[1].name)
     }
 
     func testInit_formattedDebtReturnsFormattedZero() {

@@ -4,11 +4,8 @@ import Foundation
 import SwiftUI
 
 public final class SummaryViewModel: ObservableObject {
-    private var divisionResult: DivisionResult
-    private var sumResult: SumResult
-
-    public var leftSidedBuyer: Buyer
-    public var rightSidedBuyer: Buyer
+    public var buyerAtTheTop: Buyer
+    public var buyerAtTheBottom: Buyer
 
     public var formattedSum: String {
         numberFormatter.format(value: sumResult.amount)
@@ -24,10 +21,10 @@ public final class SummaryViewModel: ObservableObject {
             return "equal"
         case .debt(_, _, let amount) where amount <= 0:
             return "equal"
-        case .debt(let lender, _, _) where lender == leftSidedBuyer:
-            return "arrow.left"
+        case .debt(let lender, _, _) where lender == buyerAtTheTop:
+            return "arrow.up"
         default:
-            return "arrow.right"
+            return "arrow.down"
         }
     }
 
@@ -35,8 +32,11 @@ public final class SummaryViewModel: ObservableObject {
     private let divider: PositionsDivider
     private let numberFormatter: NumberFormatter
 
+    private var divisionResult: DivisionResult
+    private var sumResult: SumResult
+
     private var people: People
-    private var subscriptions: [AnyCancellable]
+    private var cancellables: Set<AnyCancellable>
 
     public init(
         _ receiptPositionService: ReceiptPositionService,
@@ -49,12 +49,12 @@ public final class SummaryViewModel: ObservableObject {
         self.numberFormatter = numberFormatter
 
         self.people = .empty
-        self.subscriptions = []
+        self.cancellables = []
 
         self.divisionResult = .noDebt
         self.sumResult = .zero
-        self.leftSidedBuyer = .person(.empty)
-        self.rightSidedBuyer = .person(.empty)
+        self.buyerAtTheTop = .person(.empty)
+        self.buyerAtTheBottom = .person(.empty)
 
         self.subscribe(to: receiptPositionService.positionsDidUpdate)
         self.subscribe(to: peopleService.peopleDidUpdate)
@@ -76,20 +76,19 @@ public final class SummaryViewModel: ObservableObject {
                 self.sumResult = .from(values: $0.map { $0.amountWithDiscount })
                 self.objectWillChange.send()
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
     }
 
     private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {
         peopleDidUpdate
             .sink { [weak self] in
-                guard let self = self else { return }
                 precondition($0.count >= 2, "There must be at least 2 people.")
 
-                self.people = $0
-                self.leftSidedBuyer = .person($0[0])
-                self.rightSidedBuyer = .person($0[1])
-                self.objectWillChange.send()
+                self?.people = $0
+                self?.buyerAtTheTop = .person($0[0])
+                self?.buyerAtTheBottom = .person($0[1])
+                self?.objectWillChange.send()
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
     }
 }

@@ -14,6 +14,7 @@
 		A708403523DCEE5000C91DEC /* SumResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403423DCEE5000C91DEC /* SumResult.swift */; };
 		A708403723DCEEAB00C91DEC /* SumResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403623DCEEAB00C91DEC /* SumResultTests.swift */; };
 		A713EFC526223DD40020B624 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = A713EFC426223DD40020B624 /* Swinject */; };
+		A713EFE0262249090020B624 /* SummaryPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A713EFDF262249090020B624 /* SummaryPersonView.swift */; };
 		A716602D23E639DF005329F6 /* UUIDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A716602C23E639DF005329F6 /* UUIDExtensions.swift */; };
 		A719DC922422E296008795DB /* DeciamlParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719DC912422E296008795DB /* DeciamlParserTests.swift */; };
 		A72B1A5923C2935100E09786 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
@@ -201,6 +202,7 @@
 		A706C362242042DB00F50D8A /* DiscountPopoverViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountPopoverViewModelTests.swift; sourceTree = "<group>"; };
 		A708403423DCEE5000C91DEC /* SumResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResult.swift; sourceTree = "<group>"; };
 		A708403623DCEEAB00C91DEC /* SumResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumResultTests.swift; sourceTree = "<group>"; };
+		A713EFDF262249090020B624 /* SummaryPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryPersonView.swift; sourceTree = "<group>"; };
 		A716602C23E639DF005329F6 /* UUIDExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDExtensions.swift; sourceTree = "<group>"; };
 		A719DC912422E296008795DB /* DeciamlParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeciamlParserTests.swift; sourceTree = "<group>"; };
 		A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BillsDivider_Model.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -852,6 +854,7 @@
 		A7F213AF238B410E0084B466 /* Summary */ = {
 			isa = PBXGroup;
 			children = (
+				A713EFDF262249090020B624 /* SummaryPersonView.swift */,
 				A7F213B1238B41310084B466 /* SummaryView.swift */,
 			);
 			path = Summary;
@@ -1286,6 +1289,7 @@
 				A743338C2415BACC003979BB /* DiscountSectionView.swift in Sources */,
 				A7FE5D08240893A3001FFFCD /* Separator.swift in Sources */,
 				A7E2D8F5242D5FB9005F0EBB /* ReductionOverlayView.swift in Sources */,
+				A713EFE0262249090020B624 /* SummaryPersonView.swift in Sources */,
 				A7B7C50F24313EAD00B4CB1E /* ReceiptActionButtons.swift in Sources */,
 				A7B6D9D5243536A6002F8EB9 /* ReceiptPersonView.swift in Sources */,
 				A7E100AC241594A7004FAFE0 /* SectionLabel.swift in Sources */,
