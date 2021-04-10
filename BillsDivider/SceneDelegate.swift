@@ -3,10 +3,10 @@ import CoreData
 import SwiftUI
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+internal class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
-    func scene(
+    internal func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UIView.setAnimationsEnabled(!isUiTesting)
 
         let window = UIWindow(windowScene: windowScene)
-        let rootView: AnyView = dependencyContainer.resolve(TabsView.self)
+        let rootView: some View = dependencyContainer.resolve(TabsView.self)
         window.rootViewController = UIHostingController(rootView: rootView)
         self.window = window
         window.makeKeyAndVisible()

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		A706C363242042DB00F50D8A /* DiscountPopoverViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A706C362242042DB00F50D8A /* DiscountPopoverViewModelTests.swift */; };
 		A708403523DCEE5000C91DEC /* SumResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403423DCEE5000C91DEC /* SumResult.swift */; };
 		A708403723DCEEAB00C91DEC /* SumResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708403623DCEEAB00C91DEC /* SumResultTests.swift */; };
+		A713EFC526223DD40020B624 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = A713EFC426223DD40020B624 /* Swinject */; };
 		A716602D23E639DF005329F6 /* UUIDExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A716602C23E639DF005329F6 /* UUIDExtensions.swift */; };
 		A719DC922422E296008795DB /* DeciamlParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719DC912422E296008795DB /* DeciamlParserTests.swift */; };
 		A72B1A5923C2935100E09786 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
@@ -370,6 +371,7 @@
 			files = (
 				A797D6A023C376FA002D550F /* BillsDivider_ViewModel.framework in Frameworks */,
 				A72B1A6523C2935100E09786 /* BillsDivider_Model.framework in Frameworks */,
+				A713EFC526223DD40020B624 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,9 +539,9 @@
 			isa = PBXGroup;
 			children = (
 				A7EB1151239EDDE100EEE4BC /* PreviewFactory.swift */,
-				A7E2D8F3242D5FA3005F0EBB /* ReductionOverlay */,
 				A77D54C723819225003D7E9D /* EditOverlay */,
 				A77D54C6238191D2003D7E9D /* Receipt */,
+				A7E2D8F3242D5FA3005F0EBB /* ReductionOverlay */,
 				A7873D2A23A8397F008C9552 /* Settings */,
 				A7E2D8E9242D4246005F0EBB /* SharedControls */,
 				A7F213AF238B410E0084B466 /* Summary */,
@@ -1032,6 +1034,9 @@
 				A797D69F23C376FA002D550F /* PBXTargetDependency */,
 			);
 			name = BillsDivider;
+			packageProductDependencies = (
+				A713EFC426223DD40020B624 /* Swinject */,
+			);
 			productName = BillsDivider;
 			productReference = A7FED22D235CEF8A00CCD069 /* BillsDivider.app */;
 			productType = "com.apple.product-type.application";
@@ -1043,7 +1048,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Adrian Świątek";
 				TargetAttributes = {
 					A72B1A4F23C2935100E09786 = {
@@ -1077,6 +1082,9 @@
 				Base,
 			);
 			mainGroup = A7FED224235CEF8A00CCD069;
+			packageReferences = (
+				A713EFC326223DD40020B624 /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = A7FED22E235CEF8A00CCD069 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1608,6 +1616,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1668,6 +1677,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1807,6 +1817,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A713EFC326223DD40020B624 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A713EFC426223DD40020B624 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A713EFC326223DD40020B624 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A7FED234235CEF8B00CCD069 /* BillsDivider.xcdatamodeld */ = {

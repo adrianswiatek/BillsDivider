@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct TabItem: Identifiable {
-    let id: UUID = UUID()
-    let title: String
-    let imageName: String
-    let view: AnyView
+public struct TabItem: Identifiable {
+    public let id: UUID = UUID()
+    public let title: String
+    public let imageName: String
+    public let view: AnyView
 }

@@ -13,11 +13,11 @@ struct PreviewFactory {
 
 extension PreviewFactory {
     var tabsView: some View {
-        dependencyContainer.resolve(TabsView.self) as AnyView
+        dependencyContainer.resolve(TabsView.self)
     }
 
     var receiptView: some View {
-        dependencyContainer.resolve(ReceiptView.self) as AnyView
+        dependencyContainer.resolve(ReceiptView.self)
     }
 
     var receiptHeaderView: some View {
@@ -69,10 +69,10 @@ extension PreviewFactory {
     }
 
     var summaryView: some View {
-        dependencyContainer.resolve(SummaryView.self) as AnyView
+        dependencyContainer.resolve(SummaryView.self)
     }
 
     var settingsView: some View {
-        dependencyContainer.resolve(SettingsView.self) as AnyView
+        dependencyContainer.resolve(SettingsView.self)
     }
 }

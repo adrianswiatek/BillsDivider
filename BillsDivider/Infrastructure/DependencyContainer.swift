@@ -2,19 +2,15 @@ import BillsDivider_Model
 import BillsDivider_ViewModel
 import CoreData
 import SwiftUI
+import Swinject
 
-class DependencyContainer {
-    enum Configuration {
-        case production
-        case testing
-    }
-
+public final class DependencyContainer {
+    private let container: Container
     private let configuration: Configuration
-    private var dependencies: [String: Any]
 
-    init(_ configuration: Configuration) {
+    public init(_ configuration: Configuration) {
+        self.container = Container()
         self.configuration = configuration
-        self.dependencies = [:]
 
         self.registerOtherObjects()
         self.registerServices()
@@ -22,174 +18,156 @@ class DependencyContainer {
         self.registerViews()
     }
 
-    func register(_ type: Any.Type, as object: Any) {
-        dependencies["\(type)"] = object
-    }
-
-    func resolve<T>(_ type: Any.Type) -> T {
-        let dependencyName = "\(type)"
-        guard let dependency = dependencies[dependencyName] else {
-            preconditionFailure("Dependency: \(dependencyName) does not exist")
-        }
-
-        guard let typedDependency = dependency as? T else {
-            preconditionFailure("Dependency \(dependencyName) exists, but has different type")
-        }
-
-        return typedDependency
+    public func resolve<T>(_ dependency: T.Type) -> T {
+        container.resolve(dependency)!
     }
 
     private func registerOtherObjects() {
-        register(
-            NumberFormatter.self,
-            as: NumberFormatter.twoFractionDigitsNumberFormatter
-        )
-        register(
-            NSManagedObjectContext.self,
-            as: configureCoreDataContext()
-        )
+        container.register(NumberFormatter.self) { _ in
+            .twoFractionDigitsNumberFormatter
+        }
+
+        container.register(NSManagedObjectContext.self) { _ in
+            switch self.configuration {
+            case .production:
+                return SqliteCoreDataStack().context
+            case .testing:
+                return InMemoryCoreDataStack().context
+            }
+        }.inObjectScope(.container)
     }
 
     private func registerServices() {
-        register(
-            PeopleService.self,
-            as: PeopleServiceFactory.create(
-                resolve(NSManagedObjectContext.self)
-            )
-        )
-        register(
-            ReceiptPositionService.self,
-            as: CoreDataReceiptPositionService(
-                resolve(NSManagedObjectContext.self),
-                resolve(PeopleService.self)
-            )
-        )
-        register(
-            DecimalParser.self,
-            as: DecimalParser()
-        )
-        register(
-            PositionsDivider.self,
-            as: PositionsDivider()
-        )
-        register(
-            EditOverlayViewModelFactory.self,
-            as: EditOverlayViewModelFactory(
-                peopleService: resolve(PeopleService.self),
-                decimalParser: resolve(DecimalParser.self),
-                numberFormatter: resolve(NumberFormatter.self)
-            )
-        )
-        register(
-            EditOverlayViewFactory.self,
-            as: EditOverlayViewFactory(
-                viewModelFactory: resolve(EditOverlayViewModelFactory.self)
-            )
-        )
-        register(
-            ReductionOverlayViewModelFactory.self,
-            as: ReductionOverlayViewModelFactory(
-                peopleService: resolve(PeopleService.self),
-                decimalParser: resolve(DecimalParser.self),
-                numberFormatter: resolve(NumberFormatter.self)
-            )
-        )
-        register(
-            ReductionOverlayViewFactory.self,
-            as: ReductionOverlayViewFactory(
-                viewModelFactory: resolve(ReductionOverlayViewModelFactory.self)
-            )
-        )
-    }
+        container.register(PeopleService.self) {
+            PeopleServiceFactory.create($0.resolve(NSManagedObjectContext.self)!)
+        }
 
-    private func registerViewModels() {
-        register(
-            ReceiptViewModel.self,
-            as: ReceiptViewModel(
-                resolve(ReceiptPositionService.self),
-                resolve(PeopleService.self),
-                resolve(NumberFormatter.self),
-                configuration == .testing
+        container.register(ReceiptPositionService.self) {
+            CoreDataReceiptPositionService(
+                $0.resolve(NSManagedObjectContext.self)!,
+                $0.resolve(PeopleService.self)!
             )
-        )
-        register(
-            SummaryViewModel.self,
-            as: SummaryViewModel(
-                resolve(ReceiptPositionService.self),
-                resolve(PeopleService.self),
-                resolve(PositionsDivider.self),
-                resolve(NumberFormatter.self)
-            )
-        )
-        register(
-            SettingsViewModel.self,
-            as: SettingsViewModel(
-                resolve(PeopleService.self),
-                [.green, .blue, .purple, .pink, .red, .orange]
-            )
-        )
-        register(
-            PriceViewModel.self,
-            as: PriceViewModel(
-                decimalParser: resolve(DecimalParser.self),
-                numberFormatter: resolve(NumberFormatter.self)
-            )
-        )
-        register(
-            DiscountPopoverViewModel.self,
-            as: DiscountPopoverViewModel(
-                decimalParser: resolve(DecimalParser.self),
-                numberFormatter: resolve(NumberFormatter.self)
-            )
-        )
-        register(
-            DiscountViewModel.self,
-            as: DiscountViewModel(
-                discountPopoverViewModel: resolve(DiscountPopoverViewModel.self),
-                decimalParser: resolve(DecimalParser.self)
-            )
-        )
-    }
+        }
 
-    private func registerViews() {
-        register(
-            ReceiptView.self,
-            as: AnyView(
-                ReceiptView(
-                    resolve(ReceiptViewModel.self),
-                    resolve(EditOverlayViewFactory.self),
-                    resolve(ReductionOverlayViewFactory.self)
-                )
-            )
-        )
-        register(
-            SummaryView.self,
-            as: AnyView(SummaryView(resolve(SummaryViewModel.self)))
-        )
-        register(
-            SettingsView.self,
-            as: AnyView(SettingsView(resolve(SettingsViewModel.self)))
-        )
-        register(
-            TabsView.self,
-            as: AnyView(configureTabsView())
-        )
-    }
+        container.register(DecimalParser.self) { _ in
+            DecimalParser()
+        }
 
-    private func configureCoreDataContext() -> NSManagedObjectContext {
-        switch configuration {
-        case .production:
-            return SqliteCoreDataStack().context
-        case .testing:
-            return InMemoryCoreDataStack().context
+        container.register(PositionsDivider.self) { _ in
+            PositionsDivider()
+        }
+
+        container.register(EditOverlayViewModelFactory.self) {
+            EditOverlayViewModelFactory(
+                peopleService: $0.resolve(PeopleService.self)!,
+                decimalParser: $0.resolve(DecimalParser.self)!,
+                numberFormatter: $0.resolve(NumberFormatter.self)!
+            )
+        }
+
+        container.register(EditOverlayViewFactory.self) {
+            EditOverlayViewFactory(
+                viewModelFactory: $0.resolve(EditOverlayViewModelFactory.self)!
+            )
+        }
+
+        container.register(ReductionOverlayViewModelFactory.self) {
+            ReductionOverlayViewModelFactory(
+                peopleService: $0.resolve(PeopleService.self)!,
+                decimalParser: $0.resolve(DecimalParser.self)!,
+                numberFormatter: $0.resolve(NumberFormatter.self)!
+            )
+        }
+
+        container.register(ReductionOverlayViewFactory.self) {
+            ReductionOverlayViewFactory(
+                viewModelFactory: $0.resolve(ReductionOverlayViewModelFactory.self)!
+            )
         }
     }
 
-    private func configureTabsView() -> TabsView {
-        .init(items: [
-            TabItem(title: "Receipt", imageName: "list.dash", view: resolve(ReceiptView.self)),
-            TabItem(title: "Summary", imageName: "doc.text", view: resolve(SummaryView.self)),
-            TabItem(title: "Settings", imageName: "hammer", view: resolve(SettingsView.self))
-        ])
+    private func registerViewModels() {
+        container.register(ReceiptViewModel.self) {
+            ReceiptViewModel(
+                $0.resolve(ReceiptPositionService.self)!,
+                $0.resolve(PeopleService.self)!,
+                $0.resolve(NumberFormatter.self)!,
+                self.configuration == .testing
+            )
+        }
+
+        container.register(SummaryViewModel.self) {
+            SummaryViewModel(
+                $0.resolve(ReceiptPositionService.self)!,
+                $0.resolve(PeopleService.self)!,
+                $0.resolve(PositionsDivider.self)!,
+                $0.resolve(NumberFormatter.self)!
+            )
+        }
+
+        container.register(SettingsViewModel.self) {
+            SettingsViewModel(
+                $0.resolve(PeopleService.self)!,
+                [.green, .blue, .purple, .pink, .red, .orange]
+            )
+        }
+
+        container.register(PriceViewModel.self) {
+            PriceViewModel(
+                decimalParser: $0.resolve(DecimalParser.self)!,
+                numberFormatter: $0.resolve(NumberFormatter.self)!
+            )
+        }
+
+        container.register(DiscountPopoverViewModel.self) {
+            DiscountPopoverViewModel(
+                decimalParser: $0.resolve(DecimalParser.self)!,
+                numberFormatter: $0.resolve(NumberFormatter.self)!
+            )
+        }
+
+        container.register(DiscountViewModel.self) {
+            DiscountViewModel(
+                discountPopoverViewModel: $0.resolve(DiscountPopoverViewModel.self)!,
+                decimalParser: $0.resolve(DecimalParser.self)!
+            )
+        }
+    }
+
+    private func registerViews() {
+        container.register(ReceiptView.self) {
+            ReceiptView(
+                $0.resolve(ReceiptViewModel.self)!,
+                $0.resolve(EditOverlayViewFactory.self)!,
+                $0.resolve(ReductionOverlayViewFactory.self)!
+            )
+        }
+
+        container.register(SummaryView.self) {
+            SummaryView(
+                $0.resolve(SummaryViewModel.self)!
+            )
+        }
+
+        container.register(SettingsView.self) {
+            SettingsView(
+                $0.resolve(SettingsViewModel.self)!
+            )
+        }
+
+        container.register(TabsView.self) {
+            TabsView(items: [
+                TabItem(title: "Receipt", imageName: "list.dash", view: AnyView($0.resolve(ReceiptView.self)!)),
+                TabItem(title: "Summary", imageName: "doc.text", view: AnyView($0.resolve(SummaryView.self)!)),
+                TabItem(title: "Settings", imageName: "hammer", view: AnyView($0.resolve(SettingsView.self)!))
+            ])
+        }
+    }
+}
+
+public extension DependencyContainer {
+    enum Configuration {
+        case production
+        case testing
     }
 }

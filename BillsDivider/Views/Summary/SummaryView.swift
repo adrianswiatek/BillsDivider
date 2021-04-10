@@ -2,18 +2,18 @@ import BillsDivider_ViewModel
 import Combine
 import SwiftUI
 
-struct SummaryView: View {
+public struct SummaryView: View {
     @ObservedObject private var viewModel: SummaryViewModel
 
-    init(_ viewModel: SummaryViewModel) {
+    public init(_ viewModel: SummaryViewModel) {
         self.viewModel = viewModel
     }
 
-    var screenSize: CGRect {
+    private var screenSize: CGRect {
         UIScreen.main.bounds
     }
 
-    var body: some View {
+    public var body: some View {
         NavigationView {
             VStack {
                 ScrollView {
@@ -26,7 +26,7 @@ struct SummaryView: View {
                             .offset(x: 0, y: 16)
 
                         HStack {
-                            generatePersonView(
+                            personView(
                                 withLabel: viewModel.name(for: viewModel.leftSidedBuyer),
                                 andColor: viewModel.color(for: viewModel.leftSidedBuyer)
                             )
@@ -39,7 +39,7 @@ struct SummaryView: View {
 
                             Spacer()
 
-                            generatePersonView(
+                            personView(
                                 withLabel: viewModel.name(for: viewModel.rightSidedBuyer),
                                 andColor: viewModel.color(for: viewModel.rightSidedBuyer)
                             )
@@ -73,7 +73,7 @@ struct SummaryView: View {
         }
     }
 
-    private func generatePersonView(withLabel label: String, andColor color: Color) -> some View {
+    private func personView(withLabel label: String, andColor color: Color) -> some View {
         Text(label)
             .multilineTextAlignment(.center)
             .lineLimit(2)

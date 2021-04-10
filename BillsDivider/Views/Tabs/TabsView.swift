@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct TabsView: View {
+public struct TabsView: View {
     private let items: [TabItem]
 
-    init(items: [TabItem]) {
+    public init(items: [TabItem]) {
         self.items = items
     }
 
-    var body: some View {
+    public var body: some View {
         TabView {
             ForEach(items) { item in
                 item.view.tabItem {
