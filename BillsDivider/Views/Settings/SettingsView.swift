@@ -13,17 +13,15 @@ struct SettingsView: View {
             ScrollView {
                 Separator()
                 
-//                numberOfPeople
-//                    .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
+                numberOfPeople
+                    .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
 
-                people
+                peopleLabel
                     .padding(.init(top: 8, leading: 16, bottom: 4, trailing: 16))
 
                 VStack(alignment: .center, spacing: 0) {
-                    ForEach(viewModel.peopleViewModel) { person in
-                        self.cells(for: person)
-                    }
-                    .background(Color("SettingsPeopleCellBackground"))
+                    ForEach(viewModel.peopleViewModel, content: cells)
+                        .background(Color("SettingsPeopleCellBackground"))
 
                     if viewModel.canAddPerson() {
                         newPersonCell
@@ -33,7 +31,7 @@ struct SettingsView: View {
             }
             .navigationBarTitle("Settings")
         }
-        .onDisappear(perform: { self.viewModel.reset() })
+        .onDisappear { viewModel.reset() }
     }
 
     private var numberOfPeople: some View {
@@ -45,7 +43,7 @@ struct SettingsView: View {
         .font(.headline)
     }
 
-    private var people: some View {
+    private var peopleLabel: some View {
         HStack {
             Text("People:")
                 .font(.headline)
@@ -72,19 +70,16 @@ struct SettingsView: View {
         HStack {
             TextField(
                 personViewModel.placeHolder,
-                text: self.$viewModel.peopleViewModel[self.viewModel.index(of: personViewModel)].name
+                text: $viewModel.peopleViewModel[viewModel.index(of: personViewModel)].name
             )
             .accessibility(identifier: "SettingsView.PersonsTextField")
 
-            Button(
-                action: {
-                    withAnimation(.easeOut) { personViewModel.hasDetailsOpened.toggle() }
-                },
-                label: {
-                    Image(systemName: "chevron.down")
-                        .rotationEffect(.degrees(personViewModel.hasDetailsOpened ? 180 : 0))
-                }
-            )
+            Button {
+                withAnimation(.easeOut) { personViewModel.hasDetailsOpened.toggle() }
+            } label: {
+                Image(systemName: "chevron.down")
+                    .rotationEffect(.degrees(personViewModel.hasDetailsOpened ? 180 : 0))
+            }
             .frame(width: 44, height: 44)
             .accessibility(identifier: "SettingsView.ChevronButton")
         }
@@ -101,8 +96,10 @@ struct SettingsView: View {
     }
 
     private func colors(for personViewModel: PersonViewModel) -> some View {
-        ForEach(self.viewModel.colors, id: \.hashValue) { color in
-            Button(action: { personViewModel.color = color }) {
+        ForEach(viewModel.colors, id: \.hashValue) { color in
+            Button {
+                personViewModel.color = color
+            } label: {
                 ZStack {
                     Circle()
                         .frame(width: 28, height: 28)
@@ -121,7 +118,9 @@ struct SettingsView: View {
     private var newPersonCell: some View {
         VStack {
             HStack {
-                Button(action: { self.viewModel.addPerson() }) {
+                Button {
+                    viewModel.addPerson()
+                } label: {
                     HStack {
                         Image(systemName: "plus")
                         Text("New person")
@@ -140,5 +139,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewFactory().settingsView
+            .previewLayout(.sizeThatFits)
     }
 }
