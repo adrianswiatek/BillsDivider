@@ -35,13 +35,23 @@ public struct SummaryView: View {
             Spacer()
 
             VStack {
-                Text(viewModel.formattedDebt)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .offset(x: 0, y: -16)
+                if viewModel.direction == .up {
+                    Image(systemName: viewModel.formattedDirection)
+                        .font(.largeTitle)
+                        .offset(x: 0, y: -16)
 
-                Image(systemName: viewModel.formattedDirection)
-                    .font(.largeTitle)
+                    Text(viewModel.formattedDebt)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                } else {
+                    Text(viewModel.formattedDebt)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .offset(x: 0, y: -16)
+
+                    Image(systemName: viewModel.formattedDirection)
+                        .font(.largeTitle)
+                }
             }
             .offset(x: 0, y: 16)
 

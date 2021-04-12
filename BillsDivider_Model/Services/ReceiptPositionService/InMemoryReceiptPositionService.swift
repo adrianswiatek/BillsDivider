@@ -39,6 +39,11 @@ public final class InMemoryReceiptPositionService: ReceiptPositionService {
         positions.removeAll { $0.id == position.id }
     }
 
+    public func removeById(_ id: UUID) {
+        assert(positions.contains { $0.id == id }, "Positions doesn't contain position with given id")
+        positions.removeAll { $0.id == id }
+    }
+
     public func removeAllPositions() {
         positions.removeAll()
     }

@@ -20,8 +20,16 @@ extension PreviewFactory {
         dependencyContainer.resolve(ReceiptView.self)
     }
 
+    var receiptView2: some View {
+        dependencyContainer.resolve(ReceiptView2.self)
+    }
+
     var receiptHeaderView: some View {
         ReceiptHeaderView()
+    }
+
+    var addPositionView: some View {
+        dependencyContainer.resolve(AddPositionView.self)
     }
 
     var editOverlayView: some View {

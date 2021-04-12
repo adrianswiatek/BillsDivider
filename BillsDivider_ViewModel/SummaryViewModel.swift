@@ -16,15 +16,26 @@ public final class SummaryViewModel: ObservableObject {
     }
 
     public var formattedDirection: String {
+        switch direction {
+        case .equals:
+            return "equal"
+        case .up:
+            return "arrow.up"
+        case .down:
+            return "arrow.down"
+        }
+    }
+
+    public var direction: Direction {
         switch divisionResult {
         case .noDebt:
-            return "equal"
+            return .equals
         case .debt(_, _, let amount) where amount <= 0:
-            return "equal"
+            return .equals
         case .debt(let lender, _, _) where lender == buyerAtTheTop:
-            return "arrow.up"
+            return .up
         default:
-            return "arrow.down"
+            return .down
         }
     }
 
@@ -90,5 +101,11 @@ public final class SummaryViewModel: ObservableObject {
                 self?.objectWillChange.send()
             }
             .store(in: &cancellables)
+    }
+}
+
+extension SummaryViewModel {
+    public enum Direction {
+        case up, down, equals
     }
 }

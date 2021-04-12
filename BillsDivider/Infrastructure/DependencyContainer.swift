@@ -96,6 +96,22 @@ public final class DependencyContainer {
             )
         }
 
+        container.register(ReceiptViewModel2.self) {
+            ReceiptViewModel2(
+                $0.resolve(ReceiptPositionService.self)!,
+                $0.resolve(PeopleService.self)!,
+                $0.resolve(NumberFormatter.self)!
+            )
+        }
+
+        container.register(AddPositionViewModel.self) {
+            AddPositionViewModel(
+                $0.resolve(ReceiptPositionService.self)!,
+                $0.resolve(PeopleService.self)!,
+                $0.resolve(DecimalParser.self)!
+            )
+        }
+
         container.register(SummaryViewModel.self) {
             SummaryViewModel(
                 $0.resolve(ReceiptPositionService.self)!,
@@ -143,6 +159,19 @@ public final class DependencyContainer {
             )
         }
 
+        container.register(ReceiptView2.self) { resolver in
+            ReceiptView2(
+                resolver.resolve(ReceiptViewModel2.self)!,
+                resolver.resolve(AddPositionView.self)!
+            )
+        }
+
+        container.register(AddPositionView.self) {
+            AddPositionView(
+                $0.resolve(AddPositionViewModel.self)!
+            )
+        }
+
         container.register(SummaryView.self) {
             SummaryView(
                 $0.resolve(SummaryViewModel.self)!
@@ -157,7 +186,7 @@ public final class DependencyContainer {
 
         container.register(TabsView.self) {
             TabsView(items: [
-                TabItem(title: "Receipt", imageName: "list.dash", view: AnyView($0.resolve(ReceiptView.self)!)),
+                TabItem(title: "Receipt", imageName: "list.dash", view: AnyView($0.resolve(ReceiptView2.self)!)),
                 TabItem(title: "Summary", imageName: "doc.text", view: AnyView($0.resolve(SummaryView.self)!)),
                 TabItem(title: "Settings", imageName: "hammer", view: AnyView($0.resolve(SettingsView.self)!))
             ])

@@ -17,8 +17,8 @@ internal final class ReductionOverlayViewModelFactory {
         ReductionOverlayViewModel(
             presenting: presenting,
             priceViewModel: PriceViewModel(decimalParser: decimalParser, numberFormatter: numberFormatter),
-            buyerViewModel: BuyerViewModel(peopleService: peopleService),
-            ownerViewModel: OwnerViewModel(peopleService: peopleService),
+            buyerViewModel: BuyerViewModel(peopleService),
+            ownerViewModel: OwnerViewModel(peopleService),
             decimalParser: decimalParser
         )
     }

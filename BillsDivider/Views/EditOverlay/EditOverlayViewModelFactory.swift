@@ -54,10 +54,10 @@ internal final class EditOverlayViewModelFactory {
     }
 
     private var buyerViewModel: BuyerViewModel {
-        BuyerViewModel(peopleService: peopleService)
+        BuyerViewModel(peopleService)
     }
 
     private var ownerViewModel: OwnerViewModel {
-        OwnerViewModel(peopleService: peopleService)
+        OwnerViewModel(peopleService)
     }
 }

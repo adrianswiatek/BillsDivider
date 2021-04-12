@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct ReceiptHeaderView: View {
-    var body: some View {
+public struct ReceiptHeaderView: View {
+    public var body: some View {
         HStack {
             Text("Value")
                 .fontWeight(.bold)

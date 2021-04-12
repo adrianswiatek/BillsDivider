@@ -1,12 +1,12 @@
 public final class DecimalParser {
-    public enum DecimalParseError: Error {
+    public enum ParseError: Error {
         case wrongFormat
         case exceededMaximumValue
     }
 
     public init() {}
 
-    public func parse(_ value: String) -> Result<Decimal, DecimalParseError> {
+    public func parse(_ value: String) -> Result<Decimal, ParseError> {
         let value = value.replacingOccurrences(of: ",", with: ".")
 
         if hasMoreThanTwoDigitsAfterDot(value) {
@@ -14,6 +14,10 @@ public final class DecimalParser {
         }
 
         if hasInvalidCharacter(value) {
+            return .failure(.wrongFormat)
+        }
+
+        if hasMoreThanOneDot(value) {
             return .failure(.wrongFormat)
         }
 
@@ -49,6 +53,10 @@ public final class DecimalParser {
             }
         }
         return false
+    }
+
+    private func hasMoreThanOneDot(_ value: String) -> Bool {
+        value.firstIndex(of: ".") != value.lastIndex(of: ".")
     }
 
     private func hasMoreThanFiveDigitsBeforeDot(_ value: String) -> Bool {

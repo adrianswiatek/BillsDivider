@@ -57,10 +57,14 @@ public final class CoreDataReceiptPositionService: ReceiptPositionService {
     }
 
     public func remove(_ position: ReceiptPosition) {
+        removeById(position.id)
+    }
+
+    public func removeById(_ id: UUID) {
         var positions = fetchPositions()
         removeAllEntities()
 
-        positions.removeAll { $0.id == position.id }
+        positions.removeAll { $0.id == id }
 
         insert(positions)
         save()

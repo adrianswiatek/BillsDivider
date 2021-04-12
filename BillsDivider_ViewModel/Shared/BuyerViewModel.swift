@@ -5,12 +5,12 @@ public final class BuyerViewModel: ObservableObject {
     @Published public var buyer: Buyer
     @Published public var buyers: [Buyer]
 
-    private var subscriptions: [AnyCancellable]
+    private var cancellables: Set<AnyCancellable>
 
-    public init(peopleService: PeopleService) {
+    public init(_ peopleService: PeopleService) {
         self.buyer = .person(.empty)
         self.buyers = []
-        self.subscriptions = []
+        self.cancellables = []
         self.subscribe(to: peopleService.peopleDidUpdate)
     }
 
@@ -23,6 +23,6 @@ public final class BuyerViewModel: ObservableObject {
                 self.buyers = $0.map { Buyer.person($0) }
                 self.buyer = self.buyers[0]
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
     }
 }

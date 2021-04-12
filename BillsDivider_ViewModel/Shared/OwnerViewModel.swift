@@ -5,12 +5,12 @@ public final class OwnerViewModel: ObservableObject {
     @Published public var owner: Owner
     @Published public var owners: [Owner]
 
-    private var subscriptions: [AnyCancellable]
+    private var cancellables: Set<AnyCancellable>
 
-    public init(peopleService: PeopleService) {
+    public init(_ peopleService: PeopleService) {
         self.owner = .all
         self.owners = []
-        self.subscriptions = []
+        self.cancellables = []
         self.subscribe(to: peopleService.peopleDidUpdate)
     }
 
@@ -20,6 +20,6 @@ public final class OwnerViewModel: ObservableObject {
                 precondition($0.count >= 2, "There must be at least 2 people.")
                 self?.owners = $0.map { Owner.person($0) } + [.all]
             }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
     }
 }
