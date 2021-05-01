@@ -1,45 +1,26 @@
 import BillsDivider_ViewModel
 import SwiftUI
 
-public struct AddPositionView: View {
-    @ObservedObject private var viewModel: AddPositionViewModel
+public struct EditPositionView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject private var viewModel: EditPositionViewModel
 
-    public init(_ viewModel: AddPositionViewModel) {
+    public init(_ viewModel: EditPositionViewModel) {
         self.viewModel = viewModel
     }
 
     public var body: some View {
         NavigationView {
-            ZStack(alignment: .top) {
-                Form {
-                    moneySection(for: $viewModel.price)
-                    moneySection(for: $viewModel.discount)
-                    peopleSection
-                    addPositionSection
-                }
-
-                positionAddedView
+            Form {
+                moneySection(for: $viewModel.price)
+                moneySection(for: $viewModel.discount)
+                peopleSection
+                updatePositionSection
             }
             .navigationBarHidden(true)
         }
-        .navigationTitle(Text("Add position"))
+        .navigationTitle(Text("Edit position"))
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear { viewModel.initialize() }
-    }
-
-    private var positionAddedView: some View {
-        Text("Position added")
-            .font(.title2)
-            .foregroundColor(.white)
-            .padding()
-            .background(
-                Color.accentColor.shadow(
-                    color: Color(UIColor(white: 0, alpha: 0.5)), radius: 10, x: 0, y: 5
-                )
-            )
-            .opacity(viewModel.isConfirmationVisible ? 1 : 0)
-            .offset(x: 0, y: UIScreen.main.bounds.height / 4)
-            .animation(.easeInOut(duration: 0.3))
     }
 
     private func moneySection(for viewModel: Binding<MoneyViewModel>) -> some View {
@@ -93,28 +74,31 @@ public struct AddPositionView: View {
         }
     }
 
-    private var addPositionSection: some View {
+    private var updatePositionSection: some View {
         Section {
-            Button(action: { viewModel.addPosition() }) {
+            Button {
+                viewModel.updatePosition()
+                presentationMode.wrappedValue.dismiss()
+            } label: {
                 HStack {
                     Spacer()
                     Image(systemName: "checkmark.circle.fill")
-                    Text("Add position")
+                    Text("Update position")
                     Spacer()
                 }
             }
-            .disabled(!viewModel.canAddPosition)
+            .disabled(!viewModel.canUpdatePosition)
         }
     }
 }
 
-struct AddPositionView_Previews: PreviewProvider {
+struct EditPositionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PreviewFactory().addPositionView
+            PreviewFactory().editPositionView
                 .preferredColorScheme(.light)
 
-            PreviewFactory().addPositionView
+            PreviewFactory().editPositionView
                 .preferredColorScheme(.dark)
         }
     }

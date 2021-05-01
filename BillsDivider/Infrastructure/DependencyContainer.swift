@@ -35,6 +35,13 @@ public final class DependencyContainer {
                 return InMemoryCoreDataStack().context
             }
         }.inObjectScope(.container)
+
+        container.register(ReceiptViewCoordinator.self) { resolver in
+            ReceiptViewCoordinator(
+                addPositionViewModelFactory: { resolver.resolve(AddPositionViewModel.self)! },
+                editPositionViewModelFactory: { resolver.resolve(EditPositionViewModel.self)! }
+            )
+        }
     }
 
     private func registerServices() {
@@ -47,7 +54,7 @@ public final class DependencyContainer {
                 $0.resolve(NSManagedObjectContext.self)!,
                 $0.resolve(PeopleService.self)!
             )
-        }
+        }.inObjectScope(.container)
 
         container.register(DecimalParser.self) { _ in
             DecimalParser()
@@ -108,7 +115,17 @@ public final class DependencyContainer {
             AddPositionViewModel(
                 $0.resolve(ReceiptPositionService.self)!,
                 $0.resolve(PeopleService.self)!,
-                $0.resolve(DecimalParser.self)!
+                $0.resolve(DecimalParser.self)!,
+                $0.resolve(NumberFormatter.self)!
+            )
+        }.inObjectScope(.container)
+
+        container.register(EditPositionViewModel.self) {
+            EditPositionViewModel(
+                $0.resolve(ReceiptPositionService.self)!,
+                $0.resolve(PeopleService.self)!,
+                $0.resolve(DecimalParser.self)!,
+                $0.resolve(NumberFormatter.self)!
             )
         }
 
@@ -159,16 +176,22 @@ public final class DependencyContainer {
             )
         }
 
-        container.register(ReceiptView2.self) { resolver in
+        container.register(ReceiptView2.self) {
             ReceiptView2(
-                resolver.resolve(ReceiptViewModel2.self)!,
-                resolver.resolve(AddPositionView.self)!
+                $0.resolve(ReceiptViewModel2.self)!,
+                $0.resolve(ReceiptViewCoordinator.self)!
             )
         }
 
         container.register(AddPositionView.self) {
             AddPositionView(
                 $0.resolve(AddPositionViewModel.self)!
+            )
+        }
+
+        container.register(EditPositionView.self) {
+            EditPositionView(
+                $0.resolve(EditPositionViewModel.self)!
             )
         }
 

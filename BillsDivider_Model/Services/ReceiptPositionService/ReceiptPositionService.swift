@@ -8,5 +8,6 @@ public protocol ReceiptPositionService {
     func remove(_ position: ReceiptPosition)
     func removeById(_ id: UUID)
     func removeAllPositions()
-    func fetchPositions() -> [ReceiptPosition]
+    func fetchAll() -> [ReceiptPosition]
+    func findById(_ id: UUID) -> ReceiptPosition?
 }

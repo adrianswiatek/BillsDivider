@@ -2,14 +2,15 @@ import BillsDivider_ViewModel
 import SwiftUI
 
 public struct ReceiptView2: View {
+    @State private var isNavigationActive: Bool = false
     @State private var isActionSheetVisible: Bool = false
 
     @ObservedObject private var viewModel: ReceiptViewModel2
-    private var addPositionView: AddPositionView
+    @ObservedObject private var coordinator: ReceiptViewCoordinator
 
-    public init(_ viewModel: ReceiptViewModel2, _ addPositionView: AddPositionView) {
+    public init(_ viewModel: ReceiptViewModel2, _ coordinator: ReceiptViewCoordinator) {
         self.viewModel = viewModel
-        self.addPositionView = addPositionView
+        self.coordinator = coordinator
     }
 
     public var body: some View {
@@ -18,45 +19,50 @@ public struct ReceiptView2: View {
                 Section(header: header) {
                     ForEach(viewModel.positions, id: \.id) { position in
                         rowForPosition(position)
-                            .contextMenu {
-                                Button {
-                                    viewModel.removePosition(position)
-                                } label: {
-                                    Text("Edit position")
-                                    Image(systemName: "pencil")
-                                }
-                                Button {
-                                    withAnimation { viewModel.removePosition(position) }
-                                } label: {
-                                    Text("Remove position")
-                                    Image(systemName: "trash")
-                                }
-                            }
+                    }
+                    .onDelete {
+                        guard let index = $0.first else { return }
+                        viewModel.removePosition(at: index)
                     }
                 }
             }
             .listStyle(GroupedListStyle())
+            .background(
+                NavigationLink("", destination: coordinator.destinationView(), isActive: $isNavigationActive)
+            )
             .actionSheet(isPresented: $isActionSheetVisible) {
-                ActionSheet(title: Text("More"), message: nil, buttons: [
+                ActionSheet(title: Text("More actions"), message: nil, buttons: [
+                    .default(Text("Add reduction")) {
+
+                    },
                     .destructive(Text("Remove all")) {
-                        withAnimation { viewModel.removeAllPositions() }
+                        withAnimation {
+                            viewModel.removeAllPositions()
+                        }
                     },
                     .cancel()
                 ])
             }
             .navigationTitle(Text("Receipt"))
-            .navigationBarTitleDisplayMode(.large)
             .navigationBarItems(
-                leading: Button(action: { isActionSheetVisible = true }) {
-                    Image(systemName: "ellipsis")
-                        .rotationEffect(.degrees(90))
-                        .frame(width: 40, height: 40)
-                },
-                trailing: NavigationLink(destination: addPositionView) {
-                    Image(systemName: "plus")
-                        .font(.title2)
-                        .frame(width: 40, height: 40)
-                }
+                leading:
+                    Button {
+                        isActionSheetVisible = true
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .rotationEffect(.degrees(90))
+                            .frame(width: 40, height: 40)
+                    }
+                    .disabled(!viewModel.canShowMoreActions),
+                trailing:
+                    Button {
+                        coordinator.addPosition()
+                        isNavigationActive = true
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.title2)
+                            .frame(width: 40, height: 40)
+                    }
             )
             .onAppear {
                 viewModel.fetchPositions()
@@ -74,14 +80,14 @@ public struct ReceiptView2: View {
         }
 
         return HStack {
-            Spacer()
-
             roleLabel(withText: "B")
 
             Divider()
                 .padding(.vertical, 6)
 
             roleLabel(withText: "O")
+
+            Spacer()
         }
     }
 
@@ -93,40 +99,58 @@ public struct ReceiptView2: View {
         }
 
         func price() -> some View {
-            HStack(alignment: .firstTextBaseline) {
-                Text(position.priceWithDiscount)
-                    .font(.system(.title2, design: .monospaced))
-                    .fontWeight(.bold)
-
+            HStack {
                 if let discount = position.discount {
                     HStack(spacing: 4) {
                         Text(position.price)
-                            .font(.system(.caption, design: .monospaced))
+                            .font(.system(.body, design: .monospaced))
                             .fontWeight(.bold)
 
                         Text("-")
-                            .font(.system(.caption2, design: .monospaced))
+                            .font(.system(.caption, design: .monospaced))
 
                         Text("\(discount)")
-                            .font(.system(.caption2, design: .monospaced))
+                            .font(.system(.caption, design: .monospaced))
                     }
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 10)
                 }
+
+                Spacer()
+
+                Text(position.priceWithDiscount)
+                    .font(.system(.title2, design: .monospaced))
+                    .fontWeight(.bold)
+                    .padding(.trailing, 8)
             }
         }
 
         return HStack {
-            price()
-
-            Spacer()
-
             personCircle(withColor: position.buyerColor)
 
             Divider()
                 .padding(.vertical, 6)
 
             personCircle(withColor: position.ownerColor)
+
+            Spacer()
+
+            price()
+        }
+        .contextMenu {
+            Button {
+                coordinator.editPosition(with: position.id)
+                isNavigationActive = true
+            } label: {
+                Image(systemName: "pencil")
+                Text("Edit position")
+            }
+            Button {
+                viewModel.removePosition(with: position.id)
+            } label: {
+                Image(systemName: "trash")
+                Text("Remove position")
+            }
         }
         .padding(.vertical, 4)
     }

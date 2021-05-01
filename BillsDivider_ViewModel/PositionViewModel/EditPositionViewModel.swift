@@ -1,18 +1,18 @@
 import BillsDivider_Model
 import Combine
 
-public final class AddPositionViewModel: ObservableObject {
+public final class EditPositionViewModel: ObservableObject {
     @Published public var price: MoneyViewModel
     @Published public var discount: MoneyViewModel
     @Published public var buyer: Buyer
     @Published public var owner: Owner
 
-    @Published public private(set) var isConfirmationVisible: Bool
-    @Published public private(set) var canAddPosition: Bool
+    @Published public private(set) var canUpdatePosition: Bool
 
     public private(set) var buyers: [Buyer]
     public private(set) var owners: [Owner]
 
+    private var id: UUID?
     private var cancellables: Set<AnyCancellable>
 
     private let positionService: ReceiptPositionService
@@ -34,8 +34,7 @@ public final class AddPositionViewModel: ObservableObject {
         self.buyer = .person(.empty)
         self.owner = .all
 
-        self.isConfirmationVisible = false
-        self.canAddPosition = false
+        self.canUpdatePosition = false
 
         self.buyers = []
         self.owners = []
@@ -45,42 +44,37 @@ public final class AddPositionViewModel: ObservableObject {
         self.bind()
     }
 
-    public func initialize() {
-        reset()
-
-        guard let position = positionService.fetchAll().first else {
+    public func initializeWithPositionId(_ id: UUID) {
+        guard let position = positionService.findById(id) else {
             return
         }
 
-        buyer = position.buyer
-        owner = position.owner
+        self.id = id
+        self.price.value = numberFormatter.format(value: position.amount)
+        self.discount.value = position.discount.map { numberFormatter.format(value: $0) } ?? ""
+        self.buyer = position.buyer
+        self.owner = position.owner
+        self.canUpdatePosition = false
     }
 
-    public func addPosition() {
-        guard let position = receiptPosition() else {
+    public func updatePosition() {
+        guard let id = id, let price = price.parsedValue else {
             return
         }
 
-        positionService.insert(position)
-        isConfirmationVisible = true
-        reset()
+        positionService.update(
+            ReceiptPosition(id: id, amount: price, discount: discount.parsedValue, buyer: buyer, owner: owner)
+        )
     }
 
     private func bind() {
-        $isConfirmationVisible
-            .filter { $0 == true }
-            .delay(for: .seconds(1), scheduler: DispatchQueue.global())
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in self?.isConfirmationVisible = false }
-            .store(in: &cancellables)
-
-        Publishers.CombineLatest($price, $discount)
-            .sink { [weak self] price, discount in
+        Publishers.CombineLatest4($price, $discount, $buyer, $owner)
+            .sink { [weak self] price, discount, _, _ in
                 let areValuesInvalid = (price.parsedValue ?? 0) < (discount.parsedValue ?? 0)
                 areValuesInvalid ? price.state = .invalid : price.resetState()
                 areValuesInvalid ? discount.state = .invalid : discount.resetState()
 
-                self?.canAddPosition = price.state.is(.valid) && discount.state.is(.valid, .empty)
+                self?.canUpdatePosition = price.state.is(.valid) && discount.state.is(.valid, .empty)
             }
             .store(in: &cancellables)
 
@@ -88,24 +82,9 @@ public final class AddPositionViewModel: ObservableObject {
             .sink { [weak self] in
                 guard let self = self else { return }
                 precondition($0.count >= 2, "There must be at least 2 people.")
-
                 self.buyers = $0.map { Buyer.person($0) }
-                self.buyer = self.buyers[0]
-
                 self.owners = $0.map { Owner.person($0) } + [.all]
             }
             .store(in: &cancellables)
-    }
-
-    private func receiptPosition() -> ReceiptPosition? {
-        price.parsedValue.map {
-            .init(amount: $0, discount: discount.parsedValue, buyer: buyer, owner: owner)
-        }
-    }
-
-    private func reset() {
-        price.reset()
-        discount.reset()
-        canAddPosition = false
     }
 }

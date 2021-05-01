@@ -48,8 +48,12 @@ public final class InMemoryReceiptPositionService: ReceiptPositionService {
         positions.removeAll()
     }
 
-    public func fetchPositions() -> [ReceiptPosition] {
+    public func fetchAll() -> [ReceiptPosition] {
         positions
+    }
+
+    public func findById(_ id: UUID) -> ReceiptPosition? {
+        positions.first { $0.id == id }
     }
 
     private func subscribe(to peopleDidUpdate: AnyPublisher<People, Never>) {

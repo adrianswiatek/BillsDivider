@@ -50,7 +50,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
         let position = ReceiptPosition(amount: 1, buyer: .person(firstPerson), owner: .all)
         sut.insert(position)
 
-        XCTAssertEqual(sut.fetchPositions(), [position])
+        XCTAssertEqual(sut.fetchAll(), [position])
     }
 
     func testInsertPositions_withPosition_sendsPositionThroughPositionsDidUpdate() {
@@ -97,7 +97,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
         sut.remove(position)
 
-        XCTAssertEqual(sut.fetchPositions(), [])
+        XCTAssertEqual(sut.fetchAll(), [])
     }
 
     func testRemovePosition_whenTwoPositionsPersisted_removesGivenPosition() {
@@ -109,7 +109,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
         sut.remove(positions[0])
 
-        XCTAssertEqual(sut.fetchPositions(), [positions[1]])
+        XCTAssertEqual(sut.fetchAll(), [positions[1]])
     }
 
     func testRemovePosition_whenOnePositionPersisted_sendsEmptyArrayThroughPositionsDidUpdate() {
@@ -147,7 +147,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
         sut.update(updatedPosition)
 
-        XCTAssertEqual(sut.fetchPositions(), [updatedPosition, positions[0]])
+        XCTAssertEqual(sut.fetchAll(), [updatedPosition, positions[0]])
     }
 
     func testUpdatePosition_sendsPositionthroughPositionsDidUpdate() {
@@ -227,7 +227,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
     func testRemoveAllPositions_oneItemPersisted_deletesOneItem() {
         sut.insert(.init(amount: 1, buyer: .person(.empty), owner: .all))
         sut.removeAllPositions()
-        XCTAssertEqual(sut.fetchPositions(), [])
+        XCTAssertEqual(sut.fetchAll(), [])
     }
 
     func testRemoveAllPositions_twoItemsPersisted_deletesTwoItems() {
@@ -236,7 +236,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
         sut.removeAllPositions()
 
-        XCTAssertEqual(sut.fetchPositions(), [])
+        XCTAssertEqual(sut.fetchAll(), [])
     }
 
     func testRemoveAllPositions_sendsEmptyArrayThroughPositionsDidUpdate() {
@@ -256,7 +256,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
     }
 
     func testFetchPositions_whenNoItems_returnsEmptyArray() {
-        XCTAssertEqual(sut.fetchPositions(), [])
+        XCTAssertEqual(sut.fetchAll(), [])
     }
 
     func testFetchPositions_whenOneItemAdded_returnsOneItem() {
@@ -266,7 +266,7 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
         let position = ReceiptPosition(amount: 1, buyer: .person(person), owner: .all)
         sut.insert(position)
 
-        XCTAssertEqual(sut.fetchPositions(), [position])
+        XCTAssertEqual(sut.fetchAll(), [position])
     }
 
     func testFetchPositions_whenFourItemAdded_returnsFourItemsInGivenOrder() {
@@ -279,6 +279,6 @@ class CoreDataReceiptPositionServiceTests: XCTestCase {
 
         positions.forEach { sut.insert($0) }
 
-        XCTAssertEqual(sut.fetchPositions(), positions.reversed())
+        XCTAssertEqual(sut.fetchAll(), positions.reversed())
     }
 }

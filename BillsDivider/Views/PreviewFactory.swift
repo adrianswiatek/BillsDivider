@@ -32,6 +32,10 @@ extension PreviewFactory {
         dependencyContainer.resolve(AddPositionView.self)
     }
 
+    var editPositionView: some View {
+        dependencyContainer.resolve(EditPositionView.self)
+    }
+
     var editOverlayView: some View {
         let viewFactory: EditOverlayViewFactory = dependencyContainer.resolve(EditOverlayViewFactory.self)
         return viewFactory.create(presenting: .constant(true), parameters: .adding, configure: { _ in })

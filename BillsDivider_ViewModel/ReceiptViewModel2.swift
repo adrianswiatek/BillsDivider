@@ -7,6 +7,9 @@ public final class ReceiptViewModel2: ObservableObject {
     @Published
     public private(set) var positions: [ReceiptPositionViewModel]
 
+    @Published
+    public private(set) var canShowMoreActions: Bool
+
     private let positionService: ReceiptPositionService
     private let peopleService: PeopleService
     private let numberFormatter: NumberFormatter
@@ -24,6 +27,7 @@ public final class ReceiptViewModel2: ObservableObject {
         self.numberFormatter = numberFormatter
 
         self.people = .empty
+        self.canShowMoreActions = false
         self.positions = []
         self.cancellables = []
 
@@ -31,11 +35,15 @@ public final class ReceiptViewModel2: ObservableObject {
     }
 
     public func fetchPositions() {
-        setPositions(positionService.fetchPositions())
+        setPositions(positionService.fetchAll())
     }
 
-    public func removePosition(_ position: ReceiptPositionViewModel) {
-        positionService.removeById(position.id)
+    public func removePosition(with id: UUID) {
+        positionService.removeById(id)
+    }
+
+    public func removePosition(at index: Int) {
+        positionService.removeById(positions[index].id)
     }
 
     public func removeAllPositions() {
@@ -54,5 +62,6 @@ public final class ReceiptViewModel2: ObservableObject {
 
     private func setPositions(_ positions: [ReceiptPosition]) {
         self.positions = positions.map { .init($0, people, numberFormatter) }
+        self.canShowMoreActions = !positions.isEmpty
     }
 }

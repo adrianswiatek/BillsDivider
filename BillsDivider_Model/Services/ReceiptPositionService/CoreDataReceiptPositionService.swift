@@ -22,7 +22,7 @@ public final class CoreDataReceiptPositionService: ReceiptPositionService {
     }
 
     public func insert(_ position: ReceiptPosition) {
-        var positions = fetchPositions()
+        var positions = fetchAll()
         removeAllEntities()
 
         positions.insert(position, at: 0)
@@ -41,10 +41,10 @@ public final class CoreDataReceiptPositionService: ReceiptPositionService {
     }
 
     public func update(_ position: ReceiptPosition) {
-        var positions = fetchPositions()
+        var positions = fetchAll()
         removeAllEntities()
 
-        guard let index = positions.firstIndex(where: { $0.id == position.id}) else {
+        guard let index = positions.firstIndex(where: { $0.id == position.id }) else {
             return
         }
 
@@ -61,7 +61,7 @@ public final class CoreDataReceiptPositionService: ReceiptPositionService {
     }
 
     public func removeById(_ id: UUID) {
-        var positions = fetchPositions()
+        var positions = fetchAll()
         removeAllEntities()
 
         positions.removeAll { $0.id == id }
@@ -78,9 +78,21 @@ public final class CoreDataReceiptPositionService: ReceiptPositionService {
         positionsDidUpdateSubject.send([])
     }
 
-    public func fetchPositions() -> [ReceiptPosition] {
+    public func fetchAll() -> [ReceiptPosition] {
         let people = peopleService.fetchPeople()
         return fetchEntities(sorted: true).compactMap { $0.asReceiptPosition(people: people) }
+    }
+
+    public func findById(_ id: UUID) -> ReceiptPosition? {
+        let request: NSFetchRequest<ReceiptPositionEntity> = ReceiptPositionEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+
+        guard let positions = try? context.fetch(request), let position = positions.first else {
+            return nil
+        }
+
+        let people = peopleService.fetchPeople()
+        return position.asReceiptPosition(people: people)
     }
 
     private func fetchEntities(sorted: Bool) -> [ReceiptPositionEntity] {
@@ -106,7 +118,7 @@ public final class CoreDataReceiptPositionService: ReceiptPositionService {
         peopleDidUpdate
             .sink { [weak self] _ in
                 guard let self = self else { return }
-                self.positionsDidUpdateSubject.send(self.fetchPositions())
+                self.positionsDidUpdateSubject.send(self.fetchAll())
             }
             .store(in: &subscriptions)
     }

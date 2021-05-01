@@ -38,7 +38,7 @@ class InMemoryReceiptPositionServiceTests: XCTestCase {
     func testInsertPosition_insertsGivenPosition() {
         let position = ReceiptPosition(amount: 1, buyer: .person(.withName("My name")), owner: .all)
         sut.insert(position)
-        XCTAssertEqual(sut.fetchPositions(), [position])
+        XCTAssertEqual(sut.fetchAll(), [position])
     }
 
     func testInsertPosition_twoTimes_insertTwoGivenPositions() {
@@ -47,7 +47,7 @@ class InMemoryReceiptPositionServiceTests: XCTestCase {
             .init(amount: 2, buyer: .person(.withGeneratedName(forNumber: 2)), owner: .all)
         ]
         positions.forEach { sut.insert($0) }
-        XCTAssertEqual(sut.fetchPositions(), positions.reversed())
+        XCTAssertEqual(sut.fetchAll(), positions.reversed())
     }
 
     func testUpdatePosition_updatesGivenPosition() {
@@ -66,7 +66,7 @@ class InMemoryReceiptPositionServiceTests: XCTestCase {
 
         sut.update(updatedPosition)
 
-        XCTAssertEqual(sut.fetchPositions(), [updatedPosition, positions[0]])
+        XCTAssertEqual(sut.fetchAll(), [updatedPosition, positions[0]])
     }
 
     func testRemovePosition_removesGivenPosition() {
@@ -78,7 +78,7 @@ class InMemoryReceiptPositionServiceTests: XCTestCase {
 
         sut.remove(positions[1])
 
-        XCTAssertEqual(sut.fetchPositions(), [positions[0]])
+        XCTAssertEqual(sut.fetchAll(), [positions[0]])
     }
 
     func testRemoveAllPositions_removesAllPositions() {
@@ -90,17 +90,17 @@ class InMemoryReceiptPositionServiceTests: XCTestCase {
 
         sut.removeAllPositions()
 
-        XCTAssertEqual(sut.fetchPositions(), [])
+        XCTAssertEqual(sut.fetchAll(), [])
     }
 
     func testFetchPositions_whenNoPositions_returnsEmptyArray() {
-        XCTAssertEqual(sut.fetchPositions(), [])
+        XCTAssertEqual(sut.fetchAll(), [])
     }
 
     func testFetchPositions_whenOnePositionAdded_returnsGivenPosition() {
         let position = ReceiptPosition(amount: 1, buyer: .person(.withName("My name")), owner: .all)
         sut.insert(position)
-        XCTAssertEqual(sut.fetchPositions(), [position])
+        XCTAssertEqual(sut.fetchAll(), [position])
     }
 
     func testFetchPositions_whenTwoPositionsAdded_returnsTwoGivenPositions() {
@@ -109,7 +109,7 @@ class InMemoryReceiptPositionServiceTests: XCTestCase {
             .init(amount: 2, buyer: .person(.withGeneratedName(forNumber: 2)), owner: .all)
         ]
         positions.forEach { sut.insert($0) }
-        XCTAssertEqual(sut.fetchPositions(), positions.reversed())
+        XCTAssertEqual(sut.fetchAll(), positions.reversed())
     }
 
     func test_whenPeopleServiceUpdatesPeoples_sendsPositionsThroughPositionsDidUpdate() {
