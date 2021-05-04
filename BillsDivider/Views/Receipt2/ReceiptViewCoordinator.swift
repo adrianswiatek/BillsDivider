@@ -7,14 +7,17 @@ public final class ReceiptViewCoordinator: ObservableObject {
 
     private let addPositionViewModelFactory: () -> AddPositionViewModel
     private let editPositionViewModelFactory: () -> EditPositionViewModel
+    private let addReductionViewModelFactory: () -> AddReductionViewModel
 
     public init(
         addPositionViewModelFactory: @escaping () -> AddPositionViewModel,
-        editPositionViewModelFactory: @escaping () -> EditPositionViewModel
+        editPositionViewModelFactory: @escaping () -> EditPositionViewModel,
+        addReductionViewModelFactory: @escaping () -> AddReductionViewModel
     ) {
         self.destination = .empty
         self.addPositionViewModelFactory = addPositionViewModelFactory
         self.editPositionViewModelFactory = editPositionViewModelFactory
+        self.addReductionViewModelFactory = addReductionViewModelFactory
     }
 
     @ViewBuilder
@@ -24,6 +27,8 @@ public final class ReceiptViewCoordinator: ObservableObject {
             EmptyView()
         case .addPosition:
             AddPositionView(addPositionViewModelFactory())
+        case .addReduction:
+            AddReductionView(addReductionViewModelFactory())
         case .editPosition(let positionId):
             EditPositionView(editPositionViewModel(positionId))
         }
@@ -37,6 +42,10 @@ public final class ReceiptViewCoordinator: ObservableObject {
         destination = .editPosition(positionId: id)
     }
 
+    public func addReduction() {
+        destination = .addReduction
+    }
+
     private func editPositionViewModel(_ positionId: UUID) -> EditPositionViewModel {
         let viewModel = editPositionViewModelFactory()
         viewModel.initializeWithPositionId(positionId)
@@ -48,6 +57,7 @@ private extension ReceiptViewCoordinator {
     enum Destination {
         case empty
         case addPosition
+        case addReduction
         case editPosition(positionId: UUID)
     }
 }

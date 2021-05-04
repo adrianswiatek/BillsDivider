@@ -33,7 +33,8 @@ public struct ReceiptView2: View {
             .actionSheet(isPresented: $isActionSheetVisible) {
                 ActionSheet(title: Text("More actions"), message: nil, buttons: [
                     .default(Text("Add reduction")) {
-
+                        coordinator.addReduction()
+                        isNavigationActive = true
                     },
                     .destructive(Text("Remove all")) {
                         withAnimation {

@@ -117,6 +117,8 @@
 		A7C1B04A2624D602003A1D55 /* ReceiptViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C1B0492624D602003A1D55 /* ReceiptViewModel2.swift */; };
 		A7C1B05D2624D760003A1D55 /* ReceiptView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C1B05C2624D760003A1D55 /* ReceiptView2.swift */; };
 		A7C8E14324296EAA00AA616F /* DiscountSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C8E14224296EAA00AA616F /* DiscountSign.swift */; };
+		A7CE5E7C2641E56200F46E7E /* AddReductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE5E7B2641E56200F46E7E /* AddReductionView.swift */; };
+		A7CE5E7E2641E60E00F46E7E /* AddReductionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CE5E7D2641E60E00F46E7E /* AddReductionViewModel.swift */; };
 		A7D0B398240F13D600821E93 /* BillsDivider_Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A72B1A5023C2935100E09786 /* BillsDivider_Model.framework */; };
 		A7D0B39C240F17A800821E93 /* DiscountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D0B39B240F17A800821E93 /* DiscountTextFieldView.swift */; };
 		A7D3FC0723E6469B001C8392 /* BDColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3FC0423E64599001C8392 /* BDColorExtensions.swift */; };
@@ -316,6 +318,8 @@
 		A7C50A9523C00F760088DF12 /* Person+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataTests.swift"; sourceTree = "<group>"; };
 		A7C50A9723C016760088DF12 /* ReceiptPosition+CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReceiptPosition+CoreDataTests.swift"; sourceTree = "<group>"; };
 		A7C8E14224296EAA00AA616F /* DiscountSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountSign.swift; sourceTree = "<group>"; };
+		A7CE5E7B2641E56200F46E7E /* AddReductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReductionView.swift; sourceTree = "<group>"; };
+		A7CE5E7D2641E60E00F46E7E /* AddReductionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReductionViewModel.swift; sourceTree = "<group>"; };
 		A7D0B39B240F17A800821E93 /* DiscountTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountTextFieldView.swift; sourceTree = "<group>"; };
 		A7D3FC0423E64599001C8392 /* BDColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDColorExtensions.swift; sourceTree = "<group>"; };
 		A7DCA29B24150F380084985A /* EditOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayView.swift; sourceTree = "<group>"; };
@@ -836,6 +840,7 @@
 			isa = PBXGroup;
 			children = (
 				A71FC6AC2628CCCE00E51C03 /* AddPositionView.swift */,
+				A7CE5E7B2641E56200F46E7E /* AddReductionView.swift */,
 				A720E221263DBC2600805960 /* EditPositionView.swift */,
 				A7C1B05C2624D760003A1D55 /* ReceiptView2.swift */,
 				A797FC0D26409B2F00787E65 /* ReceiptViewCoordinator.swift */,
@@ -856,6 +861,7 @@
 			children = (
 				A7B31A4A262B7C2700B3D499 /* AddPositionViewModel.swift */,
 				A7EE2057263DB06E008D0FC2 /* EditPositionViewModel.swift */,
+				A7CE5E7D2641E60E00F46E7E /* AddReductionViewModel.swift */,
 			);
 			path = PositionViewModel;
 			sourceTree = "<group>";
@@ -1286,6 +1292,7 @@
 				A7E2D8EE242D4FDE005F0EBB /* BuyerViewModel.swift in Sources */,
 				A7836D6D242EC8040009B7DB /* ReductionOverlayViewModel.swift in Sources */,
 				A7B31A4B262B7C2700B3D499 /* AddPositionViewModel.swift in Sources */,
+				A7CE5E7E2641E60E00F46E7E /* AddReductionViewModel.swift in Sources */,
 				A7E100B0241598A5004FAFE0 /* DiscountPopoverViewModel.swift in Sources */,
 				A797D6A923C37714002D550F /* ReceiptViewModel.swift in Sources */,
 				A7C1B04A2624D602003A1D55 /* ReceiptViewModel2.swift in Sources */,
@@ -1355,6 +1362,7 @@
 				A7E100AE24159628004FAFE0 /* DiscountPopoverView.swift in Sources */,
 				A797D6B923C377EF002D550F /* EditOverlayViewFactory.swift in Sources */,
 				A7E2D8F7242D60DC005F0EBB /* ReductionSectionView.swift in Sources */,
+				A7CE5E7C2641E56200F46E7E /* AddReductionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1418,7 +1426,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BillsDivider_Model/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1448,7 +1456,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BillsDivider_Model/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1560,7 +1568,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BillsDivider_ViewModel/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1589,7 +1597,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = BillsDivider_ViewModel/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

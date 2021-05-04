@@ -39,6 +39,10 @@ public final class MoneyViewModel: ObservableObject {
         .init(name: "Discount", fontSize: 24, parser: parser)
     }
 
+    public static func reduction(withParser parser: DecimalParser) -> MoneyViewModel {
+        .init(name: "Reduction", fontSize: 32, parser: parser)
+    }
+
     public func reset() {
         value = ""
     }

@@ -39,7 +39,8 @@ public final class DependencyContainer {
         container.register(ReceiptViewCoordinator.self) { resolver in
             ReceiptViewCoordinator(
                 addPositionViewModelFactory: { resolver.resolve(AddPositionViewModel.self)! },
-                editPositionViewModelFactory: { resolver.resolve(EditPositionViewModel.self)! }
+                editPositionViewModelFactory: { resolver.resolve(EditPositionViewModel.self)! },
+                addReductionViewModelFactory: { resolver.resolve(AddReductionViewModel.self)! }
             )
         }
     }
@@ -122,6 +123,15 @@ public final class DependencyContainer {
 
         container.register(EditPositionViewModel.self) {
             EditPositionViewModel(
+                $0.resolve(ReceiptPositionService.self)!,
+                $0.resolve(PeopleService.self)!,
+                $0.resolve(DecimalParser.self)!,
+                $0.resolve(NumberFormatter.self)!
+            )
+        }
+
+        container.register(AddReductionViewModel.self) {
+            AddReductionViewModel(
                 $0.resolve(ReceiptPositionService.self)!,
                 $0.resolve(PeopleService.self)!,
                 $0.resolve(DecimalParser.self)!,
