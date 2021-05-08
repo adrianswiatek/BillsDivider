@@ -139,21 +139,30 @@ public struct ReceiptView2: View {
             price()
         }
         .contextMenu {
-            Button {
-                coordinator.editPosition(with: position.id)
-                isNavigationActive = true
-            } label: {
-                Image(systemName: "pencil")
-                Text("Edit position")
-            }
-            Button {
-                viewModel.removePosition(with: position.id)
-            } label: {
-                Image(systemName: "trash")
-                Text("Remove position")
-            }
+            editButtonForPosition(position)
+            removeButtonForPosition(position)
         }
         .padding(.vertical, 4)
+    }
+
+    private func editButtonForPosition(_ position: ReceiptPositionViewModel) -> some View {
+        Button {
+            let action = position.isReduction ? coordinator.editReduction : coordinator.editPosition
+            action(position.id)
+            isNavigationActive = true
+        } label: {
+            Image(systemName: "pencil")
+            Text("Edit \(position.isReduction ? "reduction" : "position")")
+        }
+    }
+
+    private func removeButtonForPosition(_ position: ReceiptPositionViewModel) -> some View {
+        Button {
+            viewModel.removePosition(with: position.id)
+        } label: {
+            Image(systemName: "trash")
+            Text("Remove \(position.isReduction ? "reduction" : "position")")
+        }
     }
 }
 

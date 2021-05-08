@@ -123,6 +123,8 @@
 		A7D0B39C240F17A800821E93 /* DiscountTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D0B39B240F17A800821E93 /* DiscountTextFieldView.swift */; };
 		A7D3FC0723E6469B001C8392 /* BDColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D3FC0423E64599001C8392 /* BDColorExtensions.swift */; };
 		A7DCA29C24150F380084985A /* EditOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DCA29B24150F380084985A /* EditOverlayView.swift */; };
+		A7DF025D26472BB5004D25E7 /* EditReductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF025C26472BB5004D25E7 /* EditReductionView.swift */; };
+		A7DF025F26472C35004D25E7 /* EditReductionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF025E26472C35004D25E7 /* EditReductionViewModel.swift */; };
 		A7E100AC241594A7004FAFE0 /* SectionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E100AB241594A7004FAFE0 /* SectionLabel.swift */; };
 		A7E100AE24159628004FAFE0 /* DiscountPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E100AD24159628004FAFE0 /* DiscountPopoverView.swift */; };
 		A7E100B0241598A5004FAFE0 /* DiscountPopoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E100AF241598A5004FAFE0 /* DiscountPopoverViewModel.swift */; };
@@ -323,6 +325,8 @@
 		A7D0B39B240F17A800821E93 /* DiscountTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountTextFieldView.swift; sourceTree = "<group>"; };
 		A7D3FC0423E64599001C8392 /* BDColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDColorExtensions.swift; sourceTree = "<group>"; };
 		A7DCA29B24150F380084985A /* EditOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayView.swift; sourceTree = "<group>"; };
+		A7DF025C26472BB5004D25E7 /* EditReductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReductionView.swift; sourceTree = "<group>"; };
+		A7DF025E26472C35004D25E7 /* EditReductionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReductionViewModel.swift; sourceTree = "<group>"; };
 		A7E100AB241594A7004FAFE0 /* SectionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionLabel.swift; sourceTree = "<group>"; };
 		A7E100AD24159628004FAFE0 /* DiscountPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountPopoverView.swift; sourceTree = "<group>"; };
 		A7E100AF241598A5004FAFE0 /* DiscountPopoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountPopoverViewModel.swift; sourceTree = "<group>"; };
@@ -842,6 +846,7 @@
 				A71FC6AC2628CCCE00E51C03 /* AddPositionView.swift */,
 				A7CE5E7B2641E56200F46E7E /* AddReductionView.swift */,
 				A720E221263DBC2600805960 /* EditPositionView.swift */,
+				A7DF025C26472BB5004D25E7 /* EditReductionView.swift */,
 				A7C1B05C2624D760003A1D55 /* ReceiptView2.swift */,
 				A797FC0D26409B2F00787E65 /* ReceiptViewCoordinator.swift */,
 			);
@@ -860,8 +865,9 @@
 			isa = PBXGroup;
 			children = (
 				A7B31A4A262B7C2700B3D499 /* AddPositionViewModel.swift */,
-				A7EE2057263DB06E008D0FC2 /* EditPositionViewModel.swift */,
 				A7CE5E7D2641E60E00F46E7E /* AddReductionViewModel.swift */,
+				A7EE2057263DB06E008D0FC2 /* EditPositionViewModel.swift */,
+				A7DF025E26472C35004D25E7 /* EditReductionViewModel.swift */,
 			);
 			path = PositionViewModel;
 			sourceTree = "<group>";
@@ -1299,6 +1305,7 @@
 				A797D6AA23C37714002D550F /* SettingsViewModel.swift in Sources */,
 				A7EE2058263DB06E008D0FC2 /* EditPositionViewModel.swift in Sources */,
 				A797D6AF23C37752002D550F /* EditOverlayState.swift in Sources */,
+				A7DF025F26472C35004D25E7 /* EditReductionViewModel.swift in Sources */,
 				A7E40968241718BC0001CD55 /* DiscountViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1336,6 +1343,7 @@
 				A7788B4723B3991A0059EB71 /* ReceiptView.swift in Sources */,
 				A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */,
 				A7836D71242ED5130009B7DB /* ReductionOverlayViewModelFactory.swift in Sources */,
+				A7DF025D26472BB5004D25E7 /* EditReductionView.swift in Sources */,
 				A7C8E14324296EAA00AA616F /* DiscountSign.swift in Sources */,
 				A71FC6AD2628CCCE00E51C03 /* AddPositionView.swift in Sources */,
 				A7E2D8F2242D5D4F005F0EBB /* ConfirmButton.swift in Sources */,

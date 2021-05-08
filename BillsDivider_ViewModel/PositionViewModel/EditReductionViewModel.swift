@@ -1,16 +1,17 @@
 import BillsDivider_Model
 import Combine
 
-public final class AddReductionViewModel: ObservableObject {
+public final class EditReductionViewModel: ObservableObject {
     @Published public var reduction: MoneyViewModel
     @Published public var buyer: Buyer
     @Published public var owner: Owner
 
-    @Published public private(set) var canAddReduction: Bool
+    @Published public private(set) var canUpdateReduction: Bool
 
     public private(set) var buyers: [Buyer]
     public private(set) var owners: [Owner]
 
+    private var id: UUID?
     private var cancellables: Set<AnyCancellable>
 
     private let positionService: ReceiptPositionService
@@ -31,7 +32,7 @@ public final class AddReductionViewModel: ObservableObject {
         self.buyer = .person(.empty)
         self.owner = .all
 
-        self.canAddReduction = false
+        self.canUpdateReduction = false
 
         self.buyers = []
         self.owners = []
@@ -41,30 +42,32 @@ public final class AddReductionViewModel: ObservableObject {
         self.bind()
     }
 
-    public func initialize() {
-        reduction.reset()
-
-        guard let position = positionService.fetchAll().first else {
+    public func initializeWithPositionId(_ id: UUID) {
+        guard let position = positionService.findById(id) else {
             return
         }
 
-        buyer = position.buyer
-        owner = position.owner
-        canAddReduction = false
+        self.id = id
+        self.reduction.value = numberFormatter.format(value: -position.amount)
+        self.buyer = position.buyer
+        self.owner = position.owner
+        self.canUpdateReduction = false
     }
 
-    public func addReduction() {
-        guard let position = receiptPosition() else {
+    public func updateReduction() {
+        guard let id = id, let reduction = reduction.parsedValue else {
             return
         }
 
-        positionService.insert(position)
+        positionService.update(
+            ReceiptPosition(id: id, amount: -reduction, buyer: buyer, owner: owner)
+        )
     }
 
     private func bind() {
-        $reduction
-            .map { $0.state.is(.valid) }
-            .assign(to: &$canAddReduction)
+        Publishers.CombineLatest3($reduction, $buyer, $owner)
+            .map { reduction, _, _ in reduction.state.is(.valid) }
+            .assign(to: &$canUpdateReduction)
 
         peopleService.peopleDidUpdate
             .sink { [weak self] in
@@ -77,11 +80,5 @@ public final class AddReductionViewModel: ObservableObject {
                 self.owners = $0.map { Owner.person($0) } + [.all]
             }
             .store(in: &cancellables)
-    }
-
-    private func receiptPosition() -> ReceiptPosition? {
-        reduction.parsedValue.map {
-            .init(amount: -$0, discount: nil, buyer: buyer, owner: owner)
-        }
     }
 }

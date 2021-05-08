@@ -1,11 +1,11 @@
 import BillsDivider_ViewModel
 import SwiftUI
 
-public struct AddReductionView: View {
+public struct EditReductionView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var viewModel: AddReductionViewModel
+    @ObservedObject private var viewModel: EditReductionViewModel
 
-    public init(_ viewModel: AddReductionViewModel) {
+    public init(_ viewModel: EditReductionViewModel) {
         self.viewModel = viewModel
     }
 
@@ -14,13 +14,12 @@ public struct AddReductionView: View {
             Form {
                 reductionSection
                 peopleSection
-                addReductionSection
+                editReductionSection
             }
             .navigationBarHidden(true)
         }
-        .navigationTitle(Text("Add reduction"))
+        .navigationTitle(Text("Edit reduction"))
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear { viewModel.initialize() }
     }
 
     private var reductionSection: some View {
@@ -70,31 +69,31 @@ public struct AddReductionView: View {
         }
     }
 
-    private var addReductionSection: some View {
+    private var editReductionSection: some View {
         Section {
             Button(action: {
-                viewModel.addReduction()
+                viewModel.updateReduction()
                 presentationMode.wrappedValue.dismiss()
             }) {
                 HStack {
                     Spacer()
                     Image(systemName: "checkmark.circle.fill")
-                    Text("Add reduction")
+                    Text("Update reduction")
                     Spacer()
                 }
             }
-            .disabled(!viewModel.canAddReduction)
+            .disabled(!viewModel.canUpdateReduction)
         }
     }
 }
 
-struct AddReductionView_Previews: PreviewProvider {
+struct EditReductionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PreviewFactory().addReductionView
+            PreviewFactory().editReductionView
                 .preferredColorScheme(.light)
 
-            PreviewFactory().addReductionView
+            PreviewFactory().editReductionView
                 .preferredColorScheme(.dark)
         }
     }

@@ -5,6 +5,7 @@ public struct ReceiptPositionViewModel: Identifiable {
     public let id: UUID
     public let price: String
     public let discount: String?
+    public let isReduction: Bool
     public let priceWithDiscount: String
     public let buyerColor: Color
     public let ownerColor: Color
@@ -18,6 +19,7 @@ public struct ReceiptPositionViewModel: Identifiable {
         self.priceWithDiscount = numberFormatter.format(value: position.amountWithDiscount)
         self.price = numberFormatter.format(value: position.amount)
         self.discount = position.discount.map { numberFormatter.format(value: $0) }
+        self.isReduction = position.isReduction
 
         guard let buyerColor = people.findBy(id: position.buyer.asPerson.id)?.colors.background.asColor else {
             preconditionFailure("Unable to find expected person in people instance.")
