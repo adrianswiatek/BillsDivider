@@ -65,34 +65,6 @@ public final class DependencyContainer {
         container.register(PositionsDivider.self) { _ in
             PositionsDivider()
         }
-
-        container.register(EditOverlayViewModelFactory.self) {
-            EditOverlayViewModelFactory(
-                peopleService: $0.resolve(PeopleService.self)!,
-                decimalParser: $0.resolve(DecimalParser.self)!,
-                numberFormatter: $0.resolve(NumberFormatter.self)!
-            )
-        }
-
-        container.register(EditOverlayViewFactory.self) {
-            EditOverlayViewFactory(
-                viewModelFactory: $0.resolve(EditOverlayViewModelFactory.self)!
-            )
-        }
-
-        container.register(ReductionOverlayViewModelFactory.self) {
-            ReductionOverlayViewModelFactory(
-                peopleService: $0.resolve(PeopleService.self)!,
-                decimalParser: $0.resolve(DecimalParser.self)!,
-                numberFormatter: $0.resolve(NumberFormatter.self)!
-            )
-        }
-
-        container.register(ReductionOverlayViewFactory.self) {
-            ReductionOverlayViewFactory(
-                viewModelFactory: $0.resolve(ReductionOverlayViewModelFactory.self)!
-            )
-        }
     }
 
     private func registerViewModels() {
@@ -100,13 +72,12 @@ public final class DependencyContainer {
             ReceiptViewModel(
                 $0.resolve(ReceiptPositionService.self)!,
                 $0.resolve(PeopleService.self)!,
-                $0.resolve(NumberFormatter.self)!,
-                self.configuration == .testing
+                $0.resolve(NumberFormatter.self)!
             )
         }
 
-        container.register(ReceiptViewModel2.self) {
-            ReceiptViewModel2(
+        container.register(ReceiptViewModel.self) {
+            ReceiptViewModel(
                 $0.resolve(ReceiptPositionService.self)!,
                 $0.resolve(PeopleService.self)!,
                 $0.resolve(NumberFormatter.self)!
@@ -191,14 +162,6 @@ public final class DependencyContainer {
         container.register(ReceiptView.self) {
             ReceiptView(
                 $0.resolve(ReceiptViewModel.self)!,
-                $0.resolve(EditOverlayViewFactory.self)!,
-                $0.resolve(ReductionOverlayViewFactory.self)!
-            )
-        }
-
-        container.register(ReceiptView2.self) {
-            ReceiptView2(
-                $0.resolve(ReceiptViewModel2.self)!,
                 $0.resolve(ReceiptViewCoordinator.self)!
             )
         }
@@ -229,7 +192,7 @@ public final class DependencyContainer {
 
         container.register(TabsView.self) {
             TabsView(items: [
-                TabItem(title: "Receipt", imageName: "list.dash", view: AnyView($0.resolve(ReceiptView2.self)!)),
+                TabItem(title: "Receipt", imageName: "list.dash", view: AnyView($0.resolve(ReceiptView.self)!)),
                 TabItem(title: "Summary", imageName: "doc.text", view: AnyView($0.resolve(SummaryView.self)!)),
                 TabItem(title: "Settings", imageName: "hammer", view: AnyView($0.resolve(SettingsView.self)!))
             ])

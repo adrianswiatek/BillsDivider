@@ -20,14 +20,6 @@ extension PreviewFactory {
         dependencyContainer.resolve(ReceiptView.self)
     }
 
-    var receiptView2: some View {
-        dependencyContainer.resolve(ReceiptView2.self)
-    }
-
-    var receiptHeaderView: some View {
-        ReceiptHeaderView()
-    }
-
     var addPositionView: some View {
         dependencyContainer.resolve(AddPositionView.self)
     }
@@ -42,50 +34,6 @@ extension PreviewFactory {
 
     var editReductionView: some View {
         dependencyContainer.resolve(EditReductionView.self)
-    }
-
-    var editOverlayView: some View {
-        let viewFactory: EditOverlayViewFactory = dependencyContainer.resolve(EditOverlayViewFactory.self)
-        return viewFactory.create(presenting: .constant(true), parameters: .adding, configure: { _ in })
-    }
-
-    var priceSectionView: some View {
-        let viewModel: PriceViewModel = dependencyContainer.resolve(PriceViewModel.self)
-        return PriceSectionView(viewModel)
-    }
-
-    var discountPopoverView: some View {
-        let viewModel: EditOverlayViewModel = dependencyContainer.resolve(EditOverlayViewModel.self)
-        return DiscountPopoverView(viewModel.discountPopoverViewModel)
-    }
-
-    var discountSectionView: some View {
-        let viewModel: EditOverlayViewModel = dependencyContainer.resolve(EditOverlayViewModel.self)
-        return DiscountSectionView(viewModel.discountViewModel)
-    }
-
-    var discountTextFieldView: some View {
-        let viewModel: DiscountPopoverViewModel = dependencyContainer.resolve(DiscountPopoverViewModel.self)
-        return DiscountTextFieldView(viewModel)
-    }
-
-    var buyerSectionView: some View {
-        let viewModelFactory: EditOverlayViewModelFactory =
-            dependencyContainer.resolve(EditOverlayViewModelFactory.self)
-        let viewModel: EditOverlayViewModel = viewModelFactory.create(.constant(true), .adding)
-        return BuyerSectionView(viewModel.buyerViewModel)
-    }
-
-    var ownerSectionView: some View {
-        let viewModelFactory: EditOverlayViewModelFactory =
-            dependencyContainer.resolve(EditOverlayViewModelFactory.self)
-        let viewModel: EditOverlayViewModel = viewModelFactory.create(.constant(true), .adding)
-        return OwnerSectionView(viewModel.ownerViewModel)
-    }
-
-    var reductionSectionView: some View {
-        let viewModel: PriceViewModel = dependencyContainer.resolve(PriceViewModel.self)
-        return ReductionSectionView(viewModel)
     }
 
     var summaryView: some View {
