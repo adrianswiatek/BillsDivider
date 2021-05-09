@@ -1,19 +1,27 @@
 import SwiftUI
 
 public struct TabsView: View {
-    private let items: [TabItem]
+    private let coordinator: TabsViewCoordinator
 
-    public init(items: [TabItem]) {
-        self.items = items
+    public init(_ coordinator: TabsViewCoordinator) {
+        self.coordinator = coordinator
     }
 
     public var body: some View {
         TabView {
-            ForEach(items) { item in
-                item.view.tabItem {
-                    Image(systemName: item.imageName)
-                    Text(item.title)
-                }
+            coordinator.receiptView.tabItem {
+                Image(systemName: "list.dash")
+                Text("Receipt")
+            }
+
+            coordinator.summaryView.tabItem {
+                Image(systemName: "doc.text")
+                Text("Summary")
+            }
+
+            coordinator.settingsView.tabItem {
+                Image(systemName: "hammer")
+                Text("Summary")
             }
         }
     }

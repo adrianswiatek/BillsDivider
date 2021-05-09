@@ -15,7 +15,6 @@ public final class DependencyContainer {
         self.registerOtherObjects()
         self.registerServices()
         self.registerViewModels()
-        self.registerViews()
     }
 
     public func resolve<T>(_ dependency: T.Type) -> T {
@@ -42,6 +41,15 @@ public final class DependencyContainer {
                 editPositionViewModelFactory: { resolver.resolve(EditPositionViewModel.self)! },
                 addReductionViewModelFactory: { resolver.resolve(AddReductionViewModel.self)! },
                 editReductionViewModelFactory: { resolver.resolve(EditReductionViewModel.self)! }
+            )
+        }
+
+        container.register(TabsViewCoordinator.self) {
+            TabsViewCoordinator(
+                $0.resolve(ReceiptViewCoordinator.self)!,
+                $0.resolve(ReceiptViewModel.self)!,
+                $0.resolve(SummaryViewModel.self)!,
+                $0.resolve(SettingsViewModel.self)!
             )
         }
     }
@@ -155,47 +163,6 @@ public final class DependencyContainer {
                 discountPopoverViewModel: $0.resolve(DiscountPopoverViewModel.self)!,
                 decimalParser: $0.resolve(DecimalParser.self)!
             )
-        }
-    }
-
-    private func registerViews() {
-        container.register(ReceiptView.self) {
-            ReceiptView(
-                $0.resolve(ReceiptViewModel.self)!,
-                $0.resolve(ReceiptViewCoordinator.self)!
-            )
-        }
-
-        container.register(AddPositionView.self) {
-            AddPositionView(
-                $0.resolve(AddPositionViewModel.self)!
-            )
-        }
-
-        container.register(EditPositionView.self) {
-            EditPositionView(
-                $0.resolve(EditPositionViewModel.self)!
-            )
-        }
-
-        container.register(SummaryView.self) {
-            SummaryView(
-                $0.resolve(SummaryViewModel.self)!
-            )
-        }
-
-        container.register(SettingsView.self) {
-            SettingsView(
-                $0.resolve(SettingsViewModel.self)!
-            )
-        }
-
-        container.register(TabsView.self) {
-            TabsView(items: [
-                TabItem(title: "Receipt", imageName: "list.dash", view: AnyView($0.resolve(ReceiptView.self)!)),
-                TabItem(title: "Summary", imageName: "doc.text", view: AnyView($0.resolve(SummaryView.self)!)),
-                TabItem(title: "Settings", imageName: "hammer", view: AnyView($0.resolve(SettingsView.self)!))
-            ])
         }
     }
 }

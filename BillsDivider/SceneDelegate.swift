@@ -18,9 +18,10 @@ internal class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UIView.setAnimationsEnabled(!isUiTesting)
 
         let window = UIWindow(windowScene: windowScene)
-        let rootView: some View = dependencyContainer.resolve(TabsView.self)
-        window.rootViewController = UIHostingController(rootView: rootView)
+        window.rootViewController = UIHostingController(
+            rootView: TabsView(dependencyContainer.resolve(TabsViewCoordinator.self))
+        )
         self.window = window
-        window.makeKeyAndVisible()
+        self.window?.makeKeyAndVisible()
     }
 }

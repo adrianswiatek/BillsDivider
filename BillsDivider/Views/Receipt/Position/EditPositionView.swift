@@ -1,44 +1,26 @@
 import BillsDivider_ViewModel
 import SwiftUI
 
-public struct EditReductionView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var viewModel: EditReductionViewModel
+public struct EditPositionView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject private var viewModel: EditPositionViewModel
 
-    public init(_ viewModel: EditReductionViewModel) {
+    public init(_ viewModel: EditPositionViewModel) {
         self.viewModel = viewModel
     }
 
     public var body: some View {
         NavigationView {
             Form {
-                reductionSection
+                MoneySectionView($viewModel.price)
+                MoneySectionView($viewModel.discount)
                 peopleSection
-                editReductionSection
+                updatePositionSection
             }
             .navigationBarHidden(true)
         }
-        .navigationTitle(Text("Edit reduction"))
+        .navigationTitle(Text("Edit position"))
         .navigationBarTitleDisplayMode(.inline)
-    }
-
-    private var reductionSection: some View {
-        Section {
-            HStack {
-                Text(viewModel.reduction.name)
-
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundColor(Color.red)
-                    .opacity(viewModel.reduction.state.is(.invalid) ? 1 : 0)
-                    .animation(.easeInOut)
-
-                TextField("0.00", text: $viewModel.reduction.value)
-                    .foregroundColor(viewModel.reduction.state.is(.invalid) ? .secondary : .primary)
-                    .font(.system(size: CGFloat(viewModel.reduction.fontSize), weight: .bold, design: .monospaced))
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.decimalPad)
-            }
-        }
     }
 
     private var peopleSection: some View {
@@ -69,31 +51,31 @@ public struct EditReductionView: View {
         }
     }
 
-    private var editReductionSection: some View {
+    private var updatePositionSection: some View {
         Section {
-            Button(action: {
-                viewModel.updateReduction()
+            Button {
+                viewModel.updatePosition()
                 presentationMode.wrappedValue.dismiss()
-            }) {
+            } label: {
                 HStack {
                     Spacer()
                     Image(systemName: "checkmark.circle.fill")
-                    Text("Update reduction")
+                    Text("Update position")
                     Spacer()
                 }
             }
-            .disabled(!viewModel.canUpdateReduction)
+            .disabled(!viewModel.canUpdatePosition)
         }
     }
 }
 
-struct EditReductionView_Previews: PreviewProvider {
+struct EditPositionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            PreviewFactory().editReductionView
+            PreviewFactory().editPositionView
                 .preferredColorScheme(.light)
 
-            PreviewFactory().editReductionView
+            PreviewFactory().editPositionView
                 .preferredColorScheme(.dark)
         }
     }

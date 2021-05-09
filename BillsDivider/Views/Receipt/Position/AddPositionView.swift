@@ -12,8 +12,8 @@ public struct AddPositionView: View {
         NavigationView {
             ZStack(alignment: .top) {
                 Form {
-                    moneySection(for: $viewModel.price)
-                    moneySection(for: $viewModel.discount)
+                    MoneySectionView($viewModel.price)
+                    MoneySectionView($viewModel.discount)
                     peopleSection
                     addPositionSection
                 }
@@ -40,29 +40,6 @@ public struct AddPositionView: View {
             .opacity(viewModel.isConfirmationVisible ? 1 : 0)
             .offset(x: 0, y: UIScreen.main.bounds.height / 4)
             .animation(.easeInOut(duration: 0.3))
-    }
-
-    private func moneySection(for viewModel: Binding<MoneyViewModel>) -> some View {
-        let name = viewModel.wrappedValue.name
-        let isValid = viewModel.wrappedValue.state.is(.invalid) == false
-        let fontSize = CGFloat(viewModel.wrappedValue.fontSize)
-
-        return Section {
-            HStack {
-                Text(name)
-
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundColor(Color.red)
-                    .opacity(isValid ? 0 : 1)
-                    .animation(.easeInOut)
-
-                TextField("0.00", text: viewModel.value)
-                    .foregroundColor(isValid ? .primary : .secondary)
-                    .font(.system(size: fontSize, weight: .bold, design: .monospaced))
-                    .multilineTextAlignment(.trailing)
-                    .keyboardType(.decimalPad)
-            }
-        }
     }
 
     private var peopleSection: some View {

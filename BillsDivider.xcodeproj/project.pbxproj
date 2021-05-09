@@ -30,7 +30,6 @@
 		A7385B5D239C6A1B00A41C09 /* TabsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7385B5C239C6A1B00A41C09 /* TabsUITests.swift */; };
 		A738B0AB262CC283007B99B3 /* MoneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738B0AA262CC283007B99B3 /* MoneyViewModel.swift */; };
 		A73E85FF23C939A000FAF4FA /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E85FE23C939A000FAF4FA /* DependencyContainer.swift */; };
-		A73E860123C94B5800FAF4FA /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E860023C94B5800FAF4FA /* TabItem.swift */; };
 		A7479BB523E628D50016C12A /* PersonColorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7479BB423E628D50016C12A /* PersonColorsTests.swift */; };
 		A7479BB723E628F60016C12A /* PersonColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7479BB623E628F60016C12A /* PersonColors.swift */; };
 		A7479BB923E6291A0016C12A /* BDColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7479BB823E6291A0016C12A /* BDColor.swift */; };
@@ -97,6 +96,8 @@
 		A797D6C923C395B5002D550F /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D6C823C395B5002D550F /* People.swift */; };
 		A797D6CB23C3AA89002D550F /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797D6CA23C3AA89002D550F /* PeopleTests.swift */; };
 		A797FC0E26409B2F00787E65 /* ReceiptViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797FC0D26409B2F00787E65 /* ReceiptViewCoordinator.swift */; };
+		A7B26962264803B700F339B9 /* MoneySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B26961264803B700F339B9 /* MoneySectionView.swift */; };
+		A7B2696526480EED00F339B9 /* TabsViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B2696426480EED00F339B9 /* TabsViewCoordinator.swift */; };
 		A7B31A4B262B7C2700B3D499 /* AddPositionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B31A4A262B7C2700B3D499 /* AddPositionViewModel.swift */; };
 		A7B7D9FD2411A7DF00625718 /* DecimalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7D9FC2411A7DF00625718 /* DecimalParser.swift */; };
 		A7B9BB4F242C16A9008E6722 /* DiscountPopoverPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B9BB4E242C16A9008E6722 /* DiscountPopoverPage.swift */; };
@@ -211,7 +212,6 @@
 		A7385B5E239C80DF00A41C09 /* EditOverlayViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOverlayViewModelTests.swift; sourceTree = "<group>"; };
 		A738B0AA262CC283007B99B3 /* MoneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyViewModel.swift; sourceTree = "<group>"; };
 		A73E85FE23C939A000FAF4FA /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
-		A73E860023C94B5800FAF4FA /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		A7479BB423E628D50016C12A /* PersonColorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonColorsTests.swift; sourceTree = "<group>"; };
 		A7479BB623E628F60016C12A /* PersonColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonColors.swift; sourceTree = "<group>"; };
 		A7479BB823E6291A0016C12A /* BDColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDColor.swift; sourceTree = "<group>"; };
@@ -274,6 +274,8 @@
 		A7AC987F23B69C81003D8AE6 /* AddingModeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingModeState.swift; sourceTree = "<group>"; };
 		A7AC988123B69CDB003D8AE6 /* EditingModeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingModeState.swift; sourceTree = "<group>"; };
 		A7AC988923B6D788003D8AE6 /* CoreDataPeopleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPeopleService.swift; sourceTree = "<group>"; };
+		A7B26961264803B700F339B9 /* MoneySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneySectionView.swift; sourceTree = "<group>"; };
+		A7B2696426480EED00F339B9 /* TabsViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewCoordinator.swift; sourceTree = "<group>"; };
 		A7B31A4A262B7C2700B3D499 /* AddPositionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPositionViewModel.swift; sourceTree = "<group>"; };
 		A7B7D9FC2411A7DF00625718 /* DecimalParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalParser.swift; sourceTree = "<group>"; };
 		A7B7DE57238C5F1600D38BC8 /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewModel.swift; sourceTree = "<group>"; };
@@ -436,15 +438,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		A73E860223C955A900FAF4FA /* Tabs */ = {
-			isa = PBXGroup;
-			children = (
-				A73E860023C94B5800FAF4FA /* TabItem.swift */,
-				A736A1A12369EB5D0096C2E1 /* TabsView.swift */,
-			);
-			path = Tabs;
-			sourceTree = "<group>";
-		};
 		A754170523A0551D008DB5F7 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,7 +520,7 @@
 				A7873D2A23A8397F008C9552 /* Settings */,
 				A7E2D8E9242D4246005F0EBB /* SharedControls */,
 				A7F213AF238B410E0084B466 /* Summary */,
-				A73E860223C955A900FAF4FA /* Tabs */,
+				A7B2696326480EDB00F339B9 /* Tabs */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -749,15 +742,41 @@
 			path = Doubles;
 			sourceTree = "<group>";
 		};
-		A7C1B0432624D5C7003A1D55 /* Receipt */ = {
+		A7B2695D264802D000F339B9 /* Position */ = {
 			isa = PBXGroup;
 			children = (
 				A71FC6AC2628CCCE00E51C03 /* AddPositionView.swift */,
-				A7CE5E7B2641E56200F46E7E /* AddReductionView.swift */,
 				A720E221263DBC2600805960 /* EditPositionView.swift */,
+			);
+			path = Position;
+			sourceTree = "<group>";
+		};
+		A7B2695E264802D200F339B9 /* Reduction */ = {
+			isa = PBXGroup;
+			children = (
+				A7CE5E7B2641E56200F46E7E /* AddReductionView.swift */,
 				A7DF025C26472BB5004D25E7 /* EditReductionView.swift */,
+			);
+			path = Reduction;
+			sourceTree = "<group>";
+		};
+		A7B2696326480EDB00F339B9 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				A736A1A12369EB5D0096C2E1 /* TabsView.swift */,
+				A7B2696426480EED00F339B9 /* TabsViewCoordinator.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		A7C1B0432624D5C7003A1D55 /* Receipt */ = {
+			isa = PBXGroup;
+			children = (
+				A7B26961264803B700F339B9 /* MoneySectionView.swift */,
 				A7C1B05C2624D760003A1D55 /* ReceiptView.swift */,
 				A797FC0D26409B2F00787E65 /* ReceiptViewCoordinator.swift */,
+				A7B2695D264802D000F339B9 /* Position */,
+				A7B2695E264802D200F339B9 /* Reduction */,
 			);
 			path = Receipt;
 			sourceTree = "<group>";
@@ -1229,6 +1248,7 @@
 				A73E85FF23C939A000FAF4FA /* DependencyContainer.swift in Sources */,
 				A7FED231235CEF8B00CCD069 /* AppDelegate.swift in Sources */,
 				A7EB1152239EDDE100EEE4BC /* PreviewFactory.swift in Sources */,
+				A7B26962264803B700F339B9 /* MoneySectionView.swift in Sources */,
 				A7DF025D26472BB5004D25E7 /* EditReductionView.swift in Sources */,
 				A71FC6AD2628CCCE00E51C03 /* AddPositionView.swift in Sources */,
 				A7E2D8F2242D5D4F005F0EBB /* ConfirmButton.swift in Sources */,
@@ -1241,8 +1261,8 @@
 				A7FED233235CEF8B00CCD069 /* SceneDelegate.swift in Sources */,
 				A7F213B2238B41310084B466 /* SummaryView.swift in Sources */,
 				A7346B4423DE2F22000AA8F1 /* SettingsView.swift in Sources */,
-				A73E860123C94B5800FAF4FA /* TabItem.swift in Sources */,
 				A7CE5E7C2641E56200F46E7E /* AddReductionView.swift in Sources */,
+				A7B2696526480EED00F339B9 /* TabsViewCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

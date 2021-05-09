@@ -13,34 +13,57 @@ struct PreviewFactory {
 
 extension PreviewFactory {
     var tabsView: some View {
-        dependencyContainer.resolve(TabsView.self)
+        TabsView(
+            dependencyContainer.resolve(TabsViewCoordinator.self)
+        )
     }
 
     var receiptView: some View {
-        dependencyContainer.resolve(ReceiptView.self)
+        ReceiptView(
+            dependencyContainer.resolve(ReceiptViewModel.self),
+            dependencyContainer.resolve(ReceiptViewCoordinator.self)
+        )
     }
 
     var addPositionView: some View {
-        dependencyContainer.resolve(AddPositionView.self)
+        AddPositionView(
+            dependencyContainer.resolve(AddPositionViewModel.self)
+        )
     }
 
     var editPositionView: some View {
-        dependencyContainer.resolve(EditPositionView.self)
+        EditPositionView(
+            dependencyContainer.resolve(EditPositionViewModel.self)
+        )
+    }
+
+    var moneySectionView: some View {
+        MoneySectionView(
+            .constant(dependencyContainer.resolve(MoneyViewModel.self))
+        )
     }
 
     var addReductionView: some View {
-        dependencyContainer.resolve(AddReductionView.self)
+        AddReductionView(
+            dependencyContainer.resolve(AddReductionViewModel.self)
+        )
     }
 
     var editReductionView: some View {
-        dependencyContainer.resolve(EditReductionView.self)
+        EditReductionView(
+            dependencyContainer.resolve(EditReductionViewModel.self)
+        )
     }
 
     var summaryView: some View {
-        dependencyContainer.resolve(SummaryView.self)
+        SummaryView(
+            dependencyContainer.resolve(SummaryViewModel.self)
+        )
     }
 
     var settingsView: some View {
-        dependencyContainer.resolve(SettingsView.self)
+        SettingsView(
+            dependencyContainer.resolve(SettingsViewModel.self)
+        )
     }
 }
