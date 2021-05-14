@@ -18,7 +18,7 @@ public struct SummaryPersonView: View {
             .padding(.init(top: 8, leading: 16, bottom: 8, trailing: 16))
             .background(backgroundColor)
             .cornerRadius(8)
-            .shadow(color: .gray, radius: 2, x: 0, y: 1)
+            .shadow(color: backgroundColor, radius: 2, x: 0, y: 1)
             .padding(.horizontal, 8)
     }
 }
