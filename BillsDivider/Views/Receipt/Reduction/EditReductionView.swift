@@ -2,7 +2,7 @@ import BillsDivider_ViewModel
 import SwiftUI
 
 public struct EditReductionView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @ObservedObject private var viewModel: EditReductionViewModel
 
     public init(_ viewModel: EditReductionViewModel) {
@@ -20,6 +20,7 @@ public struct EditReductionView: View {
         }
         .navigationTitle(Text("Edit reduction"))
         .navigationBarTitleDisplayMode(.inline)
+        .onDisappear { presentationMode.wrappedValue.dismiss() }
     }
 
     private var peopleSection: some View {

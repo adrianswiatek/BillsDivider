@@ -2,6 +2,7 @@ import BillsDivider_ViewModel
 import SwiftUI
 
 public struct AddPositionView: View {
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @ObservedObject private var viewModel: AddPositionViewModel
 
     public init(_ viewModel: AddPositionViewModel) {
@@ -25,6 +26,7 @@ public struct AddPositionView: View {
         .navigationTitle(Text("Add position"))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { viewModel.initialize() }
+        .onDisappear { presentationMode.wrappedValue.dismiss() }
     }
 
     private var positionAddedView: some View {
@@ -34,7 +36,10 @@ public struct AddPositionView: View {
             .padding()
             .background(
                 Color.accentColor.shadow(
-                    color: Color(UIColor(white: 0, alpha: 0.5)), radius: 10, x: 0, y: 5
+                    color: Color(UIColor(white: 0, alpha: 0.5)),
+                    radius: 10,
+                    x: 0,
+                    y: 5
                 )
             )
             .opacity(viewModel.isConfirmationVisible ? 1 : 0)

@@ -57,7 +57,7 @@ public final class DependencyContainer {
     private func registerServices() {
         container.register(PeopleService.self) {
             PeopleServiceFactory.create($0.resolve(NSManagedObjectContext.self)!)
-        }
+        }.inObjectScope(.container)
 
         container.register(ReceiptPositionService.self) {
             CoreDataReceiptPositionService(

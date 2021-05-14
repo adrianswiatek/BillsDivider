@@ -2,7 +2,7 @@ import BillsDivider_ViewModel
 import SwiftUI
 
 public struct EditPositionView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     @ObservedObject private var viewModel: EditPositionViewModel
 
     public init(_ viewModel: EditPositionViewModel) {
@@ -49,6 +49,7 @@ public struct EditPositionView: View {
                 .animation(.none)
             }
         }
+        .onDisappear { presentationMode.wrappedValue.dismiss() }
     }
 
     private var updatePositionSection: some View {
