@@ -10,23 +10,27 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                Separator()
-                
-                numberOfPeople
-                    .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
+            VStack {
+                ScrollView {
+                    Separator()
 
-                peopleLabel
-                    .padding(.init(top: 8, leading: 16, bottom: 4, trailing: 16))
+                    numberOfPeople
+                        .padding(.init(top: 16, leading: 16, bottom: 8, trailing: 16))
 
-                VStack(alignment: .center, spacing: 0) {
-                    ForEach(viewModel.peopleViewModel, content: cells)
-                        .background(Color("SettingsPeopleCellBackground"))
+                    peopleLabel
+                        .padding(.init(top: 8, leading: 16, bottom: 4, trailing: 16))
 
-                    if viewModel.canAddPerson() {
-                        newPersonCell
-                            .padding(.vertical, 8)
+                    VStack(alignment: .center, spacing: 0) {
+                        ForEach(viewModel.peopleViewModel, content: cells)
+                            .background(Color("SettingsPeopleCellBackground"))
+
+                        if viewModel.canAddPerson() {
+                            newPersonCell
+                                .padding(.vertical, 8)
+                        }
                     }
+
+                    versionView
                 }
             }
             .navigationBarTitle("Settings")
@@ -133,6 +137,21 @@ struct SettingsView: View {
 
             Separator()
         }
+    }
+
+    private var versionView: some View {
+        VStack {
+            Separator()
+
+            HStack {
+                Text("v0.2.3")
+                    .foregroundColor(.secondary)
+                    .font(.callout)
+
+                Spacer()
+            }
+        }
+        .padding()
     }
 }
 
