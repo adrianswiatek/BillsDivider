@@ -21,7 +21,7 @@ public struct TabsView: View {
 
             coordinator.settingsView.tabItem {
                 Image(systemName: "hammer")
-                Text("Summary")
+                Text("Settings")
             }
         }
     }
